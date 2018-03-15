@@ -38,11 +38,11 @@
 
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl"
-			value="jdbc:oracle:thin:@192.168.0.11:1521:orcl" />
+			value="jdbc:oracle:thin:@foodieproject.cshfqsstwgrh.ap-northeast-2.rds.amazonaws.com:1521:orcl" />
 		<property name="properties">
 			<props>
-				<prop key="user">root</prop>
-				<prop key="password">oracle</prop>
+				<prop key="user">master</prop>
+				<prop key="password">oracle123</prop>
 			</props>
 		</property>
 

@@ -17,5 +17,12 @@ public class SampleContorller {
 	public String sample2() {
 		return "sample_index";
 	}
-
+	@RequestMapping("/main.do")
+	public String sample3() {
+		return "main";
+	}
+	@RequestMapping("/profile.do")
+	public String sample4() {
+		return "profile";
+	}
 }
