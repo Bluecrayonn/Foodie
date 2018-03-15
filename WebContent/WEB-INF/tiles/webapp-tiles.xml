@@ -4,11 +4,10 @@
 
 <tiles-definitions>
 
-	<definition name="sample_t" template="/WEB-INF/views/view-board/default.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/view-body/header.jsp"></put-attribute>
-		<put-attribute name="nav" value="/WEB-INF/views/view-body/quick-menu.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/view-board/super.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/views/view-body/footer.jsp"></put-attribute>
+	<definition name="sample_index" template="/WEB-INF/views/sample_index.jsp">
+		<put-attribute name="nav" value="/WEB-INF/views/basic/nav.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/basic/container.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/basic/footer.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>
