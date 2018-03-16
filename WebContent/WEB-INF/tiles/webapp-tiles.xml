@@ -4,7 +4,7 @@
 
 <tiles-definitions>
 
-	<definition name="sample_index" template="/WEB-INF/views/sample_index.jsp">
+	<definition name="mainpage" template="/WEB-INF/views/sample_index.jsp">
 		<put-attribute name="nav" value="/WEB-INF/views/basic/nav.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/basic/container.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/main.jsp"></put-attribute>
