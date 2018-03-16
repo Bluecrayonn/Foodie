@@ -3,6 +3,9 @@
 <mapper namespace="models.FoodieMemberMapper">
 
 
+<!-- FoodieMamberMapper(DAO)에서 설정한 Sql문을 처리하는 설정  -->
+
+
 <select id="getAllMembers" resultType="models.FoodieMember">
 SELECT * FROM Foodie_member
 </select>

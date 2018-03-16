@@ -50,6 +50,7 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="c3p0"></property>
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
+		
 	</bean>
 	<!-- MongoDB configuration -->
 <!-- 	<mongo:mongo-client port="27017" host="192.168.0.11">
@@ -65,5 +66,27 @@
 
 	</bean>
  -->
+ 
+ 
+ 
+ <!-- mailSender -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="username" value="ncs13master@gmail.com"/>
+		<property name="password" value="1q2w3e4r~"/>
+		<property name="port" value="587"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.ssl.trust">*</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="mailController" class="controllers.MailController">
+    	<property name="mailSender" ref="mailSender" />
+	</bean>
 
+
+ 
 </beans>

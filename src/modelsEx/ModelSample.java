@@ -1,4 +1,4 @@
-package models;
+package modelsEx;
 
 public class ModelSample {
 
