@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/foodie")
 public class SampleContorller {
 	
 	
@@ -13,9 +13,12 @@ public class SampleContorller {
 	public String sample() {
 		return "index";
 	}
-	@RequestMapping("/index2.do")
+	@RequestMapping("/main.do")
 	public String sample2() {
-		return "sample_index";
+		return "mainpage";
 	}
-
+	@RequestMapping("/profile.do")
+	public String sample4() {
+		return "profilepage";
+	}
 }
