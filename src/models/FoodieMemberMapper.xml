@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="models.FoodieMemberMapper">
+
+
+<select id="getAllMembers" resultType="models.FoodieMember">
+SELECT * FROM Foodie_member
+</select>
+
+<select id="getMember" resultType="models.FoodieMember"
+parameterType="String" >
+<!--  mybatis 파라미터 표기법    ? => #{} -->
+SELECT * FROM Foodie_member WHERE NICKNAME = #{NICKNAME}
+</select>
+
+<insert id="insertMember"
+parameterType="models.FoodieMember">
+INSERT INTO Foodie_member VALUES(#{NICKNAME},#{PWD},#{EMAIL})
+</insert>
+
+<update id="updateMember"
+parameterType="models.FoodieMember">
+UPDATE Foodie_member SET PWD=#{PWD}, EMAIL=#{EMAIL} WHERE NICKNAME=#{NICKNAME}
+</update>
+
+<delete id="deleteMember"
+parameterType="String">
+DELETE FROM Foodie_member WHERE NICKNAME=#{NICKNAME}
+</delete>
+
+</mapper>
