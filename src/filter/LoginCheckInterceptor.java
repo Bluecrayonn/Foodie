@@ -1,6 +1,8 @@
 package filter;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +23,9 @@ public class LoginCheckInterceptor {
 			return false;
 		}
 		
-		String email = (String)session.getAttribute("auth");
-		if(email==null) {
+		Map user = (LinkedHashMap)session.getAttribute("auth");
+		
+		if(user==null) {
 			resp.sendRedirect("");
 			return false;
 		}

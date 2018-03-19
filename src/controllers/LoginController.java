@@ -9,15 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.core.ApplicationContext;
- import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.stereotype.Controller;
- import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.google.gson.Gson;
 
+import models.follow.FollowInfoImpl;
 import services.login.LoginService;
 
 @Controller
@@ -28,6 +29,8 @@ public class LoginController {
 	@Autowired
 	LoginService loginservice;
 	@Autowired
+	FollowInfoImpl followInfoImpl;
+	@Autowired
 	Gson gson;
 	
 	
@@ -36,14 +39,17 @@ public class LoginController {
 	public String loginHandler(@RequestParam Map<String, String> map,HttpServletRequest context) {
 		
 		HttpSession session = context.getSession();
-		
-		
+		//계정 email 뽑아오기
+		String email=  map.get("email");
+		//검사결과 0: 성공 / 1: 아이디없음/2:패스워드 불일치
 		int result = loginservice.confirmEmail(map);
 		
 		Map json  = new HashMap<>();
 		
 		if(result==0) {
-			session.setAttribute("auth", map.get("email"));
+			
+ 			session.setAttribute("auth", loginservice.setAuth(email));
+ 			
 	 		System.out.println(map.toString());
 		}
 		
