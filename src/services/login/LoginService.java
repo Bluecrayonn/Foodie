@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.MultiValueMap;
 
-import models.follow.FollowInfoImpl;
+import models.follow.SocialInfoImpl;
 import models.login.LoginImpl;
 
 @Service
@@ -26,7 +26,7 @@ public class LoginService {
 	@Autowired
 	LoginImpl loginImpl;
 	@Autowired
-	FollowInfoImpl followInfoImpl;
+	SocialInfoImpl followInfoImpl;
 
 	public int confirmEmail(Map<String, String> map) {
 

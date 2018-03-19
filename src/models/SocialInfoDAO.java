@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public interface FollowInfoDAO {
+public interface SocialInfoDAO {
 	
 	
 	//유저의 email 정보를 이용해서 나를 following 하고 있는 사람 정보 가지고 오기

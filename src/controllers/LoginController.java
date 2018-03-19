@@ -18,7 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.google.gson.Gson;
 
-import models.follow.FollowInfoImpl;
+import models.follow.SocialInfoImpl;
 import services.login.LoginService;
 
 @Controller
@@ -29,7 +29,7 @@ public class LoginController {
 	@Autowired
 	LoginService loginservice;
 	@Autowired
-	FollowInfoImpl followInfoImpl;
+	SocialInfoImpl followInfoImpl;
 	@Autowired
 	Gson gson;
 	

@@ -9,10 +9,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import models.FollowInfoDAO;
+import models.SocialInfoDAO;
 
 @Repository
-public class FollowInfoImpl implements FollowInfoDAO{
+public class SocialInfoImpl implements SocialInfoDAO{
 
 	@Autowired
 	SqlSessionFactory sqlFactory;

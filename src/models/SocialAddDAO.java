@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 import java.util.Map;
 
-public interface FollowAddDAO {
+public interface SocialAddDAO {
 
 	/*
 	 * NoSQL(Mongo) 
@@ -18,10 +18,10 @@ public interface FollowAddDAO {
 	/*
 	 * RDB 
 	 */
-	public List<Map> addFollowingRDB(long targetId, long ownerId);
-	public List<Map> removeFollowingRDB(long targetId, long ownerId);
+	public int addFollowingRDB(Map map);
+	public int removeFollowingRDB(Map map);
 
-	public List<Map> addBookmarksRDB(long postId, long userId);
-	public List<Map> removeBookmarksRDB(long postId, long userId);
+	public int addBookmarksRDB(Map map);
+	public int removeBookmarksRDB(Map map);
 
 }
