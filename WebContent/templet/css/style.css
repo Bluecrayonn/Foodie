@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
@@ -10,7 +11,7 @@ html {
 }
 
 body {
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.8;
@@ -49,7 +50,7 @@ a:hover, a:focus, a:active {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Nanum Gothic', sans-serif;
   color: #000;
 }
 
@@ -60,7 +61,7 @@ p {
 .btn {
   margin-right: 4px;
   margin-bottom: 4px;
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -412,7 +413,7 @@ p {
   margin-bottom: 30px;
 }
 .fh5co-post-entry article h2 {
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 34px;
   color: #000;
   margin-bottom: 30px;
@@ -433,7 +434,7 @@ p {
 }
 .fh5co-post-entry article .fh5co-meta {
   font-size: 16px;
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   color: #999999;
   margin-bottom: 20px;
   display: block;
@@ -458,7 +459,7 @@ p {
   padding-left: 0;
 }
 .fh5co-post-entry article .content-article blockquote p {
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 27px;
   font-style: italic;
   line-height: 1.5;
@@ -488,10 +489,10 @@ p {
   letter-spacing: 2px;
   color: #b3b3b3;
   text-transform: uppercase;
-  font-family: "Roboto", arial, sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 .fh5co-post-entry article .fh5co-highlight p {
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Nanum Gothic', sans-serif;
   color: #000;
   font-size: 20px;
 }
@@ -775,5 +776,4 @@ figure figcaption {
     float: none;
   }
 }
-
 /*# sourceMappingURL=style.css.map */
