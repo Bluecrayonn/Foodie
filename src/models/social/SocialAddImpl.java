@@ -1,4 +1,4 @@
-package models.follow;
+package models.social;
 
 import java.util.List;
 import java.util.Map;

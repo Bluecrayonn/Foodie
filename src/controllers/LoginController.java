@@ -18,7 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.google.gson.Gson;
 
-import models.follow.SocialInfoImpl;
+import models.social.SocialInfoImpl;
 import services.login.LoginService;
 
 @Controller

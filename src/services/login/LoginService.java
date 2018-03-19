@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.MultiValueMap;
 
-import models.follow.SocialInfoImpl;
 import models.login.LoginImpl;
+import models.social.SocialInfoImpl;
 
 @Service
 public class LoginService {

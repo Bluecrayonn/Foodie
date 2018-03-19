@@ -1,4 +1,4 @@
-package models.follow;
+package models.social;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class SocialInfoImpl implements SocialInfoDAO{
 		
 		SqlSession sqlsession = sqlFactory.openSession();
 		try {
-			return  sqlsession.selectList("dummy.follower", accountId);
+			return  sqlsession.selectList("social.follower", accountId);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class SocialInfoImpl implements SocialInfoDAO{
 		System.out.println("getFollewee : received accountId : "+accountId);
 		SqlSession sqlsession = sqlFactory.openSession();
 		try {
-			return  sqlsession.selectList("dummy.following", accountId);
+			return  sqlsession.selectList("social.following", accountId);
 		}catch(Exception e) {
 			e.printStackTrace();
 			
@@ -56,7 +56,7 @@ public class SocialInfoImpl implements SocialInfoDAO{
 		System.out.println("getBookmarks : received accountId : "+accountId);
 		SqlSession sqlsession = sqlFactory.openSession();
 		try {
-			return  sqlsession.selectList("dummy.bookmarks", accountId);
+			return  sqlsession.selectList("social.bookmarks", accountId);
 		}catch(Exception e) {
 			e.printStackTrace();
 			

@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import models.follow.SocialAddImpl;
+import com.google.gson.Gson;
+
+import models.social.SocialAddImpl;
+import models.social.SocialInfoImpl;
 
 @Controller
 @RequestMapping("/social")
@@ -16,6 +21,10 @@ public class SocialControllers {
 	
 	@Autowired
 	SocialAddImpl followadd;
+	@Autowired
+	SocialInfoImpl socialInfo;
+	@Autowired
+	Gson gson;
 
 	@RequestMapping("/addFollow.do")
 	@ResponseBody
@@ -67,6 +76,60 @@ public class SocialControllers {
 		
 		return "";
 	}
+	
+	
+	
+	
+
+    //List 불러오는 구간입니다.
+	//return 은 json 으로 변환해서 올릴 예정 입니다.
+	
+	
+	
+	@RequestMapping("/followingList.do")
+	@ResponseBody
+	public String followingListHandler(@RequestParam Map<String,Object> map) {
+		
+		 
+ 		List<Map> result = socialInfo.getFollowing(Long.parseLong((String)map.get("ownerId")));
+ 		Map count = new HashMap<>();
+ 		count.put("totalCount", result.size());
+ 		result.add(count);
+ 		
+ 		
+		
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("/followerList.do")
+	@ResponseBody
+	public String followerListHandler(@RequestParam Map<String,Object> map) {
+		
+		List<Map> result = socialInfo.getFollower(Long.parseLong((String)map.get("targetId")));
+		Map count = new HashMap<>();
+ 		count.put("totalCount", result.size());
+ 		result.add(count);
+ 		
+ 		
+		return gson.toJson(result);
+	}
+	@RequestMapping("/bookmarkList.do")
+	@ResponseBody
+	public String BookmarkListHandler(@RequestParam Map<String,Object> map) {
+		
+		 
+		List<Map> result = socialInfo.getBookmarks(Long.parseLong((String)map.get("ownerId")));
+		Map count = new HashMap<>();
+ 		count.put("totalCount", result.size());
+ 		result.add(count);
+ 		
+		return gson.toJson(result);
+	}
+	
+	
+	
+	
+	
 	
 	
 }

@@ -27,7 +27,7 @@
 
 
 	<insert id="addFollowing">
-		insert into follow values (${targetId},${ownerId})
+		insert into follow values (${ownerId},${targetId})
 	</insert>
 	
 	<insert id="addBookmarks">
