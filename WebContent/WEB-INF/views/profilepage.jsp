@@ -4,19 +4,19 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-
-<title>Insert title here</title>
+<title>Foodie-profile</title>
+<style type="text/css">
+h1,h2,h3,h4,h5,h6,a{
+	font-family: '나눔고딕'
+}
+</style>
 </head>
 <body>
-	<div>
+<div>
 	<tiles:insertAttribute name = "nav" />
-	</div>
-	<div>
+	<tiles:insertAttribute name = "sidebar" />
 	<tiles:insertAttribute name = "body" />
-	</div>
-	<div>
 	<tiles:insertAttribute name = "footer" />
-	</div>
-	
+</div>
 </body>
 </html>

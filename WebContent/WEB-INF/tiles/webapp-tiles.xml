@@ -3,11 +3,22 @@
 
 
 <tiles-definitions>
-
-	<definition name="mainpage" template="/WEB-INF/views/main.jsp">
-		<put-attribute name="nav" value="/WEB-INF/views/basic/nav.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/views/basic/container.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/views/basic/footer.jsp"></put-attribute>
+	<definition name="mainpage" template="/WEB-INF/views/mainpage.jsp">
+		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/basic/main.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
-	
+	<definition name="profilepage" template="/WEB-INF/views/profilepage.jsp">
+		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/basic/profile.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
+	</definition>
+	<definition name="detailpage" template="/WEB-INF/views/detailpage.jsp">
+		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/basic/detail.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
