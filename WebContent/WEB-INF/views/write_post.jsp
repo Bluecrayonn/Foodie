@@ -5,7 +5,7 @@
 <html>
 <head>
 
-<title>Insert title here</title>
+<title>레시피 작성하기</title>
 </head>
 <body>
 	<div>
