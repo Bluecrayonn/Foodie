@@ -34,7 +34,7 @@ public class LoginController {
 	Gson gson;
 	
 	
-	@RequestMapping("/login.do")
+	@RequestMapping(path="/login.do",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String loginHandler(@RequestParam Map<String, String> map,HttpServletRequest context) {
 		
@@ -53,11 +53,9 @@ public class LoginController {
 	 		System.out.println(map.toString());
 		}
 		
-		json.put("authentication", result);
+		json.put("auth", result);
 		
 		return gson.toJson(json);
-		
-		
 		
 	}
 	

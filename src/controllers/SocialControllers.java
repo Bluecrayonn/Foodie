@@ -15,6 +15,13 @@ import com.google.gson.Gson;
 import models.social.SocialAddImpl;
 import models.social.SocialInfoImpl;
 
+
+/*
+ * RequestParam 부분은 시험을 위해서 지정해놓은 부분. 
+ * 따라서 최종 버전에서는 올바른 형태로 고쳐주어야 한다.
+ * 바꿀 필요가 없다면 바꾸지 않아도 상관없다.
+ * 
+ */
 @Controller
 @RequestMapping("/social")
 public class SocialControllers {

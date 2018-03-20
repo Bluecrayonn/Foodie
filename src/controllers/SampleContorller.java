@@ -7,18 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/foodie")
 public class SampleContorller {
 	
-	
-	
-	@RequestMapping("/index.do")
-	public String sample() {
-		return "index";
-	}
 	@RequestMapping("/main.do")
-	public String sample2() {
+	public String mainpage() {
 		return "mainpage";
 	}
+	@RequestMapping("/join.do")
+	public String joinpage() {
+		return "joinpage";
+	}
+	@RequestMapping("/detail.do")
+	public String detailpage() {
+		return "detailpage";
+	}
 	@RequestMapping("/profile.do")
-	public String sample4() {
+	public String profilepage() {
 		return "profilepage";
 	}
 }
