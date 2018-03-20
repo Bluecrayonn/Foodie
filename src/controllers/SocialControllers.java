@@ -30,8 +30,8 @@ public class SocialControllers {
 	SocialAddImpl followadd;
 	@Autowired
 	SocialInfoImpl socialInfo;
-	@Autowired
-	Gson gson;
+	
+	Gson gson = new Gson();
 
 	@RequestMapping("/addFollow.do")
 	@ResponseBody

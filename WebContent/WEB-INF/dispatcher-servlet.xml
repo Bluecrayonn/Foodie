@@ -52,7 +52,7 @@
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
 	</bean>
 	<!-- MongoDB configuration -->
-<!-- 	<mongo:mongo-client port="27017" host="192.168.0.11">
+<mongo:mongo-client port="27017" host="52.78.86.88">
 	</mongo:mongo-client>
 
 
@@ -61,9 +61,9 @@
 
 		<constructor-arg name="mongo" ref="mongo" />
 
-		<constructor-arg value="root" name="databaseName" />
+		<constructor-arg value="foodie" name="databaseName" />
 
 	</bean>
- -->
+
 
 </beans>

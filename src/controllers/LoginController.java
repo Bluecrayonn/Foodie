@@ -30,8 +30,8 @@ public class LoginController {
 	LoginService loginservice;
 	@Autowired
 	SocialInfoImpl followInfoImpl;
-	@Autowired
-	Gson gson;
+	
+	Gson gson = new Gson();
 	
 	
 	@RequestMapping(path="/login.do",produces="application/json;charset=utf-8")
