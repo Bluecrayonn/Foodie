@@ -21,8 +21,6 @@ $brand-black: #000 !default;
 $input-border-focus:  $brand-primary !default;
 $form-group-margin-bottom:       30px !default;
 
-$font-primary: 'Playfair Display', times, serif;
-$font-secondary: 'Roboto', arial, sans-serif;;
 
 // Mixin
 @mixin transition($transition, $ease: ease) {
@@ -65,7 +63,7 @@ $font-secondary: 'Roboto', arial, sans-serif;;
 }
 
 @font-face {
-	font-family: 'icomoon';
+	font-family: 'Nanum Gothic', sans-serif;
 	src:url('../fonts/icomoon/icomoon.eot?srf3rx');
 	src:url('../fonts/icomoon/icomoon.eot?srf3rx#iefix') format('embedded-opentype'),
 		url('../fonts/icomoon/icomoon.ttf?srf3rx') format('truetype'),
@@ -77,7 +75,7 @@ $font-secondary: 'Roboto', arial, sans-serif;;
 
 @mixin icomoon() {
 	
-	font-family: 'icomoon';
+	font-family: 'Nanum Gothic', sans-serif;
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -101,7 +99,6 @@ html {
 	background: $brand-white;
 }
 body {
-	font-family: $font-secondary;
 	font-size: 18px;
 	font-weight: 300;
 	line-height: 1.8;
@@ -139,7 +136,6 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: $font-primary;
 	color: $brand-black;
 }
 p {
@@ -150,7 +146,6 @@ p {
 .btn {
 	margin-right: 4px;
 	margin-bottom: 4px;
-	font-family: $font-primary;
 	font-size: 12px;
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -341,7 +336,6 @@ p {
 		padding-right: 15px;
 	}
 	#fh5co-logo {
-		
 		text-align: center;
 		a {
 			color: $brand-black;
@@ -455,7 +449,6 @@ p {
 			margin-bottom: 30px;
 		}
 		h2 {
-			font-family: $font-primary;
 			font-size: 34px;
 			color: $brand-black;
 			margin-bottom: 30px;
@@ -472,7 +465,6 @@ p {
 		}
 		.fh5co-meta {
 			font-size: 16px;
-			font-family: $font-secondary;
 			color: lighten($brand-black, 60%);
 			margin-bottom: 20px;
 			display: block;
@@ -494,7 +486,6 @@ p {
 				border-left: none;
 				padding-left: 0;
 				p {
-					font-family: $font-primary;
 					font-size: 27px;
 					font-style: italic;
 					line-height: 1.5;
@@ -527,10 +518,8 @@ p {
 				letter-spacing: 2px;
 				color: lighten($brand-black, 70%);
 				text-transform: uppercase;
-				font-family: $font-secondary;
 			}
 			p {
-				font-family: $font-primary;
 				// font-style: italic;
 				color: $brand-black;
 				font-size: 20px;
