@@ -3,19 +3,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-	    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+		<!-- include libraries(jQuery, bootstrap) -->
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+		
+		<!-- include summernote css/js -->
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+		
+		
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Foodie</title>
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 		<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 		<meta name="author" content="FREEHTML5.CO" />
+
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 		<link rel="shortcut icon" href="favicon.ico">
 		<!-- Google Fonts -->
@@ -53,7 +59,7 @@
 		  	
 		  	<hr/>
 		  	<div class="directions">
-		  	<textarea id="summernote" name="editordata"></textarea>
+		  		<textarea id="summernote" name="editordata"></textarea>
 		  	</div>
 		  	<div class="wrapper" style="text-align:center; margin-top:20px">
 		  		<button class="btn-primary" type="submit">작성완료</button>
@@ -63,16 +69,48 @@
 	   	
 	   		$("#summernote").summernote({
 		       	placeholder: '여기에 여러분의 레시피를 자유롭게 작성해보세요!',
-		       	tabsize: 2,
-		       	height: 100
-		   	});
-		   	function ig_plus() {
-		   		// this 사용
-		   	}
-		   	function ig_minus() {
+				height: 600,
+				fontNames : [ 'NanumGothic','맑은고딕', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', ],
+				fontNamesIgnoreCheck : [ 'NanumGothic' ],
+				focus: true,
+				
+				callbacks: {
+					onImageUpload: function(files, editor, welEditable) {
+			            for (var i = files.length - 1; i >= 0; i--) {
+			            	sendFile(files[i], this);
+			            }
+			        }
+				}		   	
+	   		});
+		   	
+	   		function ig_plus() {
 		   		// this 사용
 		   	}
 		   	
+		   	function ig_minus() {
+		   		// this 사용
+		   	}
+
+		   	function sendFile(file, el) {
+				var form_data = new FormData();
+		      	form_data.append('file', file);
+		      	$.ajax({
+		        	data: form_data,
+		        	type: "POST",
+		        	url: '/foodie/write/insertimg.do',
+		        	cache: false,
+		        	contentType: false,
+		        	enctype: 'multipart/form-data',
+		        	processData: false,
+		        	success: function(img_name) {
+		        		console.log(typeof($(el)));
+		        		console.log(img_name);
+		        		$('#summernote').summernote('code');
+		        	}
+		      	});
+		    }
+
+
 		   	$(document).ready(function(){
 			   	$("#thumbnail").change(function() {
 			 		console.log(this.files[0]);

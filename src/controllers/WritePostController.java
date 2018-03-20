@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/foodie")
-public class WritePostContorller {
+public class WritePostController {
 	@RequestMapping("/write.do")
 	public String write() {
 		return "write";
@@ -33,6 +33,8 @@ public class WritePostContorller {
 			File target = new File(dest);
 			f.transferTo(target);
 		}
+		System.out.println(editordata);
+		
 		return "main";
 	}
 }
