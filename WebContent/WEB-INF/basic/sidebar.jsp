@@ -10,7 +10,7 @@
 	<div class="fh5co-bio">
 		<c:choose>
 			<c:when test="${empty sessionScope.auth}">
-				<h1>아웅씽</h1>
+				<h1>로그인을 해주세요~</h1>
 				<div id="login-container">
 					<form id="login-form" autocomplete="off">
 						<p>
@@ -51,7 +51,7 @@
 					<h3 class="heading">사용자</h3>
 					<h2>Test1</h2>
 					<h2>${sessionScope.auth}</h2>
-					<p>Im a ${sessionScope.auth.user.NAME}!</p>
+					<p>Im a ${sessionScope.auth.user[0].NAME}!</p>
 					<ul class="fh5co-social">
 						<li><a href="#"><i class="icon-twitter"></i></a></li>
 						<li><a href="#"><i class="icon-facebook"></i></a></li>
