@@ -3,7 +3,10 @@ package models;
 import java.util.List;
 
 
+// DAO 역할
+//Interfact 역할이기 때문에 이걸 구현한 실제 DAO에서 메서드 구현을 해주어야 한다.
 
+ 
 public interface FoodieMemberMapper {
 	public List<FoodieMember> getAllMembers(); //여러명 가져올 때
 	public FoodieMember getMember(String nickname); //한명 가져올 때
