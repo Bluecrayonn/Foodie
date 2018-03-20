@@ -15,10 +15,7 @@
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
-
-	<bean class="com.google.gson.Gson">
-		<qualifier value="default"></qualifier>
-	</bean>
+	
 
 
 	<!-- Tiles resolver configuration -->
@@ -55,19 +52,18 @@
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
 	</bean>
 	<!-- MongoDB configuration -->
-	<mongo:mongo-client port="27017" host="52.78.86.88">
+<!-- 	<mongo:mongo-client port="27017" host="192.168.0.11">
 	</mongo:mongo-client>
+
+
 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
 		id="mongoTemplate" scope="singleton">
+
 		<constructor-arg name="mongo" ref="mongo" />
-		<constructor-arg value="foodie" name="databaseName" />
+
+		<constructor-arg value="root" name="databaseName" />
+
 	</bean>
-
-
-	<!-- Filters -->
-
-	<!-- <mvc:interceptors> <mvc:interceptor> 여기서 필터링할 구역을 정해줍니다. <mvc:mapping 
-		path="/*" /> <bean class="filter.LoginCheckInterceptor"></bean> </mvc:interceptor> 
-		</mvc:interceptors> -->
+ -->
 
 </beans>
