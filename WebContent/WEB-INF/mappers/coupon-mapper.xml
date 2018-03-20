@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+	<select id="selectByParams" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="type != null">
+				type in
+				<foreach collection="type" item="t" open="(" close=")"
+					separator=",">
+					#{t }
+				</foreach>
+			</if>
+			<if test="max != null">
+				and
+				<foreach collection="max" item="t" separator="or">
+					<if test="t == 0"> (max is null) </if>
+					<if test="t == 10"> (max between 1 and 10)</if>
+					<if test="t == 50"> (max between 10 and 50)</if>  
+					<if test="t == 100"> (max &gt;= 51)</if>
+				</foreach>
+			</if>
+			<if test="exp != null">
+				and
+				<foreach collection="exp" item="t" separator="or">
+					<if test="t == 'limit'">
+						expiration_date is not null
+					</if>
+					<if test="t == 'unlimit'">
+						expiration_date is null
+					</if>
+				</foreach>
+			</if>
+		</trim>
+		order by no asc
+	</select>
+
+
+	<select id="selectAll" resultType="java.util.LinkedHashMap">
+		select * from coupon
+	</select>
+	<select id="selectWithLimited" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		where max is not null order by no asc
+	</select>
+	<select id="selectWithUnlimited" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		where max is null order by no asc
+	</select>
+
+	<select id="selectAll_if" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		<if test="max != null">
+			where max &gt;=#{max}
+		</if>
+		<if test="exp != null">
+			and expiration_date &gt;=#{exp}
+		</if>
+	</select>
+
+	<select id="selectAll_choose" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		<choose>
+			<when test="limit != null and unlimit == null">
+				where max is not null
+			</when>
+			<when test="limit == null and unlimit != null">
+				where max is null
+			</when>
+			<otherwise>
+				where max is not null or max is null
+			</otherwise>
+		</choose>
+		order by no asc
+	</select>
+
+	<select id="selectAll_where" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		<where>
+			<if test="max != null">
+				and max &gt;=#{max}
+			</if>
+			<if test="exp != null">
+				and expiration_date &gt;=#{exp}
+			</if>
+		</where>
+		order by no asc
+	</select>
+
+	<select id="selectAll_foreach" resultType="java.util.LinkedHashMap">
+		select * from coupon
+		<if test="type != null">
+			<foreach open="where" collection="type" item="t" separator="or">
+				type = #{t }
+			</foreach>
+		</if>
+	</select>
+
+	<delete id="delete_foreach">
+		delete from coupon
+		<where>
+			<if test="list != null">
+				serial in
+				<foreach collection="list" index="li" open="{" close="}"
+					separator=",">
+					#{li}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+
+
+	<update id="modifyCoupon">
+		update coupon
+		<set>
+			<if test="max != null">
+				max=#{max},
+			</if>
+			<if test="exp != null">
+				expiration_date=#{exp},
+			</if>
+			<if test="type != null">
+				type=#{type},
+			</if>
+		</set>
+	</update>
+
+	<update id="modifyCoupon_trim">
+		update coupon
+		<trim prefix="set" suffix="" prefixOverrides="and|or"
+			suffixOverrides=",">
+			<if test="max != null">max =#{max},</if>
+			<if test="exp != null">expiration_date =#{exp},</if>
+			<if test="type != null">type =#{type},</if>
+		</trim>
+		where serial=#{serial}
+	</update>
+
+	<insert id="insert">
+		insert into coupon(no,serial,type)
+		values(coupon_seq.nextval,#{serial},#{type})
+	</insert>
+	<insert id="insertWithLimit">
+		insert into coupon(no,serial,type,max,used)
+		values(coupon_seq.nextval,#{serial},#{type},#{max},0)
+	</insert>
+	<insert id="insertWithExpiration">
+		insert into coupon(no,serial,type,expiration_date)
+		values(coupon_seq.nextval,#{serial},#{type},#{expiration})
+	</insert>
+	<insert id="insertWithLimitAndExpiration">
+		insert into
+		coupon(no,serial,type,max,used,expiration_date)
+		values(coupon_seq.nextval,#{serial},#{type},#{max},0,#{expiration})
+	</insert>
+
+
+	<update id="useCoupon">
+		update coupon set used=used+1 where no=#{no}
+	</update>
+	<select id="selectOne" resultType="java.util.LinkedHashMap">
+		select * from coupon where
+		no=#{no}
+	</select>
+</mapper>
