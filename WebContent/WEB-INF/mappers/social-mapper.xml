@@ -22,6 +22,10 @@
 		user_id = #{accountId}
 
 	</select>
+	
+	<select id="getpost" resultType="java.util.LinkedHashMap">
+		select * from post 
+	</select>
 
 
 
@@ -29,19 +33,30 @@
 	<insert id="addFollowing">
 		insert into follow values (${ownerId},${targetId})
 	</insert>
+	<delete id="removeFollowing">
+		delete from follow where (target_id = ${targetId})and(owner_id = ${ownerId})
+	</delete>
+	<update id="countUpFollowing">
+	update account set follow_count = follow_count +1 where account_id = ${accountId} 
+	</update>
+	<update id="countDownFollowing">
+	update account set follow_count = follow_count -1 where account_id = ${accountId} 
+	</update>
+	
 	
 	<insert id="addBookmarks">
 		insert into bookmarks values (BOOKMARK_SEQ.NEXTVAL,${postId},${userId})
 	</insert>
-
-	<delete id="removeFollowing">
-		delete from follow where (target_id = ${targetId})and(owner_id = ${ownerId})
-	</delete>
-	
 	<delete id="removeBookmarks">
 		delete from bookmark where (post_id = ${postId})and(user_id = ${userId})
-
 	</delete>
+	<update id="countUpBookmark">
+	update post set bookmark_count = bookmark_count +1 where post_id = ${postId} 
+	</update>
+	<update id="countDownBookmark">
+	update post set bookmark_count = bookmark_count -1 where post_id = ${postId} 
+	</update>
+	
 
 
 </mapper>

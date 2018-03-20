@@ -42,24 +42,32 @@
 			</c:when>
 			<c:when test="${!empty sessionScope.auth}">
 
-				<h1>오예${empty sessionScope.auth}</h1>
-				<div id="logon-container" >
+				<h1>오예</h1>
+				<div id="logon-container">
 					<figure>
 						<img src="/templet/images/person1.jpg"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
 					</figure>
-					<h3 class="heading">사용자</h3>
-					<h2>Test1</h2>
+					<h3 class="heading">${sessionScope.auth.user[0].NAME}</h3>
 					<h2>${sessionScope.auth}</h2>
-					<p>Im a ${sessionScope.auth.user[0].NAME}!</p>
+
 					<ul class="fh5co-social">
-						<li><a href="#"><i class="icon-twitter"></i></a></li>
-						<li><a href="#"><i class="icon-facebook"></i></a></li>
-						<li><a href="#"><i class="icon-instagram"></i></a></li>
+						<li><a href="/authentication/logout.do"><i
+								class="icon-log-out">LOG OUT</i></a></li>
+
 					</ul>
 
 				</div>
-
+				<div class="fh5co-menu" style="float: right">
+					<div class="fh5co-box">
+						<h3 class="heading">Categories</h3>
+						<ul>
+							<li><a href="#">프로필</a></li>
+							<li><a href="#">레시피</a></li>
+							<li><a href="#">북마크</a></li>
+						</ul>
+					</div>
+				</div>
 			</c:when>
 
 		</c:choose>
@@ -71,16 +79,7 @@
 
 
 	</div>
-	<div class="fh5co-menu">
-		<div class="fh5co-box">
-			<h3 class="heading">Categories</h3>
-			<ul>
-				<li><a href="#">프로필</a></li>
-				<li><a href="#">레시피</a></li>
-				<li><a href="#">북마크</a></li>
-			</ul>
-		</div>
-	</div>
+
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">

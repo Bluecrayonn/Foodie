@@ -67,7 +67,7 @@ public class LoginController {
 		context.getSession().removeAttribute("auth");
 		
 		//이부분에는 메인화면의 tiles 좌표가 들어갑니다.
-		return "";
+		return "redirect:/foodie/main.do";
 	}
 	
 	

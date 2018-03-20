@@ -93,6 +93,48 @@ public class SocialAddImpl implements SocialAddDAO {
 		}
 
 	}
+	public int addFollowingCountUpRDB(String accountId) {
+		// map= targetId, ownerId
+
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.countUpFollowing", accountId);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+
+	}
+	public int addFollowingCountDownRDB(String accountId) {
+		// map= targetId, ownerId
+
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.countDownFollowing", accountId);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+
+	}
 
 	@Override
 	public int removeFollowingRDB(Map map) {
@@ -155,5 +197,47 @@ public class SocialAddImpl implements SocialAddDAO {
 
 		}
  	}
+	public int bookMarkCountUpRDB(String accountId) {
+		// map= targetId, ownerId
+
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.countUpBookmark", accountId);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+
+	}
+	public int bookMarkCountDownRDB(String accountId) {
+		// map= targetId, ownerId
+
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.countDownBookmark", accountId);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+
+	}
 
 }

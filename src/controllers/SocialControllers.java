@@ -53,7 +53,7 @@ public class SocialControllers {
 		
 		 
  		followadd.addFollowingRDB(map);
-		
+		followadd.addFollowingCountUpRDB((String)map.get("targetId"));
 		return "";
 	}
 	@RequestMapping("/removeFollowRDB.do")
@@ -62,7 +62,7 @@ public class SocialControllers {
 		
 		 
  		followadd.removeFollowingRDB(map);
-		
+ 		followadd.addFollowingCountDownRDB((String)map.get("targetId"));
 		return "";
 	}
 	@RequestMapping("/addBookmarkRDB.do")
@@ -71,6 +71,7 @@ public class SocialControllers {
 		
 		 
  		followadd.addBookmarksRDB(map);
+ 		followadd.bookMarkCountUpRDB((String)map.get("postId"));
 		
 		return "";
 	}
@@ -80,7 +81,7 @@ public class SocialControllers {
 		
 		 
  		followadd.removeBookmarksRDB(map);
-		
+ 		followadd.bookMarkCountDownRDB((String)map.get("postId"));
 		return "";
 	}
 	
