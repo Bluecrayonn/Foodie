@@ -69,22 +69,20 @@
  
  
  
- <!-- mailSender -->
-	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
-		<property name="host" value="smtp.gmail.com"/>
-		<property name="username" value="ncs13master@gmail.com"/>
-		<property name="password" value="1q2w3e4r~"/>
-		<property name="port" value="587"/>
+	<!-- 메일보내기 -->
+
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="ncs13master@gmail.com" />
+		<property name="password" value="1q2w3e4r~" />
 		<property name="javaMailProperties">
 			<props>
-				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.ssl.trust">*</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
 			</props>
 		</property>
-	</bean>
-	<bean id="mailController" class="controllers.MailController">
-    	<property name="mailSender" ref="mailSender" />
 	</bean>
 
 

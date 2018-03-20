@@ -132,13 +132,58 @@
         </dependency>
 
 
-
-
-
+         <!-- JPA utility 중 validator -->
+         <!--  sql 유효값 검증 -->
+        
+      <dependency>
+           <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-entitymanager</artifactId>
+           <version>5.2.13.Final</version>
+       </dependency>
 		
+       <dependency>
+           <groupId>javax.validation</groupId>
+           <artifactId>validation-api</artifactId>
+           <version>1.1.0.Final</version>
+       </dependency>
+	
+		<dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.7.Final</version>
+        </dependency>
+		
+		
+		
+		<!--  plugins 에러해결 -->
+		<dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>2.4.3</version>
+</dependency>
+
+
 		
 		
 	</dependencies>
+	
+	
+	<!-- JPA utility에 관한 repository 설정 -->
+	<!-- 외부파일 이용할 때는 repository 설정 필요  -->
+
+     <repositories>
+		<repository>
+			<id>org.jboss.repository.releases</id>
+			<name>JBoss Maven Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+	
+	
 
   
 </project>
