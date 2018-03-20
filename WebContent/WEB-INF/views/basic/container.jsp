@@ -73,15 +73,5 @@
 		</div>
 	</div>
 	<!-- END #fh5co-offcanvas -->
-	<!-- jQuery -->
-	<script src="/templet/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="/templet/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="/templet/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="/templet/js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
-	<script src="/templet/js/main.js"></script>
 </body>
 </html>
