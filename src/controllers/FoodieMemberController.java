@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import models.FoodieMember;
@@ -24,7 +25,9 @@ public class FoodieMemberController {
 	
 	@RequestMapping("/inputForm.do")
 	public String insetMember(Model  model) {
-			model.addAttribute("foodieMember", new FoodieMember());
+			model.addAttribute("foodieMember", new FoodieMember()); 
+			//chap04_spring_mvc 수업
+			// controllers.args -> AlphaController 중 Model, Map, ModelMap 참고
 			return "inputForm";
 			
 		}
@@ -38,11 +41,15 @@ public class FoodieMemberController {
 		return "inputForm";*/
 		
 		//model.addAttribute("foodieMember", new FoodieMember());
-		//foodieMember객체가 submit을 통해 /inserOk (inputForm)으로 넘어감
+	
+	
+	
+	
+	
+	
+		//foodieMember객체가 submit을 통해 /inserOk (inputForm.jsp)으로 넘어감
 		//이때 foodieMember객체를 유효성체크하고 그 결과를 BindingResult에서 처리함
 		
-		
-	
 	
 	@RequestMapping("/insertOk.do")  
 	public String insertOk(@Valid FoodieMember foodieMember, BindingResult result ) { 
@@ -57,8 +64,17 @@ public class FoodieMemberController {
 			//에러가 없으면 DB에 저장
 			return "joinOk";
 	
+		}
 	}
 	
-	
+		/*@RequestMapping("/modifyMember/{nickname}")	 
+		//get방식으로 파라미터를 얻어오는 것이 아니라 스프링에서 제공하는 방법으로 nickname값을 얻어옴
+		public String modifyMember(@PathVariable String nickname, Model model) {
+			//PathVariable 어노테이션을 이용하여 nickname값을 인자로 받아 model에 넘겨줌
+			model.addAttribute("foodieMember", foodieMemberService);
+			//FoodieMemberMapper 클래스의 변수명인 foodieMemberService를 값으로 foodieMember를 이름으로 해서  모델객체로 넘김
+		}
+		*/
+		
 	}
-}
+
