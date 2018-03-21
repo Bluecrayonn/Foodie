@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import services.MailService;
 import models.Email;
-
+//
 @Controller
 @RequestMapping("/mailForm01.do")
 
