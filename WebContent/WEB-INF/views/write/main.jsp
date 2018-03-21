@@ -89,7 +89,7 @@
 		  		<textarea id="summernote" name="editorcontent"></textarea>
 		  	</div>
 		  	<div class="wrapper" style="text-align:center; margin-top:20px">
-		  		<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
+		  		<button class="btn-primary" type="submit" onclick="write_confirm()">작성완료</button>
 		  	</div>
 		</form>
 	   	<script>
@@ -124,6 +124,9 @@
 	   		function ig_add() {
 				var cloneRow = $("#dummy_row").clone();
 				cloneRow.find("input").each(function() {
+					$(this).prop("disabled", false);
+				});
+				cloneRow.find("select").each(function() {
 					$(this).prop("disabled", false);
 				});
 				cloneRow.attr("id","");

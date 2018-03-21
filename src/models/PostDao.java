@@ -1,9 +1,11 @@
 package models;
 
-import java.util.Iterator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
-import org.apache.ibatis.javassist.expr.Instanceof;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,7 @@ public class PostDao {
 	SqlSessionFactory factory;
 	
 	public boolean writePost(Map param) {
-		// 재료 저장
-		//template.insert(map, "ingredients");
-		
-		// 포스트 글내용 따로 저장
+		// 포스트 글내용과 재료는 따로 저장
 		SqlSession session = factory.openSession();
 		int r = 0;
 		try {
@@ -32,18 +31,46 @@ public class PostDao {
 			// 몽고 데이터만 남기고 rdb용은 따로 뺌
 			// title, writer, elapsedtime, mainimg, content
 			//param.remove(key)
-			System.out.println(param.get("thumbnail"));
-			PostDto dto = new PostDto(1
+			int postId = session.selectOne("post.givenId");
+			System.out.println(postId);
+			
+			PostDto dto = new PostDto(
+					postId
+					,1
 					,(String)param.remove("title")
 					,(String)param.remove("editorcontent")
 					,(String)param.remove("mainimage")
 					,Integer.parseInt((String)param.remove("elapsedtime")));
-			// INT ID = SELECT POST_SEQ.NEXTVAL FROM DUAL
 			// 
 			r = session.insert("post.write", dto);
 			if (r != 0) {
 				//몽고작업
+				//재료가 몇가지인지 뽑아와야함
+				LinkedList<String> ig_name = (LinkedList)param.get("ig_name");
+				LinkedList<String> ig_amount = (LinkedList)param.get("ig_amount");
+				LinkedList<String> ig_unit = (LinkedList)param.get("ig_unit");
+				Map<String, Object> obj = new LinkedHashMap<String, Object>();
+				obj.put("post_id", postId);
+				LinkedList<LinkedHashMap> ig_list = new LinkedList<>();
+				for (int i=0; i<ig_name.size(); i++) {
+					LinkedHashMap<String, Object> oneItem = new LinkedHashMap<String, Object>();
+					oneItem.put("name", ig_name.get(i));
+					oneItem.put("qty", ig_amount.get(i));
+					oneItem.put("unit", ig_unit.get(i));
+					ig_list.add(oneItem);
+				}
+				obj.put("ingredients", ig_list);
 				
+				//postid:xx, 
+				//ingredients:{
+				//	{name:감자,qty:1,unit:kg},
+				//	{name:고구마,qty:1,unit:kg},
+				//	{name:감자,qty:500,unit:g},
+				//	{name:간장,qty:2,unit:큰스푼}
+				//}
+				//요로케 들어가면 되겠다.
+				
+				template.insert(obj, "ingredients");
 			}
 //			Iterator<String> iter = param.keySet().iterator();
 //			while(iter.hasNext()) {

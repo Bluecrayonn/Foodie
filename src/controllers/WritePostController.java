@@ -3,7 +3,8 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,12 +43,24 @@ public class WritePostController {
 			File target = new File(dest);
 			f.transferTo(target);
 			params.put("mainimage", target.getName());
-			System.out.println(params.get("title"));
-			System.out.println(ig_name[1]);
-			System.out.println(ig_amount[1]);
-			System.out.println(ig_unit.length);
+			
+			// rearrange ingredient parameter
+			// if name is null, remove index
+			List rst_name = new LinkedList();
+			List rst_amount = new LinkedList();
+			List rst_unit = new LinkedList();
+			
+			for(int i=0; i < ig_name.length; i++) {
+				if (!ig_name[i].isEmpty()) {
+					rst_name.add(ig_name[i]);
+					rst_amount.add(ig_amount[i]);
+					rst_unit.add(ig_unit[i]);
+				}
+			}
+			params.replace("ig_name", rst_name);
+			params.replace("ig_amount", rst_amount);
+			params.replace("ig_unit", rst_unit);
 			postDao.writePost(params);
-			// TODO: ig_name, ig_amount, ig_unit을 post_id에 맞게 몽고에 저장할 것
 		} 
 		return "main";
 	}

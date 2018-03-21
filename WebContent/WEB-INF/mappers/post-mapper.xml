@@ -140,8 +140,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="write">
 		INSERT INTO POST(POST_ID,TITLE,WRITER_ID,ELAPSEDTIME,MAIN_IMG,CONTENT)
-		values(POST_SEQ.nextval,#{title},#{writerId},#{elapsedTime},#{mainImage},#{content})
+		values(#{postId},#{title},#{writerId},#{elapsedTime},#{mainImage},#{content})
 	</insert>
+	
+	<select id="givenId" resultType="java.lang.Integer">
+		SELECT POST_SEQ.NEXTVAL FROM DUAL
+	</select>
+	
 	<insert id="insertWithLimit">
 		insert into coupon(no,serial,type,max,used)
 		values(coupon_seq.nextval,#{serial},#{type},#{max},0)

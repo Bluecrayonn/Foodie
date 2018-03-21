@@ -89,4 +89,13 @@ public class PostDto {
 		this.content = content;
 		this.mainImage = mainImage;
 	}
+	
+	public PostDto(int postId, int writerId, String title, String content, String mainImage, int elapsedTime) {
+		this.postId = postId;
+		this.title = title;
+		this.writerId = writerId;
+		this.elapsedTime = elapsedTime;
+		this.content = content;
+		this.mainImage = mainImage;
+	}
 }
