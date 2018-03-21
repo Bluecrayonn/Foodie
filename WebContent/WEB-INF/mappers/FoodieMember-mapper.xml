@@ -13,7 +13,7 @@ SELECT * FROM Foodie_member
 <select id="getMember" resultType="models.FoodieMember"
 parameterType="String" >
 <!--  mybatis 파라미터 표기법    ? => #{} -->
-SELECT * FROM Foodie_member WHERE NICKNAME = #{nickname}
+SELECT * FROM Foodie_member WHERE nickname = #{nickname}
 </select>
 
 <insert id="insertMember"
@@ -23,12 +23,12 @@ INSERT INTO Foodie_member VALUES(#{nickname},#{pwd},#{email})
 
 <update id="updateMember"
 parameterType="models.FoodieMember">
-UPDATE Foodie_member SET PWD=#{pwd}, EMAIL=#{email} WHERE NICKNAME=#{nickname}
+UPDATE Foodie_member SET pwd=#{pwd}, email=#{email} WHERE nickname=#{nickname}
 </update>
 
 <delete id="deleteMember"
 parameterType="String">
-DELETE FROM Foodie_member WHERE NICKNAME=#{nickname}
+DELETE FROM Foodie_member WHERE nickname=#{nickname}
 </delete>
 
 </mapper>

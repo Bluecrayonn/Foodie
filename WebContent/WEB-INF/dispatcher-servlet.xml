@@ -41,8 +41,8 @@
 			value="jdbc:oracle:thin:@foodieproject.cshfqsstwgrh.ap-northeast-2.rds.amazonaws.com:1521:orcl" />
 		<property name="properties">
 			<props>
-				<prop key="user">master</prop>
-				<prop key="password">oracle123</prop>
+				<prop key="user">master</prop>  
+				<prop key="password">oracle123</prop> 
 			</props>
 		</property>
 

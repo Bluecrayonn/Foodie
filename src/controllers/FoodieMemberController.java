@@ -12,33 +12,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import models.FoodieMember;
 import models.FoodieMemberMapper;
-import services.FoodieMemberImpl;
+
+
+
 
 
 @Controller
 public class FoodieMemberController {
 
 	@Autowired
-	FoodieMemberImpl foodieMemberService; //서비스 객체
+	FoodieMemberMapper foodieMemberService; //서비스 객체
 	//의존성을 낮추기위해 타입을 FoodieMemberMapper로 불러오고 실제 사용하는건 services패키지에 있는 FoodieMemberImpl
 	
 	
-	@RequestMapping("/inputForm")
-	public void insetMember(Map  model) {
-		FoodieMember foodiedto = new FoodieMember();
+	@RequestMapping("/inputForm.do")
+	public String insetMember(Model  model) { //Map
+			model.addAttribute("foodieMember", new FoodieMember());
+			return "inputForm";
+			
+		}
+		
+		
+		/*FoodieMember foodiedto = new FoodieMember();
 		foodiedto.setEmail((String)model.get("email"));
 		foodiedto.setNickname((String)model.get("password"));
 		foodiedto.setPwd((String)model.get("nick"));
 		
 		foodieMemberService.insertMember(foodiedto);
-		
-		
+		return "inputFrom";
+		*/
 		//model.addAttribute("foodieMember", new FoodieMember());
 		//foodieMember객체가 submit을 통해 /inserOk (inputForm)으로 넘어감
 		//이때 foodieMember객체를 유효성체크하고 그 결과를 BindingResult에서 처리함
 		
 		
-	}
+	
 	
 	@RequestMapping("/insertOk")  
 	public String insertOk(@Valid FoodieMember foodieMember, BindingResult result ) {
