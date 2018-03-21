@@ -1,9 +1,6 @@
 package controllers;
 
-import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,21 +23,20 @@ public class FoodieMemberController {
 	
 	
 	@RequestMapping("/inputForm.do")
-	public String insetMember(Model  model) { //Map
+	public String insetMember(Model  model) {
 			model.addAttribute("foodieMember", new FoodieMember());
 			return "inputForm";
 			
 		}
+	
+		/*FoodieMember foodiedMember = new FoodieMember();
+		foodiedMember.setEmail((String)model.get("email"));
+		foodiedMember.setNickname((String)model.get("password"));
+		foodiedMember.setPwd((String)model.get("nick"));
 		
+		foodieMemberService.insertMember(foodiedMember);
+		return "inputForm";*/
 		
-		/*FoodieMember foodiedto = new FoodieMember();
-		foodiedto.setEmail((String)model.get("email"));
-		foodiedto.setNickname((String)model.get("password"));
-		foodiedto.setPwd((String)model.get("nick"));
-		
-		foodieMemberService.insertMember(foodiedto);
-		return "inputFrom";
-		*/
 		//model.addAttribute("foodieMember", new FoodieMember());
 		//foodieMember객체가 submit을 통해 /inserOk (inputForm)으로 넘어감
 		//이때 foodieMember객체를 유효성체크하고 그 결과를 BindingResult에서 처리함
@@ -48,8 +44,8 @@ public class FoodieMemberController {
 		
 	
 	
-	@RequestMapping("/insertOk")  
-	public String insertOk(@Valid FoodieMember foodieMember, BindingResult result ) {
+	@RequestMapping("/insertOk.do")  
+	public String insertOk(@Valid FoodieMember foodiedMember, BindingResult result ) { //foodieMember
 	 
 		//JPA @Valid 어노테이션을 통해 유효성체크하고 에러가 있으면 BindingResult를 이용하여 처리
 	
@@ -57,7 +53,7 @@ public class FoodieMemberController {
 			System.out.println("회원가입 과정에서 에러가 발생하였습니다.");
 			return "inputForm";   
 		}else{
-			foodieMemberService.insertMember(foodieMember);
+			foodieMemberService.insertMember(foodiedMember);
 			//에러가 없으면 DB에 저장
 			return "joinOk";
 	

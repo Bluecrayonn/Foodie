@@ -15,7 +15,7 @@
 <hr width="500" color="green"/>
 
 <table border="1" cellpadding="2" cellspacing="0" width="400">
-<form:form commandName="foodieMember" method="post" action="insertOK">
+<form:form commandName="foodieMember" method="post" action="/FinalProject_Foodie/insertOk.do">
 <tr>
 <td>닉네임</td>
 <td><form:input  path="nickname" maxlength="50"/></td>
@@ -34,7 +34,7 @@
 </tr>
 <tr>
 <td colspan="2" align="center">
-<input type="sumit" value="등록"/>&nbsp;&nbsp;
+<input type="submit" value="등록"/>&nbsp;&nbsp;
 <input type="reset" value="취소"/>
 </td>
 </tr>
