@@ -15,7 +15,6 @@
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
-	
 
 
 	<!-- Tiles resolver configuration -->
@@ -53,10 +52,7 @@
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	<!-- MongoDB configuration -->
-<!-- 	<mongo:mongo-client port="27017" host="192.168.0.11">
-	</mongo:mongo-client>
-
-
+	<mongo:mongo-client port="27017" host="52.78.86.88"></mongo:mongo-client>
 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
 		id="mongoTemplate" scope="singleton">
 
@@ -65,6 +61,5 @@
 		<constructor-arg value="root" name="databaseName" />
 
 	</bean>
- -->
 
 </beans>
