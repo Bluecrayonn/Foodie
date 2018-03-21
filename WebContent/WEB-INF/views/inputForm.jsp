@@ -10,9 +10,12 @@
 </style>
 </head>
 <body>
-<div align="center"></div>
+<div align="center">
 <h2>회원가입 페이지</h2>
 <hr width="500" color="green"/>
+</br>
+</br>
+
 
 <table border="1" cellpadding="2" cellspacing="0" width="400">
 <form:form commandName="foodieMember" method="post" action="/FinalProject_Foodie/insertOk.do">
@@ -40,7 +43,7 @@
 </tr>
 </form:form>
 </table>
- 
+ </div>
 
 
 </body>

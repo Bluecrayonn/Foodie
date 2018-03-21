@@ -45,7 +45,7 @@ public class FoodieMemberController {
 	
 	
 	@RequestMapping("/insertOk.do")  
-	public String insertOk(@Valid FoodieMember foodiedMember, BindingResult result ) { //foodieMember
+	public String insertOk(@Valid FoodieMember foodieMember, BindingResult result ) { 
 	 
 		//JPA @Valid 어노테이션을 통해 유효성체크하고 에러가 있으면 BindingResult를 이용하여 처리
 	
@@ -53,7 +53,7 @@ public class FoodieMemberController {
 			System.out.println("회원가입 과정에서 에러가 발생하였습니다.");
 			return "inputForm";   
 		}else{
-			foodieMemberService.insertMember(foodiedMember);
+			foodieMemberService.insertMember(foodieMember);
 			//에러가 없으면 DB에 저장
 			return "joinOk";
 	
