@@ -35,6 +35,7 @@ public class SampleContorller {
 	@RequestMapping("/search.do")
 	public String search(HttpServletRequest req,@RequestParam Map<String,String> map)	{
 		System.out.println(map);
+		System.out.println(map);
 		req.setAttribute("postList", postlist.searchPostList(map));
 		
 		

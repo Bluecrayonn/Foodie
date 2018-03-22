@@ -54,6 +54,8 @@ public class SocialControllers {
 		 
  		followadd.addFollowingRDB(map);
 		followadd.addFollowingCountUpRDB((String)map.get("targetId"));
+		followadd.addFollowing(Long.parseLong((String)map.get("targetId")), Long.parseLong((String) map.get("ownerId")));
+		
 		return "";
 	}
 	@RequestMapping("/removeFollowRDB.do")
@@ -63,7 +65,9 @@ public class SocialControllers {
 		 
  		followadd.removeFollowingRDB(map);
  		followadd.addFollowingCountDownRDB((String)map.get("targetId"));
-		return "";
+ 		followadd.removeFollowing(Long.parseLong((String)map.get("targetId")), Long.parseLong((String) map.get("ownerId")));
+		
+ 		return "";
 	}
 	@RequestMapping("/addBookmarkRDB.do")
 	@ResponseBody
@@ -121,6 +125,7 @@ public class SocialControllers {
  		
 		return gson.toJson(result);
 	}
+	
 	@RequestMapping("/bookmarkList.do")
 	@ResponseBody
 	public String BookmarkListHandler(@RequestParam Map<String,Object> map) {
