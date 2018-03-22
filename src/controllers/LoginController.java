@@ -30,7 +30,7 @@ public class LoginController {
 	LoginService loginservice;
 	@Autowired
 	SocialInfoImpl followInfoImpl;
-	
+ 	
 	Gson gson = new Gson();
 	
 	
@@ -69,7 +69,7 @@ public class LoginController {
 		//이부분에는 메인화면의 tiles 좌표가 들어갑니다.
 		return "redirect:/foodie/main.do";
 	}
-	
+
 	
 	/*@RequestMapping("/dummy.do")
 	public void dummyHandler(HttpServletRequest context)	{

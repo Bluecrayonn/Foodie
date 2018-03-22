@@ -50,10 +50,19 @@ public class WritePostController {
 			List rst_amount = new LinkedList();
 			List rst_unit = new LinkedList();
 			
+			System.out.println("namelength:"+ig_name.length);
+			System.out.println("amountlength:"+ig_amount.length);
+			System.out.println("unitlength:"+ig_unit.length);
+			
 			for(int i=0; i < ig_name.length; i++) {
 				if (!ig_name[i].isEmpty()) {
 					rst_name.add(ig_name[i]);
-					rst_amount.add(ig_amount[i]);
+					// BUG STEP
+					// 1. ig_amount에 입력x
+					// 2. write 눌렀다가 뒤로가기
+					// 3. 다시 작성하기 누르면
+					// 4. ig_amount가 넘어오지 않는다.
+					rst_amount.add(ig_amount.length>i?ig_amount[i]:"");
 					rst_unit.add(ig_unit[i]);
 				}
 			}

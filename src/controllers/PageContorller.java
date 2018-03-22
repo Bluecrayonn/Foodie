@@ -13,17 +13,12 @@ import com.google.gson.Gson;
 
 import models.post.postListImpl;
 
- 
-
 @Controller
 @RequestMapping("/foodie")
-public class SampleContorller {
-	
+public class PageContorller {
 	@Autowired
 	postListImpl postlist;
-	
 	Gson gson;
-	 
 	@RequestMapping("/main.do")
 	public String mainpage(HttpServletRequest req,Map map) {
 		gson = new Gson();
@@ -31,7 +26,6 @@ public class SampleContorller {
 		req.setAttribute("postList", postlist.getAllPostList( ));
 		return "mainpage";
 	}
-	
 	@RequestMapping("/search.do")
 	public String search(HttpServletRequest req,@RequestParam Map<String,String> map)	{
 		System.out.println(map);
@@ -41,17 +35,36 @@ public class SampleContorller {
 		
 		return "mainpage";
 	}
-	
-	@RequestMapping("/join.do")
-	public String joinpage() {
-		return "joinpage";
-	}
-	@RequestMapping("/detail.do")
-	public String detailpage() {
-		return "detailpage";
+	@RequestMapping("/welcome.do")
+	public String welcomepage() {
+		return "welcomepage";
 	}
 	@RequestMapping("/profile.do")
 	public String profilepage() {
 		return "profilepage";
+	}
+	@RequestMapping("/profilemodify.do")
+	public String profilemodifypage() {
+		return "profilemodifypage";
+	}
+	@RequestMapping("/detail.do")
+	public String searchpage() {
+		return "searchpage";
+	}
+	@RequestMapping("/detailrecipe.do")
+	public String detailpage() {
+		return "detailpage";
+	}
+	@RequestMapping("/writerecipe.do")
+	public String writerecipepage() {
+		return "detailpage";
+	}
+	@RequestMapping("pwreset.do")
+		public String pwresetpage() {
+			return "pwresetpage";
+		}
+	@RequestMapping("admin.do")
+	public String adminpage() {
+		return "adminpage";
 	}
 }

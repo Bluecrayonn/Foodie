@@ -143,6 +143,7 @@ public class SocialControllers {
 		BigDecimal bigDecimal =  (BigDecimal) ((((HashMap)((LinkedHashMap<String,List>)session.getAttribute("auth")).get("user").get(0)).get("ACCOUNT_ID"))    );
 		long ownerId =  bigDecimal.longValue();
 		List<Map> result = socialInfo.getBookmarks(ownerId);
+
 		Map count = new HashMap<>();
  		count.put("totalCount", result.size());
  		result.add(count);
