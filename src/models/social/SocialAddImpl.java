@@ -19,7 +19,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.jndi.MongoClientFactory;
 
 import models.SocialAddDAO;
-import oracle.jdbc.pooling.Factory;
 
 //follow list/bookmark 를 rdb 랑 mongo 둘다 사용하는것이 좋지 않을까?
 //자주 불러와야 하는 항목인만큼 rbd를 이용하는건 힘들것 같은데 음. 
@@ -31,129 +30,213 @@ import oracle.jdbc.pooling.Factory;
 @Repository
 public class SocialAddImpl implements SocialAddDAO {
 
-	@Autowired
-	SqlSessionFactory sqlfactory;
-	@Autowired
-	MongoTemplate mongoTemplate;
+   @Autowired
+   SqlSessionFactory sqlfactory;
+   @Autowired
+   MongoTemplate mongoTemplate;
 
-	@Override // ADDFOLLOWING
-	public List<Map> addFollowing(long targetId, long ownerId) {
+   @Override // ADDFOLLOWING
+   public List<Map> addFollowing(long targetId, long ownerId) {
 
-		DBCollection mt = mongoTemplate.getCollection("follow");
-		mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
-				new BasicDBObject("$push", new BasicDBObject("TARGET_ID", targetId)));
+      DBCollection mt = mongoTemplate.getCollection("follow");
+      mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
+            new BasicDBObject("$push", new BasicDBObject("TARGET_ID", targetId)));
 
-		return null;
-	}
+      return null;
+   }
 
-	@Override // REMOVE FOLLOWING
-	public List<Map> removeFollowing(long targetId, long ownerId) {
-		DBCollection mt = mongoTemplate.getCollection("follow");
-		mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
-				new BasicDBObject("$pull", new BasicDBObject("TARGET_ID", targetId)));
+   @Override // REMOVE FOLLOWING
+   public List<Map> removeFollowing(long targetId, long ownerId) {
+      DBCollection mt = mongoTemplate.getCollection("follow");
+      mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
+            new BasicDBObject("$pull", new BasicDBObject("TARGET_ID", targetId)));
 
-		return null;
-	}
+      return null;
+   }
 
-	@Override // ADD BOOKMARK
-	public List<Map> addBookmarks(long postId, long userId) {
-		DBCollection mt = mongoTemplate.getCollection("follow");
-		mt.update(new BasicDBObject("ACCOUNT_ID", userId),
-				new BasicDBObject("$push", new BasicDBObject("BOOKMARK_ID", postId)));
-		return null;
-	}
+   @Override // ADD BOOKMARK
+   public List<Map> addBookmarks(long postId, long userId) {
+      DBCollection mt = mongoTemplate.getCollection("follow");
+      mt.update(new BasicDBObject("ACCOUNT_ID", userId),
+            new BasicDBObject("$push", new BasicDBObject("BOOKMARK_ID", postId)));
+      return null;
+   }
 
-	@Override // REMOVE BOOKMARK
-	public List<Map> removeBookmarks(long postId, long userId) {
-		DBCollection mt = mongoTemplate.getCollection("follow");
-		mt.update(new BasicDBObject("ACCOUNT_ID", userId),
-				new BasicDBObject("$pull", new BasicDBObject("BOOKMARK_ID", postId)));
-		return null;
-	}
+   @Override // REMOVE BOOKMARK
+   public List<Map> removeBookmarks(long postId, long userId) {
+      DBCollection mt = mongoTemplate.getCollection("follow");
+      mt.update(new BasicDBObject("ACCOUNT_ID", userId),
+            new BasicDBObject("$pull", new BasicDBObject("BOOKMARK_ID", postId)));
+      return null;
+   }
 
-	@Override
-	public int addFollowingRDB(Map map) {
-		// map= targetId, ownerId
+   @Override
+   public int addFollowingRDB(Map map) {
+      // map= targetId, ownerId
 
-		SqlSession sqlsession = sqlfactory.openSession();
+      SqlSession sqlsession = sqlfactory.openSession();
 
-		try {
+      try {
 
-			int result = sqlsession.insert("social.addFollowing", map);
-			System.out.println(result);
-			return result;
+         int result = sqlsession.insert("social.addFollowing", map);
+         System.out.println(result);
+         return result;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		} finally {
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
 
-			sqlsession.close();
+         sqlsession.close();
 
-		}
+      }
 
-	}
+   }
+   public int addFollowingCountUpRDB(String accountId) {
+      // map= targetId, ownerId
 
-	@Override
-	public int removeFollowingRDB(Map map) {
-		SqlSession sqlsession = sqlfactory.openSession();
+      SqlSession sqlsession = sqlfactory.openSession();
 
-		try {
+      try {
 
-			int result = sqlsession.insert("social.removeFollowing", map);
-			System.out.println(result);
-			return result;
+         int result = sqlsession.insert("social.countUpFollowing", accountId);
+         System.out.println(result);
+         return result;
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		} finally {
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
 
-			sqlsession.close();
+         sqlsession.close();
 
-		}
- 	}
+      }
 
-	@Override
-	public int addBookmarksRDB(Map map) {
-		//postId , userId
-		SqlSession sqlsession = sqlfactory.openSession();
+   }
+   public int addFollowingCountDownRDB(String accountId) {
+      // map= targetId, ownerId
 
-		try {
+      SqlSession sqlsession = sqlfactory.openSession();
 
-			int result = sqlsession.insert("social.addBookmarks", map);
-			System.out.println(result);
-			return result;
+      try {
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		} finally {
+         int result = sqlsession.insert("social.countDownFollowing", accountId);
+         System.out.println(result);
+         return result;
 
-			sqlsession.close();
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
 
-		}
-		 
-	}
+         sqlsession.close();
 
-	@Override
-	public int removeBookmarksRDB(Map map) {
-		SqlSession sqlsession = sqlfactory.openSession();
+      }
 
-		try {
+   }
 
-			int result = sqlsession.insert("social.removeBookmarks", map);
-			System.out.println(result);
-			return result;
+   @Override
+   public int removeFollowingRDB(Map map) {
+      SqlSession sqlsession = sqlfactory.openSession();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		} finally {
+      try {
 
-			sqlsession.close();
+         int result = sqlsession.insert("social.removeFollowing", map);
+         System.out.println(result);
+         return result;
 
-		}
- 	}
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
+
+         sqlsession.close();
+
+      }
+    }
+
+   @Override
+   public int addBookmarksRDB(Map map) {
+      //postId , userId
+      SqlSession sqlsession = sqlfactory.openSession();
+
+      try {
+
+         int result = sqlsession.insert("social.addBookmarks", map);
+         System.out.println(result);
+         return result;
+
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
+
+         sqlsession.close();
+
+      }
+       
+   }
+
+   @Override
+   public int removeBookmarksRDB(Map map) {
+      SqlSession sqlsession = sqlfactory.openSession();
+
+      try {
+
+         int result = sqlsession.insert("social.removeBookmarks", map);
+         System.out.println(result);
+         return result;
+
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
+
+         sqlsession.close();
+
+      }
+    }
+   public int bookMarkCountUpRDB(String accountId) {
+      // map= targetId, ownerId
+
+      SqlSession sqlsession = sqlfactory.openSession();
+
+      try {
+
+         int result = sqlsession.insert("social.countUpBookmark", accountId);
+         System.out.println(result);
+         return result;
+
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
+
+         sqlsession.close();
+
+      }
+
+   }
+   public int bookMarkCountDownRDB(String accountId) {
+      // map= targetId, ownerId
+
+      SqlSession sqlsession = sqlfactory.openSession();
+
+      try {
+
+         int result = sqlsession.insert("social.countDownBookmark", accountId);
+         System.out.println(result);
+         return result;
+
+      } catch (Exception e) {
+         e.printStackTrace();
+         return 0;
+      } finally {
+
+         sqlsession.close();
+
+      }
+
+   }
 
 }

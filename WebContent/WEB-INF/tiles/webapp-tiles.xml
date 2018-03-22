@@ -49,5 +49,11 @@
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/basic/pwreset.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
+		</definition>
+	<definition name="write" template="/WEB-INF/views/write_post.jsp"><!-- 레시피 작성 페이지 -->
+		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/write/main.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

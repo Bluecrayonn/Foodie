@@ -63,12 +63,11 @@ h1, h2, h3, h4, h5, h6, a {
 </style>
 </head>
 <body>
-	<div>
-		<tiles:insertAttribute name="nav" />
-		<tiles:insertAttribute name="sidebar" />
-		<tiles:insertAttribute name="body" />
-		<tiles:insertAttribute name="footer" />
-	</div>
-
+<div>
+	<tiles:insertAttribute name = "nav" />
+	<tiles:insertAttribute name = "sidebar" />
+	<tiles:insertAttribute name = "body" />
+	<tiles:insertAttribute name = "footer" />
+</div>
 </body>
 </html>

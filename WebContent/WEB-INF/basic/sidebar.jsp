@@ -31,17 +31,14 @@
                   <p>
                      <input type="checkbox" name="keep" value="on" />로그인 상태유지
                   </p>
-
 					</form>
 					<font size="2em" color="FFA500" style="margin-right: 20px;"> 아직 회원이 아니신가요? </font> <br/> 
 					<font size="2em" color="FFA500" style="margin-right: 20px;"> 혹은 비밀번호가 기억나지 않으신가요? </font> <br/> 
 					<a data-toggle="modal" href="#signupModal" class="js-fh5co-close-offcanvas">회원가입</a> 
 					| <a data-toggle="modal" href="#pwsettingModal" class="js-fh5co-close-offcanvas" style="margin-right: 20px;">비밀번호 찾기</a>
 				</div>
-
 			</c:when>
 			<c:when test="${!empty sessionScope.auth}">
-
 				<h1 style="margin-top: 70px">오예${empty sessionScope.auth}</h1>
 				<div id="logon-container" >
 					<figure>
@@ -53,7 +50,7 @@
 					<p>Im a ${sessionScope.auth.user[0].NAME}!</p>
 					<ul style="list-style: none;">
 						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
-						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-pencil">관리/통계</i></a></li><!--(마트관리자용)-->
+						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-pencil">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
 						<li><a href="/authentication/logout.do" style="margin-right: 50px;"><i class="icon-log-out">LOG OUT</i></a></li>
 					</ul>
 				</div>
@@ -74,12 +71,12 @@
         <div class="modal-body" style="font-family: '나눔고딕'">
           <form action="/foodie/profile.jsp" autocomplete="off">
      <h4 class="text">회원 종류를 선택하세요.</h4>
-      <select class="form-control" id="sel1" style="font-size: 12pt;">
+      <select class="form-control" id="user" style="font-size: 12pt;">
         <option>일반 유저</option>
         <option>마트 관리자</option>
       </select>
       <h4 class="text">성별을 선택하세요.</h4>
-      <select class="form-control" id="sel1" style="font-size: 12pt;">
+      <select class="form-control" id="sex" style="font-size: 12pt;">
         <option>여</option>
         <option>남</option>
       </select>
@@ -182,4 +179,4 @@
 		}
 		document.getElementById("year").innerHTML=strYear
 	}
-</script>
+	</script>

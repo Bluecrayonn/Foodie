@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.2.xsd">
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.2.xsd">
 
 
-	<mvc:annotation-driven />
-	<context:component-scan base-package="controllers" />
-	<context:component-scan base-package="models" />
-	<context:component-scan base-package="services" />
-	
+   <mvc:annotation-driven />
+   
+   <context:component-scan base-package="controllers" />
+   <context:component-scan base-package="models" />
+   <context:component-scan base-package="services" />
 
 
-	<!-- Tiles resolver configuration -->
-	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		<property name="definitions" value="/WEB-INF/tiles/*-tiles.xml" />
-	</bean>
-	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
-		<property name="order" value="7" />
-	</bean>
-	<!-- Internal resolver configuration -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="9" />
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-	<!-- JDBC configuration(Inclucing Mybatis) -->
-	<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		scope="singleton" autowire="byType">
+   <!-- Tiles resolver configuration -->
+   <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+      <property name="definitions" value="/WEB-INF/tiles/*-tiles.xml" />
+   </bean>
+   <bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+      <property name="order" value="7" />
+   </bean>
+   <!-- Internal resolver configuration -->
+   <bean
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="order" value="9" />
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+   <!-- JDBC configuration(Inclucing Mybatis) -->
+<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+      scope="singleton" autowire="byType">
 
-		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl"
-			value="jdbc:oracle:thin:@foodieproject.cshfqsstwgrh.ap-northeast-2.rds.amazonaws.com:1521:orcl" />
-		<property name="properties">
-			<props>
-				<prop key="user">master</prop>
-				<prop key="password">oracle123</prop>
-			</props>
-		</property>
+      <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+      <property name="jdbcUrl"
+         value="jdbc:oracle:thin:@foodieproject.cshfqsstwgrh.ap-northeast-2.rds.amazonaws.com:1521:orcl" />
+      <property name="properties">
+         <props>
+            <prop key="user">master</prop>
+            <prop key="password">oracle123</prop>
+         </props>
+      </property>
 
-	</bean>
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="c3p0"></property>
-		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
-	</bean>
-	<!-- MongoDB configuration -->
-	<mongo:mongo-client port="27017" host="52.78.86.88">
-	</mongo:mongo-client>
+   </bean>
 
 
-	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
-		id="mongoTemplate" scope="singleton">
+   <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="c3p0"></property> 
+      <property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
+      
 
-		<constructor-arg name="mongo" ref="mongo" />
+   </bean>
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+   <!-- MongoDB configuration -->
+   <mongo:mongo-client port="27017" host="52.78.86.88">
+   </mongo:mongo-client>
 
-		<constructor-arg value="foodie" name="databaseName" />
 
-	</bean>
- 
+   <bean class="org.springframework.data.mongodb.core.MongoTemplate"
+      id="mongoTemplate" scope="singleton">
+
+      <constructor-arg name="mongo" ref="mongo" />
+
+      <constructor-arg value="foodie" name="databaseName" />
+
+   </bean>
+
 
 </beans>

@@ -1,8 +1,13 @@
 package controllers;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +35,9 @@ public class SocialControllers {
 	SocialAddImpl followadd;
 	@Autowired
 	SocialInfoImpl socialInfo;
-	Gson gson = new Gson();
 	
+	Gson gson = new Gson();
+
 	@RequestMapping("/addFollow.do")
 	@ResponseBody
 	public String followHandle(@RequestParam Map<String,Object> map) {
@@ -43,12 +49,17 @@ public class SocialControllers {
 		return "";
 	}
 	
+	
+	
+	
 	@RequestMapping("/addFollowRDB.do")
 	@ResponseBody
 	public String followAddHandle(@RequestParam Map<String,Object> map) {
 		
 		 
  		followadd.addFollowingRDB(map);
+		followadd.addFollowingCountUpRDB((String)map.get("targetId"));
+		followadd.addFollowing(Long.parseLong((String)map.get("targetId")), Long.parseLong((String) map.get("ownerId")));
 		
 		return "";
 	}
@@ -58,8 +69,10 @@ public class SocialControllers {
 		
 		 
  		followadd.removeFollowingRDB(map);
+ 		followadd.addFollowingCountDownRDB((String)map.get("targetId"));
+ 		followadd.removeFollowing(Long.parseLong((String)map.get("targetId")), Long.parseLong((String) map.get("ownerId")));
 		
-		return "";
+ 		return "";
 	}
 	@RequestMapping("/addBookmarkRDB.do")
 	@ResponseBody
@@ -67,6 +80,7 @@ public class SocialControllers {
 		
 		 
  		followadd.addBookmarksRDB(map);
+ 		followadd.bookMarkCountUpRDB((String)map.get("postId"));
 		
 		return "";
 	}
@@ -76,7 +90,7 @@ public class SocialControllers {
 		
 		 
  		followadd.removeBookmarksRDB(map);
-		
+ 		followadd.bookMarkCountDownRDB((String)map.get("postId"));
 		return "";
 	}
 	
@@ -116,12 +130,18 @@ public class SocialControllers {
  		
 		return gson.toJson(result);
 	}
+	
 	@RequestMapping("/bookmarkList.do")
 	@ResponseBody
-	public String BookmarkListHandler(@RequestParam Map<String,Object> map) {
-		
+	public String BookmarkListHandler(HttpServletRequest req) {
+		 HttpSession session = req.getSession();
 		 
-		List<Map> result = socialInfo.getBookmarks(Long.parseLong((String)map.get("ownerId")));
+		if(session.getAttribute("auth")==null)
+			return "fail";
+		
+		BigDecimal bigDecimal =  (BigDecimal) ((((HashMap)((LinkedHashMap<String,List>)session.getAttribute("auth")).get("user").get(0)).get("ACCOUNT_ID"))    );
+		long ownerId =  bigDecimal.longValue();
+		List<Map> result = socialInfo.getBookmarks(ownerId);
 		Map count = new HashMap<>();
  		count.put("totalCount", result.size());
  		result.add(count);
