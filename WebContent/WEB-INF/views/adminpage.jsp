@@ -54,19 +54,12 @@
 
 <html>
 <head>
-<title>Foodie-profile</title>
-<style type="text/css">
-h1,h2,h3,h4,h5,h6,a{
-	font-family: '나눔고딕'
-}
-</style>
+<title>Foodie-admin</title>
 </head>
 <body>
-<div>
-	<tiles:insertAttribute name = "nav" />
-	<tiles:insertAttribute name = "sidebar" />
-	<tiles:insertAttribute name = "body" />
-	<tiles:insertAttribute name = "footer" />
-</div>
+		<tiles:insertAttribute name="nav" />
+		<tiles:insertAttribute name="sidebar" />
+		<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="footer" />
 </body>
 </html>

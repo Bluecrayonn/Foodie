@@ -12,10 +12,10 @@
 
 
 	<mvc:annotation-driven />
-	
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
+	
 
 
 	<!-- Tiles resolver configuration -->
@@ -33,7 +33,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<!-- JDBC configuration(Inclucing Mybatis) -->
-<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		scope="singleton" autowire="byType">
 
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
@@ -47,13 +47,9 @@
 		</property>
 
 	</bean>
-
-
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="c3p0"></property> 
+		<property name="dataSource" ref="c3p0"></property>
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
-		
-
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
@@ -71,5 +67,5 @@
 
 	</bean>
 
+ 
 
-</beans>

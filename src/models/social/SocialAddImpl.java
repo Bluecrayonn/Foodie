@@ -93,6 +93,7 @@ public class SocialAddImpl implements SocialAddDAO {
 		}
 
 	}
+<<<<<<< HEAD
 	public int addFollowingCountUpRDB(String accountId) {
 		// map= targetId, ownerId
 
@@ -239,5 +240,69 @@ public class SocialAddImpl implements SocialAddDAO {
 		}
 
 	}
+=======
+
+	@Override
+	public int removeFollowingRDB(Map map) {
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.removeFollowing", map);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+ 	}
+
+	@Override
+	public int addBookmarksRDB(Map map) {
+		//postId , userId
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.addBookmarks", map);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+		 
+	}
+
+	@Override
+	public int removeBookmarksRDB(Map map) {
+		SqlSession sqlsession = sqlfactory.openSession();
+
+		try {
+
+			int result = sqlsession.insert("social.removeBookmarks", map);
+			System.out.println(result);
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+
+			sqlsession.close();
+
+		}
+ 	}
+>>>>>>> refs/heads/HongDasol
 
 }

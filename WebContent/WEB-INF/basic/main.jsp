@@ -14,6 +14,27 @@
 	</form>
 </div>
 
+<style>
+.tb {
+	left: 0%;
+	margin-left: 430px;
+}
+
+input {
+	vertical-align: middle;
+}
+
+divs {
+	width: 700px;
+}
+
+</style>
+
+<div class="divs">
+		<input type="text" class="tb" placeholder="검색" style="font-size: 12pt; width: 400px;"/>
+</div>
+		<br/>
+
 <div class="container-fluid">
 
 	<div class="row fh5co-post-entry">
