@@ -95,12 +95,24 @@
 	   	<script>
 	   	
 	   		$("#summernote").summernote({
+	   			// TOOLBAR REFERENCES > https://summernote.org/deep-dive/#custom-toolbar-popover
 		       	placeholder: '여기에 여러분의 레시피를 자유롭게 작성해보세요!',
 				height: 600,
 				fontNames : [ 'NanumGothic','맑은고딕', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', ],
 				fontNamesIgnoreCheck : [ 'NanumGothic' ],
 				focus: true,
-				
+				toolbar: [
+				    // [groupName, [list of button]]
+				    ['style', ['bold', 'italic', 'underline', 'clear']],
+				    ['font', ['strikethrough', 'superscript', 'subscript']],
+				    ['fontsize', ['fontsize']],
+				    ['color', ['color']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']]
+				    ['picture',['picture']]
+				    ['link',['link']]
+				  ]
+	   			
 				callbacks: {
 					onImageUpload: function(files, editor, welEditable) {
 			            for (var i = files.length - 1; i >= 0; i--) {

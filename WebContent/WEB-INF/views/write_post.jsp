@@ -9,16 +9,7 @@
 </head>
 <body>
 	<div>
-	<tiles:insertAttribute name = "nav" />
-	</div>
-	<div>
-	<tiles:insertAttribute name = "body" />
-	</div>
-	<div>
-	<tiles:insertAttribute name = "content" />
-	</div>
-	<div>
-	<tiles:insertAttribute name = "footer" />
+		<tiles:insertAttribute name = "content" />
 	</div>
 </body>
 </html>
