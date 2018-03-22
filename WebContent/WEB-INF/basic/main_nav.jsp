@@ -12,7 +12,7 @@
 			<div class="row">
 				<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 				<ul class="fh5co-social">
-					<li><a href="#"><i class="icon-twitter"></i></a></li>
+					<li><a href="/foodie/write.do"><i class="icon-twitter"></i></a></li>
 					<li><a href="#"><i class="icon-facebook"></i></a></li>
 					<li><a href="#"><i class="icon-instagram"></i></a></li>
 				</ul>
