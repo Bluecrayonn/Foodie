@@ -8,10 +8,8 @@
 			<div class="row">
 			<c:choose>
 			<c:when test="${empty sessionScope.auth}">
-					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>	
-					<ul class="fh5co-social">
-					<a href="#" class="js-fh5co-nav-toggle" style="margin-right: 3px; color:black; size:15px;"><i class="icon-login">Login/sign up</i></a>
-				</ul>					
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+					
 				</c:when>
 				<c:when test="${!empty sessionScope.auth}">
 				
@@ -28,9 +26,3 @@
 			</div>
 		</div>
 	</header>
-
-	<%-- <% session.invalidate();
-				response.sendRedirect("main.do"); %>
-					<!-- <div class="alert alert-success">
-						로그아웃 성공!
-					</div> --%> 

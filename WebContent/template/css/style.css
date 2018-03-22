@@ -1,8 +1,18 @@
-html {
+ 
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx");
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+ html {
   background: #fff;
 }
 
 body {
+   font-family: 'Nanum Gothic', sans-serif;
+ 
   font-size: 18px;
   font-weight: 300;
   line-height: 1.8;
@@ -29,7 +39,7 @@ body.fh5co-overflow {
 }
 
 a {
-  color: #f7c873;
+	color: #f3ac2b;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -41,6 +51,9 @@ a:hover, a:focus, a:active {
 }
 
 h1, h2, h3, h4, h5, h6 {
+ 
+  font-family: 'Nanum Gothic', sans-serif;
+ 
   color: #000;
 }
 
@@ -50,7 +63,6 @@ p {
 
 .btn {
   margin-right: 4px;
-  margin-bottom: 4px;
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -402,6 +414,8 @@ p {
   margin-bottom: 30px;
 }
 .fh5co-post-entry article h2 {
+ 
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 34px;
   color: #000;
   margin-bottom: 30px;
@@ -422,6 +436,8 @@ p {
 }
 .fh5co-post-entry article .fh5co-meta {
   font-size: 16px;
+   font-family: 'Nanum Gothic', sans-serif;
+ 
   color: #999999;
   margin-bottom: 20px;
   display: block;
@@ -446,6 +462,8 @@ p {
   padding-left: 0;
 }
 .fh5co-post-entry article .content-article blockquote p {
+   font-family: 'Nanum Gothic', sans-serif;
+ 
   font-size: 27px;
   font-style: italic;
   line-height: 1.5;
@@ -475,8 +493,12 @@ p {
   letter-spacing: 2px;
   color: #b3b3b3;
   text-transform: uppercase;
+   font-family: 'Nanum Gothic', sans-serif;
+ 
 }
 .fh5co-post-entry article .fh5co-highlight p {
+   font-family: 'Nanum Gothic', sans-serif;
+ 
   color: #000;
   font-size: 20px;
 }
@@ -510,7 +532,7 @@ figure figcaption {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 700px;
+  width: 400px;
   z-index: 99999;
   overflow-y: auto;
   opacity: 0;
@@ -519,7 +541,7 @@ figure figcaption {
 @media screen and (max-width: 768px) {
   #fh5co-offcanvas {
     padding-top: 30px;
-    width: 270px;
+    width: 250px;
   }
 }
 #fh5co-offcanvas .fh5co-close-offcanvas {
@@ -558,19 +580,19 @@ figure figcaption {
 }
 #fh5co-offcanvas .fh5co-box {
   float: left;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   width: 100%;
 }
 #fh5co-offcanvas .fh5co-menu,
 #fh5co-offcanvas .fh5co-bio {
-  width: 50%;
-  padding: 50px;
+  width: 100%;
+  padding: 70px;
 }
 @media screen and (max-width: 768px) {
   #fh5co-offcanvas .fh5co-menu,
   #fh5co-offcanvas .fh5co-bio {
     width: 100%;
-    padding: 30px;
+    padding: 50px;
   }
 }
 #fh5co-offcanvas .fh5co-bio {
@@ -580,7 +602,7 @@ figure figcaption {
 #fh5co-offcanvas .fh5co-bio figure {
   text-align: center;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 #fh5co-offcanvas .fh5co-bio img {
   width: 180px;
@@ -598,7 +620,6 @@ figure figcaption {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #cccccc;
-  margin-bottom: 30px;
 }
 #fh5co-offcanvas .fh5co-menu {
   float: right;
@@ -760,5 +781,4 @@ figure figcaption {
     float: none;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

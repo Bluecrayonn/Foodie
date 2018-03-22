@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Foodie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 <meta name="keywords"
@@ -52,23 +51,46 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+<style type="text/css">
+h1,h2,h3,h4,h5,h6,a{
+	font-family: '나눔고딕'
+}
+.center{
+		margin: auto;
+		text-align: center;
+	}
+</style>
 
 <html>
 <head>
-<title>Foodie</title>
-<style type="text/css">
-h1, h2, h3, h4, h5, h6, a {
-	font-family: '나눔고딕'
-}
-</style>
+<title>Foodie-Error</title>
+<header id="fh5co-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 text-center">
+					<h1><a href="/foodie/main.do">Foodie</a></h1>
+				</div>
+			</div>
+		</div>
+	</header>
 </head>
 <body>
-	<div>
-		<tiles:insertAttribute name="nav" />
-		<tiles:insertAttribute name="sidebar" />
-		<tiles:insertAttribute name="body" />
-		<tiles:insertAttribute name="footer" />
-	</div>
-
+<div class="center">
+<c:choose>
+  <c:when test="${requestScope['javax.servlet.error.status_code'] == 404}">
+    <p><strong>404</strong> Page Not Found!</p>
+    <p>You are lost the way Foodie.</p>
+    <button class="btn" style="center;" onclick="location='main.do'">홈으로</button>
+  </c:when>
+  <c:when test="${requestScope['javax.servlet.error.status_code'] == 500}">
+    <p><strong>500</strong> That's an error!</p>
+    <p>Please try again later.</p>
+    <button class="btn" style="center;" onclick="location='main.do'">홈으로</button>
+  </c:when>
+  </c:choose>
+  </div>
+  <footer id="fh5co-footer">
+		<p><small>&copy; 2016. Magazine Free HTML5. All Rights Reserverd. <br> Designed by <a href="http://freehtml5.co" target="_blank">FREEHTML5.co</a>  Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small></p>
+	</footer>
 </body>
 </html>

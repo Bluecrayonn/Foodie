@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Foodie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 <meta name="keywords"
@@ -55,20 +54,14 @@
 
 <html>
 <head>
-<title>Foodie</title>
-<style type="text/css">
-h1, h2, h3, h4, h5, h6, a {
-	font-family: '나눔고딕'
-}
-</style>
+<title>Foodie-Welcome</title>
 </head>
 <body>
-	<div>
+<div>
 		<tiles:insertAttribute name="nav" />
 		<tiles:insertAttribute name="sidebar" />
 		<tiles:insertAttribute name="body" />
 		<tiles:insertAttribute name="footer" />
-	</div>
-
+</div>
 </body>
 </html>

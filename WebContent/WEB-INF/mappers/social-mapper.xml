@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="social">
+	<!-- Follower -->
+	<select id="follower" resultType="java.util.LinkedHashMap">
+		select owner_id from follow
+		where target_id = #{accountId}
+
+	</select>
+	<!-- Following -->
+	<select id="following" resultType="java.util.LinkedHashMap">
+		select target_id from follow
+		where owner_id = #{accountId}
+
+	</select>
+	<!-- Bookmark -->
+	<select id="bookmarks" resultType="java.util.LinkedHashMap">
+		select * from bookmark where
+		user_id = #{accountId}
+
+	</select>
+
+
+
+
+	<insert id="addFollowing">
+		insert into follow values (${ownerId},${targetId})
+	</insert>
+	
+	<insert id="addBookmarks">
+		insert into bookmarks values (BOOKMARK_SEQ.NEXTVAL,${postId},${userId})
+	</insert>
+
+	<delete id="removeFollowing">
+		delete from follow where (target_id = ${targetId})and(owner_id = ${ownerId})
+	</delete>
+	
+	<delete id="removeBookmarks">
+		delete from bookmark where (post_id = ${postId})and(user_id = ${userId})
+
+	</delete>
+
+
+</mapper>
