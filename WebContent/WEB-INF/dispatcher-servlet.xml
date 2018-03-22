@@ -12,6 +12,7 @@
 
 
 	<mvc:annotation-driven />
+	
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
