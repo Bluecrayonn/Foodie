@@ -39,8 +39,8 @@
 	<body>
 		<form id="recipe_form" action="/foodie/write_confirm.do" method="post" enctype="multipart/form-data">
 		  	<table>
-		  		<tr><td><label class="lb_recipe" for="title">요리명</label><input type="text" name="title"></td></tr>
-				<tr><td><label class="lb_recipe" for="elapsedtime">소요시간</label><input type="number" min="1" max="999" name="elapsedtime"><label>분</label></td></tr>
+		  		<tr><td><label class="lb_recipe" for="title">요리명</label><input id="title" type="text" name="title"></td></tr>
+				<tr><td><label class="lb_recipe" for="elapsedtime">소요시간</label><input type="number" min="1" max="999" value="0" name="elapsedtime"><label>분</label></td></tr>
 		  	<tbody id="ingredients">
 		  		<tr id="dummy_row" style="display:none;">
 		  			<td><label class="lb_recipe" for="ig_name">재료명</label><input type="text" name="ig_name" disabled></td>
@@ -91,6 +91,9 @@
 		  	<div class="wrapper" style="text-align:center; margin-top:20px">
 		  		<button class="btn-primary" type="submit" onclick="write_confirm()">작성완료</button>
 		  	</div>
+		  	<div class="wrapper" style="text-align:center; margin-top:20px">
+		  		<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
+		  	</div>
 		</form>
 	   	<script>
 	   	
@@ -104,14 +107,12 @@
 				toolbar: [
 				    // [groupName, [list of button]]
 				    ['style', ['bold', 'italic', 'underline', 'clear']],
-				    ['font', ['strikethrough', 'superscript', 'subscript']],
-				    ['fontsize', ['fontsize']],
+				    ['font', ['strikethrough', 'fontname', 'fontsize']],
 				    ['color', ['color']],
 				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['height', ['height']]
-				    ['picture',['picture']]
-				    ['link',['link']]
-				  ]
+				    ['height', ['height']],
+				    ['insert',['picture','link']]
+				  ],
 	   			
 				callbacks: {
 					onImageUpload: function(files, editor, welEditable) {
@@ -124,13 +125,38 @@
 		   	
 	   		function write_confirm() {
 	   			// 비어있지만 않으면 오케이
-	   			$("#title")
-	   			$("#thumbnail")
-	   			$("#summernote")
+	   			if($("#title").val().trim() == "") {
+	   				window.alert("제목입력해라");
+	   				return;
+	   			}
+	   			if($("#thumbnail").val() == "") {
+	   				window.alert("썸네일 꼭올려라");
+	   				return;
+	   			}
+	   			if($('#summernote').summernote('code')
+								   .replace(/<\/?[^>]+(>|$)/g, "")
+								   .replace(/\s|&nbsp;/g, '')
+								   .length == 0) {
+	   				window.alert("내용이 없다");
+	   				return;
+	   			}
 	   			
-	   			// 재료 row별로 가져와서 
-	   			// 재료명 적혔는데 수량 단위 없으면 x
-	   			// 수량 단위 적혔는데 재료명 없으면 무시하고 제출
+	   			var flag = false;
+	   			$(".ig_row").each(function() {
+	   				// 최소한 재료명 하나는 적혀있어야함
+	   				console.log();
+	   				if($(this).find("input[name='ig_name']").val().length!=0) {
+	   					flag = true;
+	   				}
+	   			});
+	   			
+	   			if(flag) {
+	   				$("#recipe_form").submit();
+	   			} else {
+	   				window.alert("재료 최소한 한개는 넣어주세요");
+	   				return;
+	   			}
+	   				
 	   		}
 	   		
 	   		function ig_add() {
