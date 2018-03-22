@@ -51,6 +51,7 @@
 		<property name="dataSource" ref="c3p0"></property>
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
 	</bean>
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
  	<!-- MongoDB configuration -->
