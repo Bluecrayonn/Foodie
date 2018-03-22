@@ -1,9 +1,15 @@
 package controllers;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -128,10 +134,15 @@ public class SocialControllers {
 	
 	@RequestMapping("/bookmarkList.do")
 	@ResponseBody
-	public String BookmarkListHandler(@RequestParam Map<String,Object> map) {
-		
+	public String BookmarkListHandler(HttpServletRequest req) {
+		 HttpSession session = req.getSession();
 		 
-		List<Map> result = socialInfo.getBookmarks(Long.parseLong((String)map.get("ownerId")));
+		if(session.getAttribute("auth")==null)
+			return "fail";
+		
+		BigDecimal bigDecimal =  (BigDecimal) ((((HashMap)((LinkedHashMap<String,List>)session.getAttribute("auth")).get("user").get(0)).get("ACCOUNT_ID"))    );
+		long ownerId =  bigDecimal.longValue();
+		List<Map> result = socialInfo.getBookmarks(ownerId);
 		Map count = new HashMap<>();
  		count.put("totalCount", result.size());
  		result.add(count);

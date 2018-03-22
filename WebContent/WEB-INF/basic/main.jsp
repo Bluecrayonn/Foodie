@@ -52,15 +52,13 @@
 <script>
 	$(".icon-bookmark").click(function(){
 		console.log($("ownerId"))
-		 $.ajax("social/bookmarkList.do",{
+		 $.ajax("/social/bookmarkList.do",{
 			"method" : "post",
 			"async" : true,
-			"data" : {
-				"postId" : ,
-				"orderType" : "",
-			}
+			
 			
 		}).done(function(obj){
+			console.log(obj);
 			$(".postedArticles").each(function(index,element){
 				 console.log($(element).attr("id"));
 				 
