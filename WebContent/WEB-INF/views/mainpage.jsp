@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Foodie</title>
@@ -28,13 +28,13 @@
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
 <!-- Animate -->
-<link rel="stylesheet" href="/template/css/animate.css">
+<link rel="stylesheet" href="/templet/css/animate.css">
 <!-- Icomoon -->
-<link rel="stylesheet" href="/template/css/icomoon.css">
+<link rel="stylesheet" href="/templet/css/icomoon.css">
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="/template/css/bootstrap.css">
+<link rel="stylesheet" href="/templet/css/bootstrap.css">
 
-<link rel="stylesheet" href="/template/css/style.css">
+<link rel="stylesheet" href="/templet/css/style.css">
 
 <!-- jQuery -->
 	<script src="/templet/js/jquery.min.js"></script>
@@ -47,7 +47,7 @@
 	<!-- Main JS -->
 	<script src="/templet/js/main.js"></script>
 <!-- Modernizr JS -->
-<script src="/template/js/modernizr-2.6.2.min.js"></script>
+<script src="/templet/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -57,7 +57,7 @@
 <head>
 <title>Foodie</title>
 <style type="text/css">
-h1, h2, h3, h4, h5, h6, a {
+h1,h2,h3,h4,h5,h6,a{
 	font-family: '나눔고딕'
 }
 </style>

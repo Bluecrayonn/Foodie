@@ -10,32 +10,15 @@
   crossorigin="anonymous"></script> -->
 		<div class="container-fluid">
 			<div class="row">
-			<c:choose>
-			<c:when test="${empty sessionScope.auth}">
-					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>	
-					<ul class="fh5co-social">
-					<a href="#" class="js-fh5co-nav-toggle" style="margin-right: 3px; color:black; size:15px;"><i class="icon-login">Login/sign up</i></a>
-				</ul>					
-				</c:when>
-				<c:when test="${!empty sessionScope.auth}">
-				
 				<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 				<ul class="fh5co-social">
-					
-					<li><a href="#"><i class="icon-bell3"></i>Notice</a></li>
+					<li><a href="#"><i class="icon-twitter"></i></a></li>
+					<li><a href="#"><i class="icon-facebook"></i></a></li>
+					<li><a href="#"><i class="icon-instagram"></i></a></li>
 				</ul>
-				</c:when>
-				
-				</c:choose>
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1><a href="/foodie/main.do">Foodie</a></h1><br/>
+					<h1><a href="/foodie/main.do">Foodie</a></h1>
 				</div>
 			</div>
 		</div>
 	</header>
-
-	<%-- <% session.invalidate();
-				response.sendRedirect("main.do"); %>
-					<!-- <div class="alert alert-success">
-						로그아웃 성공!
-					</div> --%> 

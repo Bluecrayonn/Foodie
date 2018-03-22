@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<meta charset="utf-8">
+    pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>Foodie</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 <meta name="keywords"
@@ -27,26 +28,17 @@
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
 <!-- Animate -->
-<link rel="stylesheet" href="/template/css/animate.css">
+<link rel="stylesheet" href="/templet/css/animate.css">
 <!-- Icomoon -->
-<link rel="stylesheet" href="/template/css/icomoon.css">
+<link rel="stylesheet" href="/templet/css/icomoon.css">
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="/template/css/bootstrap.css">
+<link rel="stylesheet" href="/templet/css/bootstrap.css">
 
-<link rel="stylesheet" href="/template/css/style.css">
+<link rel="stylesheet" href="/templet/css/style.css">
 
-<!-- jQuery -->
-<script src="/template/js/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="/template/js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="/template/js/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="/template/js/jquery.waypoints.min.js"></script>
-<!-- Main JS -->
-<script src="/template/js/main.js"></script>
+
 <!-- Modernizr JS -->
-<script src="/template/js/modernizr-2.6.2.min.js"></script>
+<script src="/templet/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -68,5 +60,16 @@ h1,h2,h3,h4,h5,h6,a{
 	<tiles:insertAttribute name = "body" />
 	<tiles:insertAttribute name = "footer" />
 </div>
+<!-- END #fh5co-offcanvas -->
+	<!-- jQuery -->
+	<script src="/templet/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="/templet/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="/templet/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="/templet/js/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="/templet/js/main.js"></script>
 </body>
 </html>

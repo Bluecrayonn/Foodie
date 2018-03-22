@@ -108,10 +108,10 @@
 				    ['fontsize', ['fontsize']],
 				    ['color', ['color']],
 				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['height', ['height']],
-				    ['picture',['picture']],
+				    ['height', ['height']]
+				    ['picture',['picture']]
 				    ['link',['link']]
-				  ],
+				  ]
 	   			
 				callbacks: {
 					onImageUpload: function(files, editor, welEditable) {

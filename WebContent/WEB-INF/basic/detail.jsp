@@ -11,7 +11,7 @@
 			<article
 				class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 				<figure class="animate-box">
-					<img src="/template/images/single_1.jpg" alt="Image"
+					<img src="/templet/images/single_1.jpg" alt="Image"
 						class="img-responsive">
 				</figure>
 				<span class="fh5co-meta animate-box"><a href="single.html">레시피
@@ -38,7 +38,7 @@
 					<div class="row rp-b">
 						<div class="col-lg-6 col-md-12 animate-box">
 							<figure>
-								<img src="/template/images/pic_1.jpg"
+								<img src="/templet/images/pic_1.jpg"
 									alt="Free HTML5 Bootstrap Template by FREEHTML5.co"
 									class="img-responsive">
 							</figure>
@@ -52,7 +52,7 @@
 						<div
 							class="col-lg-6 col-lg-push-6 col-md-12 col-md-push-0 animate-box">
 							<figure>
-								<img src="/template/images/pic_4.jpg"
+								<img src="/templet/images/pic_4.jpg"
 									alt="Free HTML5 Bootstrap Template by FREEHTML5.co"
 									class="img-responsive">
 								<figcaption>사진 캡션</figcaption>
@@ -70,7 +70,7 @@
 						</div>
 						<div class="col-md-4 animate-box">
 							<figure>
-								<img src="/template/images/pic_5.jpg"
+								<img src="/templet/images/pic_5.jpg"
 									alt="Free HTML5 Bootstrap Template by FREEHTML5.co"
 									class="img-responsive">
 								<figcaption>사진캡션</figcaption>
@@ -78,7 +78,7 @@
 						</div>
 						<div class="col-md-4 animate-box">
 							<figure>
-								<img src="/template/images/pic_6.jpg"
+								<img src="/templet/images/pic_6.jpg"
 									alt="Free HTML5 Bootstrap Template by FREEHTML5.co"
 									class="img-responsive">
 								<figcaption>사진캡션</figcaption>
@@ -86,7 +86,7 @@
 						</div>
 						<div class="col-md-4 animate-box">
 							<figure>
-								<img src="/template/images/pic_7.jpg"
+								<img src="/templet/images/pic_7.jpg"
 									alt="Free HTML5 Bootstrap Template by FREEHTML5.co"
 									class="img-responsive">
 								<figcaption>사진캡션</figcaption>

@@ -12,7 +12,6 @@
 
 
 	<mvc:annotation-driven />
-	
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
@@ -55,7 +54,6 @@
 		
 
 	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	<!-- MongoDB configuration -->
 	<mongo:mongo-client port="27017" host="52.78.86.88">
 	</mongo:mongo-client>
@@ -69,10 +67,6 @@
 		<constructor-arg value="foodie" name="databaseName" />
 
 	</bean>
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> refs/remotes/master/HongDasol
 
 </beans>
