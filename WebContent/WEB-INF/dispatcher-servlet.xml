@@ -57,7 +57,7 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 	<!-- MongoDB configuration -->
-	<mongo:mongo-client port="27017" host="52.78.86.88">
+	<mongo:mongo-client port="56789" host="52.78.86.88">
 	</mongo:mongo-client>
 
 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
@@ -68,6 +68,7 @@
 		<constructor-arg value="foodie" name="databaseName" />
 
 	</bean>
-
+	
+	<bean class="com.google.gson.Gson"/>
 
 </beans>

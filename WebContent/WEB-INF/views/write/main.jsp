@@ -6,6 +6,7 @@
 		<!-- include libraries(jQuery, bootstrap) -->
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 		
 		<!-- include summernote css/js -->
@@ -37,13 +38,13 @@
 		<script src="/js/functions.js"></script>
 	</head>
 	<body>
-		<form id="recipe_form" action="/foodie/write_confirm.do" method="post" enctype="multipart/form-data">
+		<form id="recipe_form" action="/foodie/write/confirm.do" method="post" enctype="multipart/form-data">
 		  	<table>
 		  		<tr><td><label class="lb_recipe" for="title">요리명</label><input id="title" type="text" name="title"></td></tr>
 				<tr><td><label class="lb_recipe" for="elapsedtime">소요시간</label><input type="number" min="1" max="999" value="0" name="elapsedtime"><label>분</label></td></tr>
 		  	<tbody id="ingredients">
 		  		<tr id="dummy_row" style="display:none;">
-		  			<td><label class="lb_recipe" for="ig_name">재료명</label><input type="text" name="ig_name" disabled></td>
+		  			<td><label class="lb_recipe" for="ig_name">재료명</label><input class="ig_name" type="text" name="ig_name" disabled></td>
 		  			<td><label class="lb_recipe" for="ig_amount">수량</label><input type="text" name="ig_amount" disabled></td>
 		  			<td><label class="lb_recipe" for="ig_unit">단위</label>
 		  			<select name="ig_unit" disabled>
@@ -57,7 +58,7 @@
 		  			</select></td>
 				</tr>        			
         		<tr class="ig_row">
-		  			<td><label class="lb_recipe" for="ig_name">재료명</label><input type="text" name="ig_name"></td>
+		  			<td><label class="lb_recipe" for="ig_name">재료명</label><input class="ig_name" type="text" name="ig_name"></td>
 		  			<td><label class="lb_recipe" for="ig_amount">수량</label><input type="text" name="ig_amount"></td>
 		  			<td><label class="lb_recipe" for="ig_unit">단위</label>
 		  			<select name="ig_unit">
@@ -89,14 +90,37 @@
 		  		<textarea id="summernote" name="editorcontent"></textarea>
 		  	</div>
 		  	<div class="wrapper" style="text-align:center; margin-top:20px">
-		  		<button class="btn-primary" type="submit" onclick="write_confirm()">작성완료</button>
-		  	</div>
-		  	<div class="wrapper" style="text-align:center; margin-top:20px">
 		  		<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
 		  	</div>
 		</form>
 	   	<script>
-	   	
+	   		var attach_autocomplete = function() {
+	   			$(".ig_name").autocomplete({
+		   			source : function(request, response) {
+			   			$.ajax({ 
+			   				url: "/foodie/write/search_ig.do", 
+			   				dataType: "json", 
+			   				data: {
+			   					syllable: request.term,
+			   				}, 
+			   				success: function( result ) { 
+		   						response( 
+									$.map(result, function(item) { 
+										return { 
+											label: item, 
+											value: item
+										} 
+									}) 
+								); 
+							} 
+						}); 
+		   			},
+					minLength: 1,
+					select: function(event, ui) {} 
+		   		});
+	   		}
+	   		attach_autocomplete();
+	   		
 	   		$("#summernote").summernote({
 	   			// TOOLBAR REFERENCES > https://summernote.org/deep-dive/#custom-toolbar-popover
 		       	placeholder: '여기에 여러분의 레시피를 자유롭게 작성해보세요!',
@@ -172,6 +196,7 @@
 				cloneRow.appendTo($("#ingredients"));
 				cloneRow.css("display","");
 				$("#only_one").appendTo(cloneRow);
+				attach_autocomplete();
 		   	}
 		   	
 		   	function ig_remove() {

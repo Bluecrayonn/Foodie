@@ -2,9 +2,13 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import models.IngredientDao;
 import models.PostDao;
 
 @Controller
@@ -21,12 +27,14 @@ import models.PostDao;
 public class WritePostController {
 	@Autowired
 	PostDao postDao;
+	@Autowired
+	IngredientDao ingredientDao;
 	
 	@RequestMapping("/writepost.do")
 	public String write() {
 		return "writepage";
 	}
-	@RequestMapping("/write_confirm.do")
+	@RequestMapping("/confirm.do")
 	public String write_ok(
 			@RequestParam("thumbnail") MultipartFile f,
 			@RequestParam HashMap params,
@@ -74,4 +82,27 @@ public class WritePostController {
 		} 
 		return "detailpage";
 	}
+	
+	@RequestMapping("/search_ig.do")
+	@ResponseBody
+	public List<String> startWith(@RequestParam String syllable) {
+		List<LinkedHashMap>postList = ingredientDao.searchStartsWith(syllable);
+		//postList에서 재료명만 추출
+		List<String> ingredientList = new LinkedList<String>();
+		Iterator<LinkedHashMap> iter = postList.iterator();
+		while(iter.hasNext()) {
+			HashMap post = iter.next();
+			if (post.containsKey("ingredients")) {
+				ArrayList<Map> arr = (ArrayList)post.get("ingredients");
+				for(Map ig:arr) {
+					if (((String)ig.get("name")).startsWith(syllable)) {
+						ingredientList.add((String)ig.get("name"));
+					}
+				}
+			}
+		}
+		
+		return ingredientList;
+	}
+	
 }
