@@ -71,6 +71,6 @@ public class WritePostController {
 			params.replace("ig_unit", rst_unit);
 			postDao.writePost(params);
 		} 
-		return "main";
+		return "mainpage";
 	}
 }

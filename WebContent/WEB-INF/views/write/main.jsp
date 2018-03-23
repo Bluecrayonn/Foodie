@@ -49,7 +49,7 @@
 		  	</table>
 			<hr/>
 		  	<div style="margin:0 auto; width: 150px; height: 150px; overflow: hidden">
-				<img id="preview" src="/template/image/upload.png" style="border-radius: 10px; width: 150px; height: auto">
+				<img id="preview" src="/template/images/upload.png" style="border-radius: 10px; width: 150px; height: auto">
 			</div>
 			<input type="file" style="display: none" accept="image/*" name="thumbnail" id="thumbnail" />
 		  	
