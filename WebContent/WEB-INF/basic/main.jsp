@@ -27,13 +27,13 @@ input {
 divs {
 	width: 700px;
 }
-
 </style>
 
 <div class="divs">
-		<input type="text" class="tb" placeholder="검색" style="font-size: 12pt; width: 400px;"/>
+	<input type="text" class="tb" placeholder="검색"
+		style="font-size: 12pt; width: 400px;" />
 </div>
-		<br/>
+<br />
 
 <div class="container-fluid">
 
@@ -43,15 +43,15 @@ divs {
 
 		<c:forEach var="obj" items="${postList_vrr}">
 
-			<article id="${obj.POST_ID }"
-				class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box postedArticles">
+			<article 
+				class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box postedarticles">
 				<figure>
 					<a href="single.html"><img
 						src="/templet/images/${obj.MAIN_IMG}" alt="Image"
 						class="img-responsive"></a>
 					<ul class="fh5co-social">
-						<li><i class="icon-bookmark">${obj.BOOKMARK_COUNT}</i></li>
-						<li><i class="icon-heart"></i></li>
+						<li><i  id="${obj.POST_ID }" class="icon-bookmark bookmarked">${obj.BOOKMARK_COUNT}</i></li>
+						<li><i name="" ${obj.WRITER_ID} class="icon-heart"></i></li>
 
 					</ul>
 				</figure>
@@ -71,29 +71,56 @@ divs {
 	</div>
 </div>
 <script>
-	$(".icon-bookmark").click(function(){
-		console.log($("ownerId"))
-		 $.ajax("/social/bookmarkList.do",{
+	$(".icon-bookmark").click(function() {
+		console.log($("ownerId"));
+		console.log($(this).attr("id"))
+		$.ajax("/social/addBookmarkRDB.do", {
 			"method" : "post",
 			"async" : true,
-			
-			
-		}).done(function(obj){
+			"data" : {
+				"postId" : $(this).attr("id")
+			}
+
+		}).done(function() {
+			$.ajax("/social/bookmarkList.do", {
+				"method" : "post",
+				"async" : true,
+				"data" : {
+
+				}
+			})
+		}).done(function(obj) {
 			console.log(obj);
-			$(".postedArticles").each(function(index,element){
-				 console.log($(element).attr("id"));
-				 
-			 })
-		}) 
-		 
+		})
+
 	})
-	
-	
 
+	//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
+	$(function() {
+		$.ajax("/social/bookmarkList.do", {
+			"method" : "post",
+			"async" : true
+		}).done(function(obj) {
+			var hearts = $(".bookmarkicon");
+			var bookmarks = JSON.parse(obj);
+			
+			for(var h = 0; h< hearts.length;h++){
+				//console.log(hearts.eq(h).attr("id"));
+				for(var k =0;k<bookmarks.length-1;k++){
+ 					if(bookmarks[k].POST_ID==hearts.eq(h).attr("id")){
+						console.log("Match Found");
+						hearts.eq(h).attr("class").val("icon-bookmark icon-bookmarked");
+					}
+				}
+			}
+			
+			
+			
+  
+		})
 
-	
-	
-	
+	})
+
 	/* $("#searchInput").change(function(){
 		$.ajax("/foodie/search.do", {
 			"method" : "post",
@@ -107,4 +134,4 @@ divs {
 		})
 		
 	})	 */
-	</script>
+</script>

@@ -6,7 +6,8 @@
 		
 	</head>
 	<body>
-		<form id="recipe_form" action="/foodie/write_confirm.do" method="post" enctype="multipart/form-data">
+	
+		<form  style="width:800px" id="recipe_form" action="/foodie/write_confirm.do" method="post" enctype="multipart/form-data">
 		  	<table>
 		  		<tr><td><label class="lb_recipe" for="title">요리명</label><input id="title" type="text" name="title"></td></tr>
 				<tr><td><label class="lb_recipe" for="elapsedtime">소요시간</label><input type="number" min="1" max="999" value="0" name="elapsedtime"><label>분</label></td></tr>
@@ -62,6 +63,8 @@
 		  	</div>
 		  	
 		</form>
+	   
+	   
 	   	<script>
 	   	
 	   		$("#summernote").summernote({

@@ -76,7 +76,7 @@
 
 
 	<insert id="addBookmarks">
-		insert into bookmarks values
+		insert into bookmark values
 		(BOOKMARK_SEQ.NEXTVAL,${postId},${userId})
 	</insert>
 	<delete id="removeBookmarks">
@@ -85,11 +85,11 @@
 	</delete>
 	<update id="countUpBookmark">
 		update post set bookmark_count = bookmark_count +1
-		where post_id = ${postId}
+		where post_id = #{postId}
 	</update>
 	<update id="countDownBookmark">
 		update post set bookmark_count = bookmark_count -1
-		where post_id = ${postId}
+		where post_id = #{postId}
 	</update>
 
 

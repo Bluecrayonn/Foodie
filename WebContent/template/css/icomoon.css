@@ -120,6 +120,11 @@
 .icon-bookmark:before {
     content: "\e91f";
 }
+.icon-bookmarked:after {
+    content: "\e920";
+}
+
+
 .icon-bookmarks:before {
     content: "\e920";
 }

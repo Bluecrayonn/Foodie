@@ -10,6 +10,8 @@ import org.bson.BSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -157,7 +159,7 @@ public class SocialAddImpl implements SocialAddDAO {
  	}
 
 	@Override
-	public int addBookmarksRDB(Map map) {
+	public int addBookmarksRDB(@RequestParam Map map) {
 		//postId , userId
 		SqlSession sqlsession = sqlfactory.openSession();
 
@@ -197,14 +199,14 @@ public class SocialAddImpl implements SocialAddDAO {
 
 		}
  	}
-	public int bookMarkCountUpRDB(String accountId) {
+	public int bookMarkCountUpRDB(String postId) {
 		// map= targetId, ownerId
 
 		SqlSession sqlsession = sqlfactory.openSession();
 
 		try {
 
-			int result = sqlsession.insert("social.countUpBookmark", accountId);
+			int result = sqlsession.insert("social.countUpBookmark", postId);
 			System.out.println(result);
 			return result;
 

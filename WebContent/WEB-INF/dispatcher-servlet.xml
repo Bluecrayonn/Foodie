@@ -55,7 +55,7 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
  	<!-- MongoDB configuration -->
-	<mongo:mongo-client port="27017" host="52.78.86.88">
+	<mongo:mongo-client port="56789" host="52.78.86.88">
 	</mongo:mongo-client>
 
 
