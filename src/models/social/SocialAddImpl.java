@@ -2,11 +2,9 @@ package models.social;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.bson.BSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,13 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.jndi.MongoClientFactory;
 
 import models.SocialAddDAO;
-import oracle.jdbc.pooling.Factory;
 
 //follow list/bookmark 를 rdb 랑 mongo 둘다 사용하는것이 좋지 않을까?
 //자주 불러와야 하는 항목인만큼 rbd를 이용하는건 힘들것 같은데 음. 
