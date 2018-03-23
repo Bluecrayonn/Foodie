@@ -71,12 +71,12 @@
 		<link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 			rel='stylesheet' type='text/css'>
 		<!-- Animate -->
-		<link rel="stylesheet" href="/templet/css/animate.css">
+		<link rel="stylesheet" href="/template/css/animate.css">
 		<!-- Icomoon -->
-		<link rel="stylesheet" href="/templet/css/icomoon.css">
+		<link rel="stylesheet" href="/template/css/icomoon.css">
 		<!-- css  -->
-		<link rel="stylesheet" href="/templet/css/style.css">
-		<link rel="stylesheet" href="/css/write_post.css">
+		<link rel="stylesheet" href="/template/css/style.css">
+		<link rel="stylesheet" href="/template/css/write_post.css">
 		<script src="/js/functions.js"></script>
 <html>
 <head>
