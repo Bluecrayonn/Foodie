@@ -25,7 +25,7 @@
 		<put-attribute name="body" value="/WEB-INF/basic/detail.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
-	<definition name="write" template="/WEB-INF/views/write_post.jsp">
+	<definition name="writepage" template="/WEB-INF/views/writepage.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/write/main.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

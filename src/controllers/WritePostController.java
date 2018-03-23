@@ -17,13 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 import models.PostDao;
 
 @Controller
-@RequestMapping("/foodie")
+@RequestMapping("/foodie/write")
 public class WritePostController {
 	@Autowired
 	PostDao postDao;
-	@RequestMapping("/write.do")
+	
+	@RequestMapping("/writepost.do")
 	public String write() {
-		return "write";
+		return "writepage";
 	}
 	@RequestMapping("/write_confirm.do")
 	public String write_ok(
@@ -71,6 +72,6 @@ public class WritePostController {
 			params.replace("ig_unit", rst_unit);
 			postDao.writePost(params);
 		} 
-		return "main";
+		return "detailpage";
 	}
 }
