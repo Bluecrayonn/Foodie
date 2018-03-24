@@ -97,6 +97,55 @@ divs {
 		})
 
 	})
+	$(".hearticon").click(function() {
+		var heart = $(this);
+		var targetId = $(this).attr("id");
+		
+		
+		console.log($(this).attr("id"))
+		$.ajax("/social/addFollowRDB.do", {
+			"method" : "post",
+			"async" : true,
+			"data" : {
+				"targetId" : targetId
+			}
+
+		}).done(function(obj) {
+ 			var hearticon = $(".hearticon");
+ 			if(obj=="adddone"){
+ 				for(var h = 0; h< hearticon.length;h++){
+ 					//console.log(hearts.eq(h).attr("id"));
+ 					 
+ 	 					if(targetId==hearticon.eq(h).attr("id")){
+ 							console.log("Match Found");
+ 							hearticon.eq(h).css("color","red");
+ 							
+ 							
+ 							
+ 						}
+ 					 
+ 				}
+			}else if (obj =="removedone"){
+				for(var h = 0; h< hearticon.length;h++){
+ 					//console.log(hearts.eq(h).attr("id"));
+ 					 
+ 	 					if(targetId==hearticon.eq(h).attr("id")){
+ 							console.log("Match Found");
+ 							hearticon.eq(h).css("color","black");
+ 							
+ 							
+ 							
+ 						}
+ 					 
+ 				}
+
+			}
+ 			
+ 			
+			
+		})
+
+	})
 
 	//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
 	$(function() {
@@ -113,6 +162,31 @@ divs {
  					if(bookmarks[k].POST_ID==bookmarkicon.eq(h).attr("id")){
 						console.log("Match Found");
 						bookmarkicon.eq(h).css("color","red");
+						
+						
+						
+					}
+				}
+			}
+		})
+
+	})
+			//여기서 비교할 following 가지고 와서 following 비교해줄것입니다.
+
+	$(function() {
+		$.ajax("/social/followingList.do", {
+			"method" : "post",
+			"async" : true
+		}).done(function(obj) {
+			var hearticon = $(".hearticon");
+			var hearts = JSON.parse(obj);
+			console.log(hearts);
+			for(var h = 0; h< hearticon.length;h++){
+				//console.log(hearts.eq(h).attr("id"));
+				for(var k =0;k<hearts.length-1;k++){
+ 					if(hearts[k].TARGET_ID==hearticon.eq(h).attr("id")){
+						console.log("Match Found");
+						hearticon.eq(h).css("color","red");
 						
 						
 						

@@ -95,7 +95,7 @@ public class SocialAddImpl implements SocialAddDAO {
 		}
 
 	}
- 	public int addFollowingCountUpRDB(String accountId) {
+ 	public int addFollowingCountUpRDB(Long accountId) {
 		// map= targetId, ownerId
 
 		SqlSession sqlsession = sqlfactory.openSession();
@@ -116,7 +116,7 @@ public class SocialAddImpl implements SocialAddDAO {
 		}
 
 	}
-	public int addFollowingCountDownRDB(String accountId) {
+	public int addFollowingCountDownRDB(Long accountId) {
 		// map= targetId, ownerId
 
 		SqlSession sqlsession = sqlfactory.openSession();

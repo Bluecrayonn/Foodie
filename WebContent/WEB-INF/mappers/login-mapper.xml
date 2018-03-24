@@ -4,21 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dummy">
-	<select id="email" resultType="java.util.HashMap">
-		select * from account where email = #{email} 
-		 
+	<resultMap type="HashMap" id="loginresult">
+		<result property="ACCOUNT_ID" column="ACCOUNT_ID" javaType="java.lang.Long" jdbcType="NUMERIC"/>
+		<result property="EMAIL" column="EMAIL" />
+		<result property="PASSWORD" column="PASSWORD" />
+		<result property="NAME" column="NAME" />
+		<result property="GENDER" column="GENDER" />
+		<result property="BIRTH" column="BIRTH"  />
+		<result property="FOLLOW_COUNT" column="FOLLOW_COUNT" javaType="java.lang.Long" jdbcType="NUMERIC"/>
+		<result property="AREA" column="AREA" />
+
+	</resultMap>
+	<select id="email" resultType="java.util.HashMap" resultMap="loginresult">
+		select * from account where email
+		= #{email}
+
 	</select>
-	<select id="login" resultType="java.util.HashMap">
-		select * from account where email = #{email} 
-		 
+	<select id="login" resultType="java.util.HashMap" resultMap="loginresult">
+		select * from account where email
+		= #{email}
+
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 </mapper>
