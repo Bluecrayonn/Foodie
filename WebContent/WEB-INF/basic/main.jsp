@@ -85,6 +85,7 @@ divs {
 			}
 
 		}).done(function(obj) {
+			
  			if(obj=="adddone"){
 				bookmark.css("color","red");
 				console.log(obj);
@@ -92,7 +93,10 @@ divs {
 				bookmark.css("color","black");
 				console.log(obj);
 
+			}else if(obj=="notlogedon"){
+				window.alert("로그인을 먼저 진행해주세요 ")
 			}
+ 			
 			
 		})
 
@@ -139,6 +143,8 @@ divs {
  					 
  				}
 
+			}else if(obj=="notlogedon"){
+				window.alert("로그인을 먼저 진행해주세요 ")
 			}
  			
  			
@@ -199,7 +205,7 @@ divs {
 		//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
 
 
-	/* $("#searchInput").change(function(){
+	 $("#searchInput").change(function(){
 		$.ajax("/foodie/search.do", {
 			"method" : "post",
 			"async" : true,
@@ -211,5 +217,5 @@ divs {
 			$(postList_vrr)=obj;
 		})
 		
-	})	 */
+	})	 
 </script>

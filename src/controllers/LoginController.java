@@ -43,7 +43,7 @@ public class LoginController {
 		String email=  map.get("email");
 		//검사결과 0: 성공 / 1: 아이디없음/2:패스워드 불일치
 		int result = loginservice.confirmEmail(map);
-		
+		System.out.println("[loginHandler] auth result "+result);
 		Map json  = new HashMap<>();
 		
 		if(result==0) {

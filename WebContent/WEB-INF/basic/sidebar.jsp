@@ -11,7 +11,7 @@
 			<c:when test="${empty sessionScope.auth}">
 				<h2 style="margin-right: 20px;">로그인</h2>
 				<div id="login-container" style="width: 250px">
-               <form id="login-form" autocomplete="off">
+               <form id="login-form" autocomplete="off" method="post">
                   <p>
                      <input id="login-email" type="text" name="id"
                         class="form-control" placeholder="이메일 입력"
@@ -150,6 +150,8 @@
 				$("#login-container").hide();
 				$("#logon-container").show();
 				location.href = "/foodie/main.do"
+			}else if (obj.auth==2){
+				window.alert("이메일 혹은 패스워드가 잘못되었습니다.");
 			}
 		})
 	})
@@ -168,6 +170,8 @@
 					$("#login-container").hide();
 					$("#logon-container").show();
 					location.href = "/foodie/main.do"
+				}else if (obj.auth==2){
+					window.alert("이메일 혹은 패스워드가 잘못되었습니다.");
 				}
 			})
 		}

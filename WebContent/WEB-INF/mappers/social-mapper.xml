@@ -50,7 +50,7 @@
 	<!-- Post -->
 
 	<resultMap id="getBoardListResult" type="HashMap">
-		<result property="POST_ID" column="POST_ID" />
+		<result property="POST_ID" column="POST_ID"  />
 		<result property="TITLE" column="TITLE" />
 		<result property="WRITER_ID" column="WRITER_ID" />
 		<result property="ELAPSEDTIME" column="ELAPSEDTIME" />
@@ -79,8 +79,8 @@
 		resultMap="getBoardListResult">
 		select * from post
 		<where>
-			<if test="keywords != null"> regexp_like(title,'#{keywords}') or
-				regexp_like(content,'#{keywords}')</if>
+			<if test="keywords != null"> regexp_like(title,'${keywords}') or
+				regexp_like(content,'${keywords}')</if>
 			<if test="orderType != n"> order by post_date desc</if>
 		</where>
 	</select>
