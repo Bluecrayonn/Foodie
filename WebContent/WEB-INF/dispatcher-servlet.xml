@@ -12,10 +12,10 @@
 
 
 	<mvc:annotation-driven />
+
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
-	
 
 
 	<!-- Tiles resolver configuration -->
@@ -47,17 +47,18 @@
 		</property>
 
 	</bean>
+
+
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="c3p0"></property>
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
 	</bean>
-	
+
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-	
- 	<!-- MongoDB configuration -->
+
+	<!-- MongoDB configuration -->
 	<mongo:mongo-client port="56789" host="52.78.86.88">
 	</mongo:mongo-client>
-
 
 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
 		id="mongoTemplate" scope="singleton">
@@ -67,6 +68,7 @@
 		<constructor-arg value="foodie" name="databaseName" />
 
 	</bean>
+	
+	<bean class="com.google.gson.Gson"/>
 
- </beans>
-
+</beans>

@@ -47,7 +47,7 @@ divs {
 				class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box postedarticles">
 				<figure>
 					<a href="single.html"><img
-						src="/templet/images/${obj.MAIN_IMG}" alt="Image"
+						src="/template/images/${obj.MAIN_IMG}" alt="Image"
 						class="img-responsive"></a>
 					<ul class="fh5co-social">
 						<li><i style="font-size: 18pt "  id="${obj.POST_ID }" class="icon-bookmark bookmarkicon"></i></li>
