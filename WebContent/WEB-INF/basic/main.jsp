@@ -50,13 +50,13 @@ divs {
 						src="/templet/images/${obj.MAIN_IMG}" alt="Image"
 						class="img-responsive"></a>
 					<ul class="fh5co-social">
-						<li><i  id="${obj.POST_ID }" class="icon-bookmark bookmarked">${obj.BOOKMARK_COUNT}</i></li>
-						<li><i name="" ${obj.WRITER_ID} class="icon-heart"></i></li>
+						<li><i style="font-size: 18pt "  id="${obj.POST_ID }" class="icon-bookmark bookmarkicon"></i></li>
+						<li><i style="font-size: 18pt " id="${obj.WRITER_ID}" class="icon-heart hearticon"></i></li> 
 
 					</ul>
 				</figure>
-				<span class="fh5co-meta"><a href="single.html">Food &amp;
-						Drink</a></span>
+				<!-- 여기 아이디 넣음(Email? or nickname)  -->
+				<span class="fh5co-meta"><a href="single.html">${obj.NAME }</a></span>
 				<h2 class="fh5co-article-title">
 					<a href="/foodie/detail.do">${obj.TITLE}</a>
 				</h2>
@@ -71,7 +71,10 @@ divs {
 	</div>
 </div>
 <script>
-	$(".icon-bookmark").click(function() {
+	$(".bookmarkicon").click(function() {
+		var bookmark = $(this);
+		if($(this).hasClass(""))
+		
 		console.log($("ownerId"));
 		console.log($(this).attr("id"))
 		$.ajax("/social/addBookmarkRDB.do", {
@@ -81,16 +84,16 @@ divs {
 				"postId" : $(this).attr("id")
 			}
 
-		}).done(function() {
-			$.ajax("/social/bookmarkList.do", {
-				"method" : "post",
-				"async" : true,
-				"data" : {
-
-				}
-			})
 		}).done(function(obj) {
-			console.log(obj);
+ 			if(obj=="adddone"){
+				bookmark.css("color","red");
+				console.log(obj);
+			}else if (obj =="removedone"){
+				bookmark.css("color","black");
+				console.log(obj);
+
+			}
+			
 		})
 
 	})
@@ -101,25 +104,26 @@ divs {
 			"method" : "post",
 			"async" : true
 		}).done(function(obj) {
-			var hearts = $(".bookmarkicon");
+			var bookmarkicon = $(".bookmarkicon");
 			var bookmarks = JSON.parse(obj);
-			
-			for(var h = 0; h< hearts.length;h++){
+			console.log(bookmarks);
+			for(var h = 0; h< bookmarkicon.length;h++){
 				//console.log(hearts.eq(h).attr("id"));
 				for(var k =0;k<bookmarks.length-1;k++){
- 					if(bookmarks[k].POST_ID==hearts.eq(h).attr("id")){
+ 					if(bookmarks[k].POST_ID==bookmarkicon.eq(h).attr("id")){
 						console.log("Match Found");
-						hearts.eq(h).attr("class").val("icon-bookmark icon-bookmarked");
+						bookmarkicon.eq(h).css("color","red");
+						
+						
+						
 					}
 				}
 			}
-			
-			
-			
-  
 		})
 
 	})
+		//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
+
 
 	/* $("#searchInput").change(function(){
 		$.ajax("/foodie/search.do", {

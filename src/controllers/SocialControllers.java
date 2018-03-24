@@ -1,10 +1,12 @@
 package controllers;
 
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+ 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -72,31 +74,38 @@ public class SocialControllers {
 		return "";
 	}
 
+	
 	@RequestMapping("/addBookmarkRDB.do")
 	@ResponseBody
 	public String BookmarkAddHandle(@RequestParam Map<String, Object> map, HttpServletRequest req) {
 		String postId = (String) map.get("postId");
 		BigDecimal bigdecimal = (BigDecimal) ((Map) req.getSession().getAttribute("auth")).get("ACCOUNT_ID");
 		int accountId = bigdecimal.intValue();
+		System.out.println("[[BookmarkAddHandler] : received postID : "+postId);
 		
 		List<Map> bookmarks = socialInfo.getBookmarks(accountId);
-		
+		map.put("userId", accountId);
 		for (Map map1 : bookmarks) {
-			if (map1.get("POST_ID").equals(postId)) {
+			System.out.println("[BookmarkAddHandler] : "+map1.get("POST_ID"));
+			System.out.println("[BookmarkAddHandler] : "+map1.get("POST_ID").getClass().toString());
+			
+			if ((long)map1.get("POST_ID")==Long.parseLong(postId)) {
+				System.out.println("[BookmarkAddHandler] : "+map1.get("POST_ID") + "already exists");
 				followadd.removeBookmarksRDB(map);
 				followadd.bookMarkCountDownRDB((String) map.get("postId"));
-				return "exist";
+				return "removedone";
 			}
 		}
 
 		System.out.println("[BookmarkAddhandle]" + map.toString());
-		map.put("userId", accountId);
+		
 		followadd.addBookmarksRDB(map);
 		followadd.bookMarkCountUpRDB(postId);
 
-		return "";
+		return "adddone";
 	}
 
+	
 	@RequestMapping("/removeBookmarkRDB.do")
 	@ResponseBody
 	public String BookmarkRemoveHandle(@RequestParam Map<String, Object> map) {
@@ -109,6 +118,7 @@ public class SocialControllers {
 	// List 불러오는 구간입니다.
 	// return 은 json 으로 변환해서 올릴 예정 입니다.
 
+	
 	@RequestMapping("/followingList.do")
 	@ResponseBody
 	public String followingListHandler(@RequestParam Map<String, Object> map) {
