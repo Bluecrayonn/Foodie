@@ -33,8 +33,10 @@
 		<link rel="stylesheet" href="/template/css/icomoon.css">
 		<!-- css  -->
 		<link rel="stylesheet" href="/template/css/style.css">
-		<link rel="stylesheet" href="/css/write_post.css">
-		<script src="/js/functions.js"></script>
+		<link rel="stylesheet" href="/template/css/write_post.css">
+		<link rel="stylesheet" href="/template/css/notice.css">
+		
+		<script src="/template/js/functions.js"></script>
 	</head>
 	<body>
 		<form id="recipe_form" action="/foodie/write_confirm.do" method="post" enctype="multipart/form-data">
@@ -108,10 +110,10 @@
 				    ['fontsize', ['fontsize']],
 				    ['color', ['color']],
 				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['height', ['height']]
-				    ['picture',['picture']]
-				    ['link',['link']]
-				  ]
+				    ['height', ['height']],
+				    ['picture',['picture']],
+				    ['link',['link']],
+				  ],
 	   			
 				callbacks: {
 					onImageUpload: function(files, editor, welEditable) {

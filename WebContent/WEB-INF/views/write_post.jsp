@@ -82,7 +82,8 @@
 		<!-- css  -->
 		<link rel="stylesheet" href="/template/css/style.css">
 		<link rel="stylesheet" href="/template/css/write_post.css">
-		<script src="/js/functions.js"></script>
+		<link rel="stylesheet" href="/template/css/notice.css">
+		<script src="/template/js/functions.js"></script>
 <html>
 <head>
 <title>레시피 작성하기</title>

@@ -49,7 +49,7 @@
 					<p>Im a ${sessionScope.auth.user[0].NAME}!</p>
 					<ul style="list-style: none;">
 						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
-						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-pencil">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
+						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
 						<li><a href="/authentication/logout.do" style="margin-right: 50px;"><i class="icon-log-out">LOG OUT</i></a></li>
 					</ul>
 				</div>

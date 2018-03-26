@@ -16,6 +16,7 @@
 	</definition>
 	<definition name="profilepage" template="/WEB-INF/views/profilepage.jsp"> <!-- 개인 프로필 페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/profile_nav.jsp"></put-attribute>
+		<put-attribute name="test" value="/WEB-INF/basic/test.jsp"></put-attribute><!-- test!!!!!!!!!!!!!!!!!!! -->
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/basic/profile.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
@@ -38,12 +39,12 @@
 		<put-attribute name="body" value="/WEB-INF/basic/detail.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
-	<definition name="writepage" template="/WEB-INF/views/writepage.jsp"> <!-- 레시피 작성페이지 -->
+<!-- 	<definition name="writepage" template="/WEB-INF/views/writepage.jsp"> 레시피 작성페이지
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/basic/write.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
-	</definition>
+	</definition> -->
 	<definition name="pwresetpage" template="/WEB-INF/views/pwresetpage.jsp"> <!-- 비밀번호 재설정 페이지-->
 		<put-attribute name="nav" value="/WEB-INF/basic/nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>

@@ -10,6 +10,6 @@
 	}
 </style>
 
-<div class="center">
-	로그인 하여 프로필 페이지 들어왔음!
+<div class="center"><br/>
+	<button style="background: red;"> 회원 탈퇴 </button>
 </div>
