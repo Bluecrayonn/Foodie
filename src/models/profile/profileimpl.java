@@ -6,10 +6,12 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import models.ProfileListDao;
 import models.postListDAO;
 
+@Repository
 public class profileimpl implements ProfileListDao {
 
 	@Autowired
@@ -20,6 +22,8 @@ public class profileimpl implements ProfileListDao {
 		SqlSession session = factory.openSession();
 		try {
 			List<Map> result = session.selectList("profile.recipetitle");
+			System.out.println(result.toString());
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

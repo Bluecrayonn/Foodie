@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <div class="wrapper">
         <div class="container">
@@ -48,11 +47,13 @@
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1primary"></div>
-                        <div class="tab-pane fade" id="tab2primary">2222</div>
-                        <div class="tab-pane fade" id="tab3primary">3333</div>
-                        <div class="tab-pane fade" id="tab4primary">4444</div>
-                        <div class="tab-pane fade" id="tab5primary">5555</div>
+                        <div class="tab-pane fade in active" id="tab1">
+                        	
+                        </div>
+                        <div class="tab-pane fade" id="tab2">2222</div>
+                        <div class="tab-pane fade" id="tab3">3333</div>
+                        <div class="tab-pane fade" id="tab4">4444</div>
+                        <div class="tab-pane fade" id="tab5">5555</div>
                     </div>
                 </div>
             </div>
@@ -110,4 +111,24 @@
         $("#" + activeTab).fadeIn()
     });
 });	
+            	
+            	
+       $(function(){
+    	   $.ajax("/profile/recipe_List.do",{
+    		   "method": "post",
+    		   "async" : true
+    	   }).done(function(obj){
+    		   var recipe = JSON.parse(obj);
+    		   console.log(recipe[0]);
+    		   console.log(recipe[0].TITLE);
+    		   console.log(recipe[0].POST_ID);
+    		   console.log(recipe);
+    		   var text = "";
+    		   for(var i = 0; i<recipe.length; i++){
+    			   text+="<a href=\"#\">"+recipe[i].TITLE+"</a><br/>";
+    		   }
+    		   $("#tab1").html(text);
+    	   })
+       })
+       
                 </script>

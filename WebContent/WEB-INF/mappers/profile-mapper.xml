@@ -3,6 +3,6 @@
 
 <mapper namespace="profile">
 <select id="recipetitle" resultType="java.util.LinkedHashMap">
-		select TITLE,POST_ID from post;
+		select TITLE,POST_ID from post where writer_id=1
 	</select>	
 </mapper>
