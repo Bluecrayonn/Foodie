@@ -3,6 +3,22 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="post">
+	<resultMap id="postResult" type="java.util.LinkedHashMap">
+		<result property="POST_ID" column="POST_ID"  />
+		<result property="TITLE" column="TITLE" />
+		<result property="WRITER_ID" column="WRITER_ID" />
+		<result property="ELAPSEDTIME" column="ELAPSEDTIME" />
+		<result property="MAIN_IMG" column="MAIN_IMG" />
+		<result property="CONTENT" column="CONTENT" jdbcType="CLOB"
+			javaType="java.lang.String" typeHandler="org.apache.ibatis.type.ClobTypeHandler" />
+		<result property="BOOKMARK_COUNT" column="BOOKMARK_COUNT" />
+		<result property="POST_DATE" column="POST_DATE" />
+	</resultMap>
+
+	<select id="selectOneById" resultMap="postResult">
+		select * from post where
+		post_id = #{postId}
+	</select>
 	<select id="selectByParams" resultType="java.util.LinkedHashMap">
 		select * from coupon
 		<trim prefix="where" prefixOverrides="and|or">
@@ -97,7 +113,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</foreach>
 		</if>
 	</select>
-
 	<delete id="delete_foreach">
 		delete from coupon
 		<where>

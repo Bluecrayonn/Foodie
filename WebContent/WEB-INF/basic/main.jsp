@@ -46,8 +46,8 @@ divs {
 			<article 
 				class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box postedarticles">
 				<figure>
-					<a href="single.html"><img
-						src="/template/images/${obj.MAIN_IMG}" alt="Image"
+					<a href="#"><img
+						src="/upload_img/${obj.MAIN_IMG}" alt="Image"
 						class="img-responsive"></a>
 					<ul class="fh5co-social">
 						<li><i style="font-size: 18pt "  id="${obj.POST_ID }" class="icon-bookmark bookmarkicon"></i></li>
@@ -58,7 +58,7 @@ divs {
 				<!-- 여기 아이디 넣음(Email? or nickname)  -->
 				<span class="fh5co-meta"><a href="single.html">${obj.NAME }</a></span>
 				<h2 class="fh5co-article-title">
-					<a href="/foodie/detail.do">${obj.TITLE}</a>
+					<a href="/foodie/detail.do?pid=${obj.POST_ID}">${obj.TITLE}</a>
 				</h2>
 				<span class="fh5co-meta fh5co-date">${obj.POST_DATE}</span>
 			</article>

@@ -49,8 +49,8 @@ public class LoginController {
 		if(result==0) {
 			
  			session.setAttribute("auth", loginservice.setAuth(email));
- 			
 	 		System.out.println(map.toString());
+	 		
 		}
 		
 		json.put("auth", result);

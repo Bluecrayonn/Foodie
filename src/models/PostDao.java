@@ -1,7 +1,5 @@
 package models;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -18,6 +16,17 @@ public class PostDao {
 	MongoTemplate template;
 	@Autowired
 	SqlSessionFactory factory;
+	
+	public LinkedHashMap getOnePost(int postId) {
+		SqlSession session = factory.openSession();
+		LinkedHashMap post = null;
+		try {
+			post = session.selectOne("post.selectOneById", postId);
+		} finally {
+			session.close();
+		}
+		return post;
+	}
 	
 	public boolean writePost(Map param) {
 		// 포스트 글내용과 재료는 따로 저장
@@ -36,7 +45,7 @@ public class PostDao {
 			
 			PostDto dto = new PostDto(
 					postId
-					,1
+					,(int)param.get("writer")
 					,(String)param.remove("title")
 					,(String)param.remove("editorcontent")
 					,(String)param.remove("mainimage")

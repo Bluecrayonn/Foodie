@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +35,13 @@ public class WritePostController {
 	public String write() {
 		return "writepage";
 	}
+	@RequestMapping("/modifypost.do")
+	public String modify(@RequestParam int pid, ModelMap map) {
+		map.put("post", postDao.getOnePost(pid));
+		map.put("ingredient",ingredientDao.getIngredientById(pid));
+		return "writepage";
+	}
+	
 	@RequestMapping("/confirm.do")
 	public String write_ok(
 			@RequestParam("thumbnail") MultipartFile f,
@@ -44,13 +52,15 @@ public class WritePostController {
 			HttpServletRequest request) throws IllegalStateException, IOException {
 		String ct = f.getContentType();
 		if (!f.isEmpty() && ct.startsWith("image")) {
-			String uploadPath = request.getSession().getServletContext().getRealPath("") + File.separator + "image";
+			String uploadPath = request.getSession().getServletContext().getRealPath("") + File.separator + "upload_img";
 			String orgFileName = f.getOriginalFilename();
 			int lastIdx = orgFileName.lastIndexOf('.');
 			String extension = orgFileName.substring(lastIdx, orgFileName.length());
 			String dest = uploadPath + "\\" + String.valueOf(System.currentTimeMillis()) + extension;
 			File target = new File(dest);
 			f.transferTo(target);
+			int uid = (int)(long)((Map)request.getSession().getAttribute("auth")).get("ACCOUNT_ID");
+			params.put("writer", uid);
 			params.put("mainimage", target.getName());
 			
 			// rearrange ingredient parameter
