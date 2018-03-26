@@ -87,7 +87,7 @@ divs {
 		}).done(function(obj) {
 			
  			if(obj=="adddone"){
-				bookmark.css("color","red");
+				bookmark.css("color","#48C9B0");
 				console.log(obj);
 			}else if (obj =="removedone"){
 				bookmark.css("color","black");
@@ -97,7 +97,7 @@ divs {
 				window.alert("로그인을 먼저 진행해주세요 ")
 			}
  			
-			
+ 			
 		})
 
 	})
@@ -122,7 +122,7 @@ divs {
  					 
  	 					if(targetId==hearticon.eq(h).attr("id")){
  							console.log("Match Found");
- 							hearticon.eq(h).css("color","red");
+ 							hearticon.eq(h).css("color","#E74C3C");
  							
  							
  							
@@ -167,7 +167,7 @@ divs {
 				for(var k =0;k<bookmarks.length-1;k++){
  					if(bookmarks[k].POST_ID==bookmarkicon.eq(h).attr("id")){
 						console.log("Match Found");
-						bookmarkicon.eq(h).css("color","red");
+						bookmarkicon.eq(h).css("color","#48C9B0");
 						
 						
 						
@@ -192,7 +192,7 @@ divs {
 				for(var k =0;k<hearts.length-1;k++){
  					if(hearts[k].TARGET_ID==hearticon.eq(h).attr("id")){
 						console.log("Match Found");
-						hearticon.eq(h).css("color","red");
+						hearticon.eq(h).css("color","#E74C3C");
 						
 						
 						
