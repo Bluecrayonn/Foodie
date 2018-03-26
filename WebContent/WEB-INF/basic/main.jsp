@@ -167,6 +167,7 @@ divs {
 				for(var k =0;k<bookmarks.length-1;k++){
  					if(bookmarks[k].POST_ID==bookmarkicon.eq(h).attr("id")){
 						console.log("Match Found");
+						console.log(bookmarks[k].USER_ID);
 						bookmarkicon.eq(h).css("color","#48C9B0");
 						
 						
@@ -203,6 +204,7 @@ divs {
 
 	})
 		//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
+		
 
 
 	 $("#searchInput").change(function(){

@@ -12,10 +12,11 @@
 
 
 	<mvc:annotation-driven />
+	
 	<context:component-scan base-package="controllers" />
 	<context:component-scan base-package="models" />
 	<context:component-scan base-package="services" />
-	
+
 
 
 	<!-- Tiles resolver configuration -->
@@ -41,8 +42,8 @@
 			value="jdbc:oracle:thin:@foodieproject.cshfqsstwgrh.ap-northeast-2.rds.amazonaws.com:1521:orcl" />
 		<property name="properties">
 			<props>
-				<prop key="user">master</prop>  
-				<prop key="password">oracle123</prop> 
+				<prop key="user">master</prop>
+				<prop key="password">oracle123</prop>
 			</props>
 		</property>
 
@@ -50,11 +51,12 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="c3p0"></property>
 		<property name="mapperLocations" value="/WEB-INF/mappers/*-mapper.xml"></property>
-		
+
 	</bean>
 
-<!-- Multipart Resolver -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<!-- Multipart Resolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	<!-- MongoDB configuration -->
 	<mongo:mongo-client port="56789" host="52.78.86.88">
@@ -68,13 +70,13 @@
 		<constructor-arg value="foodie" name="databaseName" />
 
 	</bean>
-	
-	<bean class="com.google.gson.Gson"/>
- 
- 
- 
+
+	<bean class="com.google.gson.Gson" />
+
+
+
 	<!-- 메일보내기 -->
-<!--  -->
+	<!-- -->
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
@@ -90,5 +92,5 @@
 	</bean>
 
 
- 
+
 </beans>

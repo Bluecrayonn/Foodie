@@ -12,16 +12,16 @@ import javax.validation.constraints.Size;
 public class FoodieMember {
 
 	//어노테이션을 이용한 유효성 체크
-	@Id
-	@Size(min=6, max=50, message="닉네임은 3~50자리로 입력해주세요")
+	//@Id
+	//@Size(min=6, max=50, message="닉네임은 3~50자리로 입력해주세요")
 	//해당 프로퍼티가 테이블에서 primary key 역할을 한다는 것을 나타냄
    private String nickname;
 	
 	
-	@Size(min=6, max=20, message="비밀번호는 6~50자리로 입력해주세요")
+	//@Size(min=6, max=20, message="비밀번호는 6~50자리로 입력해주세요")
    private String pwd;
 	
-	@Pattern(regexp="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message="올바른 이메일 형식이 아닙니다")
+	@Pattern(regexp="^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$", message="올바른 이메일 형식이 아닙니다")
 	//이메일 정규식 
 	// 역슬래시가 들어가면 이스캐이프 문자로 인식하므로 역슬래시를 사용하려면 두개씩 필요
    private String email;

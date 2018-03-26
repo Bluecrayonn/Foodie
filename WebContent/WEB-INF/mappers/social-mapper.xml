@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
+
+
+
 <mapper namespace="social">
 	<resultMap id="getbookmarkListResult" type="HashMap">
 		<result property="BOOKMARK_ID" column="BOOKMARK_ID" jdbcType="NUMERIC"
@@ -64,7 +68,7 @@
 	<select id="getPost" resultType="java.util.HashMap" resultMap="getBoardListResult">
 		select * from post inner join (select
 		account.ACCOUNT_ID,account.NAME,account.EMAIL from account) account on
-		ACCOUNT.ACCOUNT_ID = post.WRITER_ID
+		ACCOUNT.ACCOUNT_ID = post.WRITER_ID order by post_date
 	</select>
 	<select id="getPostbyDate" resultType="java.util.HashMap"
 		resultMap="getBoardListResult">

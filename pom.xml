@@ -114,6 +114,7 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.8</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -173,7 +174,7 @@
 
 	<!-- JPA utility에 관한 repository 설정 -->
 	<!-- 외부파일 이용할 때는 repository 설정 필요 -->
-
+<!-- 
 	<repositories>
 		<repository>
 			<id>org.jboss.repository.releases</id>
@@ -185,7 +186,7 @@
 		</repository>
 	</repositories>
 
-
+ -->
 
 
 

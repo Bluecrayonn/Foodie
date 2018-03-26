@@ -40,6 +40,7 @@ public class LoginController {
 		
 		HttpSession session = context.getSession();
 		//계정 email 뽑아오기
+ 		
 		String email=  map.get("email");
 		//검사결과 0: 성공 / 1: 아이디없음/2:패스워드 불일치
 		int result = loginservice.confirmEmail(map);

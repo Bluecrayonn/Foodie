@@ -39,7 +39,7 @@ public class SocialControllers {
 
 	Gson gson = new Gson();
 
-	@RequestMapping("/addFollow.do")
+	@RequestMapping(path="/addFollow.do")
 	@ResponseBody
 	public String followHandle(@RequestParam Map<String, Object> map) {
 
@@ -49,7 +49,7 @@ public class SocialControllers {
 		return "";
 	}
 
-	@RequestMapping("/addFollowRDB.do")
+	@RequestMapping(path="/addFollowRDB.do" )
 	@ResponseBody
 	public String followAddHandle(@RequestParam Map<String, Object> map, HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -154,7 +154,10 @@ public class SocialControllers {
 
 	@RequestMapping("/followerList.do")
 	@ResponseBody
-	public String followerListHandler(@RequestParam Map<String, Object> map) {
+	public String followerListHandler(@RequestParam Map<String, Object> map,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 
 		List<Map> result = socialInfo.getFollower(Long.parseLong((String) map.get("targetId")));
 		Map count = new HashMap<>();
@@ -164,7 +167,14 @@ public class SocialControllers {
 		return gson.toJson(result);
 	}
 
-	@RequestMapping("/bookmarkList.do")
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(path="/bookmarkList.do")
 	@ResponseBody
 	public String BookmarkListHandler(HttpServletRequest req) {
 		HttpSession session = req.getSession();
