@@ -113,7 +113,10 @@
 		  		<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
 		  	</div>
 		  	<input type="hidden" name="isMod" value="${isMod ? 'YY' : 'NN'}"/>
-		  	<c:if test="${isMod }"><input type="hidden" name="pid" value="${post.POST_ID }"/></c:if>
+		  	<c:if test="${isMod }">
+		  		<input type="hidden" name="pid" value="${post.POST_ID }"/>
+		  		<input type="hidden" name="prev_img" value="${post.MAIN_IMG}"/>
+		  	</c:if>
 		</form>
 	   	<script>
 	   		var attach_autocomplete = function() {
@@ -179,7 +182,7 @@
 	   				window.alert("제목입력해라");
 	   				return;
 	   			}
-	   			if($("#thumbnail").val() == "") {
+	   			if($("#thumbnail").val() == "" && !'${isMod}') {
 	   				window.alert("썸네일 꼭올려라");
 	   				return;
 	   			}
