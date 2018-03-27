@@ -28,12 +28,12 @@ public class MailService {
 			UUID uuid = UUID.randomUUID();
 			String[] uuidString = uuid.toString().toUpperCase().split("-");
 			String authkey = uuidString[1] + uuidString[4];
-			String content = "<h1>생성된 이메일 인증키를 인증키 입력란에 정확하게 입력하세요!</h1><br/>" + "<h2> (대소문자를 구분합니다.)</h2><br/>"
-					+ authkey;
-			msg.setText(content);
+			String content = "<div><h3>생성된 이메일 인증키를 인증키 입력란에 정확하게 입력하세요!</h1><br/>"
+					+ "<h3> (대소문자를 구분합니다.)</h2><br/></div>" + "<h2>" + authkey + "</h2>";
+			msg.setContent(content, "text/html;charset=UTF-8");
 			msg.setRecipient(RecipientType.TO, new InternetAddress(sndMail.getReceiver()));
 			mailSender.send(msg);
-			return "sendsucc:"+authkey+":"+sndMail.getReceiver();
+ 			return "sendsucc:" + authkey + ":" + sndMail.getReceiver();
 		} catch (MessagingException e) {
 			System.out.println("에러발생..");
 			e.printStackTrace();
@@ -42,17 +42,14 @@ public class MailService {
 
 		}
 	}
-	
-	public boolean checkAuthMail(String sessionAuthKey,String receivedKey) {
-		
-		if(sessionAuthKey.equals(receivedKey)) {
+
+	public boolean checkAuthMail(String sessionAuthKey, String receivedKey) {
+
+		if (sessionAuthKey.equals(receivedKey)) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
-		
-		
-		
-		 
+
 	}
 }

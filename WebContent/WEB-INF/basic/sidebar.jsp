@@ -102,7 +102,7 @@
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
 					<button id="email-auth-btn" class="btn btn-primary"
-						style="width: 28%; height: 54px; margin-left: 3px; vertical-align: middle"
+						style="width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
 						type="button">인증번호전송</button>
 					<div  id="email-check-auth-div" style="display: none">
 						<input id="email-check-auth" type="text" name="authkey"
@@ -110,11 +110,11 @@
 							style="font-size: 12pt; width: 70%; display: inline;margin-top:20px;"
 							required />
 						<button id="email-auth-check-btn" class="btn btn-primary"
-							style="margin-top:20px;width: 28%; height: 54px; margin-left: 3px; vertical-align: middle"
+							style="margin-top:20px;width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
 							type="button">인증확인</button>
 					</div>
 					<h4 class="text">비밀번호를 입력하세요.</h4>
-					<input type="pwd" name="pwd" class="form-control signup-form"
+					<input type="password" name="pwd" class="form-control signup-form"
 						placeholder="비밀번호 입력" style="font-size: 12pt; width: 100%;"
 						disabled="disabled" required />
 					<h4 class="text">닉네임을 입력하세요.</h4>
