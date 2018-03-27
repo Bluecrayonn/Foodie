@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.mongodb.WriteResult;
 
 import models.IngredientDao;
 import models.PostDao;
@@ -71,5 +74,12 @@ public class PageContorller {
 	@RequestMapping("admin.do")
 	public String adminpage() {
 		return "adminpage";
+	}
+	@RequestMapping("/mongotest.do")
+	@ResponseBody
+	public String mongotest() {
+		WriteResult result = postDao.mongotest();
+		
+		return result.toString();
 	}
 }

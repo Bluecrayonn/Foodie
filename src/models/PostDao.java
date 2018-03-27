@@ -2,6 +2,7 @@ package models;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +13,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
+
+import com.mongodb.WriteResult;
 
 @Repository
 public class PostDao {
@@ -128,5 +131,15 @@ public class PostDao {
 			session.close();
 		}
 		return r>0?true:false;
+	}
+	
+	public LinkedHashMap mongotest() {
+		String pid="1002", cid="11", text="성공";
+		Query query = Query.query(Criteria.where("post_id").is(pid).andOperator(Criteria.where("comments.id").is(cid)));
+		//Update update = new Update().set("comments.$.text", text);
+		
+		//WriteResult result = template.updateFirst(query, update, "comment");
+		LinkedHashMap result = template.find(query, LinkedHashMap.class);
+		return result;
 	}
 }
