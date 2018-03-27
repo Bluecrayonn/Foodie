@@ -23,8 +23,9 @@
 		<script src="/js/functions.js"></script>
 	</head>
 	<body>
+		<c:set value="${post ne null && post != ''}" var="isMod"/>
 		<div class="">
-			<c:if test="${post ne null || post != ''}">페이지 수정</c:if>
+			<c:if test="${isMod}">페이지 수정</c:if>
 		</div>
 		<form id="recipe_form" action="/foodie/write/confirm.do" method="post" enctype="multipart/form-data">
 		  	<table>
@@ -111,6 +112,8 @@
 		  	<div class="wrapper" style="text-align:center; margin-top:20px">
 		  		<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
 		  	</div>
+		  	<input type="hidden" name="isMod" value="${isMod ? 'YY' : 'NN'}"/>
+		  	<c:if test="${isMod }"><input type="hidden" name="pid" value="${post.POST_ID }"/></c:if>
 		</form>
 	   	<script>
 	   		var attach_autocomplete = function() {
@@ -247,7 +250,6 @@
 		        	}
 		      	});
 		    }
-
 
 		   	$(document).ready(function(){
 			   	$("#thumbnail").change(function() {

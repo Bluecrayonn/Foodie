@@ -88,7 +88,11 @@ public class WritePostController {
 			params.replace("ig_name", rst_name);
 			params.replace("ig_amount", rst_amount);
 			params.replace("ig_unit", rst_unit);
-			postDao.writePost(params);
+			if (params.get("isMod").equals("YY")) {
+				postDao.modifyPost(params);
+			} else {
+				postDao.writePost(params);
+			}
 		} 
 		return "detailpage";
 	}

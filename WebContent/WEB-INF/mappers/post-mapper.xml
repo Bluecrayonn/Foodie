@@ -158,6 +158,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{postId},#{title},#{writerId},#{elapsedTime},#{mainImage},#{content})
 	</insert>
 	
+	<update id="modify">
+		UPDATE POST SET TITLE=#{title},ELAPSEDTIME=#{elapsedTime},MAIN_IMG=#{mainImage},CONTENT=#{content} WHERE POST_ID=${postId}
+	</update>
+
+
 	<select id="givenId" resultType="java.lang.Integer">
 		SELECT POST_SEQ.NEXTVAL FROM DUAL
 	</select>
