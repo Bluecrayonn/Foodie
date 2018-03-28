@@ -77,9 +77,9 @@ public class PageContorller {
 	}
 	@RequestMapping("/mongotest.do")
 	@ResponseBody
-	public String mongotest() {
-		WriteResult result = postDao.mongotest();
+	public LinkedHashMap mongotest() {
+		LinkedHashMap result = postDao.mongotest();
 		
-		return result.toString();
+		return result;
 	}
 }
