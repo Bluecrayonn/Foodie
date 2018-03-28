@@ -46,10 +46,12 @@ public class WritePostController {
 	public String write_ok(
 			@RequestParam("thumbnail") MultipartFile f,
 			@RequestParam HashMap params,
+			@RequestParam boolean isMod,
 			@RequestParam String[] ig_name,
 			@RequestParam String[] ig_amount,
 			@RequestParam String[] ig_unit,
 			HttpServletRequest request) throws IllegalStateException, IOException {
+		System.out.println(isMod);
 		String ct = f.getContentType();
 		if (!f.isEmpty() && ct.startsWith("image")) {
 			String uploadPath = request.getSession().getServletContext().getRealPath("") + File.separator + "upload_img";
