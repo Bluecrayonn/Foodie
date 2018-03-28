@@ -131,15 +131,5 @@ public class PostDao {
 			session.close();
 		}
 		return r>0?postId:-1;
-	}
-	
-	public LinkedHashMap mongotest() {
-		String pid="1002", cid="11", text="성공";
-		Query query = Query.query(Criteria.where("post_id").is(pid).andOperator(Criteria.where("comments.id").is(cid)));
-		//Update update = new Update().set("comments.$.text", text);
-		
-		//WriteResult result = template.updateFirst(query, update, "comment");
-		LinkedHashMap result = (LinkedHashMap) template.find(query, LinkedHashMap.class);
-		return result;
-	}
+	}	
 }

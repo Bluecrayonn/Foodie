@@ -74,11 +74,4 @@ public class PageContorller {
 	public String adminpage() {
 		return "adminpage";
 	}
-	@RequestMapping("/mongotest.do")
-	@ResponseBody
-	public LinkedHashMap mongotest() {
-		LinkedHashMap result = postDao.mongotest();
-		
-		return result;
-	}
 }

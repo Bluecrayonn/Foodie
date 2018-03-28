@@ -1,21 +1,28 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.WriteResult;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.DBCollectionFindOptions;
 
 @Repository
@@ -93,6 +100,20 @@ public class CommentDAO {
 	public String removeComment() {
 
 		return null;
+	}
+
+	public String modifyComment(String pid, String cid, String msg) {
+		Query query = new Query();
+			query.addCriteria(Criteria.where("POST_ID").is(pid));
+			query.addCriteria(Criteria.where("comments.id").is(cid));
+
+			List list = template.find(query, Map.class, "comment");
+			System.out.println(list);
+
+			Update update = new Update();
+			update.set("comments.$.text", msg);
+		WriteResult result = template.updateMulti(query, update, "comment");
+		return result.toString();
 	}
 
 }
