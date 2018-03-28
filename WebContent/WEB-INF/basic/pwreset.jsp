@@ -14,7 +14,7 @@
 	<input id="password-auth-key" type="text" name="id" class="form-control" placeholder="코드 입력"
 	style="font-size: 12pt; width: 40%; margin: auto;" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required/> <br/>
 	<button id="password-auth-button"class="btn" onclick="">인증</button>
-	<div class = "center">
+	<div class = "center" style="display: none">
 	<input id="new-password" type="password" name="new-password" class="form-control" placeholder="새로운 비밀번호 입력"
 	style="font-size: 12pt; width: 40%; margin: auto;" required/> <br/>
 	<input id="new-password-confirm" type="password" name="new-password" class="form-control" placeholder="비밀번호 확인"
@@ -33,6 +33,7 @@ $("#password-auth-button").click(function(){
 	}).done(function(obj){
 		if(obj=="confirmOk"){
 			console.log(obj);
+			$(".center").css("display","block");
 		}else{
 			console.log(obj);
 		}
