@@ -27,6 +27,8 @@ public class LoginService {
 	LoginImpl loginImpl;
 	@Autowired
 	SocialInfoImpl followInfoImpl;
+	/*@Autowired
+	models.profile.profileimpl profileimpl;*/
 
 	public int confirmEmail(Map<String, String> map) {
 

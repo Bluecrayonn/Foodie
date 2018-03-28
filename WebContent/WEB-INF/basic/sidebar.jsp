@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div id="fh5co-offcanvas">
+<div id="fh5co-offcanvas"> 
 	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
 	</span></a>

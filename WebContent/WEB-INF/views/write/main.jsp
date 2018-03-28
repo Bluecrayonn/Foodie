@@ -23,6 +23,7 @@
 		<script src="/js/functions.js"></script>
 	</head>
 	<body>
+	
 		<c:set value="${post ne null && post != ''}" var="isMod"/>
 		<div class="">
 			<c:if test="${isMod}">페이지 수정</c:if>

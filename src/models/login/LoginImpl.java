@@ -20,7 +20,8 @@ import models.LoginDAO;
 @Repository
 public class LoginImpl    {
 	
-	@Autowired SqlSessionFactory sqlFactory;
+	@Autowired 
+	SqlSessionFactory sqlFactory;
  	
 	//입력받은 EMAIL 에 해당하는 정보 가지고 오기
 	//SESSION 에 현재 EMAIL, SESSION, 저장해놓기

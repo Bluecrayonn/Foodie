@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="profile">
+<select id="recipetitle" resultType="java.util.LinkedHashMap">
+		select TITLE,POST_ID,MAIN_IMG from post where writer_id = 1
+	</select>	
+<!-- <seclct id="comment" resultType="java.jtil.LikedHashMap">
+		select 
+	</select> -->
+<select id="bookmarktitle" resultType="java.util.LinkedHashMap">
+		select BM.BOOKMARK_ID,BM.USER_ID,P.TITLE,P.MAIN_IMG from BOOKMARK BM join POST P ON BM.POST_ID = P.POST_ID where BM.USER_ID = 1
+	</select>
+<select id="Followtitle" resultType="java.util.LinkedHashMap">
+		select OWNER_ID,TARGET_ID from FOLLOW
+	</select>
+</mapper>

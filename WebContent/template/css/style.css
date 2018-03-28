@@ -89,7 +89,6 @@ p {
 .btn-primary {
   background: #f7c873;
   color: #fff;
-  border: 2px solid #f7c873;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background: #f6bf5b !important;

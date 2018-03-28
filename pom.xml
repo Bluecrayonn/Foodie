@@ -138,7 +138,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-
+		
 
 		<!-- JPA utility 중 validator -->
 		<!-- sql 유효값 검증 -->
