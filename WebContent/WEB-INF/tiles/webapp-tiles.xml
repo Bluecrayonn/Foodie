@@ -35,7 +35,7 @@
 	<definition name="detailpage" template="/WEB-INF/views/detailpage.jsp"> <!-- 레시피 상세페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/basic/detail.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/post/main.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
 	<definition name="writepage" template="/WEB-INF/views/writepage.jsp"> <!-- 레시피 작성페이지 -->

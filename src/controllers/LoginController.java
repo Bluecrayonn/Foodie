@@ -4,17 +4,14 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
 
 import com.google.gson.Gson;
 
@@ -51,8 +48,8 @@ public class LoginController {
 		if(result==0) {
 			
  			session.setAttribute("auth", loginservice.setAuth(email));
- 			
 	 		System.out.println(map.toString());
+	 		
 		}
 		
 		json.put("auth", result);
