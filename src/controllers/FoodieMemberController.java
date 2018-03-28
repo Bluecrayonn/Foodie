@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import models.FoodieMember;
 import models.FoodieMemberMapper;
 import models.login.LoginImpl;
+import services.FoodieMemberImpl;
 
 @Controller
 @RequestMapping("/account")
@@ -25,6 +28,8 @@ public class FoodieMemberController {
 	FoodieMemberMapper foodieMemberService; // 서비스 객체
 	// 의존성을 낮추기위해 타입을 FoodieMemberMapper로 불러오고 실제 사용하는건 services패키지에 있는
 	// FoodieMemberImpl
+	@Autowired
+	FoodieMemberImpl foodimemberimpl;
 
 	@RequestMapping("/inputForm.do")
 	public String insetMember(Model model) {
@@ -91,6 +96,28 @@ public class FoodieMemberController {
 			return "welcomepage";
 
 		}
+	}
+	//이거는 패스워드찾기
+	@RequestMapping("/passwordFind.do")
+	@ResponseBody
+	public String passwordFindHandler(@RequestParam Map map) {
+		
+		String email = (String)map.get("email");
+		String newPassword = (String)map.get("new-password");
+		
+		//여기서 DAO 가서 하는거 만들거임
+		String result =foodimemberimpl.resetPassword(email, newPassword);
+	
+		return result;
+	}
+	
+	//여기는 기존의 패스워드 바꾸는 곳임
+	//
+	@RequestMapping("/passwordRenew.do")
+	public String passwordRenewHandler(@RequestParam Map map) {
+
+	
+		return null;
 	}
 
 	/*

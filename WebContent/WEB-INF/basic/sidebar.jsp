@@ -147,14 +147,16 @@
 			<div class="modal-body" style="font-family: '나눔고딕'">
 				<form action="/mail/passwordauthkey.do" method="post"
 					autocomplete="off">
-					<h4 class="text">이메일을 입력하세요.</h4>
-					<input type="text" name="receiver" class="form-control"
+					<h4 id="password-email-check-text" class="text">이메일을 입력하세요.</h4>
+					
+					
+					<input id="password-email-check" type="text" name="receiver" class="form-control"
 						placeholder="이메일 입력" style="font-size: 12pt; width: 100%;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
 					<div class="modal-footer">
-						<button type="button" formaction="/mail/passwordauthkey.do"
-							class="btn" data-dismiss="modal">전송</button>
+						<button id = "password-email-check-btn" type="submit" 
+							class="btn signup-form" data-toggle="modal" data-dismiss="modal" disabled="disabled">전송</button>
 					</div>
 				</form>
 			</div>
@@ -258,6 +260,40 @@
 						}
 
 					})
+					
+					
+	$("#password-email-check").keyup(function(){
+		var regid = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		if(regid.test($(this).val())){
+
+			$.ajax("/account/emailcheck.do", {
+				"method" : "post",
+				"async" : true,
+				"data" : {
+					"email" : $(this).val()
+				}
+			}).done(
+					function(obj) {
+						console.log(obj)
+						if (obj == "exists") {
+							$("#password-email-check-text").css("color",
+									"green");
+							$("#password-email-check-text").html(
+									"존재하는 이메일 입니다.");
+							$("#password-email-check-btn").removeAttr("disabled");
+						} else if (obj == "possible") {
+							$("#password-email-check-text").css("color",
+									"red");
+							$("#password-email-check-text").html(
+									"존재하지 않는 이메일 입니다. 다시 확인해 주세요")
+						}
+					})
+		}
+		
+
+		
+	})
+	
 	//인증번호 발송 
 	$("#email-auth-btn").click(function() {
 		$.ajax("/mail/emailauthkey.do", {

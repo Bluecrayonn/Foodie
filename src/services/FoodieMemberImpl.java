@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -136,4 +137,40 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 		}
 
 	}
+	
+	public String resetPassword(String email, String newPassword) {
+		
+		Map map = new HashMap<>();
+		map.put("email", email);
+		map.put("newPassword", newPassword);
+		SqlSession sqlSession = factory.openSession();
+		
+		try {
+			
+			sqlSession.update("foodiemember.resetPassword",map);
+			return "success";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}finally {
+			sqlSession.close();
+		}
+		
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

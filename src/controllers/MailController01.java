@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import services.MailService;
 import models.EmailDTO;
+import models.login.LoginImpl;
 //
 @Controller
 @RequestMapping("/mail")
@@ -24,6 +25,9 @@ public class MailController01 {
 	
 	@Autowired(required = false)
 	private MailService service;
+	
+	@Autowired
+	LoginImpl loginimpl;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String form() {
@@ -72,6 +76,12 @@ public class MailController01 {
 	public String sendPasswordAuthKey(@ModelAttribute EmailDTO smail, HttpServletRequest req) {
 		System.out.println("Crap!");
 		HttpSession session = req.getSession();
+		
+		
+		int check = loginimpl.emailCheck(smail.getReceiver());
+		if(check==1) {
+			return "mainpage";
+		}
 		String result = service.sendPasswordAuthMail(smail);
 		if(result.equals("sendfail")) {
 			return "pwresetpage";
@@ -81,7 +91,7 @@ public class MailController01 {
 			String authkey = result.split(":")[1];
 			String email = result.split(":")[2];
 			session.setAttribute("passwordAuth:"+email,authkey);
-			req.setAttribute("email", email);
+			session.setAttribute("emailPasswordCheck", email);
 			return "pwresetpage";
 		}
 		
@@ -92,7 +102,7 @@ public class MailController01 {
 	public String confirmPasswordAuthKey(@RequestParam Map<String,String> map,HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
-		String email = (String) req.getAttribute("email");
+		String email = (String) session.getAttribute("emailPasswordCheck");
 		String sessionAuth = (String) session.getAttribute("passwordAuth:"+email);
 		
 		
@@ -100,6 +110,25 @@ public class MailController01 {
 		boolean result = service.checkAuthMail(sessionAuth, receivedAuth);
 		if(result) {
 			return "confirmOk";
+		}else {
+			return "confirmFail";
+		}
+		
+		
+ 	}
+	@RequestMapping(path="/passwordreset.do",produces="application/plain;charset=utf-8")
+	@ResponseBody
+	public String resetPasswordAuthKey(@RequestParam Map<String,String> map,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("emailPasswordCheck");
+		String sessionAuth = (String) session.getAttribute("passwordAuth:"+email);
+		
+		
+ 		String receivedAuth = map.get("authKey");
+		boolean result = service.checkAuthMail(sessionAuth, receivedAuth);
+		if(result) {
+ 			return "confirmOk";
 		}else {
 			return "confirmFail";
 		}
