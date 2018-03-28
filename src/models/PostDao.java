@@ -139,7 +139,7 @@ public class PostDao {
 		//Update update = new Update().set("comments.$.text", text);
 		
 		//WriteResult result = template.updateFirst(query, update, "comment");
-		LinkedHashMap result = template.find(query, LinkedHashMap.class);
+		LinkedHashMap result = (LinkedHashMap) template.find(query, LinkedHashMap.class);
 		return result;
 	}
 }
