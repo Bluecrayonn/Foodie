@@ -59,7 +59,7 @@ public class CommentController {
 	public String editCommentHandler(@RequestParam String pid, 
 									 @RequestParam String cid, 
 									 @RequestParam String msg) {
-		String result = comment.modifyComment(pid, cid, msg);
+		String result = comment.editComment(pid, cid, msg);
 		return result;
 	}
 

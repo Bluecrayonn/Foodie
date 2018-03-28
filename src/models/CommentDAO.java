@@ -101,8 +101,9 @@ public class CommentDAO {
 
 		return null;
 	}
-
-	public String modifyComment(String pid, String cid, String msg) {
+	
+	//POST_ID로 document검색, comments.id로 해당 element검색, 해당 element의 text를 msg로 수정
+	public String editComment(String pid, String cid, String msg) {
 		Query query = new Query();
 			query.addCriteria(Criteria.where("POST_ID").is(pid));
 			query.addCriteria(Criteria.where("comments.id").is(cid));
