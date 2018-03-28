@@ -40,12 +40,19 @@
 <td colspan="2" align="center">
 <input type="submit" value="등록"/>&nbsp;&nbsp;
 <input type="reset" value="취소"/>
+
 </td>
 </tr>
 </form:form>
 </table>
  </div>
+ 
+ <div align="center">
 
+<button type="button" onclick="location.href='/FinalProject_Foodie/mailForm01.do'">이메일 인증</button>
+
+
+</div>
 
 </body>
 </html>

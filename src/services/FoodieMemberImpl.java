@@ -70,7 +70,7 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 			e.printStackTrace();
 		} finally {
 
-			sqlSession.close();
+		sqlSession.close(); 
 		}
 		return null;
 

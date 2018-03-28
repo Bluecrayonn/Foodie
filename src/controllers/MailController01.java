@@ -22,11 +22,24 @@ public class MailController01 {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String send(Email smail, Model d) {
-		System.out.println("제목:" + smail.getSubject());
+		/*System.out.println("제목:" + smail.getSubject());
 		System.out.println("내용:" + smail.getContent());
-		System.out.println("수신자:" + smail.getReceiver());
+		System.out.println("수신자:" + smail.getReceiver());*/
 		service.sendMail(smail);
 		d.addAttribute("isSnd", "Y");
 		return "mailForm01";
 	}
+
+
+	/*@RequestMapping(path="/sendKey.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String accountSendKeyHandle(@RequestParam String email) {
+		boolean result = joinService.sendAuthKey(email);
+		System.out.println("{\"result\":"+result+"}");
+		
+		return "{\"result\":"+result+"}";
+	}*/
+
+
 }
+

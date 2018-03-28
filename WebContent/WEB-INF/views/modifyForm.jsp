@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!--  스프링에서 지원해주는 폼태그 라이브러리  -->
+
+
+
 <html>
 <head>
 <title>회원가입 수정 페이지</title>
@@ -16,7 +20,8 @@
 </br>
 
 <table border="1" cellpadding="2" cellspacing="0" width="400">
-<form:form commandName="foodieMember" method="post" action="/FinalProject_Foodie/modify.do">
+<form:form commandName="foodieMember" method="post" action="/FinalProject_Foodie/modifyOk.do">
+<!--  commnadName을 사용해서 models.FoodieMember에 있는 setter와 getter에 접근하여 form태그에 사용한 것과 매핑하는데 사용됨  -->
 <tr>
 <td>닉네임</td>
 <td>

@@ -29,9 +29,9 @@ $(document).ready(function(){
 <h3 align="center">메일 전송</h3>
 <form method="post">
 <table>
- <tr><td class="tt">수신자</td>
+ <tr><td class="tt">인증받을 이메일 주소를 입력해주세요: &nbsp;</td>
   <td><input type="text" name="receiver"/></td></tr>
- <tr><td class="tt">제목</td>
+  <tr><td class="tt">제목</td>
   <td><input type="text" name="subject"/></td></tr>
  <tr><td class="tt">내용</td>
   <td>
