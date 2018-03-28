@@ -66,7 +66,6 @@ h1,h2,h3,h4,h5,h6,a{
 <div>
 	<tiles:insertAttribute name = "nav" />
 	<tiles:insertAttribute name = "sidebar" />
-	<tiles:insertAttribute name = "test"/>
 	<tiles:insertAttribute name = "body" />
 	<tiles:insertAttribute name = "footer" />
 </div>

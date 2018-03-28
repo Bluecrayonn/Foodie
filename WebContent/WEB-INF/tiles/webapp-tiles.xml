@@ -2,6 +2,8 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+	<definition name="indexpage" template="/WEB-INF/views/index.jsp"> <!-- 처음페이지 -->
+	</definition>
 	<definition name="mainpage" template="/WEB-INF/views/mainpage.jsp"> <!-- 메인페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
@@ -16,7 +18,6 @@
 	</definition>
 	<definition name="profilepage" template="/WEB-INF/views/profilepage.jsp"> <!-- 개인 프로필 페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/profile_nav.jsp"></put-attribute>
-		<put-attribute name="test" value="/WEB-INF/basic/test.jsp"></put-attribute><!-- test!!!!!!!!!!!!!!!!!!! -->
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/basic/profile.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
@@ -55,6 +56,12 @@
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/write/main.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
+	</definition>
+	<definition name="dropout" template="/WEB-INF/views/dropoutpage.jsp"><!-- 회원 탈퇴 작성 페이지 -->
+		<put-attribute name="nav" value="/WEB-INF/basic/nav.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/basic/dropout.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

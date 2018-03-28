@@ -1,6 +1,7 @@
 package controllers;
 
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,13 +40,59 @@ public class RecipeController {
 		return "profilepage";
 	}
 	
-	@RequestMapping(path="/recipe_List.do",produces="/charset=utf-8")
+	@RequestMapping(value = "/recipe_List.do", produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String ListHandle(HttpServletRequest req,@RequestParam Map map) {
+	public String recipeHandle(HttpServletRequest req,@RequestParam Map map) {
+		
 		HttpSession session = req.getSession();
 		gson = new Gson();
 		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
 		return gson.toJson(profileimpl.getRecipeidList());	
 	}
+	
+	/*@RequestMapping("/comment_List.do")
+	@ResponseBody
+	public String commentHandle(HttpServletRequest req,@RequestParam Map map) {
+		
+		HttpSession session = req.getSession();
+		gson = new Gson();
+		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
+		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
+		return gson.toJson(profileimpl.getCommentidList());	
+	}*/
+	
+	@RequestMapping(value = "/bookmark_List.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String bookmarkHandle(HttpServletRequest req,@RequestParam Map map) {
+		
+		HttpSession session = req.getSession();
+		gson = new Gson();
+		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
+		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
+		return gson.toJson(profileimpl.getBookmarkidList());	
+	}
+	
+	@RequestMapping(value = "/following_List.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String followingHandle(HttpServletRequest req,@RequestParam Map map) {
+		
+		HttpSession session = req.getSession();
+		gson = new Gson();
+		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
+		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
+		return gson.toJson(profileimpl.getFollowingidList());	
+	}
+	
+	@RequestMapping(value = "/follower_List.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String followerHandle(HttpServletRequest req,@RequestParam Map map) {
+		
+		HttpSession session = req.getSession();
+		gson = new Gson();
+		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
+		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
+		return gson.toJson(profileimpl.getFolloweridList());	
+	}
+	
 }

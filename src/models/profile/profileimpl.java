@@ -32,4 +32,63 @@ public class profileimpl implements ProfileListDao {
 		return null;
 	}
 
+	/*@Override
+	public List<Map> getCommentidList() {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> result = session.selectList("profile.bookmarktitle");
+			System.out.println(result.toString());
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}*/
+	
+	@Override
+	public List<Map> getBookmarkidList() {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> result = session.selectList("profile.bookmarktitle");
+			System.out.println(result.toString());
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Map> getFollowingidList() {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> result = session.selectList("profile.Followtitle");
+			System.out.println(result.toString());
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Map> getFolloweridList() {
+		SqlSession session = factory.openSession();
+		try {
+			List<Map> result = session.selectList("profile.Followtitle");
+			System.out.println(result.toString());
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
 }

@@ -21,6 +21,13 @@ public class PageContorller {
 	postListImpl postlist;
 	Gson gson;
 	
+	@RequestMapping("/index.do")
+	public String indexpage(HttpServletRequest req,Map map) {
+		gson = new Gson();
+		req.setAttribute("postList", postlist.getAllPostList( ));
+		return "index";
+	}
+	
 	@RequestMapping("/main.do")
 	public String mainpage(HttpServletRequest req,Map map) {
 		gson = new Gson();
@@ -62,12 +69,16 @@ public class PageContorller {
 	public String writerecipepage() {
 		return "detailpage";
 	}
-	@RequestMapping("pwreset.do")
+	@RequestMapping("/pwreset.do")
 		public String pwresetpage() {
 			return "pwresetpage";
 		}
-	@RequestMapping("admin.do")
+	@RequestMapping("/admin.do")
 	public String adminpage() {
 		return "adminpage";
+	}
+	@RequestMapping("/dropout.do")
+	public String dropout() {
+		return "dropout";
 	}
 }
