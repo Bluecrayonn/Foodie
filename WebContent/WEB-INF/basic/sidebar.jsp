@@ -104,13 +104,13 @@
 					<button id="email-auth-btn" class="btn btn-primary"
 						style="width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
 						type="button">인증번호전송</button>
-					<div  id="email-check-auth-div" style="display: none">
+					<div id="email-check-auth-div" style="display: none">
 						<input id="email-check-auth" type="text" name="authkey"
 							class="form-control" placeholder="전송받은 인증번호를 입력하세요"
-							style="font-size: 12pt; width: 70%; display: inline;margin-top:20px;"
+							style="font-size: 12pt; width: 70%; display: inline; margin-top: 20px;"
 							required />
 						<button id="email-auth-check-btn" class="btn btn-primary"
-							style="margin-top:20px;width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
+							style="margin-top: 20px; width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
 							type="button">인증확인</button>
 					</div>
 					<h4 class="text">비밀번호를 입력하세요.</h4>
@@ -127,8 +127,9 @@
 						<button type="button" class="btn" data-dismiss="modal"
 							disabled="disabled">닫기</button>
 					</div>
+				</form>
 			</div>
-			</form>
+
 		</div>
 	</div>
 </div>
@@ -144,22 +145,24 @@
 				<h4 class="text" align="center">비밀번호 찾기</h4>
 			</div>
 			<div class="modal-body" style="font-family: '나눔고딕'">
-				<form action="/foodie/profile.jsp" autocomplete="off">
+				<form action="/mail/passwordauthkey.do" method="post"
+					autocomplete="off">
 					<h4 class="text">이메일을 입력하세요.</h4>
-					<input type="text" name="id" class="form-control"
+					<input type="text" name="receiver" class="form-control"
 						placeholder="이메일 입력" style="font-size: 12pt; width: 100%;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
+					<div class="modal-footer">
+						<button type="button" formaction="/mail/passwordauthkey.do"
+							class="btn" data-dismiss="modal">전송</button>
+					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn" data-dismiss="modal"
-					onclick="location='pwreset.do'">전송</button>
-			</div>
+
 		</div>
 	</div>
 </div>
-<script >
+<script>
 	/*   
 	 $("#login-form-button").click(function(){
 	 $.ajax("/authentication/login.do",{

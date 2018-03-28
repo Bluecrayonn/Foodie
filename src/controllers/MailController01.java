@@ -66,6 +66,47 @@ public class MailController01 {
 		
 		
  	}
+	
+	
+	@RequestMapping("/passwordauthkey.do")
+	public String sendPasswordAuthKey(@ModelAttribute EmailDTO smail, HttpServletRequest req) {
+		System.out.println("Crap!");
+		HttpSession session = req.getSession();
+		String result = service.sendPasswordAuthMail(smail);
+		if(result.equals("sendfail")) {
+			return "pwresetpage";
+			
+		}else {
+			System.out.println(result);
+			String authkey = result.split(":")[1];
+			String email = result.split(":")[2];
+			session.setAttribute("passwordAuth:"+email,authkey);
+			req.setAttribute("email", email);
+			return "pwresetpage";
+		}
+		
+ 	}
+	
+	@RequestMapping(path="/passwordauthkeyconfirm.do",produces="application/plain;charset=utf-8")
+	@ResponseBody
+	public String confirmPasswordAuthKey(@RequestParam Map<String,String> map,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		String email = (String) req.getAttribute("email");
+		String sessionAuth = (String) session.getAttribute("passwordAuth:"+email);
+		
+		
+ 		String receivedAuth = map.get("authKey");
+		boolean result = service.checkAuthMail(sessionAuth, receivedAuth);
+		if(result) {
+			return "confirmOk";
+		}else {
+			return "confirmFail";
+		}
+		
+		
+ 	}
+	
 
 	/*@RequestMapping(method = RequestMethod.POST)
 	public String send(EmailDTO smail, Model d) {
