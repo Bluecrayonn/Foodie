@@ -13,5 +13,5 @@
 	이메일에 전송된 코드를 입력하세요.<br/><br/>
 	<input type="text" name="id" class="form-control" placeholder="코드 입력"
 	style="font-size: 12pt; width: 40%; margin: auto;" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required/> <br/>
-	<button class="btn" onclick="">인증</button>
+	<button class="btn" onclick="" style="color: #fff; background-color : #F2BF2B;">인증</button>
 </div>

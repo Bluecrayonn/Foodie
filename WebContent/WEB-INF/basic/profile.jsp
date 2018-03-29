@@ -21,30 +21,24 @@
 
         </div>
     </div>
-    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="..." style="width: 800px; margin: auto;">
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="..." style="width: 800px; margin: auto; outline: none;">
         <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon" aria-hidden="true">개수</span>
-                <div class="hidden-xs">레시피</div>
+            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab" style="height: 50px;">레시피</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab" style="height: 50px;">댓글</button>
             </button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon" aria-hidden="true">개수</span>
-                <div class="hidden-xs">댓글</div>
+            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab" style="height: 50px;">북마크</button>
             </button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon" aria-hidden="true">개수</span>
-                <div class="hidden-xs">북마크</div>
+            <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab" style="height: 50px;">팔로잉</button>
             </button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon" aria-hidden="true">개수</span>
-                <div class="hidden-xs">팔로잉</div>
-            </button>
-        </div>
-        <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab"><span class="glyphicon" aria-hidden="true">개수</span>
-                <div class="hidden-xs">팔로워</div>
+            <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab" style="height: 50px;">팔로워</button>
             </button>
         </div>
            </div>
@@ -66,7 +60,7 @@
     </div>
     
     <div class="center"><br/>
-	<button class = "btn" onclick="location='dropout.do'"> 회원 탈퇴 </button>
+	<button class = "btn" onclick="location='dropout.do'" style="color: #fff; background-color : red;"> 회원 탈퇴 </button>
 	</div>
                
                 <script>

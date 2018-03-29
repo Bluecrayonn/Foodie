@@ -1,6 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+	.textbox {
+  box-shadow: none;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  height: 54px;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+	.textbox:active, .textbox:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #f7c873;
+}
+</style>
 <div id="fh5co-offcanvas" >
 	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
@@ -8,27 +24,22 @@
 	<div class="fh5co-bio" id="sidebar">
 		<c:choose>
 			<c:when test="${empty sessionScope.auth}">
-				<h2 style="margin-right: 20px;">로그인</h2>
+				<h3 style="margin-right: 20px; margin-top:80%; color:#F2BF2B">로그인이 필요합니다.</h3><br/>
 				<div id="login-container" style="width: 250px">
                <form id="login-form" autocomplete="off">
                   <p>
                      <input id="login-email" type="text" name="id"
-                        class="form-control" placeholder="이메일 입력"
+                        class="form-control" placeholder="&nbsp;&nbsp;이메일 입력"
                         style="padding: 5px; font-size: 14pt; width: 250px;"
                         pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
                         required />
-                  </p>
-                  <p>
                      <input id="login-password" type="password" onkeydown="enterevent();" name="pass"
-                        class="form-control" placeholder="비밀번호 입력"
+                        class="form-control" placeholder="&nbsp;&nbsp;비밀번호 입력"
                         style="padding: 5px; font-size: 14pt; width: 250px;" required />
                   </p>
                   <p>
-                     <button type="button" id="login-form-button"
-                        style="padding: 5px; font-size: 14pt; width: 250px;">로그인</button>
-                  </p>
-                  <p>
-                     <input type="checkbox" name="keep" value="on" />로그인 상태유지
+                     <button type="button" id="login-form-button" class="btn"
+                        style="padding: 5px; font-size: 14pt; width: 250px; background-color:#F2BF2B; color:#fff;">로그인</button>
                   </p>
 					</form>
 					<font size="2em" color="FFA500" style="margin-right: 20px;"> 아직 회원이 아니신가요? </font> <br/> 
@@ -82,8 +93,15 @@
       <h4 class="text">태어난 연도를 선택하세요.</h4>
       <select class="form-control" id="year" style="font-size: 12pt;">
       </select>
-			<h4 class="text">이메일을 입력하세요.</h4><input type="text" name="id" class="form-control" placeholder="이메일 입력"
-					style="font-size: 12pt; width: 100%;" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required/>
+			<h4 class="text" >이메일을 입력하세요.</h4><input type="text" name="id" class="textbox" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;이메일 입력"
+					style="font-size: 12pt; width: 450px;" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required/>
+						<button id="email-btn" type="button" class="btn" style="background-color:#F2BF2B; color:#fff;">인증 요청</button>
+					<p align="left">
+					<h4>
+						인증키를 입력해주세요: &nbsp;<form action="/mail/resultKey.do"><input type="text" id="email-text" class="textbox" 
+							placeholder="인증키 입력" /> &nbsp;
+						<button id="email-check" type="button" class="btn" style="background-color : #F2BF2B;  color:#fff;">인증확인</button></form>
+					</h4>
 			<h4 class="text">비밀번호를 입력하세요.</h4><input type="password" name="pass" class="form-control" placeholder="비밀번호 입력"
 					style="font-size: 12pt; width: 100%;" required/>
 			<h4 class="text">닉네임을 입력하세요.</h4><input type="text" name="id" class="form-control" placeholder="닉네임 입력"
@@ -91,8 +109,8 @@
 		</form>
         </div>
         <div class="modal-footer">
-       		<button type="button" class="btn" data-toggle="modal" onclick="location='welcome.do'">가입</button>
-        	<button type="button" class="btn" data-dismiss="modal">닫기</button>
+			<button id=join-btn disabled="disabled" type="button" class="btn" data-toggle="modal" onclick="location='welcome.do'" style="background-color:#F2BF2B; color:#fff;">가입</button>
+        	<button type="button" class="btn" data-dismiss="modal" style="background-color:#F2BF2B; color:#fff;">닫기</button>
         </div>
       </div>
     </div>
@@ -178,4 +196,46 @@
 		}
 		document.getElementById("year").innerHTML=strYear
 	}
+	
+	//email 인증
+	$("#email-btn").click(function(){
+		$.ajax("/mail/sendKey.do", {
+			"method":"post",
+			"async":true,
+			"data":{
+				"email":$("#email-input").val()
+			}
+		}).done(function(obj){
+			window.alert("입력하신 이메일로 인증키를 발송하였습니다.");
+			/* var result = JSON.parse(obj);
+			if(result == true){
+				
+			}else{
+				
+			} */
+			
+		})
+	  });
+	
+		$("#email-check").click(function() {
+			console.log("?");
+			$.ajax("/mail/resultKey.do", {
+				"method":"post",
+				"async":true,
+				"data":{
+					"authKey":$("#email-text").val()
+				}
+		
+			}).done(function(obj){
+				if(obj == "true") {
+					
+					window.alert("인증에 성공하였습니다.");
+					$("#join-btn").removeAttr("disabled")
+				}else if (obj == "false"){
+					window.alert("인증키를 잘못 입력하였습니다.");
+				
+				}
+			})
+		 });
+	
 	</script>

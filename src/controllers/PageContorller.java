@@ -21,13 +21,6 @@ public class PageContorller {
 	postListImpl postlist;
 	Gson gson;
 	
-	@RequestMapping("/index.do")
-	public String indexpage(HttpServletRequest req,Map map) {
-		gson = new Gson();
-		req.setAttribute("postList", postlist.getAllPostList( ));
-		return "index";
-	}
-	
 	@RequestMapping("/main.do")
 	public String mainpage(HttpServletRequest req,Map map) {
 		gson = new Gson();
