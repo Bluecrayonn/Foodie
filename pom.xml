@@ -114,7 +114,7 @@
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.8</version>
 		</dependency>
-
+ 
 
 
 		<!-- mail 발송 -->
@@ -140,9 +140,15 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
-		</dependency>
-		
+			</dependency>
+ 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+ 		</dependency>
+		
+ 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.3.Final</version>
@@ -167,8 +173,8 @@
 
 
 
-	</dependencies>
-
+  		</dependencies>
+ 
 
 	<!-- JPA utility에 관한 repository 설정 -->
 	<!-- 외부파일 이용할 때는 repository 설정 필요 -->
@@ -182,7 +188,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories>
+	</repositories> 
 
 
 

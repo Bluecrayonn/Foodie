@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.ingredients {
+	font-size: 12px;
+	font-family: 'NanumGothic'
+}
+
+.lb_recipe {
+	width: 65px;
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="social">
+	<resultMap id="getbookmarkListResult" type="HashMap">
+		<result property="BOOKMARK_ID" column="BOOKMARK_ID" jdbcType="NUMERIC"
+			javaType="java.lang.Long" />
+
+		<result property="POST_ID" column="POST_ID" jdbcType="NUMERIC"
+			javaType="java.lang.Long" />
+
+		<result property="USER_ID" column="USER_ID" jdbcType="NUMERIC"
+			javaType="java.lang.Long" />
+
+	</resultMap>
+	<resultMap id="getfollowingListResult" type="HashMap">
+		<result property="TARGET_ID" column="TARGET_ID" jdbcType="NUMERIC"
+			javaType="java.lang.Long" />
+
+		<result property="OWNER_ID" column="OWNER_ID" jdbcType="NUMERIC"
+			javaType="java.lang.Long" />
+
+	 
+
+	</resultMap>
+	<!-- Follower -->
+	<select id="follower" resultType="java.util.LinkedHashMap" resultMap="getfollowingListResult">
+		select owner_id from follow
+		where target_id = #{accountId}
+
+	</select>
+	<!-- Following -->
+	<select id="following" resultType="java.util.LinkedHashMap" resultMap="getfollowingListResult">
+		select target_id from follow
+		where owner_id = #{accountId}
+
+	</select>
+	<!-- Bookmark -->
+
+	<select id="bookmarks" resultType="java.util.LinkedHashMap"
+		resultMap="getbookmarkListResult">
+		select * from bookmark where
+		user_id = #{accountId}
+	</select>
+
+
+
+	<!-- Post -->
+
+	<resultMap id="getBoardListResult" type="HashMap">
+		<result property="POST_ID" column="POST_ID"  />
+		<result property="TITLE" column="TITLE" />
+		<result property="WRITER_ID" column="WRITER_ID" />
+		<result property="ELAPSEDTIME" column="ELAPSEDTIME" />
+		<result property="MAIN_IMG" column="MAIN_IMG" />
+		<result property="CONTENT" column="CONTENT" jdbcType="CLOB"
+			javaType="java.lang.String" typeHandler="org.apache.ibatis.type.ClobTypeHandler" />
+		<result property="BOOKMARK_COUNT" column="BOOKMARK_COUNT" />
+		<result property="POST_DATE" column="POST_DATE" />
+	</resultMap>
+
+	<select id="getPost" resultType="java.util.HashMap" resultMap="getBoardListResult">
+		select * from post inner join (select
+		account.ACCOUNT_ID,account.NAME,account.EMAIL from account) account on
+		ACCOUNT.ACCOUNT_ID = post.WRITER_ID
+	</select>
+	<select id="getPostbyDate" resultType="java.util.HashMap"
+		resultMap="getBoardListResult">
+		select * from post order by post_date desc
+	</select>
+	<select id="getPostbyBookmark" resultType="java.util.HashMap"
+		resultMap="getBoardListResult">
+		select * from post order by bookmark_count desc
+	</select>
+
+	<select id="searchPost" resultType="java.util.HashMap"
+		resultMap="getBoardListResult">
+		select * from post
+		<where>
+			<if test="keywords != null"> regexp_like(title,'${keywords}') or
+				regexp_like(content,'${keywords}')</if>
+			<if test="orderType != n"> order by post_date desc</if>
+		</where>
+	</select>
+
+
+	<!-- Social(follow / bookmark) -->
+
+	<insert id="addFollowing">
+		insert into follow values (#{ownerId},#{targetId})
+	</insert>
+	<delete id="removeFollowing">
+		delete from follow where (target_id =
+		#{targetId})and(owner_id = #{ownerId})
+	</delete>
+	<update id="countUpFollowing">
+		update account set follow_count = follow_count +1
+		where account_id =
+		#{accountId}
+	</update>
+	<update id="countDownFollowing">
+		update account set follow_count = follow_count -1
+		where account_id =
+		#{accountId}
+	</update>
+
+
+	<insert id="addBookmarks">
+		insert into bookmark values
+		(BOOKMARK_SEQ.NEXTVAL,#{postId},#{userId})
+	</insert>
+	<delete id="removeBookmarks">
+		delete from bookmark where (post_id =
+		#{postId})and(user_id = #{userId})
+	</delete>
+	<update id="countUpBookmark">
+		update post set bookmark_count = bookmark_count +1
+		where post_id = #{postId}
+	</update>
+	<update id="countDownBookmark">
+		update post set bookmark_count = bookmark_count -1
+		where post_id = #{postId}
+	</update>
+
+
+
+</mapper>
