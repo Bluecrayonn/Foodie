@@ -110,11 +110,12 @@
 					</p>
 					<p align="left">
 					<h4>
-						발급받은 인증키를 입력해주세요: &nbsp;<input type="text" id="email-text"
+						발급받은 인증키를 입력해주세요: &nbsp;<form action="/mail/resultKey.do"><input type="text" id="email-text"
 							placeholder="인증키 입력" /> &nbsp;
-						<button id="email-check" type="button">인증확인</button>
+						<button id="email-check" type="button">인증확인</button></form>
 					</h4>
 					</p>
+
 
 
 
@@ -133,8 +134,11 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn" data-toggle="modal"
+				<button id=join-btn disabled="disabled" type="button" class="btn" data-toggle="modal"
 					onclick="location='welcome.do'">가입</button>
+					 
+					<!-- disabled 설정 및 버튼 id 값 부여 -->
+					
 				<button type="button" class="btn" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
@@ -255,14 +259,17 @@
 				"method":"post",
 				"async":true,
 				"data":{
-					"authKey":$("email-text").val()
+					"authKey":$("#email-text").val()
 				}
 		
 			}).done(function(obj){
-				if(obj.result == "true") {
-					location.href = "/foodie/welcome.do";
-				}else if (obj.result == "faluse"){
+				if(obj == "true") {
+					
+					window.alert("인증에 성공하였습니다.");
+					$("#join-btn").removeAttr("disabled")
+				}else if (obj == "false"){
 					window.alert("인증키를 잘못 입력하였습니다.");
+				
 				}
 			})
 		 });

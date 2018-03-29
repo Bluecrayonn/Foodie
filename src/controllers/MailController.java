@@ -1,13 +1,8 @@
 package controllers;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
-
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,8 +63,8 @@ public class MailController {
 		String key = uuids[0] + "-" + uuids[1];
 		boolean result = mailService.sendAuthKey(email, key);
 
-		session.setAttribute("result", result);
-		System.out.println("{\"result\":" + result + "}");
+		session.setAttribute("result", key);
+		System.out.println("{\"result\":" + key + "}");
 
 		return "{\"result\":" + result + "}";
 	}
@@ -79,13 +74,14 @@ public class MailController {
 	public String resultKeyHandle(@RequestParam String authKey, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String result = (String) session.getAttribute("result");
-		if (result.equals(authKey)) { // authKey는 sidebar.jsp 스크립트 부분에 변수로 지정해
+		if (result.equals(authKey)) { // authKey는 sidebar.jsp 스크립트 부분에 변수로 지정해놓음
 			System.out.println("인증에 성공하였습니다.");
 			return "true";
 		} else {
 			System.out.println("인증에 실패하였습니다.");
+			return "false";
 		}
-		return "false";
+		
 
 	}
 }

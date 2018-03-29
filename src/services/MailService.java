@@ -1,6 +1,6 @@
 package services;
 
-import java.util.UUID;
+//import java.util.UUID; //삭제 -> MailController로 이동함
 
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
