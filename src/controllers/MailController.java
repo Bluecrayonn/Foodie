@@ -64,7 +64,7 @@ public class MailController {
 		boolean result = mailService.sendAuthKey(email, key);
 
 		session.setAttribute("result", key);
-		System.out.println("{\"result\":" + key + "}");
+		System.out.println("{\"인증키\": " + key + "}");
 
 		return "{\"result\":" + result + "}";
 	}
