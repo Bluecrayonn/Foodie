@@ -71,14 +71,17 @@
 		<constructor-arg value="foodie" name="databaseName" />
 
 	</bean>
+<!-- <property name="username" value="foodiea01@gmail.com"/>
+		<property name="password" value="q1w2e3r4!!"/> -->
 
-
+<!-- <property name="username" value="ncs13master@gmail.com"/>
+		<property name="password" value="1q2w3e4r~"/> -->
 
 <!-- mailSender -->
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
 		<property name="host" value="smtp.gmail.com"/>
-		<property name="username" value="ncs13master@gmail.com"/>
-		<property name="password" value="1q2w3e4r~"/>
+		 <property name="username" value="foodiea01@gmail.com"/>
+		<property name="password" value="q1w2e3r4!!"/> 
 		<property name="port" value="587"/>
 		<property name="javaMailProperties">
 			<props>

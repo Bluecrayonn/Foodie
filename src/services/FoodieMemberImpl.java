@@ -28,29 +28,28 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 
 	@Override
 	public List<FoodieMember> getAllMembers() {
-		/*
-		 * List<FoodieMember> members = new ArrayList<FoodieMember>();
-		 * FoodieMemberMapper foodieMemberMapper =
-		 * sqlSession.getMapper(FoodieMemberMapper.class); //FoodieMemberMapper 클래스에 있는
-		 * 메소드를 이용하기 위해 맴버클래스를 얻어옴
-		 * 
-		 * members = foodieMemberMapper.getAllMembers(); return members;
-		 */
+		/* List<FoodieMember> members = new ArrayList<FoodieMember>();
+		FoodieMemberMapper foodieMemberMapper 
+		= sqlSession.getMapper(FoodieMemberMapper.class);
+		//FoodieMemberMapper 클래스에 있는 메소드를 이용하기 위해 맴버클래스를 얻어옴
+		
+		members = foodieMemberMapper.getAllMembers();
+		return members; */
 		SqlSession sqlSession = factory.openSession();
-		// 위의 작업을 코드단순화
+		// 위의 작업을 코드단순화 
 		try {
 			List<FoodieMember> listResult = sqlSession.selectList("getAllMembers");
 			return listResult;
 		} catch (Exception e) {
-			e.printStackTrace();
+e.printStackTrace();		
 
-		} finally {
-
-			sqlSession.close();
+		}finally{
+		
+	sqlSession.close();
 		}
 		return null;
-
-		// SqlSession에 있는 selectList 함수 사용 => return이 List로 넘어가서 코드가 간결
+		
+		//SqlSession에 있는 selectList 함수 사용 => return이 List로 넘어가서 코드가 간결	
 	}
 
 	@Override
@@ -60,20 +59,21 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 		 * sqlSession.getMapper(FoodieMemberMapper.class); return
 		 * foodieMemberMapper.getMember(nickname);
 		 */
-
+		
 		SqlSession sqlSession = factory.openSession();
-
+		
 		try {
-			FoodieMember foodieMemberResult = sqlSession.selectOne("getMember", nickname);
+			FoodieMember  foodieMemberResult = sqlSession.selectOne("getMember", nickname);
 			return foodieMemberResult;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-
-		sqlSession.close(); 
+		}finally{
+		
+		sqlSession.close();
 		}
 		return null;
-
+		
+	
 	}
 
 	@Override
@@ -83,18 +83,18 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 		 * sqlSession.getMapper(FoodieMemberMapper.class);
 		 * foodieMemberMapper.insertMember(foodieMember);
 		 */
-
+		
 		SqlSession sqlSession = factory.openSession();
-
+		
 		try {
 			int insertResult = sqlSession.insert("insertMember", foodieMember);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-
+		}finally{
+		
 			sqlSession.close();
 		}
-
+		
 	}
 
 	@Override
@@ -104,18 +104,22 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 		 * sqlSession.getMapper(FoodieMemberMapper.class);
 		 * foodieMemberMapper.updateMember(foodieMember);
 		 */
-
+		
+		
+		
 		SqlSession sqlSession = factory.openSession();
 		try {
 			int updateResult = sqlSession.update("updateMember", foodieMember);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-
+		}finally{
+		
 			sqlSession.close();
 		}
-
+		
 	}
+		
+	
 
 	@Override
 	public void deleteMember(String nickname) {
@@ -124,16 +128,21 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 		 * sqlSession.getMapper(FoodieMemberMapper.class);
 		 * foodieMemberMapper.deleteMember(nickname);
 		 */
-
+		
+		
+		
 		SqlSession sqlSession = factory.openSession();
 		try {
 			int deleteResult = sqlSession.delete("deleteMember", nickname);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-
+		}finally{
+		
 			sqlSession.close();
 		}
-
+		
 	}
-}
+}		
+	
+
+

@@ -106,7 +106,7 @@
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required /> <br />
 					<p align="right">
-						<button id="email-btn" type="button">인증키 발급</button>
+						<button id="email-btn" type="button" >인증키 발급</button>
 					</p>
 					<p align="left">
 					<h4>
@@ -275,8 +275,7 @@
 		 });
 		
 		
-	  	
-			
+	
 	
 	
 </script>
