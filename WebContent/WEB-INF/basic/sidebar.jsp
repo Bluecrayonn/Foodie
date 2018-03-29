@@ -106,7 +106,7 @@
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required /> <br />
 					<p align="right">
-						<button id="email-btn" type="button" >인증키 발급</button>
+						<button id="email-btn" type="button"  >인증키 발급</button>
 					</p>
 					<p align="left">
 					<h4>
@@ -233,8 +233,16 @@
 		document.getElementById("year").innerHTML=strYear;
 	};
 	
-	//email 인증
+	//email 인증  
 	$("#email-btn").click(function(){
+		if($(this).val()=="")
+			{
+			window.alert("asdf");
+			//이메일 정규식으로 변경 
+			return false;
+			}
+		
+		//제이쿼리 안에 아작스
 		$.ajax("/mail/sendKey.do", {
 			"method":"post",
 			"async":true,
@@ -275,6 +283,8 @@
 		 });
 		
 		
+
+	
 	
 	
 	
