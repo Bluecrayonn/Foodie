@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.MailService">
+
+<resultMap type="HashMap" id="Emailresult">
+<result property="EMAIL" column="EMAIL" />
+</resultMap>
+<select id="email" resultType="java.util.HashMap" resultMap="Emailresult">
+SELECT COUNT(*) FROM account WHERE email = #{email}
+</select>
+
+</mapper>

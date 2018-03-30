@@ -1,21 +1,27 @@
 package services;
 
+
+
 //import java.util.UUID; //삭제 -> MailController로 이동함
 
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+
 
 @Service
 public class MailService {
 	@Autowired
 	JavaMailSender sender;
 
-	public boolean sendAuthKey(String email, String key) { 
-		
+	public boolean sendAuthKey(String email, String key) {
+
 		MimeMessage message = sender.createMimeMessage();
 		try {
 			message.addRecipients(RecipientType.TO, email);
@@ -27,11 +33,26 @@ public class MailService {
 			message.setContent(text, "text/html;charset=utf-8");
 
 			sender.send(message);
-			return true; 
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false; 
+			return false;
 		}
 	}
+	
+		
+	/* 이메일 중복체크
+	@Autowired
+	SqlSessionFactory factory;
+
+	public int checkSignup(String email) {
+		SqlSession sqlsession = factory.openSession();
+		try {
+			return sqlsession.selectOne("email",email);
+		} finally {
+			sqlsession.close();
+		}
+
+	}*/
 
 }
