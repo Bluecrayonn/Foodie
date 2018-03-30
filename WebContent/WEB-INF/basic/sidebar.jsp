@@ -155,8 +155,8 @@
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
 					<div class="modal-footer">
-						<button id = "password-email-check-btn" type="submit" 
-							class="btn signup-form" data-toggle="modal" data-dismiss="modal" disabled="disabled">전송</button>
+						<button id = "password-email-check-btn" type="submit" formaction="/mail/passwordauthkey.do"
+							class="btn " data-toggle="modal"   disabled="disabled">전송</button>
 					</div>
 				</form>
 			</div>

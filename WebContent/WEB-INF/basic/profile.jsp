@@ -128,7 +128,7 @@
     		   console.log(recipe);
     		   var text = "";
     		   for(var i = 0; i<recipe.length; i++){
-    			   text+="<a href=\"#\">"+recipe[i].MAIN_IMG+"  "+recipe[i].TITLE+"</a><br/>";
+    			   text+="<img class='recipeimg' src='/template/images/"+recipe[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+recipe[i].TITLE+"</a><br/>";
     		   }
     		   $("#tab1").html(text);
     	   })
