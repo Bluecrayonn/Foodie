@@ -42,13 +42,14 @@ public class RecipeController {
 	
 	@RequestMapping(value = "/recipe_List.do", produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String recipeHandle(HttpServletRequest req,@RequestParam Map map) {
+	public String recipeHandle(HttpServletRequest req, @RequestParam Map map) {
 		
 		HttpSession session = req.getSession();
+		long userId = (long)((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 		gson = new Gson();
 		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
-		return gson.toJson(profileimpl.getRecipeidList());	
+		return gson.toJson(profileimpl.getRecipeidList(userId));
 	}
 	
 	/*@RequestMapping("/comment_List.do")

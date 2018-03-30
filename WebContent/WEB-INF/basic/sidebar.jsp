@@ -17,25 +17,25 @@
   border-color: #f7c873;
 }
 </style>
-<div id="fh5co-offcanvas" >
+<div id="fh5co-offcanvas" style="background-image: URL(/template/images/sideimg.jpg);">
 	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
 	</span></a>
-	<div class="fh5co-bio" id="sidebar">
+	<div class="fh5co-bio" id="sidebar" style="padding-top: 60px;">
 		<c:choose>
 			<c:when test="${empty sessionScope.auth}">
-				<h3 style="margin-right: 20px; margin-top:80%; color:#F2BF2B">로그인이 필요합니다.</h3><br/>
+				<h3 style="margin-right: 20px; margin-top:40%; color:#F2BF2B">로그인이 필요합니다.</h3><br/>
 				<div id="login-container" style="width: 250px">
                <form id="login-form" autocomplete="off">
                   <p>
                      <input id="login-email" type="text" name="id"
-                        class="form-control" placeholder="&nbsp;&nbsp;이메일 입력"
-                        style="padding: 5px; font-size: 14pt; width: 250px;"
+                        class="form-control" placeholder="이메일 입력"
+                        style="padding: 25px; font-size: 14pt; width: 250px;"
                         pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
                         required />
                      <input id="login-password" type="password" onkeydown="enterevent();" name="pass"
-                        class="form-control" placeholder="&nbsp;&nbsp;비밀번호 입력"
-                        style="padding: 5px; font-size: 14pt; width: 250px;" required />
+                        class="form-control" placeholder="비밀번호 입력"
+                        style="padding: 25px; font-size: 14pt; width: 250px;" required />
                   </p>
                   <p>
                      <button type="button" id="login-form-button" class="btn"
@@ -49,15 +49,11 @@
 				</div>
 			</c:when>
 			<c:when test="${!empty sessionScope.auth}">
-				<h1 style="margin-top: 70px">오예${empty sessionScope.auth}</h1>
-				<div id="logon-container" >
-					<figure>
+				<div id="logon-container" style="margin-top: 90px" >
 						<img src="/template/images/person1.jpg"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
-					</figure>
-					<h3 class="heading">사용자</h3>
-					<h2>Test1</h2>
-					<p>Im a ${sessionScope.auth.user[0].NAME}!</p>
+					<h2>${sessionScope.auth.NAME}</h2>
+					<h4>마트관리자</h4><br/>
 					<ul style="list-style: none;">
 						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
 						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
@@ -93,13 +89,13 @@
       <h4 class="text">태어난 연도를 선택하세요.</h4>
       <select class="form-control" id="year" style="font-size: 12pt;">
       </select>
-			<h4 class="text" >이메일을 입력하세요.</h4><input type="text" name="id" class="textbox" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;이메일 입력"
-					style="font-size: 12pt; width: 450px;" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required/>
-						<button id="email-btn" type="button" class="btn" style="background-color:#F2BF2B; color:#fff;">인증 요청</button>
+			<h4 class="text" >이메일을 입력하세요.</h4><input type="text" name="id" class="textbox" placeholder="이메일 입력"
+					style="font-size: 12pt; width: 450px;  padding-left: 20px;" pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$" required/>
+						<button id="email-btn" type="button" class="btn" style="background-color:#F2BF2B; color:#fff;">인증요청</button>
 					<p align="left">
 					<h4>
-						인증키를 입력해주세요: &nbsp;<form action="/mail/resultKey.do"><input type="text" id="email-text" class="textbox" 
-							placeholder="인증키 입력" /> &nbsp;
+						인증키를 입력해주세요: &nbsp;<form action="/mail/resultKey.do"> <input type="text" id="email-text" class="textbox" 
+							placeholder="인증키 입력" style="font-size: 12pt; width: 238px; padding-left: 20px;"/>
 						<button id="email-check" type="button" class="btn" style="background-color : #F2BF2B;  color:#fff;">인증확인</button></form>
 					</h4>
 			<h4 class="text">비밀번호를 입력하세요.</h4><input type="password" name="pass" class="form-control" placeholder="비밀번호 입력"
@@ -237,5 +233,25 @@
 				}
 			})
 		 });
-	
+		
+		$("#email-check").click(function() {
+			console.log("?");
+			$.ajax("/mail/resultKey.do", {
+				"method":"post",
+				"async":true,
+				"data":{
+					"authKey":$("#email-text").val()
+				}
+		
+			}).done(function(obj){
+				if(obj == "true") {
+					
+					window.alert("인증에 성공하였습니다.");
+					$("#join-btn").removeAttr("disabled")
+				}else if (obj == "false"){
+					window.alert("인증키를 잘못 입력하였습니다.");
+				
+				}
+			})
+		 });
 	</script>

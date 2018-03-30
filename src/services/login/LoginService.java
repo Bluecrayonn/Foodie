@@ -40,7 +40,7 @@ public class LoginService {
 
 		} else if (loginImpl.emailCheck(email) == 2) {
 
-			ArrayList<Map> rst = (ArrayList<Map>) loginImpl.accountSearch(email);
+			Map rst = (Map) loginImpl.accountSearch(email);
 			System.out.println(rst.toString());
 
 			int result = loginImpl.accountCheck(rst, email, password);
@@ -52,32 +52,13 @@ public class LoginService {
 
 	}
 
-	public LinkedHashMap<String, List> setAuth(String email) {
+	public HashMap<String, String> setAuth(String email) {
 
-		LinkedHashMap<String, List> result = new LinkedHashMap<>();
-		List<Map> user = loginImpl.accountSearch(email);
-		Map<String,Object> userMap = new LinkedHashMap<>();
-		for(Map map : user) {
-			userMap.putAll(map);
-		}
-		
-		BigDecimal bigdecimal =  (BigDecimal) userMap.get("ACCOUNT_ID");
-		
-		long accountId = bigdecimal.longValue();
-		
-		List follwer = followInfoImpl.getFollower(accountId);
-		List followee = followInfoImpl.getFollowing(accountId);
-		List bookmarks = followInfoImpl.getBookmarks(accountId);
-		
-		
-		
-		result.put("user", user);
-		result.put("follwer", follwer);
-		result.put("followee", followee);
-		result.put("bookmarks", bookmarks);
+	      LinkedHashMap<String, List> result = new LinkedHashMap<>();
+	      Map user = loginImpl.accountSearch(email);
+	        
+	      return (HashMap<String, String>) user;
 
-		return result;
-
-	}
+	   }
 
 }

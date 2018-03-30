@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.util.LinkedMultiValueMap;
 
 public interface LoginDAO {
 	public int emailCheck(String email);
 	
-	public List<Map> accountSearch(String email);
+	public Map accountSearch(String email);
 	/*
 	 * 전달받는 정보를 통해서 email과 PASSWORD 비교하기 아... email 없으면?
 	 */

@@ -7,10 +7,15 @@
 		margin: auto;
 		text-align: center;
 	}
+	.recipeimg{
+		width: 60px;
+		height: 50px;
+	}
 </style>
     
 <div> 
     <div class="card hovercard">
+    
         <div class="card-background">
             <img class="card-bkimg" style="color: black;">
         </div>
@@ -27,19 +32,15 @@
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab" style="height: 50px;">댓글</button>
-            </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab" style="height: 50px;">북마크</button>
-            </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab" style="height: 50px;">팔로잉</button>
-            </button>
         </div>
         <div class="btn-group" role="group">
             <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab" style="height: 50px;">팔로워</button>
-            </button>
         </div>
            </div>
 
@@ -62,7 +63,7 @@
     <div class="center"><br/>
 	<button class = "btn" onclick="location='dropout.do'" style="color: #fff; background-color : red;"> 회원 탈퇴 </button>
 	</div>
-               
+ 
                 <script>
             	/*   
             	 $("#login-form-button").click(function(){
@@ -115,14 +116,15 @@
     		   "async" : true
     	   }).done(function(obj){
     		   var recipe = JSON.parse(obj);
-    		   console.log(recipe[0]);
+    		   console.log(obj);
+    		   /* console.log(recipe[0]);
     		   console.log(recipe[0].MAIN_IMG);
     		   console.log(recipe[0].TITLE);
     		   console.log(recipe[0].POST_ID);
-    		   console.log(recipe);
+    		   console.log(recipe); */
     		   var text = "";
     		   for(var i = 0; i<recipe.length; i++){
-    			   text+="<a href=\"#\">"+recipe[i].MAIN_IMG+"  "+recipe[i].TITLE+"</a><br/>";
+    			   text+="<img class='recipeimg' src='/template/images/"+recipe[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+recipe[i].TITLE+"</a><br/>";
     		   }
     		   $("#tab1").html(text);
     	   })
@@ -135,12 +137,13 @@
     	   }).done(function(obj3){
     		   var bookmark = JSON.parse(obj3);
     		   console.log(bookmark[0]);
+    		   console.log(bookmark[0].MAIN_IMG);
     		   console.log(bookmark[0].POST_ID);
     		   console.log(bookmark[0].USER_ID);
     		   console.log(bookmark);
     		   var text3 = "";
     		   for(var i = 0; i<bookmark.length; i++){
-    			   text3+="<a href=\"#\">"+bookmark[i].TITLE+"</a><br/>";
+    			   text3+="<img class='recipeimg' src='/template/images/"+bookmark[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+bookmark[i].TITLE+"</a><br/>";
     		   }
     		   $("#tab3").html(text3);
     	   })
@@ -153,4 +156,5 @@
     		$(this).removeClass("btn-default").addClass("btn-primary");   
 });
 });
+       
                 </script>

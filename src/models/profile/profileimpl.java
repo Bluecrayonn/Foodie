@@ -18,10 +18,11 @@ public class profileimpl implements ProfileListDao {
 	SqlSessionFactory factory;
 	
 	@Override
-	public List<Map> getRecipeidList() {
+	public List<Map> getRecipeidList(long userId) {
 		SqlSession session = factory.openSession();
+		
 		try {
-			List<Map> result = session.selectList("profile.recipetitle");
+			List<Map> result = session.selectList("profile.recipetitle",userId);
 			System.out.println(result.toString());
 			return result;
 		} catch (Exception e) {
