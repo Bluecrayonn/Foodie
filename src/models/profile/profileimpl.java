@@ -20,6 +20,7 @@ public class profileimpl implements ProfileListDao {
 	@Override
 	public List<Map> getRecipeidList(long userId) {
 		SqlSession session = factory.openSession();
+		
 		try {
 			List<Map> result = session.selectList("profile.recipetitle",userId);
 			System.out.println(result.toString());

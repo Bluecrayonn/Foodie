@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="profile">
-<select id="recipetitle" resultType="java.util.LinkedHashMap">
+
+<!-- <resultMap type="HashMap" id="recipe-Result-Map">
+<result property="POST_ID" column="POST_ID" javaType="java.lang.Long" jdbcType="NUMERIC"   />
+<result property="WRITER_ID" column="WRITER_ID" javaType="java.lang.Long" jdbcType="NUMERIC"   />
+<result property="BOOKMARK_COUNT" column="BOOKMARK_COUNT" javaType="java.lang.Long" jdbcType="NUMERIC"   />
+</resultMap> -->
+<select id="recipetitle" resultType="java.util.LinkedHashMap" >
 		select TITLE,POST_ID,MAIN_IMG from post where writer_id = #{userId}
 	</select>	
 <!-- <seclct id="comment" resultType="java.jtil.LikedHashMap">

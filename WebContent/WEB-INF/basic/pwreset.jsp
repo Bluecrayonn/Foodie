@@ -25,7 +25,7 @@
 	<input id="new-password-confirm" type="password" name="new-password" class="form-control" placeholder="비밀번호 확인"
 	style="font-size: 12pt; width: 40%; margin: auto;" required/> <br/><button type="button"id="password-reset-button" class="btn " onclick="">비밀번호 변경</button>
  	</div>
-	
+	 
 </div>
 
 

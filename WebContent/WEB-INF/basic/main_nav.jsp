@@ -8,7 +8,7 @@
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script> -->
-		<div class="container-fluid">
+	<div class="container-fluid">
 			<div class="row">
 			<c:choose>
 			<c:when test="${empty sessionScope.auth}">
@@ -30,11 +30,11 @@
                         <li><span class="pull-right"></span> <p style="color:#ffffff;"> 알림 목록 </p> </li>
                     </ul>
                     </li>
-				</ul>
+					</ul>
 				</c:when>
 				</c:choose>
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1><a href="/foodie/main.do">Foodie</a></h1><br/>
+					<a href="/foodie/main.do"><img src="/template/images/logo.png" style="width: 223px; height: 184px;"></a><br/>
 				</div>
 			</div>
 		</div>

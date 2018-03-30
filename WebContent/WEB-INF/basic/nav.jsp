@@ -7,7 +7,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 text-center">
-					<h1><a href="/foodie/main.do">Foodie</a></h1>
+				<a href="/foodie/main.do"><img src="/template/images/logo.png" style="width: 223px; height: 184px;"></a>
 				</div>
 			</div>
 		</div>

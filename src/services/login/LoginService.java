@@ -51,7 +51,7 @@ public class LoginService {
 		return 2;
 
 	}
-
+ 
 	public HashMap<String, String> setAuth(String email) {
 
 		LinkedHashMap<String, List> result = new LinkedHashMap<>();

@@ -19,7 +19,7 @@ import models.LoginDAO;
  */
 @Repository
 public class LoginImpl    {
-	
+	 
 	@Autowired 
 	SqlSessionFactory sqlFactory;
  	

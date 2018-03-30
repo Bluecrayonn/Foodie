@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.util.LinkedMultiValueMap;
 
 public interface LoginDAO {
 	public int emailCheck(String email);
