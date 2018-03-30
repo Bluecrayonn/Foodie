@@ -104,12 +104,21 @@
 						class="form-control" placeholder="이메일 입력"
 						style="font-size: 12pt; width: 100%;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-						required /><br/>
+						required /> <!-- <br /> -->
 						
-						<h4 id="authMsg"></h4>
+						
+						<div id="checkMsg"></div>   <!-- 이메일 중복유무 알림메세지 표시되는 공간 -->
+						
+						<h4 align="right">
+						<button id="duplcheck-btn" type="button"  >중복체크</button>
+					</h4>
 					<p align="right">
-						<button id="email-btn" type="button"  >인증키 발급</button>
+						<button id="email-btn" type="button" style="display:none;"  >인증키 발급</button>
 					</p>
+				<!--  중복체크가 완료되기 전까지는 display:none 상태 -->
+					
+					
+					
 					<p align="left">
 					<h4>
 						발급받은 인증키를 입력해주세요: &nbsp;<form action="/mail/resultKey.do"><input type="text" id="email-text"
@@ -260,16 +269,18 @@
 				"email":$("#email-input").val()
 			}
 		}).done(function(obj){
-			//window.alert("입력하신 이메일로 인증키를 발송하였습니다");
-			//$("#emailSendMsg").html('<p style="color:orange">입력하신 이메일로 인증키를 발송하였습니다</p>');
-			$('#authMsg').html('입력하신 이메일로 인증키를 발송하였습니다');
-			$('#authMsg').css("color","orange");
+			window.alert("입력하신 이메일로 인증키를 발송하였습니다.");
+			/* var result = JSON.parse(obj);
+			if(result == true){
+				
+			}else{
+				
+			} */
 			
 		})
 	  });
 	
 		$("#email-check").click(function() {
-			console.log("?");
 			$.ajax("/mail/resultKey.do", {
 				"method":"post",
 				"async":true,
@@ -279,21 +290,68 @@
 		
 			}).done(function(obj){
 				if(obj == "true") {
-					 //$('#authMsg').html('<p style="color:blue">인증에 성공하였습니다</p>');
-					 $('#authMsg').html('인증에 성공하였습니다');
-					 $('#authMsg').css("color","blue");
-					//window.alert("인증에 성공하였습니다.");
-					$("#join-btn").removeAttr("disabled")
+					
+					window.alert("인증에 성공하였습니다.");
+					$("email-btn").removeAttr("disabled")
 				}else if (obj == "false"){
-					$('#authMsg').html('인증에 실패하였습니다');
-					$('#authMsg').css("color","red");
-					//window.alert("인증키를 잘못 입력하였습니다.");
+					window.alert("인증키를 잘못 입력하였습니다.");
 				
 				}
 			})
 		 });
 		
 		
+		
+		
+		//$(document).ready(function(){
+	        //$("duplcheck-btn").on('click', function(){
+	        	
+	        	$("duplcheck-btn").click(function() {
+	        		console.log("?");
+	            $.ajax("/mail/duplCheck.do", {
+	            	"method":"post",
+	                "data": {
+	                    "email" : $('#email').val()
+	                }
+	            }).done(function(data){
+	              
+	                    if($.trim(data) == 0){
+	                        $('#checkMsg').html('<p style="color:blue">이미 존재하는 email 입니다</p>');
+	                    }
+	                    else{
+	                        $('#checkMsg').html('<p style="color:red">사용가능한 email 입니다</p>');
+	                        $("#join-btn").removeAttr("display:none;")
+	                    }
+	            })
+	            });    
+
+
+		
+		
+		
+		/* $("duplcheck-btn").click(function() {
+			$.ajax("/mail/duplCheck.do", {
+				"method":"post",
+				 "async":true,
+				"data":{
+					"authKey":$("#email-text").val() 
+				}
+		
+			}).done(function(obj){
+				if(obj.data == true) {
+					window.alert("이미 존재하는 email 입니다.");
+				}else if (obj.data == false){
+					window.alert("사용가능한 email 입니다.");
+					$("#join-btn").removeAttr("display:none;")
+				}
+			})
+		 }); */
+		
+		
+		
+		    
+
+		    
 
 	
 	
