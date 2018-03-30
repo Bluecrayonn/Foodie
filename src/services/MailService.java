@@ -2,6 +2,8 @@ package services;
 
 
 
+import java.util.Map;
+
 //import java.util.UUID; //삭제 -> MailController로 이동함
 
 import javax.mail.internet.MimeMessage;
@@ -41,14 +43,15 @@ public class MailService {
 	}
 	
 		
-	/* 이메일 중복체크
+	/* //이메일 중복체크
 	@Autowired
 	SqlSessionFactory factory;
 
 	public int checkSignup(String email) {
 		SqlSession sqlsession = factory.openSession();
 		try {
-			return sqlsession.selectOne("email",email);
+			Map  result  = sqlsession.selectOne("email",email);
+			return result.size();
 		} finally {
 			sqlsession.close();
 		}

@@ -9,7 +9,7 @@
 <result property="EMAIL" column="EMAIL" />
 </resultMap>
 <select id="email" resultType="java.util.HashMap" resultMap="Emailresult">
-SELECT COUNT(*) FROM account WHERE email = #{email}
+SELECT * FROM account WHERE email = #{email}
 </select>
 
 </mapper>

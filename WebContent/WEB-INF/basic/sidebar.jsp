@@ -107,9 +107,15 @@
 						required /><br/>
 						
 						<h4 id="authMsg"></h4>
+						
+						<div id="okMsg"></div>   <!-- 이메일 중복유무 알림메세지 표시되는 공간 -->
+						<h4 align="right">
+						<button id="duplcheck-btn" type="button"  >중복체크</button>
+						
 					<p align="right">
-						<button id="email-btn" type="button"  >인증키 발급</button>
+						<button id="email-btn" type="button" style="display:none;"   >인증키 발급</button>
 					</p>
+					<!--  중복체크가 완료되기 전까지는 display:none 상태 -->
 					<p align="left">
 					<h4>
 						발급받은 인증키를 입력해주세요: &nbsp;<form action="/mail/resultKey.do"><input type="text" id="email-text"
@@ -295,7 +301,25 @@
 		
 		
 
-	
+	/* 	$("duplcheck-btn").click(function() {
+    		console.log("?");
+        $.ajax("/mail/duplCheck.do", {
+        	"method":"post",
+            "data": {
+                "email" : $('#email').val()
+            }
+        }).done(function(data){
+          
+                if($.trim(data) == 0){
+                    $('#okMsg').html('<p style="color:blue">이미 존재하는 email 입니다</p>');
+                }
+                else{
+                    $('#okMsg').html('<p style="color:red">사용가능한 email 입니다</p>');
+                    $("#join-btn").removeAttr("display:none;")
+                }
+        })
+        });    
+ */
 	
 	
 	

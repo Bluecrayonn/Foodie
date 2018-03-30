@@ -87,7 +87,7 @@ public class MailController {
 		}
 
 	}
-/* 이메일 중복체크
+/*// 이메일 중복체크
 	@ResponseBody
 	@RequestMapping(value = "/duplCheck.do", method = RequestMethod.POST)
 	public String checkEmail(HttpServletRequest request, Model model) {
@@ -95,6 +95,6 @@ public class MailController {
 		int cnt = mailService.checkSignup(email);
 		return String.valueOf(cnt);
 
-	}
-*/
+	}*/
+
 }
