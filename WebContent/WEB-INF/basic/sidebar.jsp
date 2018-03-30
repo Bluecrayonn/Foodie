@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
 
-<div id="fh5co-offcanvas"> 
-=======
 <style>
 	.textbox {
   box-shadow: none;
@@ -22,8 +19,7 @@
 }
 </style>
 <div id="fh5co-offcanvas" style="background-image: URL(/template/images/sideimg.jpg);">
->>>>>>> refs/heads/HongDasol
-	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
+ 	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
 	</span></a>
 	<div class="fh5co-bio" id="sidebar" style="padding-top: 60px;">
