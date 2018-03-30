@@ -29,7 +29,7 @@
 
 
 <!-- jQuery -->
-	<script src="/template/js/jquery.min.js"></script>
+	<script src="/template/js/jquery-3.3.1.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="/template/js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
@@ -76,7 +76,6 @@
 		<link rel="stylesheet" href="/template/css/icomoon.css">
 		<!-- css  -->
 		<link rel="stylesheet" href="/template/css/style.css">
-		<link rel="stylesheet" href="/template/css/writepage.css">
 		<script src="/js/functions.js"></script>
 <html>
 <head>

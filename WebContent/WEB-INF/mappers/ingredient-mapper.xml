@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ingredient">
+	<resultMap id="postResult" type="java.util.LinkedHashMap">
+		<result property="POST_ID" column="POST_ID"  />
+		<result property="TITLE" column="TITLE" />
+		<result property="WRITER_ID" column="WRITER_ID" />
+		<result property="ELAPSEDTIME" column="ELAPSEDTIME" />
+		<result property="MAIN_IMG" column="MAIN_IMG" />
+		<result property="CONTENT" column="CONTENT" jdbcType="CLOB"
+			javaType="java.lang.String" typeHandler="org.apache.ibatis.type.ClobTypeHandler" />
+		<result property="BOOKMARK_COUNT" column="BOOKMARK_COUNT" />
+		<result property="POST_DATE" column="POST_DATE" />
+	</resultMap>
+
+	<insert id="insert">
+		INSERT INTO INGREDIENT(INGREDIENT_ID,ITEMNAME,PRICE,UNIT)
+		values(INGREDIENT_SEQ.NEXTVAL,#{name},#{price},#{unit})
+	</insert>
+
+	<select id="selectOneByName" resultType="java.util.Map">
+		SELECT * FROM INGREDIENT WHERE ITEMNAME=#{name}
+	</select>
+	
+	<update id="modify">
+		UPDATE POST SET TITLE=#{title},ELAPSEDTIME=#{elapsedTime},MAIN_IMG=#{mainImage},CONTENT=#{content} WHERE POST_ID=${postId}
+	</update>
+
+</mapper>
