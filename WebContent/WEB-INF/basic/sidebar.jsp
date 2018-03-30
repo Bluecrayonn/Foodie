@@ -233,16 +233,24 @@
 		document.getElementById("year").innerHTML=strYear;
 	};
 	
-	//email 인증  
+	 //이메일 입력칸 유효성 체크
 	$("#email-btn").click(function(){
-		if($(this).val()=="")
-			{
-			window.alert("asdf");
-			//이메일 정규식으로 변경 
+		var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		if($("#email-input").val()==""){
+			window.alert("이메일을 입력해주세요");
+			$("#email-input").focus();
 			return false;
-			}
+		 	} else {
+		 		 
+		 		if(!regEmail.test($("#email-input").val())) {
+			alert("이메일 주소가 올바르지 않습니다");
+			$("#email-input").focus();
+			return false;
+		} 
+		 	};
+		 		 
 		
-		//제이쿼리 안에 아작스
+		
 		$.ajax("/mail/sendKey.do", {
 			"method":"post",
 			"async":true,
