@@ -1,7 +1,9 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+ 
 import com.google.gson.Gson;
 import com.mongodb.WriteResult;
 
@@ -31,10 +33,11 @@ public class PageContorller {
 	IngredientDao ingredientDao;
 	Gson gson;
 	@RequestMapping("/main.do")
-	public String mainpage(HttpServletRequest req,Map map) {
+	public String mainpage(HttpServletRequest req,Map map) throws IOException {
 		gson = new Gson();
 		
 		req.setAttribute("postList", postlist.getAllPostList( ));
+		postlist.ingreMapreduce();
 		return "mainpage";
 	}
 	@RequestMapping("/search.do")

@@ -14,15 +14,15 @@ public class recipeModel {
 	@Autowired
 	SqlSessionFactory factory;
 
-	public List<Map> recipeList() {
+	public List<Map> recipeList(long userId) {
 
 		SqlSession session = factory.openSession();
 		
-		long id = 1231;
+		
 
 		try {
 			
-			List<Map> result = session.selectList("profile.recipe", id);
+			List<Map> result = session.selectList("profile.recipe", userId);
 			return result;
 
 		} catch (Exception e) {

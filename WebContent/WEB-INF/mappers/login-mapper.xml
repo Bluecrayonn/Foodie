@@ -13,7 +13,7 @@
 		<result property="BIRTH" column="BIRTH"  />
 		<result property="FOLLOW_COUNT" column="FOLLOW_COUNT" javaType="java.lang.Long" jdbcType="NUMERIC"/>
 		<result property="AREA" column="AREA" />
-
+ 
 	</resultMap>
 	<select id="email" resultType="java.util.HashMap" resultMap="loginresult">
 		select * from account where email

@@ -27,6 +27,8 @@ public class LoginService {
 	LoginImpl loginImpl;
 	@Autowired
 	SocialInfoImpl followInfoImpl;
+	/*@Autowired
+	models.profile.profileimpl profileimpl;*/
 
 	public int confirmEmail(Map<String, String> map) {
 
@@ -49,7 +51,7 @@ public class LoginService {
 		return 2;
 
 	}
-
+ 
 	public HashMap<String, String> setAuth(String email) {
 
 		LinkedHashMap<String, List> result = new LinkedHashMap<>();

@@ -2,38 +2,48 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div id="fh5co-offcanvas">
-	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
+<style>
+	.textbox {
+  box-shadow: none;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  height: 54px;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+	.textbox:active, .textbox:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #f7c873;
+}
+</style>
+<div id="fh5co-offcanvas" style="background-image: URL(/template/images/sideimg.jpg);">
+ 	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
 	</span></a>
-	<div class="fh5co-bio" id="sidebar">
+	<div class="fh5co-bio" id="sidebar" style="padding-top: 60px;">
 		<c:choose>
 			<c:when test="${empty sessionScope.auth}">
-				<h2 style="margin-right: 20px;">로그인</h2>
+				<h3 style="margin-right: 20px; margin-top:40%; color:#F2BF2B">로그인이 필요합니다.</h3><br/>
 				<div id="login-container" style="width: 250px">
-					<form id="login-form" autocomplete="off" method="post">
-						<p>
-							<input id="login-email" type="text" name="id"
-								class="form-control" placeholder="이메일 입력"
-								style="padding: 5px; font-size: 14pt; width: 250px;"
-								pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
-								required />
-						</p>
-						<p>
-							<input id="login-password" type="password"
-								onkeydown="enterevent();" name="pass" class="form-control"
-								placeholder="비밀번호 입력"
-								style="padding: 5px; font-size: 14pt; width: 250px;" required />
-						</p>
-						<p>
-							<button type="button" id="login-form-button"
-								style="padding: 5px; font-size: 14pt; width: 250px;">로그인</button>
-						</p>
-						<p>
-							<input type="checkbox" name="keep" value="on" />로그인 상태유지
-						</p>
 
-					</form>
+               <form id="login-form" autocomplete="off">
+                  <p>
+                     <input id="login-email" type="text" name="id"
+                        class="form-control" placeholder="이메일 입력"
+                        style="padding: 25px; font-size: 14pt; width: 250px;"
+                        pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
+                        required />
+                     <input id="login-password" type="password" onkeydown="enterevent();" name="pass"
+                        class="form-control" placeholder="비밀번호 입력"
+                        style="padding: 25px; font-size: 14pt; width: 250px;" required />
+                  </p>
+                  <p>
+                     <button type="button" id="login-form-button" class="btn"
+                        style="padding: 5px; font-size: 14pt; width: 250px; background-color:#F2BF2B; color:#fff;">로그인</button>
+                  </p>
+ 					</form>
 					<font size="2em" color="FFA500" style="margin-right: 20px;">
 						아직 회원이 아니신가요? </font> <br /> <font size="2em" color="FFA500"
 						style="margin-right: 20px;"> 혹은 비밀번호가 기억나지 않으신가요? </font> <br />
@@ -46,31 +56,24 @@
 			</c:when>
 			<c:when test="${!empty sessionScope.auth}">
 
-				<h1 style="margin-top: 70px">오예${empty sessionScope.auth}</h1>
-				<div id="logon-container">
-					<figure>
-						<img src="/template/images/person1.jpg"
+				<div id="logon-container" style="margin-top: 90px" >
+ 						<img src="/template/images/person1.jpg"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
-					</figure>
-					<h3 class="heading">사용자</h3>
-					<h2>Test1</h2>
-					<p>Im a ${sessionScope.auth.user[0].NAME}!</p>
+					<h2>${sessionScope.auth.NAME}</h2>
+					<h4>마트관리자</h4><br/>
 					<ul style="list-style: none;">
-						<li><a href="profile.do" style="margin-right: 50px;"><i
-								class="icon-book3">프로필</i></a></li>
-						<li><a href="admin.do" style="margin-right: 50px;"><i
-								class="icon-pencil">관리/통계</i></a></li>
-						<!--(마트관리자용)-->
-						<li><a href="/authentication/logout.do"
-							style="margin-right: 50px;"><i class="icon-log-out">LOG
-									OUT</i></a></li>
-					</ul>
+
+						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
+						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
+						<li><a href="/authentication/logout.do" style="margin-right: 50px;"><i class="icon-log-out">LOG OUT</i></a></li>
+ 					</ul>
 				</div>
 			</c:when>
 		</c:choose>
 	</div>
 </div>
 <!-- sign up Modal -->
+ 
 <div class="modal fade" id="signupModal" role="dialog">
 	<div class="modal-dialog">
 
@@ -82,11 +85,11 @@
 			</div>
 			<div class="modal-body" style="font-family: '나눔고딕'">
 				<form action="/account/insertOk.do" autocomplete="off" method="post">
-					<!-- <h4 class="text">회원 종류를 선택하세요.</h4>
+					<h4 class="text">회원 종류를 선택하세요.</h4>
 					<select class="form-control" id="user" style="font-size: 12pt;">
 						<option>일반 유저</option>
 						<option>마트 관리자</option>
-					</select> -->
+					</select> 
 					<h4 class="text">성별을 선택하세요.</h4>
 					<select class="form-control" id="sex" style="font-size: 12pt;">
 						<option>여</option>
@@ -155,8 +158,8 @@
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
 					<div class="modal-footer">
-						<button id = "password-email-check-btn" type="submit" 
-							class="btn signup-form" data-toggle="modal" data-dismiss="modal" disabled="disabled">전송</button>
+						<button id = "password-email-check-btn" type="submit" formaction="/mail/passwordauthkey.do"
+							class="btn " data-toggle="modal"   disabled="disabled">전송</button>
 					</div>
 				</form>
 			</div>
@@ -164,6 +167,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	/*   
 	 $("#login-form-button").click(function(){
@@ -224,6 +228,7 @@
 		for (var i = eYear; i <= sYear; i++) {
 			strYear += "<option value="+i+">" + i + "</option>";
 		}
+ 
 		document.getElementById("year").innerHTML = strYear
 	}
 

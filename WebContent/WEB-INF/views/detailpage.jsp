@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="/template/css/bootstrap.css">
 
 <link rel="stylesheet" href="/template/css/style.css">
+<link rel="stylesheet" href="/template/css/notice.css">
 
 <!-- jQuery -->
 <script src="/template/js/jquery.min.js"></script>
