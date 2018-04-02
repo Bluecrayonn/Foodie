@@ -2,31 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Foodie</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-<meta name="keywords"
-	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-<meta name="author" content="FREEHTML5.CO" />
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico">
-<!-- Google Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/css/writepage.css">
-<script src="/js/functions.js?<%=(int) (Math.random() * 10)%>"></script>
-<script src="/js/bootstrap-confirmation.js"></script>
-
-
-</head>
-<body>
+ 
 	<c:set value="${post ne null && post != ''}" var="isMod" />
 	<c:set value="개|g|kg|ml|l|스푼(3g)|티스푼(10g)" var="units" />
 	<c:set
@@ -201,7 +177,6 @@
 			});
 		}
 		attach_autocomplete();
-
 		$("#summernote")
 				.summernote(
 						{
@@ -227,7 +202,6 @@
 									[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 									[ 'height', [ 'height' ] ],
 									[ 'insert', [ 'picture', 'link' ] ] ],
-
 							callbacks : {
 								onImageUpload : function(files, editor,
 										welEditable) {
@@ -237,11 +211,9 @@
 								}
 							}
 						});
-
 		if ('${post}' != "" && '${post}' != null) {
 			$("#summernote").summernote("code", '${post.CONTENT}');
 		}
-
 		function write_confirm() {
 			// 비어있지만 않으면 오케이
 			if ($("#title").val().trim() == "") {
@@ -257,7 +229,6 @@
 				window.alert("내용이 없다");
 				return;
 			}
-
 			var flag = false;
 			$(".ig_row").each(function() {
 				// 최소한 재료명 하나는 적혀있어야함
@@ -266,16 +237,13 @@
 					flag = true;
 				}
 			});
-
 			if (flag) {
 				$("#recipe_form").submit();
 			} else {
 				window.alert("재료 최소한 한개는 넣어주세요");
 				return;
 			}
-
 		}
-
 		function ig_add() {
 			var cloneRow = $("#dummy_row").clone();
 			cloneRow.find("input").each(function() {
@@ -291,7 +259,6 @@
 			$("#only_one").appendTo(cloneRow);
 			attach_autocomplete();
 		}
-
 		function ig_remove() {
 			if ($(".ig_row").length > 1) {
 				console.log($(".ig_row").length);
@@ -299,7 +266,6 @@
 				$(".ig_row:last").remove();
 			}
 		}
-
 		function sendFile(file, el) {
 			// 여기서 file을 리사이징
 			var form_data = new FormData();
@@ -318,117 +284,99 @@
 			});
 		}
 		var onRegisterClick = function(e) {
-			var queryString = $("#register-ingredient").serialize();
-			console.log("query: " + queryString);
-			$.ajax({
-				type : 'post',
-				url : '/foodie/write/register_ingredient.do',
-				data : queryString,
-				dataType : 'json',
-				success : function(json) {
-					alert("등록성공")
-				},
-			});
-		}
-
+	        var queryString = $("#register-ingredient").serialize() ;
+			console.log("query: "+queryString);
+	        $.ajax({
+	            type : 'post',
+	            url : '/foodie/write/register_ingredient.do',
+	            data : queryString,
+	            dataType : 'json',
+	            success : function(json){
+	                alert("등록성공")
+	            },
+	        });
+	    }
+		
 		var onConfirmClick = function() {
 			var title = '재료등록';
-			var body = '<div class="modal-register-body">';
-			body += '<form id="register-ingredient" role="form">';
-			body += '<div class="form-group">';
-			body += '<label for="ig_name"> 재료명</label>';
-			body += '<input type="text" class="form-control" name="name" id="ig_name" placeholder="마늘, 와사비, 소고기 등심, 삼겹살 ...">';
-			body += '</div>';
-			body += '<div class="form-group">';
-			body += '<label for="ig_unit"> 단위</label>';
-			body += '<input type="text" class="form-control" name="unit" id="ig_unit" placeholder="g, kg, ml, l, 마리, 단, 묶음 ...">';
-			body += '</div>';
-			body += '<div class="form-group">';
-			body += '<label for="ig_price"> 단위당 가격</label>';
-			body += '<input type="text" class="form-control" name="price" id="ig_price" placeholder="해당 단위, 1g, 1kg, 1마리 당 가격을 입력해주세요.">';
-			body += '</div>';
-			body += '</form>';
-			body += '</div>';
-
+			var body =  '<div class="modal-register-body">';
+				body += '<form id="register-ingredient" role="form">';
+				body += '<div class="form-group">';
+				body += '<label for="ig_name"> 재료명</label>'; 
+				body += '<input type="text" class="form-control" name="name" id="ig_name" placeholder="마늘, 와사비, 소고기 등심, 삼겹살 ...">';
+				body += '</div>';
+				body += '<div class="form-group">';
+				body += '<label for="ig_unit"> 단위</label>'; 
+				body += '<input type="text" class="form-control" name="unit" id="ig_unit" placeholder="g, kg, ml, l, 마리, 단, 묶음 ...">';
+				body += '</div>';
+				body += '<div class="form-group">';
+				body += '<label for="ig_price"> 단위당 가격</label>'; 
+				body += '<input type="text" class="form-control" name="price" id="ig_price" placeholder="해당 단위, 1g, 1kg, 1마리 당 가격을 입력해주세요.">';
+				body += '</div>';
+				body += '</form>';
+				body += '</div>';
 			var btn1 = {
-				Value : '<span class="glyphicon glyphicon-ok"></span>등록하기',
-				Css : "btn-success btn-default pull-left",
-				Callback : onRegisterClick
-			};
+				Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
+				Css:"btn-success btn-default pull-left",
+				Callback:onRegisterClick
+				};
 			var btn2 = {
-				Value : '<span class="glyphicon glyphicon-remove"></span>아니오',
-				Css : "btn-danger btn-default pull-left",
-				Callback : ""
-			};
-			var buttons = [ btn1, btn2 ];
-			BstrapModal.Close();
+				Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
+				Css:"btn-danger btn-default pull-left",
+				Callback:""
+				};
+			var buttons = [btn1,btn2];
+			BstrapModal.Close();	
 			new BstrapModal(title, body, buttons).Show();
 		}
-		$(document)
-				.ready(
-						function() {
-							$("#thumbnail").change(function() {
-								console.log(this.files[0]);
-								if (!this.files[0].type.startsWith('image')) {
-									window.alert("이미지 파일만 선택가능합니다.");
-									this.value = "";
-								} else {
-									var reader = new FileReader();
-									reader.readAsDataURL(this.files[0]);
-									reader.onload = function() {
-										$("#preview").attr("src", this.result);
-									}
-								}
-							});
-							$("#preview").click(function() {
-								$("#thumbnail").click();
-							});
-
-							$(".ig_name")
-									.focusout(
-											function() {
-												console.log($(this).val());
-												$
-														.ajax({
-															type : 'get',
-															url : '/foodie/write/ingredient_exist.do',
-															data : 'name='
-																	+ $(this)
-																			.val(),
-															dataType : 'text',
-															success : function(
-																	rst) {
-																if (rst == 'false') {
-																	// TODO: 재료, 단위를 키로 잡아야함
-																	var title = '재료등록';
-																	var body = '<div class="modal-confirm-body">';
-																	body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
-																	body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
-																	body += '</div>'
-																	var btn1 = {
-																		Value : '<span class="glyphicon glyphicon-ok"></span>등록하기',
-																		Css : "btn-success btn-default pull-left",
-																		Callback : onConfirmClick
-																	};
-																	var btn2 = {
-																		Value : '<span class="glyphicon glyphicon-remove"></span>아니오',
-																		Css : "btn-danger btn-default pull-left",
-																		Callback : ""
-																	};
-																	var buttons = [
-																			btn1,
-																			btn2 ];
-
-																	new BstrapModal(
-																			title,
-																			body,
-																			buttons)
-																			.Show();
-																}
-															},
-														});
-											});
-						});
+		$(document).ready(function() {
+			$("#thumbnail").change(function() {
+				console.log(this.files[0]);
+				if (!this.files[0].type.startsWith('image')) {
+					window.alert("이미지 파일만 선택가능합니다.");
+					this.value = "";
+				} else {
+					var reader = new FileReader();
+					reader.readAsDataURL(this.files[0]);
+					reader.onload = function() {
+						$("#preview").attr("src", this.result);
+					}
+				}
+			});
+			$("#preview").click(function() {
+				$("#thumbnail").click();
+			});
+			$(".ig_name").focusout(function() {
+				console.log($(this).val());
+				$.ajax({
+		            type : 'get',
+		            url : '/foodie/write/ingredient_exist.do',
+		            data : 'name='+$(this).val(),
+		            dataType : 'text',
+		            success : function(rst){
+		                if(rst=='false') {
+		                	// TODO: 재료, 단위를 키로 잡아야함
+		    				var title = '재료등록';
+		    				var body =  '<div class="modal-confirm-body">';
+		    					body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
+		    					body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
+		    					body += '</div>'
+		    				var btn1 = {
+		    					Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
+		    					Css:"btn-success btn-default pull-left",
+		    					Callback:onConfirmClick
+		    					};
+		    				var btn2 = {
+		    					Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
+		    					Css:"btn-danger btn-default pull-left",
+		    					Callback:""
+		    					};
+		     				var buttons = [btn1,btn2];
+		    				
+		    				new BstrapModal(title, body, buttons).Show();
+		                }
+		            },
+		        });
+			});
+		});
 	</script>
-</body>
-</html>
