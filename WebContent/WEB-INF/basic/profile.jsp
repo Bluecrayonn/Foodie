@@ -11,36 +11,45 @@
 		width: 60px;
 		height: 50px;
 	}
+	button:focus {
+		outline: none;
+	}
+	button {
+		outline: none;
+	}
 </style>
     
 <div> 
     <div class="card hovercard">
     
-        <div class="card-background">
-            <img class="card-bkimg" style="color: black;">
+        <div class="card-background" style="background-image:URL(/template/images/test1.jpg); height: 300px">
+            <img class="card-bkimg">
         </div>
         <div class="useravatar">
-            <img style="color: black;">
-        </div>
-        <div class="card-info" style="width: 800px; margin: auto;"> <span class="card-title">${sessionScope.auth.user[0].NAME}  님</span>
-
-        </div>
+            <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
+        </div> <br/>
+        <div class="card-info" style="width: 800px; margin: auto; height: 30px"> <span class="card-title">${sessionScope.auth.NAME}  님</span></div>
     </div>
+     <br/>
+     <div style="width: 800px; margin-left: 830px"> <button class="btn">프로필 수정</button><button class="btn">내 정보 수정</button></div><br/>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="..." style="width: 800px; margin: auto; outline: none;">
-        <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab" style="height: 50px;">레시피</button>
+        <div class="btn-group" role="group" style="outline: none;">
+            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab" style="height: 50px; outline: none;">레시피</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab" style="height: 50px;">댓글</button>
+            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab" style="height: 50px; outline: none;">댓글</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab" style="height: 50px;">북마크</button>
+            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab" style="height: 50px; outline: none;">북마크</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab" style="height: 50px;">팔로잉</button>
+            <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab" style="height: 50px; outline: none;">팔로잉</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab" style="height: 50px;">팔로워</button>
+            <button type="button" id="following" class="btn btn-default" href="#tab5" data-toggle="tab" style="height: 50px; outline: none;">팔로워</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="following" class="btn btn-default" href="#tab6" data-toggle="tab" style="height: 50px; outline: none;">내 정보</button>
         </div>
            </div>
 
@@ -55,6 +64,15 @@
         <div class="tab-pane fade in" id="tab4">
         </div>
         <div class="tab-pane fade in" id="tab5">
+        </div>
+         <div class="tab-pane fade in" id="tab6">
+         <ul style="list-style: none;">
+         	<li>${sessionScope.auth.NAME} 님의 내 정보</li>
+         	<li>&nbsp;&nbsp;&nbsp;이메일 : ${sessionScope.auth.EMAIL}</li>
+         	<li>&nbsp;&nbsp;&nbsp;성별 : ${sessionScope.auth.GENDER}</li>
+         	<li>&nbsp;&nbsp;&nbsp;생일 : ${sessionScope.auth.BIRTH}</li>
+         	<li>&nbsp;&nbsp;&nbsp;직장 : OO마트</li> <!-- 마트관리자만! -->
+        </ul>
         </div>
       </div>
     </div>

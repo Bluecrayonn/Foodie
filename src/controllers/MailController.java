@@ -1,4 +1,4 @@
-package controllers;
+/*package controllers;
 
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class MailController {
 		return "join";
 	}
 
-	/*
+	
 	 * @RequestMapping(path="/login.do",produces=
 	 * "application/json;charset=utf-8")
 	 * 
@@ -53,7 +53,7 @@ public class MailController {
 	 * json.put("auth", result);
 	 * 
 	 * return gson.toJson(json);
-	 */
+	 
 
 	@RequestMapping(path = "/sendKey.do", produces = "application/json;charset=utf-8")
 	@ResponseBody
@@ -84,4 +84,4 @@ public class MailController {
 		
 
 	}
-}
+}*/

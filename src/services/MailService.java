@@ -1,4 +1,4 @@
-package services;
+/*package services;
 
 //import java.util.UUID; //삭제 -> MailController로 이동함
 
@@ -34,4 +34,4 @@ public class MailService {
 		}
 	}
 
-}
+}*/

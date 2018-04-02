@@ -71,7 +71,7 @@ public class PageContorller {
 		return "adminpage";
 	}
 	@RequestMapping("/dropout.do")
-	public String dropout() {
-		return "dropout";
+	public String dropoutpage() {
+		return "dropoutpage";
 	}
 }
