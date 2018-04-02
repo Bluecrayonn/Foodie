@@ -20,7 +20,7 @@
 </style>
     
 <div> 
-    <div class="card hovercard">
+    <div class="card hovercard" style="height: 400px;">
     
         <div class="card-background" style="background-image:URL(/template/images/test1.jpg); height: 300px">
             <img class="card-bkimg">
@@ -28,7 +28,7 @@
         <div class="useravatar">
             <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
         </div> <br/>
-        <div class="card-info" style="width: 800px; margin: auto; height: 30px"> <span class="card-title">${sessionScope.auth.NAME}  님</span></div>
+        <div class="card-info" style="width: 800px; margin: auto; height: 80px"> <h5 class="card-title" style="margin-top: 40px;">${sessionScope.auth.NAME}  님</h5></div>
     </div>
      <br/>
      <div style="width: 800px; margin-left: 830px"> <button class="btn">프로필 수정</button><button class="btn">내 정보 수정</button></div><br/>

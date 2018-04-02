@@ -185,16 +185,6 @@ function ig_add() {
 		}
 	}
 	
-	/* window.onload=function() {
-		var sDay=new Date(Date.now());
-		var eDay=new Date(Date.now()-7);
-		var strDay="";
-		
-		for(var i=eDay; i<=sDay; i++){
-			strDay += "<option value="+i+">"+i+"</option>";
-		}
-		document.getElementById("day").innerHTML=strDay
-	} */
 	
 	$(document).ready(function(){
 	    $('.filterable .btn-filter').click(function(){
@@ -378,4 +368,13 @@ function drawChart60() {
   chart.draw(data, options);
 }
 
+window.onload=function() {
+	var ToDay = new Date();
+
+	var y = new Date(ToDay.getFullYear(),ToDay.getMonth(),ToDay.getDate() - 7)
+
+	var m = y.getFullYear() + "-" + (y.getMonth() +1 ) + "-" + y.getDate();
+	
+	document.getElementById("day").innerHTML=m
+}
 </script>

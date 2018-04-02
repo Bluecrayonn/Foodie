@@ -288,13 +288,14 @@ display: inline-block;
 }
 .card.hovercard .card-info .card-title {
     padding:0 5px;
-    font-size: 20px;
+    font-size: 40px;
     line-height: 1;
     color: #262626;
     background-color: rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    height: 80px;
 }
 .card.hovercard .card-info {
     overflow: hidden;
@@ -302,6 +303,7 @@ display: inline-block;
     line-height: 20px;
     color: #737373;
     text-overflow: ellipsis;
+    height: 80px;
 }
 .card.hovercard .bottom {
     padding: 0 20px;
