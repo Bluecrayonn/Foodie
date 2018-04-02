@@ -185,7 +185,7 @@
 	window.onload=function() {
 		var date = new Date();
 		var sYear= date.getFullYear();
-		var eYear= date.getFullYear()-69;
+		var eYear= date.getFullYear()-69; 
 		var strYear="";
 		
 		for(var i=eYear; i<=sYear; i++){

@@ -36,15 +36,15 @@
 <link rel="stylesheet" href="/template/css/style.css">
 
 <!-- jQuery -->
-<script src="/template/js/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="/template/js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="/template/js/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="/template/js/jquery.waypoints.min.js"></script>
-<!-- Main JS -->
-<script src="/template/js/main.js"></script>
+	<script src="/template/js/jquery-3.3.1.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="/template/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="/template/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="/template/js/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="/template/js/main.js"></script>
 <!-- Modernizr JS -->
 <script src="/template/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
@@ -53,9 +53,7 @@
 	<![endif]-->
 
 <!-- include libraries(jQuery, bootstrap) -->
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+		
  		<!-- include summernote css/js -->
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
@@ -82,8 +80,12 @@
 		<!-- css  -->
 		<link rel="stylesheet" href="/template/css/style.css">
 		<link rel="stylesheet" href="/template/css/write_post.css">
+<<<<<<< HEAD
+		<script src="/template/js/functions.js"></script>
+=======
 		<link rel="stylesheet" href="/template/css/notice.css">
 		<script src="/template/js/functions.js"></script>
+>>>>>>> refs/heads/HongDasol
 <html>
 <head>
 <title>레시피 작성하기</title>

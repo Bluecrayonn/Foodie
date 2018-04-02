@@ -2,21 +2,18 @@ package models.social;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
+ 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.bson.BSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.jndi.MongoClientFactory;
 
 import models.SocialAddDAO;
 
@@ -30,213 +27,215 @@ import models.SocialAddDAO;
 @Repository
 public class SocialAddImpl implements SocialAddDAO {
 
-   @Autowired
-   SqlSessionFactory sqlfactory;
-   @Autowired
-   MongoTemplate mongoTemplate;
+	@Autowired
+	SqlSessionFactory sqlfactory;
+	@Autowired
+	@Qualifier("basic")
+	MongoTemplate mongoTemplate;
 
-   @Override // ADDFOLLOWING
-   public List<Map> addFollowing(long targetId, long ownerId) {
+	@Override // ADDFOLLOWING
+	public List<Map> addFollowing(long targetId, long ownerId) {
 
-      DBCollection mt = mongoTemplate.getCollection("follow");
-      mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
-            new BasicDBObject("$push", new BasicDBObject("TARGET_ID", targetId)));
+		DBCollection mt = mongoTemplate.getCollection("follow");
+		mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
+				new BasicDBObject("$push", new BasicDBObject("TARGET_ID", targetId)));
 
-      return null;
-   }
+		return null;
+	}
 
-   @Override // REMOVE FOLLOWING
-   public List<Map> removeFollowing(long targetId, long ownerId) {
-      DBCollection mt = mongoTemplate.getCollection("follow");
-      mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
-            new BasicDBObject("$pull", new BasicDBObject("TARGET_ID", targetId)));
+	@Override // REMOVE FOLLOWING
+	public List<Map> removeFollowing(long targetId, long ownerId) {
+		DBCollection mt = mongoTemplate.getCollection("follow");
+		mt.update(new BasicDBObject("ACCOUNT_ID", ownerId),
+				new BasicDBObject("$pull", new BasicDBObject("TARGET_ID", targetId)));
 
-      return null;
-   }
+		return null;
+	}
 
-   @Override // ADD BOOKMARK
-   public List<Map> addBookmarks(long postId, long userId) {
-      DBCollection mt = mongoTemplate.getCollection("follow");
-      mt.update(new BasicDBObject("ACCOUNT_ID", userId),
-            new BasicDBObject("$push", new BasicDBObject("BOOKMARK_ID", postId)));
-      return null;
-   }
+	@Override // ADD BOOKMARK
+	public List<Map> addBookmarks(long postId, long userId) {
+		DBCollection mt = mongoTemplate.getCollection("follow");
+		mt.update(new BasicDBObject("ACCOUNT_ID", userId),
+				new BasicDBObject("$push", new BasicDBObject("BOOKMARK_ID", postId)));
+		return null;
+	}
 
-   @Override // REMOVE BOOKMARK
-   public List<Map> removeBookmarks(long postId, long userId) {
-      DBCollection mt = mongoTemplate.getCollection("follow");
-      mt.update(new BasicDBObject("ACCOUNT_ID", userId),
-            new BasicDBObject("$pull", new BasicDBObject("BOOKMARK_ID", postId)));
-      return null;
-   }
+	@Override // REMOVE BOOKMARK
+	public List<Map> removeBookmarks(long postId, long userId) {
+		DBCollection mt = mongoTemplate.getCollection("follow");
+		mt.update(new BasicDBObject("ACCOUNT_ID", userId),
+				new BasicDBObject("$pull", new BasicDBObject("BOOKMARK_ID", postId)));
+		return null;
+	}
 
-   @Override
-   public int addFollowingRDB(Map map) {
-      // map= targetId, ownerId
+	@Override
+	public int addFollowingRDB(Map map) {
+		// map= targetId, ownerId
 
-      SqlSession sqlsession = sqlfactory.openSession();
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.addFollowing", map);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.addFollowing", map);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
+		}
 
-   }
-   public int addFollowingCountUpRDB(String accountId) {
-      // map= targetId, ownerId
+	}
+ 	public int addFollowingCountUpRDB(Long accountId) {
+		// map= targetId, ownerId
 
-      SqlSession sqlsession = sqlfactory.openSession();
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.countUpFollowing", accountId);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.countUpFollowing", accountId);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
+		}
 
-   }
-   public int addFollowingCountDownRDB(String accountId) {
-      // map= targetId, ownerId
+	}
+	public int addFollowingCountDownRDB(Long accountId) {
+		// map= targetId, ownerId
 
-      SqlSession sqlsession = sqlfactory.openSession();
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.countDownFollowing", accountId);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.countDownFollowing", accountId);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
+		}
 
-   }
+	}
 
-   @Override
-   public int removeFollowingRDB(Map map) {
-      SqlSession sqlsession = sqlfactory.openSession();
+	@Override
+	public int removeFollowingRDB(Map map) {
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.removeFollowing", map);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.removeFollowing", map);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
-    }
+		}
+ 	}
 
-   @Override
-   public int addBookmarksRDB(Map map) {
-      //postId , userId
-      SqlSession sqlsession = sqlfactory.openSession();
+	@Override
+	public int addBookmarksRDB(@RequestParam Map map) {
+		//postId , userId
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.addBookmarks", map);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.addBookmarks", map);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
-       
-   }
+		}
+		 
+	}
 
-   @Override
-   public int removeBookmarksRDB(Map map) {
-      SqlSession sqlsession = sqlfactory.openSession();
+	@Override
+	public int removeBookmarksRDB(Map map) {
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.removeBookmarks", map);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.removeBookmarks", map);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
-    }
-   public int bookMarkCountUpRDB(String accountId) {
-      // map= targetId, ownerId
+		}
+ 	}
+	public int bookMarkCountUpRDB(String postId) {
+		// map= targetId, ownerId
 
-      SqlSession sqlsession = sqlfactory.openSession();
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.countUpBookmark", accountId);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.countUpBookmark", postId);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
+		}
 
-   }
-   public int bookMarkCountDownRDB(String accountId) {
-      // map= targetId, ownerId
+	}
+	public int bookMarkCountDownRDB(String accountId) {
+		// map= targetId, ownerId
 
-      SqlSession sqlsession = sqlfactory.openSession();
+		SqlSession sqlsession = sqlfactory.openSession();
 
-      try {
+		try {
 
-         int result = sqlsession.insert("social.countDownBookmark", accountId);
-         System.out.println(result);
-         return result;
+			int result = sqlsession.insert("social.countDownBookmark", accountId);
+			System.out.println(result);
+			return result;
 
-      } catch (Exception e) {
-         e.printStackTrace();
-         return 0;
-      } finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
 
-         sqlsession.close();
+			sqlsession.close();
 
-      }
+		}
 
-   }
+	}
+
 
 }

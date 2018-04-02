@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+<!--  JDBC 드라이버 위치 설정 -->
+<classPathEntry location="C:\Users\1104-19\git\Foodie\WebContent\WEB-INF\lib\ojdbc8.jar"/>
+
+
+
+  <context id="context1">
+    <jdbcConnection connectionURL="jdbc:oracle:thin:@localhost:1521:xe" 
+    driverClass="oracle.jdbc.OracleDriver" 
+    password="oracle" 
+    userId="root" />
+    <javaModelGenerator targetPackage="models" 
+    targetProject="FinalProject_Foodie" />
+    <sqlMapGenerator targetPackage="models" 
+    targetProject="FinalProject_Foodie" />
+    <javaClientGenerator targetPackage="models" 
+    targetProject="FinalProject_Foodie" 
+    type="XMLMAPPER" />
+    <table schema="root" 
+    tableName="Foodie_member">
+     <!--  <columnOverride column="???" 
+      property="???" />  -->
+    </table>
+  </context>
+</generatorConfiguration>

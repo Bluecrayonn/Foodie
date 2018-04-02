@@ -40,7 +40,7 @@ public class LoginService {
 
 		} else if (loginImpl.emailCheck(email) == 2) {
 
-			Map rst = (Map) loginImpl.accountSearch(email);
+			Map rst =  loginImpl.accountSearch(email);
 			System.out.println(rst.toString());
 
 			int result = loginImpl.accountCheck(rst, email, password);
@@ -51,14 +51,14 @@ public class LoginService {
 		return 2;
 
 	}
-
+ 
 	public HashMap<String, String> setAuth(String email) {
 
-	      LinkedHashMap<String, List> result = new LinkedHashMap<>();
-	      Map user = loginImpl.accountSearch(email);
-	        
-	      return (HashMap<String, String>) user;
+		LinkedHashMap<String, List> result = new LinkedHashMap<>();
+		Map user = loginImpl.accountSearch(email);
+		  
+		return (HashMap<String, String>) user;
 
-	   }
+	}
 
 }

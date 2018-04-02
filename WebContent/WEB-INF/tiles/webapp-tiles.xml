@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
+ 
 <tiles-definitions>
 	<definition name="mainpage" template="/WEB-INF/views/mainpage.jsp"> <!-- 메인페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
@@ -9,7 +9,7 @@
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
 	<definition name="welcomepage" template="/WEB-INF/views/welcomepage.jsp"> <!-- 회원가입 완료 후 환영페이지 -->
-		<put-attribute name="nav" value="/WEB-INF/basic/welcome_nav.jsp"></put-attribute>
+		<put-attribute name="nav" value="/WEB-INF/basic/nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/basic/welcome.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
@@ -26,7 +26,7 @@
 		<put-attribute name="body" value="/WEB-INF/basic/profilemodify.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
-	<definition name="adminpage" template="/WEB-INF/views/adminpage.jsp"> <!-- 마트 관리자 통계/관리 페이지-->
+	<definition name="adminpage" template="/WEB-INF/views/adminpage.jsp"> <!-- 마트 관리자 통계/관리 페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/profile_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/basic/admin.jsp"></put-attribute>
@@ -35,31 +35,19 @@
 	<definition name="detailpage" template="/WEB-INF/views/detailpage.jsp"> <!-- 레시피 상세페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/basic/detail.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/post/main.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
-<!-- 	<definition name="writepage" template="/WEB-INF/views/writepage.jsp"> 레시피 작성페이지
-		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
-		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/basic/write.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
-	</definition> -->
-	<definition name="pwresetpage" template="/WEB-INF/views/pwresetpage.jsp"> <!-- 비밀번호 재설정 페이지-->
-		<put-attribute name="nav" value="/WEB-INF/basic/welcome_nav.jsp"></put-attribute>
-		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/basic/pwreset.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
-		</definition>
-	<definition name="write" template="/WEB-INF/views/write_post.jsp"><!-- 레시피 작성 페이지 -->
+	<definition name="writepage" template="/WEB-INF/views/writepage.jsp"> <!-- 레시피 작성페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/main_nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/write/main.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
-	</definition>
-	<definition name="dropoutpage" template="/WEB-INF/views/dropoutpage.jsp"><!-- 회원 탈퇴 작성 페이지 -->
+	</definition> 
+	<definition name="pwresetpage" template="/WEB-INF/views/pwresetpage.jsp"> <!-- 비밀번호 재설정 페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
-		<put-attribute name="body" value="/WEB-INF/basic/dropout.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/basic/pwreset.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

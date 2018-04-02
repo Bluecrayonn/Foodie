@@ -1,46 +1,68 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+ 
 import com.google.gson.Gson;
+import com.mongodb.WriteResult;
 
+import models.IngredientDao;
+import models.PostDao;
 import models.post.postListImpl;
 
 @Controller
 @RequestMapping("/foodie")
 public class PageContorller {
-	
 	@Autowired
 	postListImpl postlist;
+	@Autowired
+	PostDao postDao;
+	@Autowired
+	IngredientDao ingredientDao;
 	Gson gson;
 	
 	@RequestMapping("/main.do")
-	public String mainpage(HttpServletRequest req,Map map) {
+	public String mainpage(HttpServletRequest req,Map map) throws IOException {
 		gson = new Gson();
+		
 		req.setAttribute("postList", postlist.getAllPostList( ));
+		postlist.ingreMapreduce();
 		return "mainpage";
+	}
+	@RequestMapping("/search.do")
+	public String search(HttpServletRequest req,@RequestParam Map<String,String> map)	{
+		postlist.serchListUpdate(map);
+ 		req.setAttribute("postList", postlist.searchPostList(map));
+		
+		
+		
+		return "mainpage";
+	}
+	
+	@RequestMapping(path="/keywordlist.do",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String keywordList(@RequestParam String term) {
+		
+		gson = new Gson();
+		
+		return gson.toJson(postlist.recentSearchKeywords(term));
+		
 	}
 	@RequestMapping("/welcome.do")
 	public String welcomepage() {
 		return "welcomepage";
-	}
-	@RequestMapping("/search.do")
-	public String search(HttpServletRequest req,@RequestParam Map<String,String> map)	{
-		System.out.println(map);
-		System.out.println(map);
-		req.setAttribute("postList", postlist.searchPostList(map));	
-		return "mainpage";
-	}
-	@RequestMapping("/join.do")
-	public String joinpage() {
-		return "joinpage";
 	}
 	@RequestMapping("/profile.do")
 	public String profilepage() {
@@ -50,26 +72,27 @@ public class PageContorller {
 	public String profilemodifypage() {
 		return "profilemodifypage";
 	}
+	
+	// 진입시 parameter로 post_id를 넣어줍니다.
 	@RequestMapping("/detail.do")
-	public String searchpage() {
-		return "searchpage";
-	}
-	@RequestMapping("/detailrecipe.do")
-	public String detailpage() {
+	public String detailpage(@RequestParam int pid, ModelMap map) {
+		map.put("post", postDao.getOnePost(pid));
+		map.put("ingredient",ingredientDao.getIngredientById(pid));
 		return "detailpage";
 	}
 	@RequestMapping("/writerecipe.do")
 	public String writerecipepage() {
 		return "detailpage";
 	}
-	@RequestMapping("/pwreset.do")
+	@RequestMapping("pwreset.do")
 		public String pwresetpage() {
 			return "pwresetpage";
 		}
-	@RequestMapping("/admin.do")
+	@RequestMapping("admin.do")
 	public String adminpage() {
-		return "adminpage";
+		return "adminpage"; 
 	}
+
 	@RequestMapping("/dropout.do")
 	public String dropoutpage() {
 		return "dropoutpage";

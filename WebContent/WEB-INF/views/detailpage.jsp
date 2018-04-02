@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +38,7 @@
 <link rel="stylesheet" href="/template/css/notice.css">
 
 <!-- jQuery -->
-<script src="/template/js/jquery.min.js"></script>
+<script src="/template/js/jquery-3.3.1.min.js"></script>
 <!-- jQuery Easing -->
 <script src="/template/js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
@@ -55,7 +56,7 @@
 
 <html>
 <head>
-<title>Foodie-profile</title>
+<title>Foodie-post</title>
 <style type="text/css">
 h1,h2,h3,h4,h5,h6,a{
 	font-family: '나눔고딕'
