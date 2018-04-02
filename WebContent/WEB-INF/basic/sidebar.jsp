@@ -222,7 +222,7 @@
 	}
 	window.onload = function() {
 		var sYear = 2018
-		var eYear = 1968
+		var eYear = 1949
 		var strYear = "";
 
 		for (var i = eYear; i <= sYear; i++) {

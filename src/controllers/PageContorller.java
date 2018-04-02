@@ -90,6 +90,11 @@ public class PageContorller {
 		}
 	@RequestMapping("admin.do")
 	public String adminpage() {
-		return "adminpage";
+		return "adminpage"; 
+	}
+
+	@RequestMapping("/dropout.do")
+	public String dropoutpage() {
+		return "dropoutpage";
 	}
 }

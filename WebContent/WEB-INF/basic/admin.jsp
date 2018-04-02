@@ -1,12 +1,381 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ taglib uri = "http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-	.center{
-		margin: auto;
-		text-align: center;
-	}
+.panel.panel-horizontal {
+    display:table;
+    width:100%;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-body, .panel.panel-horizontal > .panel-footer {
+    display:table-cell;
+}
+.panel.panel-horizontal > .panel-heading, .panel.panel-horizontal > .panel-footer {
+    width: 25%;
+    border:0;
+    vertical-align: middle;
+}
+.panel.panel-horizontal > .panel-heading {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+}
+.panel.panel-horizontal > .panel-footer {
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 4px;
+}
 </style>
+<div> 
+    <div class="card hovercard">
+    
+        <div class="card-background" style="background-image:URL(/template/images/test1.jpg); height: 300px">
+            <img class="card-bkimg">
+        </div>
+        <div class="useravatar">
+            <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
+        </div>
+    </div>
+    </div>
+<div style="text-align: center;">
+                    <h1 style="color: #F2BF2B;">${sessionScope.auth.NAME}´ÔÀÇ ´ë½Ãº¸µå ÀÔ´Ï´Ù.</h1> <h3>OO¸¶Æ®</h3>
+            </div>
+ <div class="container">
+ <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+ <select class="form-control" id="user" style="font-size: 12pt; width: 300px; margin-left: 150px;">
+        <option>¾çÆÄ</option>
+      </select>
+      <br/>
+<table class="table">
+                <thead>
+                    <tr class="filters">
+                        <th>¿ù</th>
+                        <th>È­</th>
+                        <th>¼ö</th>
+                        <th>¸ñ</th>
+                        <th>±İ</th>
+                        <th>Åä</th>
+                        <th>ÀÏ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>200¿ø</td>
+                        <td>200¿ø</td>
+                        <td>200¿ø</td>
+                        <td>200¿ø</td>
+                        <td>200¿ø</td>
+                        <td>200¿ø</td>
+                        <td>200¿ø</td>
+                    </tr>
+                    </tbody>
+                    </table>
 
-<div class="center">
-			ë§ˆíŠ¸ ê´€ë¦¬ììš© í†µê³„/ê´€ë¦¬ í˜ì´ì§€
+<div class="panel panel-default panel-horizontal" style="margin-right: 200px;">
+    <div class="panel-heading">
+  <h3 class="panel-title" style="width: 200px;">¾çÆÄ °Ë»ö·®</h3>
+        <small>(ÃÖ±Ù 1ÁÖÀÏ)</small>
+   <div class="panel-body">¼ºº°º° Â÷Æ®</div>
+   <div id="chart_sex" style="width: 800px;"></div>
+   <div class="panel-body">³ªÀÌº° Â÷Æ®</div>
+   <div>
+   <select class="form-control" id="age" style="font-size: 12pt;">
+        <option>20´ë</option>
+        <option>30´ë</option>
+        <option>40´ë</option>
+        <option>50´ë</option>
+        <option>60´ë</option>
+      </select>
+   <div id="piechart_20age" style="width: 800px; height: 300px;"></div> 
+   <div id="piechart_30age" style="width: 800px; height: 300px;"></div> 
+   <div id="piechart_40age" style="width: 800px; height: 300px;"></div> 
+   <div id="piechart_50age" style="width: 800px; height: 300px;"></div> 
+   <div id="piechart_60age" style="width: 800px; height: 300px;"></div> 
+   </div>
 </div>
+</div>
+<div>
+    <div>
+<h3 class="panel-title" style="width: 200px;">»óÇ°µî·ÏÀÌ ÇÊ¿äÇÏ½Å°¡¿ä?</h3><br/> 
+<h4 class="text">Àú¹ø¿¡ µî·ÏÇÑ ´Ü°¡ Á¤º¸°¡ ÇÊ¿äÇÏ¼¼¿ä? <small>(ÃÖ±Ù 1ÁÖÀÏ)</small></h4> 
+      <select class="form-control" id="day" style="font-size: 12pt; width: 800px;">
+      </select>
+      <br/>
+      <div class="container" style="width: 800px;">
+    <div class="row" style="width: 800px;">
+        <div class="panel panel-primary filterable" style="border: none;">
+            <div class="panel-heading" style="background-color: #F2BF2B; border: none;">
+                <h3 class="panel-title">¿äÀÏº° ´Ü°¡</h3>
+                <div class="pull-right">
+                	<button class="btn btn-default btn-xs">µî·Ï</button>
+                    <button class="btn btn-default btn-xs btn-filter">Filter</button>
+                    
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="filters">
+                        <th><input type="text" class="form-control" placeholder="Àç·á ÀÌ¸§" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="°¡°İ" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="´ÜÀ§" disabled></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>¾çÆÄ</td>
+                        <td>200</td>
+                        <td>°³</td>
+                    </tr>
+                    <tr>
+                        <td>´ç±Ù</td>
+                        <td>300</td> 
+                        <td>°³</td>
+                    </tr>
+		  	<tbody id="ingredients">
+                   	<tr id="dummy_row" style="display:none;">
+		  			<td><label class="lb_recipe" for="ig_name"></label><input type="text" name="ig_name" disabled></td>
+		  			<td><label class="lb_recipe" for="ig_amount"></label><input type="text" name="ig_amount" disabled></td>
+		  			<td><label class="lb_recipe" for="ig_unit"></label><input type="text" name="ig_unit" disabled></td>
+				</tr>
+        		<tr class="ig_row" style="border-collapse: inherit;">
+		  			<td><label class="lb_recipe" for="ig_name"></label><input type="text" name="ig_name"></td>
+		  			<td><label class="lb_recipe" for="ig_amount"></label><input type="text" name="ig_amount"></td>
+		  			<td><label class="lb_recipe" for="ig_unit"></label><input type="text" name="ig_unit"></td>
+		  			
+		  			
+		  			<td id="only_one"><a href="javascript:void(0);" onclick="ig_add();">
+			          	<span class="glyphicon glyphicon-plus-sign" style="color:#F2BF2B;"></span>
+			        </a>
+			        <a href="javascript:void(0);" onclick="ig_remove();">
+	          			<span class="glyphicon glyphicon-minus-sign" style="color:#F2BF2B;"></span>
+	        		</a>
+	        		</td>	        		
+        		</tr>
+        	</tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+function ig_add() {
+	var cloneRow = $("#dummy_row").clone();
+	cloneRow.find("input").each(function() {
+		$(this).prop("disabled", false);
+	});
+	cloneRow.find("select").each(function() {
+		$(this).prop("disabled", false);
+	});
+	cloneRow.attr("id","");
+	cloneRow.attr("class","ig_row");
+	cloneRow.appendTo($("#ingredients"));
+	cloneRow.css("display","");
+	$("#only_one").appendTo(cloneRow);
+	}
+	
+	function ig_remove() {
+		if($(".ig_row").length > 1) {
+			console.log($(".ig_row").length);
+   		$("#only_one").appendTo($(".ig_row:last").prev());
+   		$(".ig_row:last").remove();
+		}
+	}
+	
+	/* window.onload=function() {
+		var sDay=new Date(Date.now());
+		var eDay=new Date(Date.now()-7);
+		var strDay="";
+		
+		for(var i=eDay; i<=sDay; i++){
+			strDay += "<option value="+i+">"+i+"</option>";
+		}
+		document.getElementById("day").innerHTML=strDay
+	} */
+	
+	$(document).ready(function(){
+	    $('.filterable .btn-filter').click(function(){
+	        var $panel = $(this).parents('.filterable'),
+	        $filters = $panel.find('.filters input'),
+	        $tbody = $panel.find('.table tbody');
+	        if ($filters.prop('disabled') == true) {
+	            $filters.prop('disabled', false);
+	            $filters.first().focus();
+	        } else {
+	            $filters.val('').prop('disabled', true);
+	            $tbody.find('.no-result').remove();
+	            $tbody.find('tr').show();
+	            $("#dummy_row").hide();
+	        }
+	    });
+
+	    $('.filterable .filters input').keyup(function(e){
+	        /* Ignore tab key */
+	        var code = e.keyCode || e.which;
+	        if (code == '9') return;
+	        /* Useful DOM data and selectors */
+	        var $input = $(this),
+	        inputContent = $input.val().toLowerCase(),
+	        $panel = $input.parents('.filterable'),
+	        column = $panel.find('.filters th').index($input.parents('th')),
+	        $table = $panel.find('.table'),
+	        $rows = $table.find('tbody tr');
+	        /* Dirtiest filter function ever ;) */
+	        var $filteredRows = $rows.filter(function(){
+	            var value = $(this).find('td').eq(column).text().toLowerCase();
+	            return value.indexOf(inputContent) === -1;
+	        });
+	        /* Clean previous no-result if exist */
+	        $table.find('tbody .no-result').remove();
+	        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+	        $rows.show();
+	        $filteredRows.hide();
+	        /* Prepend no-result row if all rows are filtered */
+	        if ($filteredRows.length === $rows.length) {
+	            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+	        }
+	    });
+	});
+	
+	/*¼ºº° Â÷Æ®*/
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMaterial);
+
+function drawMaterial() {
+      var data = google.visualization.arrayToDataTable([
+        ['¼ºº°', '³²', '¿©'],
+        ['³²', 8175000, 8008000],
+        ['¿©', 3792000, 3694000]
+      ]);
+
+      var materialOptions = {
+        chart: {
+          title: '¼ºº°¿¡ µû¸¥ °Ë»ö·®'
+        },
+        hAxis: {
+          title: '°Ë»ö·®',
+          minValue: 0,
+        },
+        vAxis: {
+          title: '¼ºº°'
+        },
+        bars: 'horizontal'
+      };
+      var materialChart = new google.charts.Bar(document.getElementById('chart_sex'));
+      materialChart.draw(data, materialOptions);
+    }
+    
+/*20´ë ³ªÀÌ Â÷Æ®*/
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart20);
+
+function drawChart20() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['³ªÀÌ', '20´ë'],
+    ['ÃÊ¹İ',     11],
+    ['Áß¹İ',      2],
+    ['ÈÄ¹İ',  11]
+  ]);
+
+  var options = {
+    title: '³ªÀÌ¿¡ µû¸¥ °Ë»ö·®'
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart_20age'));
+
+  chart.draw(data, options);
+}
+
+/*30´ë ³ªÀÌ Â÷Æ®*/
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart30);
+
+function drawChart30() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['³ªÀÌ', '30´ë'],
+    ['ÃÊ¹İ',     11],
+    ['Áß¹İ',      2],
+    ['ÈÄ¹İ',  11]
+  ]);
+
+  var options = {
+    title: '³ªÀÌ¿¡ µû¸¥ °Ë»ö·®(30´ë)'
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart_30age'));
+
+  chart.draw(data, options);
+}
+
+/*40´ë ³ªÀÌ Â÷Æ®*/
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart40);
+
+function drawChart40() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['³ªÀÌ', '40´ë'],
+    ['ÃÊ¹İ',     11],
+    ['Áß¹İ',      2],
+    ['ÈÄ¹İ',  11]
+  ]);
+
+  var options = {
+    title: '³ªÀÌ¿¡ µû¸¥ °Ë»ö·®(40´ë)'
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart_40age'));
+
+  chart.draw(data, options);
+}
+
+/*50´ë ³ªÀÌ Â÷Æ®*/
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart50);
+
+function drawChart50() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['³ªÀÌ', '50´ë'],
+    ['ÃÊ¹İ',     11],
+    ['Áß¹İ',      2],
+    ['ÈÄ¹İ',  11]
+  ]);
+
+  var options = {
+    title: '³ªÀÌ¿¡ µû¸¥ °Ë»ö·®(50´ë)'
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart_50age'));
+
+  chart.draw(data, options);
+}
+
+/*60´ë ³ªÀÌ Â÷Æ®*/
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart60);
+
+function drawChart60() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['³ªÀÌ', '60´ë'],
+    ['ÃÊ¹İ',     11],
+    ['Áß¹İ',      2],
+    ['ÈÄ¹İ',  11]
+  ]);
+
+  var options = {
+    title: '³ªÀÌ¿¡ µû¸¥ °Ë»ö·®(60´ë)'
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart_60age'));
+
+  chart.draw(data, options);
+}
+
+</script>

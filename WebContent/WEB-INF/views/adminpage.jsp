@@ -36,6 +36,7 @@
 <link rel="stylesheet" href="/template/css/style.css">
 <link rel="stylesheet" href="/template/css/notice.css">
 
+
 <!-- jQuery -->
 <script src="/template/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
@@ -55,12 +56,19 @@
 
 <html>
 <head>
-<title>Foodie-admin</title>
+<title>Foodie-profile</title>
+<style type="text/css">
+h1,h2,h3,h4,h5,h6,a{
+	font-family: '나눔고딕'
+}
+</style>
 </head>
 <body>
-		<tiles:insertAttribute name="nav" />
-		<tiles:insertAttribute name="sidebar" />
-		<tiles:insertAttribute name="body" />
-		<tiles:insertAttribute name="footer" />
+<div>
+	<tiles:insertAttribute name = "nav" />
+	<tiles:insertAttribute name = "sidebar" />
+	<tiles:insertAttribute name = "body" />
+	<tiles:insertAttribute name = "footer" />
+</div>
 </body>
 </html>

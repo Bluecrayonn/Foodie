@@ -20,11 +20,10 @@
             <img class="card-bkimg" style="color: black;">
         </div>
         <div class="useravatar">
-            <img style="color: black;">
-        </div>
-        <div class="card-info" style="width: 800px; margin: auto;"> <span class="card-title">${sessionScope.auth.NAME}  님</span>
 
-        </div>
+            <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
+        </div> <br/>
+        <div class="card-info" style="width: 800px; margin: auto; height: 30px"> <span class="card-title">${sessionScope.auth.NAME}  님</span></div>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="..." style="width: 800px; margin: auto; outline: none;">
         <div class="btn-group" role="group">
