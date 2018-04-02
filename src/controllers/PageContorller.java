@@ -32,6 +32,7 @@ public class PageContorller {
 	@Autowired
 	IngredientDao ingredientDao;
 	Gson gson;
+	
 	@RequestMapping("/main.do")
 	public String mainpage(HttpServletRequest req,Map map) throws IOException {
 		gson = new Gson();
@@ -42,8 +43,22 @@ public class PageContorller {
 	}
 	@RequestMapping("/search.do")
 	public String search(HttpServletRequest req,@RequestParam Map<String,String> map)	{
-		req.setAttribute("postList", postlist.searchPostList(map));
+		postlist.serchListUpdate(map);
+ 		req.setAttribute("postList", postlist.searchPostList(map));
+		
+		
+		
 		return "mainpage";
+	}
+	
+	@RequestMapping(path="/keywordlist.do",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String keywordList(@RequestParam String term) {
+		
+		gson = new Gson();
+		
+		return gson.toJson(postlist.recentSearchKeywords(term));
+		
 	}
 	@RequestMapping("/welcome.do")
 	public String welcomepage() {

@@ -22,7 +22,7 @@
         <div class="useravatar">
             <img style="color: black;">
         </div>
-        <div class="card-info" style="width: 800px; margin: auto;"> <span class="card-title">${sessionScope.auth.user[0].NAME}  님</span>
+        <div class="card-info" style="width: 800px; margin: auto;"> <span class="card-title">${sessionScope.auth.NAME}  님</span>
 
         </div>
     </div>

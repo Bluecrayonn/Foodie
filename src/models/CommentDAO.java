@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -29,6 +30,7 @@ import com.mongodb.client.model.DBCollectionFindOptions;
 public class CommentDAO {
 
 	@Autowired
+	@Qualifier("basic")
 	MongoTemplate template;
 
 	public String getComment(long postId) {

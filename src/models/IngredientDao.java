@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -15,6 +16,7 @@ import com.google.gson.Gson;
 @Repository
 public class IngredientDao {
 	@Autowired 
+	@Qualifier("basic")
 	MongoTemplate template;
 	
 	public List<LinkedHashMap> searchStartsWith(String syllable) {

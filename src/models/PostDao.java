@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -19,6 +20,7 @@ import com.mongodb.WriteResult;
 @Repository
 public class PostDao {
 	@Autowired 
+	@Qualifier("basic")
 	MongoTemplate template;
 	@Autowired
 	SqlSessionFactory factory;
