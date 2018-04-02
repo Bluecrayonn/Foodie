@@ -220,16 +220,16 @@
 			})
 		}
 	}
-	window.onload = function() {
-		var sYear = 2018
-		var eYear = 1949
-		var strYear = "";
-
-		for (var i = eYear; i <= sYear; i++) {
-			strYear += "<option value="+i+">" + i + "</option>";
+	window.onload=function() {
+		var date = new Date();
+		var sYear= date.getFullYear();
+		var eYear= date.getFullYear()-69; 
+		var strYear="";
+		
+		for(var i=eYear; i<=sYear; i++){
+			strYear += "<option value="+i+">"+i+"</option>";
 		}
- 
-		document.getElementById("year").innerHTML = strYear
+		document.getElementById("year").innerHTML=strYear
 	}
 
 	$("#email-check")
