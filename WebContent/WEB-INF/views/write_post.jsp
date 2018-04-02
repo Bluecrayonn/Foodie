@@ -21,33 +21,32 @@
 <meta name="twitter:url" content="" />
 <meta name="twitter:card" content="" />
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
-<!-- Google Fonts -->
+Google Fonts
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
-<!-- Animate -->
+Animate
 <link rel="stylesheet" href="/template/css/animate.css">
-<!-- Icomoon -->
+Icomoon
 <link rel="stylesheet" href="/template/css/icomoon.css">
-<!-- Bootstrap  -->
+Bootstrap 
 <link rel="stylesheet" href="/template/css/bootstrap.css">
 
-<link rel="stylesheet" href="/template/css/style.css">
+<link rel="stylesheet" href="/template/css/style.css"> -->
 
 <!-- jQuery -->
-	<script src="/template/js/jquery-3.3.1.min.js"></script>
-	<!-- jQuery Easing -->
+  <script src="/template/js/jquery-3.3.1.min.js"></script>
+	jQuery Easing
 	<script src="/template/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
+	Bootstrap
 	<script src="/template/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
+	Waypoints
 	<script src="/template/js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
+	Main JS
 	<script src="/template/js/main.js"></script>
-<!-- Modernizr JS -->
-<script src="/template/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
+Modernizr JS
+<script src="/template/js/modernizr-2.6.2.min.js"></script> 
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
@@ -79,14 +78,13 @@
 		<link rel="stylesheet" href="/template/css/icomoon.css">
 		<!-- css  -->
 		<link rel="stylesheet" href="/template/css/style.css">
-		<link rel="stylesheet" href="/template/css/write_post.css">
-<<<<<<< HEAD
-		<script src="/template/js/functions.js"></script>
-=======
 		<link rel="stylesheet" href="/template/css/notice.css">
-		<script src="/template/js/functions.js"></script>
->>>>>>> refs/heads/HongDasol
-<html>
+		<link rel="stylesheet" href="/css/writepage.css">
+ 
+		<script src="/js/functions.js"></script>
+		<script src="/js/bootstrap-confirmation.js"></script>
+		
+ <html>
 <head>
 <title>레시피 작성하기</title>
 </head>

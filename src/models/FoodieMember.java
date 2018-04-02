@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 //
+import java.lang.Integer;
 //DAO 역할
 
 @Entity
@@ -25,10 +26,26 @@ public class FoodieMember {
 	//이메일 정규식 
 	// 역슬래시가 들어가면 이스캐이프 문자로 인식하므로 역슬래시를 사용하려면 두개씩 필요
    private String email;
+	
+	private String sex;
+	private int year;
 
 	
 
-   public String getNickname() {
+  
+public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+public String getNickname() {
        return nickname;
    }
    public void setNickname(String nickname) {

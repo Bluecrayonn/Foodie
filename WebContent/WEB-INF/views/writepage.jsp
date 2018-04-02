@@ -76,7 +76,10 @@
 		<link rel="stylesheet" href="/template/css/icomoon.css">
 		<!-- css  -->
 		<link rel="stylesheet" href="/template/css/style.css">
-		<script src="/js/functions.js"></script>
+				<link rel="stylesheet" href="/css/writepost.css">
+		
+		 
+		
 <html>
 <head>
 

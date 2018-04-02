@@ -1,11 +1,14 @@
 package controllers;
 
 import java.io.IOException;
+import java.security.Timestamp;
+import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +46,12 @@ public class PageContorller {
 	}
 	@RequestMapping("/search.do")
 	public String search(HttpServletRequest req,@RequestParam Map<String,String> map)	{
-		postlist.serchListUpdate(map);
+		HttpSession session = req.getSession();
+		int age = (int)(((Map)session.getAttribute("auth")).get("BIRTH"));
+		String gender = (String)(((Map)session.getAttribute("auth")).get("GENDER"));
+		
+		
+		postlist.serchListUpdate(map, gender, age);;
  		req.setAttribute("postList", postlist.searchPostList(map));
 		
 		

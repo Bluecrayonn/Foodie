@@ -76,6 +76,7 @@ public class postListImpl implements postListDAO {
 	}
 
 	public List<Map> searchPostList(Map map) {
+		
 
 		SqlSession session = factory.openSession();
 		String[] keywordArray = ((String) map.get("keywords")).split(" ");
@@ -122,7 +123,9 @@ public class postListImpl implements postListDAO {
 		return null;
 	}
 
-	public void serchListUpdate(Map map) {
+	public void serchListUpdate(Map map,String gender,int age) {
+		map.put("gender",gender);
+		map.put("age", age);
 
 		String[] keywordArray = ((String) map.get("keywords")).split(" ");
 		List<String> keywordList = new ArrayList<>(Arrays.asList(keywordArray));
@@ -136,6 +139,8 @@ public class postListImpl implements postListDAO {
 		HashMap<String, Object> keywordMap = new HashMap<>();
 		keywordMap.put("time_line", System.currentTimeMillis());
 		keywordMap.put("keywords", keywordList);
+		keywordMap.put("gender",gender);
+		keywordMap.put("age",age);
 		template.insert(keywordMap, "search_log_" + date.toString());
 
 	}

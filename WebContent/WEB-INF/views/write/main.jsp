@@ -20,9 +20,11 @@
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
-<!-- <link rel="stylesheet" href="/css/write_post.css"> -->
-<script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
+<link rel="stylesheet" href="/css/writepage.css">
+<script src="/js/functions.js?<%=(int) (Math.random() * 10)%>"></script>
 <script src="/js/bootstrap-confirmation.js"></script>
+
+
 </head>
 <body>
 	<c:set value="${post ne null && post != ''}" var="isMod" />
@@ -316,103 +318,117 @@
 			});
 		}
 		var onRegisterClick = function(e) {
-	        var queryString = $("#register-ingredient").serialize() ;
-			console.log("query: "+queryString);
-	        $.ajax({
-	            type : 'post',
-	            url : '/foodie/write/register_ingredient.do',
-	            data : queryString,
-	            dataType : 'json',
-	            success : function(json){
-	                alert("등록성공")
-	            },
-	        });
-	    }
-		
+			var queryString = $("#register-ingredient").serialize();
+			console.log("query: " + queryString);
+			$.ajax({
+				type : 'post',
+				url : '/foodie/write/register_ingredient.do',
+				data : queryString,
+				dataType : 'json',
+				success : function(json) {
+					alert("등록성공")
+				},
+			});
+		}
+
 		var onConfirmClick = function() {
 			var title = '재료등록';
-			var body =  '<div class="modal-register-body">';
-				body += '<form id="register-ingredient" role="form">';
-				body += '<div class="form-group">';
-				body += '<label for="ig_name"> 재료명</label>'; 
-				body += '<input type="text" class="form-control" name="name" id="ig_name" placeholder="마늘, 와사비, 소고기 등심, 삼겹살 ...">';
-				body += '</div>';
-				body += '<div class="form-group">';
-				body += '<label for="ig_unit"> 단위</label>'; 
-				body += '<input type="text" class="form-control" name="unit" id="ig_unit" placeholder="g, kg, ml, l, 마리, 단, 묶음 ...">';
-				body += '</div>';
-				body += '<div class="form-group">';
-				body += '<label for="ig_price"> 단위당 가격</label>'; 
-				body += '<input type="text" class="form-control" name="price" id="ig_price" placeholder="해당 단위, 1g, 1kg, 1마리 당 가격을 입력해주세요.">';
-				body += '</div>';
-				body += '</form>';
-				body += '</div>';
+			var body = '<div class="modal-register-body">';
+			body += '<form id="register-ingredient" role="form">';
+			body += '<div class="form-group">';
+			body += '<label for="ig_name"> 재료명</label>';
+			body += '<input type="text" class="form-control" name="name" id="ig_name" placeholder="마늘, 와사비, 소고기 등심, 삼겹살 ...">';
+			body += '</div>';
+			body += '<div class="form-group">';
+			body += '<label for="ig_unit"> 단위</label>';
+			body += '<input type="text" class="form-control" name="unit" id="ig_unit" placeholder="g, kg, ml, l, 마리, 단, 묶음 ...">';
+			body += '</div>';
+			body += '<div class="form-group">';
+			body += '<label for="ig_price"> 단위당 가격</label>';
+			body += '<input type="text" class="form-control" name="price" id="ig_price" placeholder="해당 단위, 1g, 1kg, 1마리 당 가격을 입력해주세요.">';
+			body += '</div>';
+			body += '</form>';
+			body += '</div>';
 
 			var btn1 = {
-				Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
-				Css:"btn-success btn-default pull-left",
-				Callback:onRegisterClick
-				};
+				Value : '<span class="glyphicon glyphicon-ok"></span>등록하기',
+				Css : "btn-success btn-default pull-left",
+				Callback : onRegisterClick
+			};
 			var btn2 = {
-				Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
-				Css:"btn-danger btn-default pull-left",
-				Callback:""
-				};
-			var buttons = [btn1,btn2];
-			BstrapModal.Close();	
+				Value : '<span class="glyphicon glyphicon-remove"></span>아니오',
+				Css : "btn-danger btn-default pull-left",
+				Callback : ""
+			};
+			var buttons = [ btn1, btn2 ];
+			BstrapModal.Close();
 			new BstrapModal(title, body, buttons).Show();
 		}
-		$(document).ready(function() {
-			$("#thumbnail").change(function() {
-				console.log(this.files[0]);
-				if (!this.files[0].type.startsWith('image')) {
-					window.alert("이미지 파일만 선택가능합니다.");
-					this.value = "";
-				} else {
-					var reader = new FileReader();
-					reader.readAsDataURL(this.files[0]);
-					reader.onload = function() {
-						$("#preview").attr("src", this.result);
-					}
-				}
-			});
-			$("#preview").click(function() {
-				$("#thumbnail").click();
-			});
+		$(document)
+				.ready(
+						function() {
+							$("#thumbnail").change(function() {
+								console.log(this.files[0]);
+								if (!this.files[0].type.startsWith('image')) {
+									window.alert("이미지 파일만 선택가능합니다.");
+									this.value = "";
+								} else {
+									var reader = new FileReader();
+									reader.readAsDataURL(this.files[0]);
+									reader.onload = function() {
+										$("#preview").attr("src", this.result);
+									}
+								}
+							});
+							$("#preview").click(function() {
+								$("#thumbnail").click();
+							});
 
-			$(".ig_name").focusout(function() {
-				console.log($(this).val());
-				$.ajax({
-		            type : 'get',
-		            url : '/foodie/write/ingredient_exist.do',
-		            data : 'name='+$(this).val(),
-		            dataType : 'text',
-		            success : function(rst){
-		                if(rst=='false') {
-		                	// TODO: 재료, 단위를 키로 잡아야함
-		    				var title = '재료등록';
-		    				var body =  '<div class="modal-confirm-body">';
-		    					body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
-		    					body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
-		    					body += '</div>'
-		    				var btn1 = {
-		    					Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
-		    					Css:"btn-success btn-default pull-left",
-		    					Callback:onConfirmClick
-		    					};
-		    				var btn2 = {
-		    					Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
-		    					Css:"btn-danger btn-default pull-left",
-		    					Callback:""
-		    					};
-		     				var buttons = [btn1,btn2];
-		    				
-		    				new BstrapModal(title, body, buttons).Show();
-		                }
-		            },
-		        });
-			});
-		});
+							$(".ig_name")
+									.focusout(
+											function() {
+												console.log($(this).val());
+												$
+														.ajax({
+															type : 'get',
+															url : '/foodie/write/ingredient_exist.do',
+															data : 'name='
+																	+ $(this)
+																			.val(),
+															dataType : 'text',
+															success : function(
+																	rst) {
+																if (rst == 'false') {
+																	// TODO: 재료, 단위를 키로 잡아야함
+																	var title = '재료등록';
+																	var body = '<div class="modal-confirm-body">';
+																	body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
+																	body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
+																	body += '</div>'
+																	var btn1 = {
+																		Value : '<span class="glyphicon glyphicon-ok"></span>등록하기',
+																		Css : "btn-success btn-default pull-left",
+																		Callback : onConfirmClick
+																	};
+																	var btn2 = {
+																		Value : '<span class="glyphicon glyphicon-remove"></span>아니오',
+																		Css : "btn-danger btn-default pull-left",
+																		Callback : ""
+																	};
+																	var buttons = [
+																			btn1,
+																			btn2 ];
+
+																	new BstrapModal(
+																			title,
+																			body,
+																			buttons)
+																			.Show();
+																}
+															},
+														});
+											});
+						});
 	</script>
 </body>
 </html>

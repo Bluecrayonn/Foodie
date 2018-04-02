@@ -10,7 +10,7 @@
 		<result property="PASSWORD" column="PASSWORD" />
 		<result property="NAME" column="NAME" />
 		<result property="GENDER" column="GENDER" />
-		<result property="BIRTH" column="BIRTH"  />
+		<result property="BIRTH" column="BIRTH" javaType="java.lang.Integer" jdbcType="NUMERIC"  />
 		<result property="FOLLOW_COUNT" column="FOLLOW_COUNT" javaType="java.lang.Long" jdbcType="NUMERIC"/>
 		<result property="AREA" column="AREA" />
  
