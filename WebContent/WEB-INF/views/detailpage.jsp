@@ -38,7 +38,7 @@
 <link rel="stylesheet" href="/template/css/notice.css">
 
 <!-- jQuery -->
-<script src="/template/js/jquery.min.js"></script>
+<script src="/template/js/jquery-3.3.1.min.js"></script>
 <!-- jQuery Easing -->
 <script src="/template/js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
