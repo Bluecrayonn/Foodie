@@ -77,7 +77,7 @@
    <div id="chart_sex" style="width: 800px;"></div>
    <div class="panel-body">나이별 차트</div>
    <div>
-   <select name = "age" class="form-control" id="age" style="font-size: 12pt;">
+   <select class="ages" name = "age" class="form-control" id="age" style="font-size: 12pt;">
         <option value="20">20대</option>
         <option value="30">30대</option>
         <option value="40">40대</option>
@@ -269,7 +269,7 @@ function drawMaterial() {
     }
     
 /*20대 나이 차트*/
-google.charts.load('current', {'packages':['corechart']});
+/* google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart20);
 
 function drawChart20() {
@@ -288,53 +288,63 @@ function drawChart20() {
   var chart = new google.visualization.PieChart(document.getElementById('piechart_20age'));
 
   chart.draw(data, options);
-}
+} */
 
 /*30대 나이 차트*/
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart30);
+/* google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart30); 
 
-var a = $('#').click(function drawChart30() {
+function drawChart30(obj) {
 
-  var data = google.visualization.arrayToDataTable([
-    ['나이', '30대'],
-    ['초반',     11],
-    ['중반',      2],
-    ['후반',  11]
-  ]);
+	
+	console.log(obj);
+	
+ 
 
-  var options = {
-    title: '나이에 따른 검색량(30대)'
-  };
+	} */
+$('.ages').change(function()	{
+	
+	$.ajax("",{
+		"method":"post",
+		"async":true,
+		"data":{
+			"ages":$(this).val();
+		}
+	}).done(function(){
+		console.log($(this).val());
+		var data = google.visualization.arrayToDataTable([
+		    ['나이', $(this).val()+'대'],
+		    ['초반(0~3)',     11],
+		    ['중반(4~6)',      2],
+		    ['후반(7~9)',  11]
+		  ]);
 
-  var chart = new google.visualization.PieChart(document.getElementById('piechart_30age'));
+		  var options = {
+		    title: '나이에 따른 검색량('+$(this).val()+'대)'
+		  };
 
-  chart.draw(data, options);
+		  var chart = new google.visualization.PieChart(document.getElementById('piechart_40age'));
+
+		  chart.draw(data, options);
+		
+	})
+	
+	
+	
+	
+	
 });
 
-/*40대 나이 차트*/
+/*40대 나이 차트*//* 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart40);
 
 function drawChart40() {
 
-  var data = google.visualization.arrayToDataTable([
-    ['나이', '40대'],
-    ['초반',     11],
-    ['중반',      2],
-    ['후반',  11]
-  ]);
+  
+} */
 
-  var options = {
-    title: '나이에 따른 검색량(40대)'
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById('piechart_40age'));
-
-  chart.draw(data, options);
-}
-
-/*50대 나이 차트*/
+/*50대 나이 차트*//* 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart50);
 
@@ -355,8 +365,8 @@ function drawChart50() {
 
   chart.draw(data, options);
 }
-
-/*60대 나이 차트*/
+ */
+/*60대 나이 차트*//* 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart60);
 
@@ -376,6 +386,6 @@ function drawChart60() {
   var chart = new google.visualization.PieChart(document.getElementById('piechart_60age'));
 
   chart.draw(data, options);
-}
+} */
 
 </script>
