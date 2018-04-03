@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<c:choose>
-					<c:when test="${ingredient ne null || ingredient != ''}">
+					<c:when test="${ingredient ne null && ingredient != ''}">
 						<c:forEach var="item" items="${ingredient}" varStatus="status">
 							<div class="ig_row row">
 								<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
@@ -132,15 +132,13 @@
 										<option value="${unit}">${unit}</option>
 									</c:forTokens>
 								</select>
-								<c:if test="${status.last}">
-									<div class="col-sm-2 col-xs-2 col-md-2 col-lg-2" id="only_one">
-										<a href="javascript:void(0);" onclick="ig_add();"> <span
-											class="glyphicon glyphicon-plus-sign"></span>
-										</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-											class="glyphicon glyphicon-minus-sign"></span>
-										</a>
-									</div>
-								</c:if>
+								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+									<a href="javascript:void(0);" onclick="ig_add();"> <span
+										class="glyphicon glyphicon-plus-sign"></span>
+									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+										class="glyphicon glyphicon-minus-sign"></span>
+									</a>
+								</div>
 							</div>
 						</div>
 						<!-- ig_row end -->
@@ -154,7 +152,7 @@
 		<div
 			style="margin: 0 auto; width: 150px; height: 150px; overflow: hidden">
 			<img id="preview"
-				src="${post.MAIN_IMG != '' || post.MAIN_IMG ne null ? '/upload_img/'.concat(post.MAIN_IMG) : '/image/upload.png'}"
+				src="${post.MAIN_IMG != '' && post.MAIN_IMG ne null ? '/upload_img/'.concat(post.MAIN_IMG) : '/image/upload.png'}"
 				style="border-radius: 10px; width: 150px; height: auto">
 		</div>
 		<input type="file" style="display: none" accept="image/*"
@@ -381,7 +379,6 @@
 			});
 
 			$(".ig_name").focusout(function() {
-				console.log($(this).val());
 				$.ajax({
 		            type : 'get',
 		            url : '/foodie/write/ingredient_exist.do',
