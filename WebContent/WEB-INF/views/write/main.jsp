@@ -3,6 +3,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Foodie</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+<meta name="keywords"
+	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+<meta name="author" content="FREEHTML5.CO" />
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="favicon.ico">
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
+	rel='stylesheet' type='text/css'>
+<link href='/css/writepage.css'	rel='stylesheet' type='text/css'>
+<script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
+<script src="/js/bootstrap-confirmation.js"></script>
+</head>
+<body>
 	<c:set value="${post ne null && post != ''}" var="isMod" />
 	<c:set value="개|g|kg|ml|l|스푼(3g)|티스푼(10g)" var="units" />
 	<c:set
@@ -12,11 +35,30 @@
 	<div class="">
 		<c:if test="${isMod}">페이지 수정</c:if>
 	</div>
+	
+	<div class="modal fade" id="requiredmodal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<!-- sign up Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal">&times;</button>
+          			<h4 class="modal-title" align="center">입력이 필요합니다.</h4>
+				    <div class="modal-body">
+						<p class="text requiredmsg" align="center">입력필요</p>
+			        </div>
+			        <div class="modal-footer">
+			          	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
 	<form id="recipe_form" action="/foodie/write/confirm.do" method="post"
 		enctype="multipart/form-data">
 		<div class="form-group" style="margin: 0 auto">
 			<div class="row">
-				<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 					<label class="lb_recipe col-xs-7 col-sm-7 col-md-7 col-lg-7"
 						for="title">요리명</label>
 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -25,7 +67,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 					<input class="col-sm-7 col-xs-7 col-md-7 col-lg-7" id="title"
 						type="text" name="title" value="${post.TITLE }">
 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -38,7 +80,7 @@
 			<hr />
 			<div id="ingredients">
 				<div class="row ig_head">
-					<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 						<label class="col-sm-4 col-xs-4 col-md-4 col-lg-4 lb_recipe">재료명</label>
 						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 						<label class="col-sm-2 col-xs-2 col-md-2 col-lg-2 lb_recipe">수량</label>
@@ -47,7 +89,7 @@
 					</div>
 				</div>
 				<div class="row" id="dummy_row" style="display: none;">
-					<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 						<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
 							type="text" name="ig_name" ${confirmPopover} disabled>
 						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -63,10 +105,10 @@
 					</div>
 				</div>
 				<c:choose>
-					<c:when test="${ingredient ne null || ingredient != ''}">
+					<c:when test="${ingredient ne null && ingredient != ''}">
 						<c:forEach var="item" items="${ingredient}" varStatus="status">
 							<div class="ig_row row">
-								<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+								<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 									<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
 										type="text" name="ig_name" value="${item.name}"
 										${confirmPopover}>
@@ -81,15 +123,15 @@
 												${item.unit == unit ? "selected=selected'" : ""}>${unit}</option>
 										</c:forTokens>
 									</select>
-									<c:if test="${status.last}">
-										<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
-											<a href="javascript:void(0);" onclick="ig_add();"> <span
-												class="glyphicon glyphicon-plus-sign"></span>
-											</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-												class="glyphicon glyphicon-minus-sign"></span>
-											</a>
-										</div>
-									</c:if>
+								<c:if test="${status.last}">
+								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+									<a href="javascript:void(0);" onclick="ig_add();"> <span
+										class="glyphicon glyphicon-plus-sign"></span>
+									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+										class="glyphicon glyphicon-minus-sign"></span>
+									</a>
+								</div>
+								</c:if>
 								</div>
 							</div>
 							<!-- ig_row end -->
@@ -97,7 +139,7 @@
 					</c:when>
 					<c:otherwise>
 						<div class="ig_row row">
-							<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 								<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
 									type="text" name="ig_name" ${confirmPopover}>
 								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -110,16 +152,15 @@
 										<option value="${unit}">${unit}</option>
 									</c:forTokens>
 								</select>
-								<c:if test="${status.last}">
-									<div class="col-sm-2 col-xs-2 col-md-2 col-lg-2" id="only_one">
-										<a href="javascript:void(0);" onclick="ig_add();"> <span
-											class="glyphicon glyphicon-plus-sign"></span>
-										</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-											class="glyphicon glyphicon-minus-sign"></span>
-										</a>
-									</div>
-								</c:if>
-							</div>
+								
+							<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+								<a href="javascript:void(0);" onclick="ig_add();"> <span
+									class="glyphicon glyphicon-plus-sign"></span>
+								</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+									class="glyphicon glyphicon-minus-sign"></span>
+								</a>
+							</div>	
+							</div>					
 						</div>
 						<!-- ig_row end -->
 					</c:otherwise>
@@ -217,18 +258,24 @@
 		function write_confirm() {
 			// 비어있지만 않으면 오케이
 			if ($("#title").val().trim() == "") {
-				window.alert("제목입력해라");
+				$(".requiredmsg").text('요리명을 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("#title").focus();
 				return;
 			}
 			if ($("#thumbnail").val() == "" && !'${isMod}') {
-				window.alert("썸네일 꼭올려라");
+				$(".requiredmsg").text('사진을 올려주세요.');
+				$("#requiredmodal").modal();
 				return;
 			}
 			if ($('#summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g,
 					"").replace(/\s|&nbsp;/g, '').length == 0) {
-				window.alert("내용이 없다");
+				$(".requiredmsg").text('내용을 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("#summernote").focus();
 				return;
 			}
+
 			var flag = false;
 			$(".ig_row").each(function() {
 				// 최소한 재료명 하나는 적혀있어야함
@@ -237,13 +284,18 @@
 					flag = true;
 				}
 			});
+
 			if (flag) {
 				$("#recipe_form").submit();
 			} else {
-				window.alert("재료 최소한 한개는 넣어주세요");
+				$(".requiredmsg").text('최소 한개의 재료를 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("input[name='ig_name']").focus();
 				return;
 			}
+
 		}
+
 		function ig_add() {
 			var cloneRow = $("#dummy_row").clone();
 			cloneRow.find("input").each(function() {
@@ -256,16 +308,18 @@
 			cloneRow.attr("class", "ig_row row");
 			cloneRow.appendTo($("#ingredients"));
 			cloneRow.css("display", "");
-			$("#only_one").appendTo(cloneRow);
+			$("#only_one").appendTo(cloneRow.find(".col-xs-10"));
 			attach_autocomplete();
 		}
+
 		function ig_remove() {
 			if ($(".ig_row").length > 1) {
 				console.log($(".ig_row").length);
-				$("#only_one").appendTo($(".ig_row:last").prev());
+				$("#only_one").appendTo($(".ig_row:last").prev().find(".col-xs-10"));
 				$(".ig_row:last").remove();
 			}
 		}
+
 		function sendFile(file, el) {
 			// 여기서 file을 리사이징
 			var form_data = new FormData();
@@ -315,6 +369,7 @@
 				body += '</div>';
 				body += '</form>';
 				body += '</div>';
+
 			var btn1 = {
 				Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
 				Css:"btn-success btn-default pull-left",
@@ -346,12 +401,15 @@
 			$("#preview").click(function() {
 				$("#thumbnail").click();
 			});
+
 			$(".ig_name").focusout(function() {
-				console.log($(this).val());
+				if($(this).val().trim() == ''){
+					return;
+				}				
 				$.ajax({
 		            type : 'get',
 		            url : '/foodie/write/ingredient_exist.do',
-		            data : 'name='+$(this).val(),
+		            data : 'name='+$(this).val().trim(),
 		            dataType : 'text',
 		            success : function(rst){
 		                if(rst=='false') {
@@ -380,3 +438,5 @@
 			});
 		});
 	</script>
+</body>
+</html>
