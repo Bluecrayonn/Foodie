@@ -10,16 +10,7 @@
 	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 <meta name="author" content="FREEHTML5.CO" />
 
-<!-- Facebook and Twitter integration -->
-<meta property="og:title" content="" />
-<meta property="og:image" content="" />
-<meta property="og:url" content="" />
-<meta property="og:site_name" content="" />
-<meta property="og:description" content="" />
-<meta name="twitter:title" content="" />
-<meta name="twitter:image" content="" />
-<meta name="twitter:url" content="" />
-<meta name="twitter:card" content="" />
+
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="favicon.ico">
@@ -37,7 +28,7 @@
 <link rel="stylesheet" href="/template/css/notice.css">
 
 <!-- jQuery -->
-<script src="/template/js/jquery.min.js"></script>
+<script src="/template/js/jquery-3.3.1.min.js"></script>
 <!-- jQuery Easing -->
 <script src="/template/js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->

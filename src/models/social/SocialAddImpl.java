@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class SocialAddImpl implements SocialAddDAO {
 	@Autowired
 	SqlSessionFactory sqlfactory;
 	@Autowired
+	@Qualifier("basic")
 	MongoTemplate mongoTemplate;
 
 	@Override // ADDFOLLOWING

@@ -15,7 +15,7 @@
 				
 				<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 				<ul class="fh5co-social">
-					<li><a href="write.do" style="margin-right: 3px; color:black; size:15px;"><i class="icon-pencil">레시피 작성</i></a></li>
+					<li><a href="/foodie/write/writepost.do" style="margin-right: 3px; color:black; size:15px;"><i class="icon-pencil">레시피 작성</i></a></li>
 					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="margin-right: 3px; color:black; size:15px;"> <i class="icon-bell3"></i>Notice</a>
                         <span class="caret"></span>
                         <span class="sr-only"></span>

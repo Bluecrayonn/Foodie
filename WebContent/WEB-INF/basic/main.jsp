@@ -2,6 +2,37 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ownerId" value="${sessionScope.auth.user[0].ACCOUNT_ID }" />
+
+
+
+
+<div class=" container-fluid" style="margin-left: 30px">
+	<!-- 여기서 검색어 리스트 뿌려줄 것입니다. -->
+	<div>
+		<h4>실시간 검색어 순위</h4>
+	</div>
+	<div >
+		<label class="radio-inline"><input
+			style="vertical-align: middle; margin-top: 0; position: relative;"
+			type="radio" name="term" value="1d" class=" recent-keyword">1 Day</label> <label class="radio-inline "><input
+			style="vertical-align: middle; margin-top: 0; position: relative;"
+			type="radio" name="term"  value="1h"  class=" recent-keyword">1 Hour</label> <label class="radio-inline"><input
+			style="vertical-align: middle; margin-top: 0; position: relative;"
+			type="radio" name="term"  value="30m"  class=" recent-keyword">30 Minutes</label> <label
+			class="radio-inline" ><input
+			style="vertical-align: middle; margin-top: 0; position: relative;"
+			type="radio" name="term"  value="10m"  class=" recent-keyword">10 Munites</label>
+	</div>
+	<div>
+	 <ul class="list-inline keyword-ranking">
+  <li class="list-inline-item"><button type="button" class="btn btn-primary" style="border-color:  #f2bf2b" >1</button></li>
+  <li class="list-inline-item"><button type="button" class="btn btn-primary">2</button></li>
+  <li class="list-inline-item"><button type="button" class="btn btn-primary">3</button></li>
+</ul>
+	</div>
+
+</div>
+
 <div class="fh5co-box">
 	<h3 class="heading">Search</h3>
 	<form action="/foodie/search.do" method="post">
@@ -30,10 +61,10 @@ divs {
 }
 </style>
 
-<div class="divs">
+<!-- <div class="divs">
 	<input type="text" class="tb" placeholder="검색"
 		style="font-size: 12pt; width: 400px;" />
-</div>
+</div> -->
 <br />
 
 <div class="container-fluid">
@@ -44,15 +75,16 @@ divs {
 
 		<c:forEach var="obj" items="${postList_vrr}">
 
-			<article 
+			<article
 				class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box postedarticles">
 				<figure>
-					<a href="#"><img
-						src="/upload_img/${obj.MAIN_IMG}" alt="Image"
+					<a href="#"><img src="/upload_img/${obj.MAIN_IMG}" alt="Image"
 						class="img-responsive"></a>
 					<ul class="fh5co-social">
-						<li><i style="font-size: 18pt "  id="${obj.POST_ID }" class="icon-bookmark bookmarkicon"></i></li>
-						<li><i style="font-size: 18pt " id="${obj.WRITER_ID}" class="icon-heart hearticon"></i></li> 
+						<li><i style="font-size: 18pt" id="${obj.POST_ID }"
+							class="icon-bookmark bookmarkicon"></i></li>
+						<li><i style="font-size: 18pt" id="${obj.WRITER_ID}"
+							class="icon-heart hearticon"></i></li>
 
 					</ul>
 				</figure>
@@ -74,9 +106,9 @@ divs {
 <script>
 	$(".bookmarkicon").click(function() {
 		var bookmark = $(this);
-		if($(this).hasClass(""))
-		
-		console.log($("ownerId"));
+		if ($(this).hasClass(""))
+
+			console.log($("ownerId"));
 		console.log($(this).attr("id"))
 		$.ajax("/social/addBookmarkRDB.do", {
 			"method" : "post",
@@ -86,27 +118,25 @@ divs {
 			}
 
 		}).done(function(obj) {
-			
- 			if(obj=="adddone"){
-				bookmark.css("color","#48C9B0");
+
+			if (obj == "adddone") {
+				bookmark.css("color", "#48C9B0");
 				console.log(obj);
-			}else if (obj =="removedone"){
-				bookmark.css("color","black");
+			} else if (obj == "removedone") {
+				bookmark.css("color", "black");
 				console.log(obj);
 
-			}else if(obj=="notlogedon"){
+			} else if (obj == "notlogedon") {
 				window.alert("로그인을 먼저 진행해주세요 ")
 			}
- 			
- 			
+
 		})
 
 	})
 	$(".hearticon").click(function() {
 		var heart = $(this);
 		var targetId = $(this).attr("id");
-		
-		
+
 		console.log($(this).attr("id"))
 		$.ajax("/social/addFollowRDB.do", {
 			"method" : "post",
@@ -116,40 +146,34 @@ divs {
 			}
 
 		}).done(function(obj) {
- 			var hearticon = $(".hearticon");
- 			if(obj=="adddone"){
- 				for(var h = 0; h< hearticon.length;h++){
- 					//console.log(hearts.eq(h).attr("id"));
- 					 
- 	 					if(targetId==hearticon.eq(h).attr("id")){
- 							console.log("Match Found");
- 							hearticon.eq(h).css("color","#E74C3C");
- 							
- 							
- 							
- 						}
- 					 
- 				}
-			}else if (obj =="removedone"){
-				for(var h = 0; h< hearticon.length;h++){
- 					//console.log(hearts.eq(h).attr("id"));
- 					 
- 	 					if(targetId==hearticon.eq(h).attr("id")){
- 							console.log("Match Found");
- 							hearticon.eq(h).css("color","black");
- 							
- 							
- 							
- 						}
- 					 
- 				}
+			var hearticon = $(".hearticon");
+			if (obj == "adddone") {
+				for (var h = 0; h < hearticon.length; h++) {
+					//console.log(hearts.eq(h).attr("id"));
 
-			}else if(obj=="notlogedon"){
+					if (targetId == hearticon.eq(h).attr("id")) {
+						console.log("Match Found");
+						hearticon.eq(h).css("color", "#E74C3C");
+
+					}
+
+				}
+			} else if (obj == "removedone") {
+				for (var h = 0; h < hearticon.length; h++) {
+					//console.log(hearts.eq(h).attr("id"));
+
+					if (targetId == hearticon.eq(h).attr("id")) {
+						console.log("Match Found");
+						hearticon.eq(h).css("color", "black");
+
+					}
+
+				}
+
+			} else if (obj == "notlogedon") {
 				window.alert("로그인을 먼저 진행해주세요 ")
 			}
- 			
- 			
-			
+
 		})
 
 	})
@@ -163,23 +187,21 @@ divs {
 			var bookmarkicon = $(".bookmarkicon");
 			var bookmarks = JSON.parse(obj);
 			console.log(bookmarks);
-			for(var h = 0; h< bookmarkicon.length;h++){
+			for (var h = 0; h < bookmarkicon.length; h++) {
 				//console.log(hearts.eq(h).attr("id"));
-				for(var k =0;k<bookmarks.length-1;k++){
- 					if(bookmarks[k].POST_ID==bookmarkicon.eq(h).attr("id")){
+				for (var k = 0; k < bookmarks.length - 1; k++) {
+					if (bookmarks[k].POST_ID == bookmarkicon.eq(h).attr("id")) {
 						console.log("Match Found");
 						console.log(bookmarks[k].USER_ID);
-						bookmarkicon.eq(h).css("color","#48C9B0");
-						
-						
-						
+						bookmarkicon.eq(h).css("color", "#48C9B0");
+
 					}
 				}
 			}
 		})
 
 	})
-			//여기서 비교할 following 가지고 와서 following 비교해줄것입니다.
+	//여기서 비교할 following 가지고 와서 following 비교해줄것입니다.
 
 	$(function() {
 		$.ajax("/social/followingList.do", {
@@ -189,36 +211,107 @@ divs {
 			var hearticon = $(".hearticon");
 			var hearts = JSON.parse(obj);
 			console.log(hearts);
-			for(var h = 0; h< hearticon.length;h++){
+			for (var h = 0; h < hearticon.length; h++) {
 				//console.log(hearts.eq(h).attr("id"));
-				for(var k =0;k<hearts.length-1;k++){
- 					if(hearts[k].TARGET_ID==hearticon.eq(h).attr("id")){
+				for (var k = 0; k < hearts.length - 1; k++) {
+					if (hearts[k].TARGET_ID == hearticon.eq(h).attr("id")) {
 						console.log("Match Found");
-						hearticon.eq(h).css("color","#E74C3C");
-						
-						
-						
+						hearticon.eq(h).css("color", "#E74C3C");
+
 					}
 				}
 			}
 		})
 
 	})
-		//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
+	var d =  $(function(){
+		var term = $("recent-keyword").val();
+		if(term==null){
+			term="1d";
+		}
 		
-
-
-	 $("#searchInput").change(function(){
-		$.ajax("/foodie/search.do", {
+		$.ajax("/foodie/keywordlist.do",{
 			"method" : "post",
 			"async" : true,
-			"data" : {
-				"keywords" : $("#searchInput").val(),
-				"orderType" : "",
+			"data":{
+				"term":term
+				
 			}
 		}).done(function(obj){
-			$(postList_vrr)=obj;
+			console.log(obj);
+			var text ="";
+			
+			
+			for(var cnt =0;cnt < obj.length;cnt++){
+				text += "<li class=\"list-inline-item\"><button type=\"button\" class=\"btn btn-primary keyword-ranking-item\" style=\"border-color:  #f2bf2b\">"+obj[cnt]._id+"</button></li>";
+			}
+			$(".keyword-ranking").html(text);
+$(".keyword-ranking-item").click(function(){
+				
+	var item = $(this).html();
+	console.log(item);
+		$("#searchInput").val($("#searchInput").val()+item+" ");		 		
+			})
 		})
 		
-	})	 
+	})
+	$(".recent-keyword").click(function(){
+		var term =$(this).val();
+		
+		
+		$.ajax("/foodie/keywordlist.do",{
+			"method" : "post",
+			"async" : true,
+			"data":{
+				"term":term
+				
+			}
+		}).done(function(obj){
+			console.log(obj);
+			var text ="";
+			if(obj.length>0){
+				for(var cnt =0;cnt < obj.length;cnt++){
+					text += "<li class=\"list-inline-item\"><button type=\"button\" class=\"btn btn-primary keyword-ranking-item\" style=\"border-color:  #f2bf2b\">"+obj[cnt]._id+"</button></li>";
+				}
+				$(".keyword-ranking").html(text);
+			}else{
+				text += "<li class=\"list-inline-item\"><button type=\"button\" class=\"btn btn-primary keyword-ranking-item\" style=\"border-color:  #f2bf2b\">검색결과가 없네요 ㅠㅠ</button></li>";
+				$(".keyword-ranking").html(text);
+
+			};
+			
+			
+	$(".keyword-ranking-item").click(function(){
+		
+		var item = $(this).html();
+		console.log(item);
+ 		$("#searchInput").val($("#searchInput").val()+item+" ");
+ 		
+	})
+			
+			
+			
+		})
+		
+		
+	});
+	
+	 
+	
+	//여기서 비교할 bookmarklist 가지고 와서 bookmark 비교해줄것입니다.
+
+	//필요없는 부분
+	/* $("#searchInput").change(function(){
+	$.ajax("/foodie/search.do", {
+		"method" : "post",
+		"async" : true,
+		"data" : {
+			"keywords" : $("#searchInput").val(),
+			"orderType" : "",
+		}
+	}).done(function(obj){
+		$(postList_vrr)=obj;
+	})
+	
+	})	  */
 </script>

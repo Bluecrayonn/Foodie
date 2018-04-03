@@ -59,15 +59,27 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	<!-- MongoDB configuration -->
-	<mongo:mongo-client port="56789" host="52.78.86.88">
+	<mongo:mongo-client  port="56789" host="52.78.86.88">
 	</mongo:mongo-client>
+	<mongo:db-factory id="mongoDbFactory1"  dbname="foodie" mongo-ref="mongo"/>
+	<mongo:db-factory id="mongoDbFactory2"  dbname="mapReduce" mongo-ref="mongo"/>
+
 
 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
-		id="mongoTemplate" scope="singleton">
+		id="template" scope="singleton">
+		<qualifier value="basic" />
 
-		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg  name="mongo" ref="mongo" />
+				<constructor-arg value="foodie" name="databaseName" />
 
-		<constructor-arg value="foodie" name="databaseName" />
+	</bean>
+	<bean class="org.springframework.data.mongodb.core.MongoTemplate"
+		 id="reduceTemplate" scope="singleton">
+		<qualifier value="reduce" />
+
+		<constructor-arg  name="mongo" ref="mongo" />
+
+		<constructor-arg value="mapReduce" name="databaseName" />
 
 	</bean>
 
@@ -90,7 +102,7 @@
 			</props>
 		</property>
 	</bean>
-
+ 
 
 
 </beans>

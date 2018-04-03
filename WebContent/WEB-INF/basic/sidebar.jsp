@@ -86,17 +86,17 @@
 			<div class="modal-body" style="font-family: '나눔고딕'">
 				<form action="/account/insertOk.do" autocomplete="off" method="post">
 					<h4 class="text">회원 종류를 선택하세요.</h4>
-					<select class="form-control" id="user" style="font-size: 12pt;">
+					<select name="member_type" class="form-control" id="user" style="font-size: 12pt;">
 						<option>일반 유저</option>
 						<option>마트 관리자</option>
 					</select> 
 					<h4 class="text">성별을 선택하세요.</h4>
-					<select class="form-control" id="sex" style="font-size: 12pt;">
-						<option>여</option>
-						<option>남</option>
+					<select class="form-control" name="sex" id="sex" style="font-size: 12pt;">
+						<option value="F">여</option>
+						<option value="M">남</option>
 					</select>
 					<h4 class="text">태어난 연도를 선택하세요.</h4>
-					<select class="form-control" id="year" style="font-size: 12pt;">
+					<select name="year" class="form-control" id="year" style="font-size: 12pt;">
 					</select>
 					<h4 id="emailchecktext" class="text">이메일을 입력하세요.</h4>
 					<input id="email-check" type="text" name="email"
@@ -220,16 +220,16 @@
 			})
 		}
 	}
-	window.onload = function() {
-		var sYear = 2018
-		var eYear = 1968
-		var strYear = "";
-
-		for (var i = eYear; i <= sYear; i++) {
-			strYear += "<option value="+i+">" + i + "</option>";
+	window.onload=function() {
+		var date = new Date();
+		var sYear= date.getFullYear();
+		var eYear= date.getFullYear()-69; 
+		var strYear="";
+		
+		for(var i=eYear; i<=sYear; i++){
+			strYear += "<option value="+i+">"+i+"</option>";
 		}
- 
-		document.getElementById("year").innerHTML = strYear
+		document.getElementById("year").innerHTML=strYear
 	}
 
 	$("#email-check")

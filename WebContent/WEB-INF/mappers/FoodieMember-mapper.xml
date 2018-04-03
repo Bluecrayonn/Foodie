@@ -18,7 +18,7 @@ SELECT * FROM account WHERE name = #{nickname}
 
 <insert id="insertMember"
 parameterType="models.FoodieMember">
-INSERT INTO account(account_id,name,password,email) VALUES(account_seq.nextval,#{nickname},#{pwd},#{email})
+INSERT INTO account(account_id,name,password,email,gender,birth) VALUES(account_seq.nextval,#{nickname},#{pwd},#{email},#{sex},#{year})
 </insert>
 
 <update id="updateMember"

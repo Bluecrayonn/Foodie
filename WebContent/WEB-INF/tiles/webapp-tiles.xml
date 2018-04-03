@@ -43,7 +43,7 @@
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/write/main.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
-	</definition>
+	</definition> 
 	<definition name="pwresetpage" template="/WEB-INF/views/pwresetpage.jsp"> <!-- 비밀번호 재설정 페이지 -->
 		<put-attribute name="nav" value="/WEB-INF/basic/nav.jsp"></put-attribute>
 		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
