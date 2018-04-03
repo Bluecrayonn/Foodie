@@ -60,11 +60,18 @@
  						<img src="/template/images/person1.jpg"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
 					<h2>${sessionScope.auth.NAME}</h2>
+					<c:choose>
+					<c:when test="${sessionScope.auth.MEMBER_TYPE==1} ">
 					<h4>마트관리자</h4><br/>
-					<ul style="list-style: none;">
+					</c:when>
+					</c:choose>
+ 					<ul style="list-style: none;">
 
 						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
-						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
+						<c:if test="${sessionScope.auth.MEMBER_TYPE ==1}">
+												<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
+						
+						</c:if>
 						<li><a href="/authentication/logout.do" style="margin-right: 50px;"><i class="icon-log-out">LOG OUT</i></a></li>
  					</ul>
 				</div>

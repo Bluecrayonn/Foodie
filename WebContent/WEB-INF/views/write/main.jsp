@@ -85,7 +85,7 @@
 					</div>
 				</div>
 				<c:choose>
-					<c:when test="${ingredient ne null || ingredient != ''}">
+					<c:when test="${ingredient ne null && ingredient != ''}">
 						<c:forEach var="item" items="${ingredient}" varStatus="status">
 							<div class="ig_row row">
 								<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
