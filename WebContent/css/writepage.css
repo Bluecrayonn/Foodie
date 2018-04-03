@@ -5,6 +5,14 @@
 	font-family: 'NanumGothic'
 }
 
-.lb_recipe {
-	width: 65px;
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
 }
