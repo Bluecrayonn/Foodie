@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,15 +132,13 @@
 										<option value="${unit}">${unit}</option>
 									</c:forTokens>
 								</select>
-								<c:if test="${status.last}">
-									<div class="col-sm-2 col-xs-2 col-md-2 col-lg-2" id="only_one">
-										<a href="javascript:void(0);" onclick="ig_add();"> <span
-											class="glyphicon glyphicon-plus-sign"></span>
-										</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-											class="glyphicon glyphicon-minus-sign"></span>
-										</a>
-									</div>
-								</c:if>
+								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+									<a href="javascript:void(0);" onclick="ig_add();"> <span
+										class="glyphicon glyphicon-plus-sign"></span>
+									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+										class="glyphicon glyphicon-minus-sign"></span>
+									</a>
+								</div>
 							</div>
 						</div>
 						<!-- ig_row end -->
@@ -200,6 +197,7 @@
 			});
 		}
 		attach_autocomplete();
+
 		$("#summernote")
 				.summernote(
 						{
@@ -225,6 +223,7 @@
 									[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 									[ 'height', [ 'height' ] ],
 									[ 'insert', [ 'picture', 'link' ] ] ],
+
 							callbacks : {
 								onImageUpload : function(files, editor,
 										welEditable) {
@@ -234,24 +233,32 @@
 								}
 							}
 						});
+
 		if ('${post}' != "" && '${post}' != null) {
 			$("#summernote").summernote("code", '${post.CONTENT}');
 		}
+
 		function write_confirm() {
 			// 비어있지만 않으면 오케이
 			if ($("#title").val().trim() == "") {
-				window.alert("제목입력해라");
+				$(".requiredmsg").text('요리명을 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("#title").focus();
 				return;
 			}
 			if ($("#thumbnail").val() == "" && !'${isMod}') {
-				window.alert("썸네일 꼭올려라");
+				$(".requiredmsg").text('사진을 올려주세요.');
+				$("#requiredmodal").modal();
 				return;
 			}
 			if ($('#summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g,
 					"").replace(/\s|&nbsp;/g, '').length == 0) {
-				window.alert("내용이 없다");
+				$(".requiredmsg").text('내용을 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("#summernote").focus();
 				return;
 			}
+
 			var flag = false;
 			$(".ig_row").each(function() {
 				// 최소한 재료명 하나는 적혀있어야함
@@ -260,13 +267,18 @@
 					flag = true;
 				}
 			});
+
 			if (flag) {
 				$("#recipe_form").submit();
 			} else {
-				window.alert("재료 최소한 한개는 넣어주세요");
+				$(".requiredmsg").text('최소 한개의 재료를 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("input[name='ig_name']").focus();
 				return;
 			}
+
 		}
+
 		function ig_add() {
 			var cloneRow = $("#dummy_row").clone();
 			cloneRow.find("input").each(function() {
@@ -282,6 +294,7 @@
 			$("#only_one").appendTo(cloneRow);
 			attach_autocomplete();
 		}
+
 		function ig_remove() {
 			if ($(".ig_row").length > 1) {
 				console.log($(".ig_row").length);
@@ -289,6 +302,7 @@
 				$(".ig_row:last").remove();
 			}
 		}
+
 		function sendFile(file, el) {
 			// 여기서 file을 리사이징
 			var form_data = new FormData();
@@ -338,6 +352,7 @@
 				body += '</div>';
 				body += '</form>';
 				body += '</div>';
+
 			var btn1 = {
 				Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
 				Css:"btn-success btn-default pull-left",
@@ -369,12 +384,15 @@
 			$("#preview").click(function() {
 				$("#thumbnail").click();
 			});
-			$(".ig_name").focusout(function() {
-				console.log($(this).val());
+
+			$(".ig_name").focusout(function() {					
+				if($(this).val().trim() == ''){
+					return;
+				}				
 				$.ajax({
 		            type : 'get',
 		            url : '/foodie/write/ingredient_exist.do',
-		            data : 'name='+$(this).val(),
+		            data : 'name='+$(this).val().trim(),
 		            dataType : 'text',
 		            success : function(rst){
 		                if(rst=='false') {
@@ -403,3 +421,5 @@
 			});
 		});
 	</script>
+</body>
+</html>
