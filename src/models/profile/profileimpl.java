@@ -23,8 +23,7 @@ public class profileimpl implements ProfileListDao {
 		
 		try {
 			List<Map> result = session.selectList("profile.recipetitle",userId);
-			System.out.println(result.toString());
-			return result;
+ 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -49,12 +48,11 @@ public class profileimpl implements ProfileListDao {
 	}*/
 	
 	@Override
-	public List<Map> getBookmarkidList() {
+	public List<Map> getBookmarkidList(long userId) {
 		SqlSession session = factory.openSession();
 		try {
-			List<Map> result = session.selectList("profile.bookmarktitle");
-			System.out.println(result.toString());
-			return result;
+			List<Map> result = session.selectList("profile.bookmarktitle",userId);
+ 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -64,12 +62,11 @@ public class profileimpl implements ProfileListDao {
 	}
 
 	@Override
-	public List<Map> getFollowingidList() {
+	public List<Map> getFollowingidList(long userId) {
 		SqlSession session = factory.openSession();
 		try {
-			List<Map> result = session.selectList("profile.Followtitle");
-			System.out.println(result.toString());
-			return result;
+			List<Map> result = session.selectList("profile.Followingtitle",userId);
+ 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -79,12 +76,11 @@ public class profileimpl implements ProfileListDao {
 	}
 
 	@Override
-	public List<Map> getFolloweridList() {
+	public List<Map> getFolloweridList(long userId) {
 		SqlSession session = factory.openSession();
 		try {
-			List<Map> result = session.selectList("profile.Followtitle");
-			System.out.println(result.toString());
-			return result;
+			List<Map> result = session.selectList("profile.Followertitle",userId);
+ 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

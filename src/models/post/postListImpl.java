@@ -235,6 +235,9 @@ public class postListImpl implements postListDAO {
 		// 단위는 선택 가능하게 할것. 10분,30분, 1시간,등....
 		// 혹은 10초 단위로 증가량이 많은 데이터를 출력할 수도 있음
 		// 어떻게 하는 것이 좋을것인가.
+		if(reduceTemplate.getCollection("search_log_reduce_" + date.toString())==null) {
+			reduceTemplate.createCollection("search_log_reduce_" + date.toString());
+		}
 
 		DBCollection collection2 = reduceTemplate.getCollection("search_log_reduce_" + date.toString());
 		if (collection2 == null) {
