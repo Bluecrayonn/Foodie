@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,7 +192,10 @@
 		</c:if>
 	</form>
 	<script>
-		var attach_autocomplete = function() {
+		var attach_ingredient_functions = function() {
+			// unbind 시켜주지 않으면 핸들러가 여러개 붙어있음...
+			$(".ig_name").unbind('autocomplete');
+			$(".ig_name").unbind('focusout');
 			$(".ig_name").autocomplete({
 				source : function(request, response) {
 					$.ajax({
@@ -216,8 +218,45 @@
 				select : function(event, ui) {
 				}
 			});
+			$(".ig_name").focusout(function() {
+				if($(this).val().trim() == ''){
+					return;
+				} else {
+					console.log($(this).val().trim());
+				}
+				
+				$.ajax({
+		            type : 'get',
+		            url : '/foodie/write/ingredient_exist.do',
+		            data : 'name='+$(this).val().trim(),
+		            dataType : 'text',
+		            success : function(rst){
+		                if(rst=='false') {
+		                	// TODO: 재료, 단위를 키로 잡아야함
+		    				var title = '재료등록';
+		    				var body =  '<div class="modal-confirm-body">';
+		    					body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
+		    					body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
+		    					body += '</div>'
+		    				var btn1 = {
+		    					Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
+		    					Css:"btn-success btn-default pull-left",
+		    					Callback:onConfirmClick
+		    					};
+		    				var btn2 = {
+		    					Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
+		    					Css:"btn-danger btn-default pull-left",
+		    					Callback:""
+		    					};
+		     				var buttons = [btn1,btn2];
+		    				
+		    				new BstrapModal(title, body, buttons).Show();
+		                }
+		            },
+		        });
+			});
 		}
-		attach_autocomplete();
+		attach_ingredient_functions();
 		$("#summernote")
 				.summernote(
 						{
@@ -243,6 +282,7 @@
 									[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 									[ 'height', [ 'height' ] ],
 									[ 'insert', [ 'picture', 'link' ] ] ],
+
 							callbacks : {
 								onImageUpload : function(files, editor,
 										welEditable) {
@@ -252,9 +292,11 @@
 								}
 							}
 						});
+
 		if ('${post}' != "" && '${post}' != null) {
 			$("#summernote").summernote("code", '${post.CONTENT}');
 		}
+
 		function write_confirm() {
 			// 비어있지만 않으면 오케이
 			if ($("#title").val().trim() == "") {
@@ -309,7 +351,7 @@
 			cloneRow.appendTo($("#ingredients"));
 			cloneRow.css("display", "");
 			$("#only_one").appendTo(cloneRow.find(".col-xs-10"));
-			attach_autocomplete();
+			attach_ingredient_functions();
 		}
 
 		function ig_remove() {
@@ -400,41 +442,6 @@
 			});
 			$("#preview").click(function() {
 				$("#thumbnail").click();
-			});
-
-			$(".ig_name").focusout(function() {
-				if($(this).val().trim() == ''){
-					return;
-				}				
-				$.ajax({
-		            type : 'get',
-		            url : '/foodie/write/ingredient_exist.do',
-		            data : 'name='+$(this).val().trim(),
-		            dataType : 'text',
-		            success : function(rst){
-		                if(rst=='false') {
-		                	// TODO: 재료, 단위를 키로 잡아야함
-		    				var title = '재료등록';
-		    				var body =  '<div class="modal-confirm-body">';
-		    					body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
-		    					body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
-		    					body += '</div>'
-		    				var btn1 = {
-		    					Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
-		    					Css:"btn-success btn-default pull-left",
-		    					Callback:onConfirmClick
-		    					};
-		    				var btn2 = {
-		    					Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
-		    					Css:"btn-danger btn-default pull-left",
-		    					Callback:""
-		    					};
-		     				var buttons = [btn1,btn2];
-		    				
-		    				new BstrapModal(title, body, buttons).Show();
-		                }
-		            },
-		        });
 			});
 		});
 	</script>
