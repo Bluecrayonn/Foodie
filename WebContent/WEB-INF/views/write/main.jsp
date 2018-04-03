@@ -20,7 +20,7 @@
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
-<!-- <link rel="stylesheet" href="/css/write_post.css"> -->
+<link href='/css/writepage.css'	rel='stylesheet' type='text/css'>
 <script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
 <script src="/js/bootstrap-confirmation.js"></script>
 </head>
@@ -57,7 +57,7 @@
 		enctype="multipart/form-data">
 		<div class="form-group" style="margin: 0 auto">
 			<div class="row">
-				<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 					<label class="lb_recipe col-xs-7 col-sm-7 col-md-7 col-lg-7"
 						for="title">요리명</label>
 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 					<input class="col-sm-7 col-xs-7 col-md-7 col-lg-7" id="title"
 						type="text" name="title" value="${post.TITLE }">
 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -79,7 +79,7 @@
 			<hr />
 			<div id="ingredients">
 				<div class="row ig_head">
-					<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 						<label class="col-sm-4 col-xs-4 col-md-4 col-lg-4 lb_recipe">재료명</label>
 						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 						<label class="col-sm-2 col-xs-2 col-md-2 col-lg-2 lb_recipe">수량</label>
@@ -88,7 +88,7 @@
 					</div>
 				</div>
 				<div class="row" id="dummy_row" style="display: none;">
-					<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 						<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
 							type="text" name="ig_name" ${confirmPopover} disabled>
 						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -107,7 +107,7 @@
 					<c:when test="${ingredient ne null && ingredient != ''}">
 						<c:forEach var="item" items="${ingredient}" varStatus="status">
 							<div class="ig_row row">
-								<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+								<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 									<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
 										type="text" name="ig_name" value="${item.name}"
 										${confirmPopover}>
@@ -122,15 +122,15 @@
 												${item.unit == unit ? "selected=selected'" : ""}>${unit}</option>
 										</c:forTokens>
 									</select>
-									<c:if test="${status.last}">
-										<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
-											<a href="javascript:void(0);" onclick="ig_add();"> <span
-												class="glyphicon glyphicon-plus-sign"></span>
-											</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-												class="glyphicon glyphicon-minus-sign"></span>
-											</a>
-										</div>
-									</c:if>
+								<c:if test="${status.last}">
+								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+									<a href="javascript:void(0);" onclick="ig_add();"> <span
+										class="glyphicon glyphicon-plus-sign"></span>
+									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+										class="glyphicon glyphicon-minus-sign"></span>
+									</a>
+								</div>
+								</c:if>
 								</div>
 							</div>
 							<!-- ig_row end -->
@@ -138,7 +138,7 @@
 					</c:when>
 					<c:otherwise>
 						<div class="ig_row row">
-							<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
 								<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
 									type="text" name="ig_name" ${confirmPopover}>
 								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -151,14 +151,15 @@
 										<option value="${unit}">${unit}</option>
 									</c:forTokens>
 								</select>
-								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
-									<a href="javascript:void(0);" onclick="ig_add();"> <span
-										class="glyphicon glyphicon-plus-sign"></span>
-									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-										class="glyphicon glyphicon-minus-sign"></span>
-									</a>
-								</div>
-							</div>
+								
+							<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+								<a href="javascript:void(0);" onclick="ig_add();"> <span
+									class="glyphicon glyphicon-plus-sign"></span>
+								</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+									class="glyphicon glyphicon-minus-sign"></span>
+								</a>
+							</div>	
+							</div>					
 						</div>
 						<!-- ig_row end -->
 					</c:otherwise>
@@ -310,14 +311,14 @@
 			cloneRow.attr("class", "ig_row row");
 			cloneRow.appendTo($("#ingredients"));
 			cloneRow.css("display", "");
-			$("#only_one").appendTo(cloneRow);
+			$("#only_one").appendTo(cloneRow.find(".col-xs-10"));
 			attach_autocomplete();
 		}
 
 		function ig_remove() {
 			if ($(".ig_row").length > 1) {
 				console.log($(".ig_row").length);
-				$("#only_one").appendTo($(".ig_row:last").prev());
+				$("#only_one").appendTo($(".ig_row:last").prev().find(".col-xs-10"));
 				$(".ig_row:last").remove();
 			}
 		}
