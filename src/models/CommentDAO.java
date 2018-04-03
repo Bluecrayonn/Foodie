@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -18,13 +20,17 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.DBCollectionFindOptions;
+import com.mongodb.client.model.Filters;
 
 @Repository
 public class CommentDAO {
@@ -61,7 +67,7 @@ public class CommentDAO {
 	public String addComment(Map<String, Object> map, long userId) {
 
 		long today = System.currentTimeMillis();
-		long postId = Long.parseLong((String) map.get("postId"));
+		long postId = Long.parseLong((String) map.get("pid"));
 		UUID uuid = UUID.randomUUID();
 		map.put("comment_id", uuid.toString());
 		
@@ -83,12 +89,6 @@ public class CommentDAO {
 					new BasicDBObject("$push", new BasicDBObject("comments", map)));
 
 		}
-		// mt.update(new BasicDBObject("POST_ID", postId),
-		// new BasicDBObject("$push", new BasicDBObject("comments",map)));
-
-		// mt.insert(new BasicDBObject("POST_ID", postId).append("comments", new
-		// ArrayList<Map>()));
-
 		return null;
 	}
 
@@ -119,4 +119,16 @@ public class CommentDAO {
 		return result.toString();
 	}
 
+	public String getComments(int no) {
+//		MongoDatabase db = client.getDatabase("root");
+//		MongoCollection<Document> collection = db.getCollection("bbs_comment");
+//		
+//		Bson eq = Filters.eq("parent_no", no);
+//		
+//		ArrayList<Document>rst = collection.find(eq).into(new ArrayList<Document>());
+//		System.out.println("comment_find_ok");
+//		Gson gson = new Gson();
+//		return gson.toJson(rst);
+		return null;
+	}
 }
