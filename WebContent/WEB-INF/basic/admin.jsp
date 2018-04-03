@@ -77,12 +77,12 @@
    <div id="chart_sex" style="width: 800px;"></div>
    <div class="panel-body">나이별 차트</div>
    <div>
-   <select class="form-control" id="age" style="font-size: 12pt;">
-        <option>20대</option>
-        <option>30대</option>
-        <option>40대</option>
-        <option>50대</option>
-        <option>60대</option>
+   <select name = "age" class="form-control" id="age" style="font-size: 12pt;">
+        <option value="20">20대</option>
+        <option value="30">30대</option>
+        <option value="40">40대</option>
+        <option value="50">50대</option>
+        <option value="60">60대</option>
       </select>
    <div id="piechart_20age" style="width: 800px; height: 300px;"></div> 
    <div id="piechart_30age" style="width: 800px; height: 300px;"></div> 
@@ -294,7 +294,7 @@ function drawChart20() {
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart30);
 
-function drawChart30() {
+var a = $('#').click(function drawChart30() {
 
   var data = google.visualization.arrayToDataTable([
     ['나이', '30대'],
@@ -310,7 +310,7 @@ function drawChart30() {
   var chart = new google.visualization.PieChart(document.getElementById('piechart_30age'));
 
   chart.draw(data, options);
-}
+});
 
 /*40대 나이 차트*/
 google.charts.load('current', {'packages':['corechart']});
