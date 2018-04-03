@@ -55,11 +55,11 @@ var BstrapModal = function(title, body, buttons) {
 				+ that.Id
 				+ "' tabindex='-1' role='dialog' aria-labelledby='"
 				+ that.Id
-				+ "Label'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close modal-white-close' data-dismiss='modal' onclick='BstrapModal.Close()'><span aria-hidden='true'>&times;</span></button><h4 class='modal-title'>"
+				+ "Label'><div class='modal-dialog'><div class='modal-content'><div class='modal-header' style='border:none'><button type='button' class='close modal-white-close' data-dismiss='modal' onclick='BstrapModal.Close()'><span aria-hidden='true'>&times;</span></button><h4 class='modal-title'>"
 				+ title
 				+ "</h4></div><div class='modal-body'><div class='row'><div class='col-xs-12 col-md-12 col-sm-12 col-lg-12'>"
 				+ body
-				+ "</div></div></div><div class='modal-footer bg-default'><div class='col-xs-12 col-sm-12 col-lg-12'>"
+				+ "</div></div></div><div class='modal-footer bg-default' style='border:none'><div class='col-xs-12 col-sm-12 col-lg-12'>"
 				+ buttonshtml + "</div></div></div></div></div>";
 	}();
 	BstrapModal.Delete = function() {
