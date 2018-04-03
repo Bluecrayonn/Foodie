@@ -34,6 +34,25 @@
 	<div class="">
 		<c:if test="${isMod}">페이지 수정</c:if>
 	</div>
+	
+	<div class="modal fade" id="requiredmodal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<!-- sign up Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal">&times;</button>
+          			<h4 class="modal-title" align="center">입력이 필요합니다.</h4>
+				    <div class="modal-body">
+						<p class="text requiredmsg" align="center">입력필요</p>
+			        </div>
+			        <div class="modal-footer">
+			          	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
 	<form id="recipe_form" action="/foodie/write/confirm.do" method="post"
 		enctype="multipart/form-data">
 		<div class="form-group" style="margin: 0 auto">
@@ -241,16 +260,21 @@
 		function write_confirm() {
 			// 비어있지만 않으면 오케이
 			if ($("#title").val().trim() == "") {
-				window.alert("제목입력해라");
+				$(".requiredmsg").text('요리명을 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("#title").focus();
 				return;
 			}
 			if ($("#thumbnail").val() == "" && !'${isMod}') {
-				window.alert("썸네일 꼭올려라");
+				$(".requiredmsg").text('사진을 올려주세요.');
+				$("#requiredmodal").modal();
 				return;
 			}
 			if ($('#summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g,
 					"").replace(/\s|&nbsp;/g, '').length == 0) {
-				window.alert("내용이 없다");
+				$(".requiredmsg").text('내용을 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("#summernote").focus();
 				return;
 			}
 
@@ -266,7 +290,9 @@
 			if (flag) {
 				$("#recipe_form").submit();
 			} else {
-				window.alert("재료 최소한 한개는 넣어주세요");
+				$(".requiredmsg").text('최소 한개의 재료를 입력해주세요.');
+				$("#requiredmodal").modal();
+				$("input[name='ig_name']").focus();
 				return;
 			}
 
@@ -379,10 +405,13 @@
 			});
 
 			$(".ig_name").focusout(function() {
+				if($(this).val().trim() == ''){
+					return;
+				}				
 				$.ajax({
 		            type : 'get',
 		            url : '/foodie/write/ingredient_exist.do',
-		            data : 'name='+$(this).val(),
+		            data : 'name='+$(this).val().trim(),
 		            dataType : 'text',
 		            success : function(rst){
 		                if(rst=='false') {
