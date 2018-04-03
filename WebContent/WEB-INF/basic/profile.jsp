@@ -16,7 +16,7 @@
 <div> 
     <div class="card hovercard" style="height: 400px;">
     
-        <div class="card-background">
+        <div class="card-background" style="background-image:URL(/template/images/test1.jpg); height: 300px">
             <img class="card-bkimg" style="color: black;">
         </div>
         <div class="useravatar">
@@ -24,7 +24,7 @@
             <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
         </div> <br/>
         <div class="card-info" style="width: 800px; margin: auto; height: 80px"> <h5 class="card-title" style="margin-top: 40px;">${sessionScope.auth.NAME}  님</h5></div>
-    </div>
+    </div> <br/> <br/>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="..." style="width: 800px; margin: auto; outline: none;">
         <div class="btn-group" role="group">
             <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab" style="height: 50px;">레시피</button>

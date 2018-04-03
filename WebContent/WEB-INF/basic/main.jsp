@@ -6,7 +6,7 @@
 
 
 
-<div class=" container-fluid" style="margin-left: 30px">
+<div class=" container-fluid" style="margin-left: 23px;">
 	<!-- 여기서 검색어 리스트 뿌려줄 것입니다. -->
 	<div>
 		<h4>실시간 검색어 순위</h4>
@@ -21,7 +21,7 @@
 			type="radio" name="term"  value="30m"  class=" recent-keyword">30 Minutes</label> <label
 			class="radio-inline" ><input
 			style="vertical-align: middle; margin-top: 0; position: relative;"
-			type="radio" name="term"  value="10m"  class=" recent-keyword">10 Munites</label>
+			type="radio" name="term"  value="10m"  class=" recent-keyword">10 Minutes</label>
 	</div>
 	<div>
 	 <ul class="list-inline keyword-ranking">
@@ -34,13 +34,12 @@
 </div>
 
 <div class="fh5co-box">
-	<h3 class="heading">Search</h3>
 	<form action="/foodie/search.do" method="post">
 		<div class="form-group">
 			<!-- orderType 추가해야함 -->
 			<input name="keywords" type="text" class="form-control"
 				placeholder="검색하고 싶은 키워드를 입력하세요 여러가지 키워드는 띄어쓰기로 구분해주세요"
-				id="searchInput">
+				id="searchInput" style="width: 95%; margin: auto;">
 		</div>
 	</form>
 </div>

@@ -50,4 +50,10 @@
 		<put-attribute name="body" value="/WEB-INF/basic/pwreset.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
 	</definition>
+	<definition name="dropoutpage" template="/WEB-INF/views/dropoutpage.jsp"><!-- 회원 탈퇴 작성 페이지 -->
+		<put-attribute name="nav" value="/WEB-INF/basic/nav.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/basic/sidebar.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/basic/dropout.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/basic/main_footer.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

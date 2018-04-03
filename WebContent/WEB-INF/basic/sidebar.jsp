@@ -157,9 +157,9 @@
 						placeholder="이메일 입력" style="font-size: 12pt; width: 100%;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
-					<div class="modal-footer">
+					<div class="modal-footer" style="border: none;">
 						<button id = "password-email-check-btn" type="submit" formaction="/mail/passwordauthkey.do"
-							class="btn " data-toggle="modal"   disabled="disabled">전송</button>
+							class="btn " data-toggle="modal"   disabled="disabled" style="margin-left: 480px; background-color: #F2BF2B; color: #fff">전송</button>
 					</div>
 				</form>
 			</div>
