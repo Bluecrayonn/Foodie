@@ -101,19 +101,19 @@
 					<h4 id="emailchecktext" class="text">이메일을 입력하세요.</h4>
 					<input id="email-check" type="text" name="email"
 						class="form-control" placeholder="이메일 입력"
-						style="font-size: 12pt; width: 70%; display: inline;"
+						style="font-size: 12pt; width: 72.8%; display: inline;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
-					<button id="email-auth-btn" class="btn btn-primary"
-						style="width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
+					<button id="email-auth-btn" class="btn"
+						style="width: 25%; height: 54px; margin-left: 3px; vertical-align: middle; background-color: #F2BF2B; color: #fff;"
 						type="button">인증번호전송</button>
 					<div id="email-check-auth-div" style="display: none">
 						<input id="email-check-auth" type="text" name="authkey"
 							class="form-control" placeholder="전송받은 인증번호를 입력하세요"
-							style="font-size: 12pt; width: 70%; display: inline; margin-top: 20px;"
+							style="font-size: 12pt; width: 72.8%; display: inline; margin-top: 20px;"
 							required />
-						<button id="email-auth-check-btn" class="btn btn-primary"
-							style="margin-top: 20px; width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
+						<button id="email-auth-check-btn" class="btn"
+							style="margin-top: 20px; width: 25%; height: 54px; margin-left: 3px; vertical-align: middle; background-color: #F2BF2B; color: #fff;"
 							type="button">인증확인</button>
 					</div>
 					<h4 class="text">비밀번호를 입력하세요.</h4>
@@ -124,11 +124,11 @@
 					<input type="text" name="nickname" class="form-control signup-form"
 						disabled="disabled" placeholder="닉네임 입력"
 						style="font-size: 12pt; width: 100%;" required />
-					<div class="modal-footer">
+					<div class="modal-footer" style="border: none; padding-right: 0px;">
 						<button type="submit" class="btn signup-form" data-toggle="modal"
-							disabled="disabled">가입</button>
+							disabled="disabled" style="background-color: #F2BF2B; color: #fff;">가입</button>
 						<button type="button" class="btn" data-dismiss="modal"
-							disabled="disabled">닫기</button>
+							disabled="disabled" style="background-color: #F2BF2B; color: #fff;">닫기</button>
 					</div>
 				</form>
 			</div>
