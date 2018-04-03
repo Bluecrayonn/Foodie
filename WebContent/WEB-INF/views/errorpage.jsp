@@ -81,17 +81,17 @@ h1,h2,h3,h4,h5,h6,a{
   <c:when test="${requestScope['javax.servlet.error.status_code'] == 404}">
     <p><strong>404</strong> Page Not Found!</p>
     <p>You are lost the way Foodie.</p>
-    <button class="btn" style="center;" onclick="location='main.do'">홈으로</button>
+    <button class="btn" style="center;" onclick="location='/foodie/main.do'">홈으로</button>
   </c:when>
   <c:when test="${requestScope['javax.servlet.error.status_code'] == 500}">
     <p><strong>500</strong> That's an error!</p>
     <p>Please try again later.</p>
-    <button class="btn" style="center;" onclick="location='main.do'">홈으로</button>
+    <button class="btn" style="center;" onclick="location='/foodie/main.do'">홈으로</button>
   </c:when>
   </c:choose>
   </div>
   <footer id="fh5co-footer">
-		<p><small>&copy; 2016. Magazine Free HTML5. All Rights Reserverd. <br> Designed by <a href="http://freehtml5.co" target="_blank">FREEHTML5.co</a>  Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small></p>
+		<p><small>&copy; copyright 2018 <font style="color: #F2BF2B">(이름)</font> All Rights Reserved</small></p>
 	</footer>
 </body>
 </html>

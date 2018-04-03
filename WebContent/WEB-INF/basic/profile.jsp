@@ -60,8 +60,37 @@
     </div>
     
     <div class="center"><br/>
-	<button class = "btn" onclick="location='dropout.do'" style="color: #fff; background-color : red;"> 회원 탈퇴 </button>
+	<a data-toggle="modal" href="#dropoutModal" class="btn" style="color: #fff; background-color : red;">회원 탈퇴</a>
 	</div>
+	
+	<!-- dropout Modal -->
+<div class="modal fade" id="dropoutModal" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- dropout content-->
+		<div class="modal-content" style="font-family: '나눔고딕'">
+			<div class="modal-header" style="font-family: '나눔고딕'">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="text" align="center">비밀번호 확인</h4>
+			</div>
+			<div class="modal-body" style="font-family: '나눔고딕'">
+				<form action="/mail/passwordauthkey.do" method="post"
+					autocomplete="off">
+					<h4 id="password-email-check-text" class="text">비밀번호를 입력하세요.</h4>
+					
+					
+					<input id="password-check" type="password" name="receiver" class="form-control"
+						placeholder="비밀번호 입력" style="font-size: 12pt; width: 100%;"
+						required />
+					<div class="modal-footer" style="border: none;">
+						<button id = "password-email-check-btn" type="submit" formaction="/foodie/dropout.do"
+							class="btn " data-toggle="modal"   disabled="disabled" style="margin-left: 480px; background-color: #F2BF2B; color: #fff">전송</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
  
                 <script>
             	/*   
@@ -155,5 +184,37 @@
     		$(this).removeClass("btn-default").addClass("btn-primary");   
 });
 });
+       
+       $("#password-check").keyup(function(){
+   		var regid = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+   		if(regid.test($(this).val())){
+
+   			$.ajax("/account/emailcheck.do", {
+   				"method" : "post",
+   				"async" : true,
+   				"data" : {
+   					"email" : $(this).val()
+   				}
+   			}).done(
+   					function(obj) {
+   						console.log(obj)
+   						if (obj == "exists") {
+   							$("#password-email-check-text").css("color",
+   									"green");
+   							$("#password-email-check-text").html(
+   									"비밀번호가 올바릅니다.");
+   							$("#password-email-check-btn").removeAttr("disabled");
+   						} else if (obj == "possible") {
+   							$("#password-email-check-text").css("color",
+   									"red");
+   							$("#password-email-check-text").html(
+   									"비밀번호가 맞지 않습니다. 다시 확인해주세요.")
+   						}
+   					})
+   		}
+   		
+
+   		
+   	})
        
                 </script>
