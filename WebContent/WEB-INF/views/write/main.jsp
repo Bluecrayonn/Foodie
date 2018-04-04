@@ -2,12 +2,49 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html>
+<style>
+.btn-s {
+	background-color: #F2BF2B;
+	color: #fff;
+	margin-left: 290px;
+}
+
+.btn-n {
+	margin-left: 286.1px;
+}
+
+.btn-a {
+	background-color: #F2BF2B;
+	color: #fff;
+}
+
+.bo-n {
+	border: none;
+}
+
+.textbox {
+	box-shadow: none;
+	background: transparent;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	height: 54px;
+	font-size: 18px;
+	font-weight: 300;
+	border-radius: 5px;
+}
+
+.textbox:active, .textbox:focus {
+	outline: none;
+	box-shadow: none;
+	border-color: #f7c873;
+}
+</style>
+
+
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Foodie</title>
+<title>Foodie-Write</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
@@ -20,8 +57,8 @@
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
-<link href='/css/writepage.css'	rel='stylesheet' type='text/css'>
-<script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
+<link href='/css/writepage.css' rel='stylesheet' type='text/css'>
+<script src="/js/functions.js?<%=(int) (Math.random() * 10)%>"></script>
 <script src="/js/bootstrap-confirmation.js"></script>
 </head>
 <body>
@@ -32,27 +69,28 @@
 		var='confirmPopover' />
 
 	<div class="">
-		<c:if test="${isMod}">페이지 수정</c:if>
+		<c:if test="${isMod}"></c:if>
 	</div>
-	
+
 	<div class="modal fade" id="requiredmodal" role="dialog">
 		<div class="modal-dialog modal-sm">
 			<!-- sign up Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-				    <button type="button" class="close" data-dismiss="modal">&times;</button>
-          			<h4 class="modal-title" align="center">입력이 필요합니다.</h4>
-				    <div class="modal-body">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" align="center">입력이 필요합니다.</h4>
+					<div class="modal-body" style="padding-bottom: 0px;">
 						<p class="text requiredmsg" align="center">입력필요</p>
-			        </div>
-			        <div class="modal-footer">
-			          	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-			        </div>
+					</div>
+					<div class="modal-footer" style="border: none;">
+						<button type="button" class="btn" data-dismiss="modal"
+							style="background-color: #F2BF2B; color: #fff">닫기</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>	
-	
+	</div>
+
 	<form id="recipe_form" action="/foodie/write/confirm.do" method="post"
 		enctype="multipart/form-data">
 		<div class="form-group" style="margin: 0 auto">
@@ -62,21 +100,22 @@
 						for="title">요리명</label>
 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 					<label class="lb_recipe col-xs-2 col-sm-2 col-md-2 col-lg-2"
-						for="elapsedtime">소요시간</label>
+						for="elapsedtime" >소요시간</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
-					<input class="col-sm-7 col-xs-7 col-md-7 col-lg-7" id="title"
-						type="text" name="title" value="${post.TITLE }">
+					<input class="col-sm-7 col-xs-7 col-md-7 col-lg-7 form-control"
+						id="title" type="text" name="title" style="width: 730px"
+						value="${post.TITLE }">
 					<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
 					<div class="col-sm-2 col-xs-2 col-md-2 col-lg-2">
-						<input type="number" min="1" max="999"
-							value="${post.ELAPSEDTIME }" name="elapsedtime"><label>분</label>
+						<input class="textbox" type="number" min="1" max="999"
+							value="${post.ELAPSEDTIME }" name="elapsedtime" style="width: 100px;margin-left: -20px;padding-left: 20px;"><label>&nbsp;분</label>
 					</div>
 				</div>
 			</div>
-			<hr />
+			<br />
 			<div id="ingredients">
 				<div class="row ig_head">
 					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
@@ -89,13 +128,14 @@
 				</div>
 				<div class="row" id="dummy_row" style="display: none;">
 					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
-						<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
-							type="text" name="ig_name" ${confirmPopover} disabled>
+						<input
+							class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name form-control"
+							type="text" name="ig_name" style="width: 420px" ${confirmPopover} disabled>
 						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-						<input class="col-sm-2 col-xs-2 col-md-2 col-lg-2" type="text"
-							name="ig_amount" disabled>
+						<input class="col-sm-2 col-xs-2 col-md-2 col-lg-2 form-control" type="text"
+							name="ig_amount" style="width: 200px" disabled>
 						<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-						<select class="col-sm-2 col-xs-2 col-md-2 col-lg-2" name="ig_unit"
+						<select class="col-sm-2 col-xs-2 col-md-2 col-lg-2 form-control" name="ig_unit" style="width: 200px;"
 							disabled>
 							<c:forTokens items="${units}" delims="|" var="unit">
 								<option value="${unit}">${unit}</option>
@@ -106,60 +146,65 @@
 				<c:choose>
 					<c:when test="${ingredient ne null && ingredient != ''}">
 						<c:forEach var="item" items="${ingredient}" varStatus="status">
-							<div class="ig_row row">
+							<div class="ig_row row"> 
 								<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
-									<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
-										type="text" name="ig_name" value="${item.name}"
+									<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name form-control"
+										type="text" name="ig_name" style="width: 420px" value="${item.name}"
 										${confirmPopover}>
 									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-									<input class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_amount"
-										type="text" name="ig_amount" value="${item.qty}">
+									<input class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_amount form-control"
+										type="text" name="ig_amount" value="${item.qty}" style="width: 200px;">
 									<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-									<select class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_unit"
-										name="ig_unit">
+									<select class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_unit form-control"
+										name="ig_unit" style="width: 200px;">
 										<c:forTokens items="${units}" delims="|" var="unit">
 											<option value="${unit}"
 												${item.unit == unit ? "selected=selected'" : ""}>${unit}</option>
 										</c:forTokens>
 									</select>
-								<c:if test="${status.last}">
-								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
-									<a href="javascript:void(0);" onclick="ig_add();"> <span
-										class="glyphicon glyphicon-plus-sign"></span>
-									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-										class="glyphicon glyphicon-minus-sign"></span>
-									</a>
+									<c:if test="${status.last}">
+										<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
+											<a href="javascript:void(0);" onclick="ig_add();"> <span
+												class="icon-squared-plus"></span>
+											</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+												class="icon-squared-minus"></span>
+											</a>
+										</div>
+									</c:if>
 								</div>
-								</c:if>
-								</div>
-							</div>
+							</div> 
 							<!-- ig_row end -->
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
 						<div class="ig_row row">
 							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-centered">
-								<input class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name"
-									type="text" name="ig_name" ${confirmPopover}>
+								<input
+									class="col-sm-4 col-xs-4 col-md-4 col-lg-4 ig_name form-control"
+									type="text" name="ig_name" ${confirmPopover}
+									style="width: 420px">
 								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-								<input class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_amount"
-									type="text" name="ig_amount">
+								<input
+									class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_amount form-control"
+									type="text" name="ig_amount" style="width: 200px">
 								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
-								<select class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_unit"
-									name="ig_unit">
+								<select
+									class="col-sm-2 col-xs-2 col-md-2 col-lg-2 ig_unit form-control"
+									name="ig_unit" style="width: 200px;">
 									<c:forTokens items="${units}" delims="|" var="unit">
 										<option value="${unit}">${unit}</option>
 									</c:forTokens>
 								</select>
-								
-							<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one">
-								<a href="javascript:void(0);" onclick="ig_add();"> <span
-									class="glyphicon glyphicon-plus-sign"></span>
-								</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
-									class="glyphicon glyphicon-minus-sign"></span>
-								</a>
-							</div>	
-							</div>					
+
+								<div class="col-sm-1 col-xs-1 col-md-1 col-lg-1" id="only_one"
+									style="margin-top: 20px">
+									<a href="javascript:void(0);" onclick="ig_add();"> <span
+										class="icon-squared-plus"></span>
+									</a><a href="javascript:void(0);" onclick="ig_remove();"> <span
+										class="icon-squared-minus"></span>
+									</a>
+								</div>
+							</div>
 						</div>
 						<!-- ig_row end -->
 					</c:otherwise>
@@ -168,22 +213,21 @@
 			<!-- ingredients end -->
 		</div>
 		<!-- formgroup div end -->
-		<hr />
+		<br />
 		<div
-			style="margin: 0 auto; width: 150px; height: 150px; overflow: hidden">
+			style="margin: 0 auto; width: 150px; height: 250px; overflow: hidden">
+			<p style="margin-left: 20px; color: #F2BF2B">이미지 올리기</p>
 			<img id="preview"
 				src="${post.MAIN_IMG != '' && post.MAIN_IMG ne null ? '/upload_img/'.concat(post.MAIN_IMG) : '/image/upload.png'}"
-				style="border-radius: 10px; width: 150px; height: auto">
+				style="border-radius: 10px; width: 150px; height: 150px">
 		</div>
 		<input type="file" style="display: none" accept="image/*"
-			name="thumbnail" id="thumbnail" />
-
-		<hr />
-		<div class="directions">
+			name="thumbnail" id="thumbnail" /> <br />
+		<div class="directions" style=" width: 97%; margin:  auto;">
 			<textarea id="summernote" name="editorcontent"></textarea>
 		</div>
 		<div class="wrapper" style="text-align: center; margin-top: 20px">
-			<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
+			<button class="btn btn-a" type="button" onclick="write_confirm()">작성완료</button>
 		</div>
 		<input type="hidden" name="isMod" value="${isMod ? 'YY' : 'NN'}" />
 		<c:if test="${isMod }">
@@ -218,43 +262,50 @@
 				select : function(event, ui) {
 				}
 			});
-			$(".ig_name").focusout(function() {
-				if($(this).val().trim() == ''){
-					return;
-				} else {
-					console.log($(this).val().trim());
-				}
-				
-				$.ajax({
-		            type : 'get',
-		            url : '/foodie/write/ingredient_exist.do',
-		            data : 'name='+$(this).val().trim(),
-		            dataType : 'text',
-		            success : function(rst){
-		                if(rst=='false') {
-		                	// TODO: 재료, 단위를 키로 잡아야함
-		    				var title = '재료등록';
-		    				var body =  '<div class="modal-confirm-body">';
-		    					body += '<p>데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
-		    					body += '<small style="color:pink">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
-		    					body += '</div>'
-		    				var btn1 = {
-		    					Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
-		    					Css:"btn-success btn-default pull-left",
-		    					Callback:onConfirmClick
-		    					};
-		    				var btn2 = {
-		    					Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
-		    					Css:"btn-danger btn-default pull-left",
-		    					Callback:""
-		    					};
-		     				var buttons = [btn1,btn2];
-		    				
-		    				new BstrapModal(title, body, buttons).Show();
-		                }
-		            },
-		        });
-			});
+			$(".ig_name")
+					.focusout(
+							function() {
+								if ($(this).val().trim() == '') {
+									return;
+								} else {
+									console.log($(this).val().trim());
+								}
+
+								$
+										.ajax({
+											type : 'get',
+											url : '/foodie/write/ingredient_exist.do',
+											data : 'name='
+													+ $(this).val().trim(),
+											dataType : 'text',
+											success : function(rst) {
+												if (rst == 'false') {
+													// TODO: 재료, 단위를 키로 잡아야함
+													var title = '<h4 class="text" align="center">재료등록</h4>';
+													title += '<div class ="mo-n">';
+													var body = '<div class="modal-confirm-body">';
+													body += '<p align="center">데이터베이스에 등록되지 않은 재료를 등록하시겠습니까?<br/>';
+													body += '<small style="color:#F2BF2B">여러분의 참여가 FOODIE를 더 편리하게 만듭니다!</small></p>';
+													body += '</div>'
+													var btn1 = {
+														Value : '<i class="icon-squared-plus"></i>등록하기',
+														Css : "btn btn-s pull-left ",
+														Callback : onConfirmClick
+													};
+													var btn2 = {
+														Value : '<i class="icon-squared-minus"></i>아니오',
+														Css : "btn btn-s pull-left",
+														Callback : ""
+													};
+													var buttons = [ btn1, btn2 ];
+
+													new BstrapModal(title,
+															body, buttons)
+															.Show();
+												}
+											},
+										});
+							});
 		}
 		attach_ingredient_functions();
 		$("#summernote")
@@ -317,6 +368,7 @@
 				$("#summernote").focus();
 				return;
 			}
+			
 
 			var flag = false;
 			$(".ig_row").each(function() {
@@ -330,12 +382,11 @@
 			if (flag) {
 				$("#recipe_form").submit();
 			} else {
-				$(".requiredmsg").text('최소 한개의 재료를 입력해주세요.');
+				$(".requiredmsg").text('재료가 한 개 이상 필요합니다.');
 				$("#requiredmodal").modal();
 				$("input[name='ig_name']").focus();
 				return;
 			}
-
 		}
 
 		function ig_add() {
@@ -357,7 +408,8 @@
 		function ig_remove() {
 			if ($(".ig_row").length > 1) {
 				console.log($(".ig_row").length);
-				$("#only_one").appendTo($(".ig_row:last").prev().find(".col-xs-10"));
+				$("#only_one").appendTo(
+						$(".ig_row:last").prev().find(".col-xs-10"));
 				$(".ig_row:last").remove();
 			}
 		}
@@ -380,50 +432,51 @@
 			});
 		}
 		var onRegisterClick = function(e) {
-	        var queryString = $("#register-ingredient").serialize() ;
-			console.log("query: "+queryString);
-	        $.ajax({
-	            type : 'post',
-	            url : '/foodie/write/register_ingredient.do',
-	            data : queryString,
-	            dataType : 'json',
-	            success : function(json){
-	                alert("등록성공")
-	            },
-	        });
-	    }
-		
+			var queryString = $("#register-ingredient").serialize();
+			console.log("query: " + queryString);
+			$.ajax({
+				type : 'post',
+				url : '/foodie/write/register_ingredient.do',
+				data : queryString,
+				dataType : 'json',
+				success : function(json) {
+					alert("등록성공")
+				},
+			});
+		}
+
 		var onConfirmClick = function() {
-			var title = '재료등록';
-			var body =  '<div class="modal-register-body">';
-				body += '<form id="register-ingredient" role="form">';
-				body += '<div class="form-group">';
-				body += '<label for="ig_name"> 재료명</label>'; 
-				body += '<input type="text" class="form-control" name="name" id="ig_name" placeholder="마늘, 와사비, 소고기 등심, 삼겹살 ...">';
-				body += '</div>';
-				body += '<div class="form-group">';
-				body += '<label for="ig_unit"> 단위</label>'; 
-				body += '<input type="text" class="form-control" name="unit" id="ig_unit" placeholder="g, kg, ml, l, 마리, 단, 묶음 ...">';
-				body += '</div>';
-				body += '<div class="form-group">';
-				body += '<label for="ig_price"> 단위당 가격</label>'; 
-				body += '<input type="text" class="form-control" name="price" id="ig_price" placeholder="해당 단위, 1g, 1kg, 1마리 당 가격을 입력해주세요.">';
-				body += '</div>';
-				body += '</form>';
-				body += '</div>';
+			var title = '<h4 class="text" align="center">재료등록</h4>';
+			title += '<div class ="mo-n">';
+			var body = '<div class="modal-register-body">';
+			body += '<form id="register-ingredient" role="form">';
+			body += '<div class="form-group">';
+			body += '<label for="ig_name"> 재료명</label>';
+			body += '<input type="text" class="form-control" name="name" id="ig_name" placeholder="마늘, 와사비, 소고기 등심, 삼겹살 ...">';
+			body += '</div>';
+			body += '<div class="form-group">';
+			body += '<label for="ig_unit"> 단위</label>';
+			body += '<input type="text" class="form-control" name="unit" id="ig_unit" placeholder="g, kg, ml, l, 마리, 단, 묶음 ...">';
+			body += '</div>';
+			body += '<div class="form-group">';
+			body += '<label for="ig_price"> 단위당 가격</label>';
+			body += '<input type="text" class="form-control" name="price" id="ig_price" placeholder="해당 단위, 1g, 1kg, 1마리 당 가격을 입력해주세요.">';
+			body += '</div>';
+			body += '</form>';
+			body += '</div>';
 
 			var btn1 = {
-				Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
-				Css:"btn-success btn-default pull-left",
-				Callback:onRegisterClick
-				};
+				Value : '<i class="icon-squared-plus"></i>등록하기',
+				Css : "btn-success btn-n pull-left",
+				Callback : onRegisterClick
+			};
 			var btn2 = {
-				Value:'<span class="glyphicon glyphicon-remove"></span>아니오',
-				Css:"btn-danger btn-default pull-left",
-				Callback:""
-				};
-			var buttons = [btn1,btn2];
-			BstrapModal.Close();	
+				Value : '<i class="icon-squared-minus"></i>아니오',
+				Css : "btn-danger btn-n pull-left",
+				Callback : ""
+			};
+			var buttons = [ btn1, btn2 ];
+			BstrapModal.Close();
 			new BstrapModal(title, body, buttons).Show();
 		}
 		$(document).ready(function() {

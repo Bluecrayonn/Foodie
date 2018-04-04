@@ -9,30 +9,33 @@
 <div class=" container-fluid" style="margin-left: 23px;">
 	<!-- 여기서 검색어 리스트 뿌려줄 것입니다. -->
 	<div>
-		<h4>실시간 검색어 순위</h4>
+		<h4 style="color:#F2BF2B">실시간 검색어 순위</h4>
 	</div>
 	<div >
 		<label class="radio-inline"><input
 			style="vertical-align: middle; margin-top: 0; position: relative;"
-			type="radio" name="term" value="1d" class=" recent-keyword">1 Day</label> <label class="radio-inline "><input
+			type="radio" name="term" value="1d" class=" recent-keyword">1 Day</label> 
+			<label class="radio-inline "><input
 			style="vertical-align: middle; margin-top: 0; position: relative;"
-			type="radio" name="term"  value="1h"  class=" recent-keyword">1 Hour</label> <label class="radio-inline"><input
+			type="radio" name="term"  value="1h"  class=" recent-keyword">1 Hour</label> 
+			<label class="radio-inline"><input
 			style="vertical-align: middle; margin-top: 0; position: relative;"
-			type="radio" name="term"  value="30m"  class=" recent-keyword">30 Minutes</label> <label
+			type="radio" name="term"  value="30m"  class=" recent-keyword">30 Minutes</label> 
+			<label
 			class="radio-inline" ><input
 			style="vertical-align: middle; margin-top: 0; position: relative;"
 			type="radio" name="term"  value="10m"  class=" recent-keyword">10 Minutes</label>
 	</div>
 	<div>
+	
 	 <ul class="list-inline keyword-ranking">
-  <li class="list-inline-item"><button type="button" class="btn btn-primary" style="border-color:  #f2bf2b" >1</button></li>
-  <li class="list-inline-item"><button type="button" class="btn btn-primary">2</button></li>
-  <li class="list-inline-item"><button type="button" class="btn btn-primary">3</button></li>
+  <li class="list-inline-item"><button type="button" class="btn" style="border-color:  #f2bf2b; color:#fff" >1</button></li>
+  <li class="list-inline-item"><button type="button" class="btn">2</button></li>
+  <li class="list-inline-item"><button type="button" class="btn">3</button></li>
 </ul>
 	</div>
 
 </div>
-
 <div class="fh5co-box">
 	<form action="/foodie/search.do" method="post">
 		<div class="form-group">
@@ -101,6 +104,9 @@ divs {
 			class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
 		<div class="clearfix visible-xs-block"></div>
 	</div>
+</div>
+<div style="position:fixed; bottom: 30px; right: 30px; background-color: white; border: 3px solid #F2BF2B;">
+<a href="#"><i class="icon-arrow-with-circle-up" style="width:55; height:55; font-size:30px; "></i></a>
 </div>
 <script>
 	$(".bookmarkicon").click(function() {

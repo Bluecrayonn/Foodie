@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<a href="#" class="fh5co-post-prev"><span><i
-			class="icon-chevron-left"></i> Prev</span></a>
-	<a href="#" class="fh5co-post-next"><span>Next <i
-			class="icon-chevron-right"></i></span></a>
 	<!-- END #fh5co-header -->
 	<div class="container-fluid">
 		<div class="row fh5co-post-entry single-entry">

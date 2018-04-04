@@ -236,9 +236,9 @@ google.charts.setOnLoadCallback(drawMaterial);
 
 function drawMaterial() {
       var data = google.visualization.arrayToDataTable([
-        ['성별', '남', '여'],
-        ['남', 8175000, 8008000],
-        ['여', 3792000, 3694000]
+        ['성별', '남'],
+        ['남', 8175000],
+        ['여', 3792000]
       ]);
 
       var materialOptions = {

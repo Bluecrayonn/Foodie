@@ -55,11 +55,11 @@ var BstrapModal = function(title, body, buttons) {
 				+ that.Id
 				+ "' tabindex='-1' role='dialog' aria-labelledby='"
 				+ that.Id
-				+ "Label'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close modal-white-close' data-dismiss='modal' onclick='BstrapModal.Close()'><span aria-hidden='true'>&times;</span></button><h4 class='modal-title'>"
+				+ "Label'><div class='modal-dialog'><div class='modal-content'><div class='modal-header' style='border:none'><button type='button' class='close modal-white-close' data-dismiss='modal' onclick='BstrapModal.Close()'><span aria-hidden='true'>&times;</span></button><h4 class='modal-title'>"
 				+ title
 				+ "</h4></div><div class='modal-body'><div class='row'><div class='col-xs-12 col-md-12 col-sm-12 col-lg-12'>"
 				+ body
-				+ "</div></div></div><div class='modal-footer bg-default'><div class='col-xs-12 col-sm-12 col-lg-12'>"
+				+ "</div></div></div><div class='modal-footer bg-default' style='border:none'><div class='col-xs-12 col-sm-12 col-lg-12'>"
 				+ buttonshtml + "</div></div></div></div></div>";
 	}();
 	BstrapModal.Delete = function() {
@@ -83,3 +83,30 @@ var BstrapModal = function(title, body, buttons) {
 		$(document.getElementById(BstrapModal.Id)).modal('show');
 	};
 };
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+function isEmpty(obj) {
+
+    // null and undefined are "empty"
+    if (obj == null) return true;
+
+    // Assume if it has a length property with a non-zero value
+    // that that property is correct.
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    // If it isn't an object at this point
+    // it is empty, but it can't be anything *but* empty
+    // Is it empty?  Depends on your application.
+    if (typeof obj !== "object") return true;
+
+    // Otherwise, does it have any properties of its own?
+    // Note that this doesn't handle
+    // toString and valueOf enumeration bugs in IE < 9
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+
+    return true;
+}
