@@ -92,17 +92,15 @@
 	$(document).ready(function() {
 		/*** basic main.jsp의 script와 공통부분, 어딘가로 합치자 ***/ 
 		$(".bookmarkicon").click(function() {
+			console.log($(this).attr("id"));
 			var bookmark = $(this);
-			if ($(this).hasClass(""))
 			$.ajax("/social/addBookmarkRDB.do", {
 				"method" : "post",
 				"async" : true,
 				"data" : {
 					"postId" : $(this).attr("id")
 				}
-
 			}).done(function(obj) {
-
 				if (obj == "adddone") {
 					bookmark.css("color", "#48C9B0");
 				} else if (obj == "removedone") {
@@ -110,11 +108,11 @@
 				} else if (obj == "notlogedon") {
 					window.alert("로그인을 먼저 진행해주세요 ")
 				}
-
 			})
-
 		})
+		
 		$(".hearticon").click(function() {
+			console.log($(this).attr("id"));
 			var heart = $(this);
 			var targetId = $(this).attr("id");
 
@@ -124,7 +122,6 @@
 				"data" : {
 					"targetId" : targetId
 				}
-
 			}).done(function(obj) {
 				var hearticon = $(".hearticon");
 				if (obj == "adddone") {
@@ -164,12 +161,10 @@
 					for (var k = 0; k < bookmarks.length - 1; k++) {
 						if (bookmarks[k].POST_ID == bookmarkicon.eq(h).attr("id")) {
 							bookmarkicon.eq(h).css("color", "#48C9B0");
-
 						}
 					}
 				}
 			})
-
 		})
 		//여기서 비교할 following 가지고 와서 following 비교해줄것입니다.
 
@@ -184,12 +179,10 @@
 					for (var k = 0; k < hearts.length - 1; k++) {
 						if (hearts[k].TARGET_ID == hearticon.eq(h).attr("id")) {
 							hearticon.eq(h).css("color", "#E74C3C");
-
 						}
 					}
 				}
 			})
-
 		})
 		
 		getAllComment();
