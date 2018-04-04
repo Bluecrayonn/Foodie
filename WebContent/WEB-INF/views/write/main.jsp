@@ -293,8 +293,9 @@
 							}
 						});
 
-		if ('${post}' != "" && '${post}' != null) {
-			$("#summernote").summernote("code", '${post.CONTENT}');
+		if ('${!empty post}') {
+			var contents = '${post.CONTENT}';
+			$("#summernote").summernote("code", contents);
 		}
 
 		function write_confirm() {
