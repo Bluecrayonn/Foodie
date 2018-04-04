@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class CommentDAO {
 	@Qualifier("basic")
 	MongoTemplate template;
 
+	@Autowired
+	SqlSessionFactory factory;
+	
 	public String getComment(long postId) {
 		
 		/*Criteria criteria=new Criteria("POST_ID");
@@ -70,8 +75,6 @@ public class CommentDAO {
 		long postId = Long.parseLong((String) map.get("pid"));
 		UUID uuid = UUID.randomUUID();
 		map.put("comment_id", uuid.toString());
-		
-		
 		map.remove("postId");
 		map.put("WRITE_DATE", today);
 

@@ -31,8 +31,9 @@ public class CommentController {
 		// POST_ID, ACCOUNT_ID, TEXT
 		HttpSession session = req.getSession();
 		long userId=(long)((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
+		String usernick = (String)((Map)session.getAttribute("auth")).get("NAME");
 		map.put("uid", userId);
-
+		map.put("nick", usernick);
 		comment.addComment(map, userId);
 
 		return null;

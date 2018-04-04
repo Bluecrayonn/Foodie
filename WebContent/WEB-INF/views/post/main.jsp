@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
 <c:set var="ismine"
 	value="${sessionScope.auth.user[0].ACCOUNT_ID == post.WRITER_ID}" />
 
@@ -39,8 +40,7 @@
 				</div>
 				<c:if test="${sessionScope.auth.ACCOUNT_ID == post.WRITER_ID}">
 					<div class="animate-box">
-						<a href="/foodie/write/modifypost.do?pid=${post.POST_ID}">mod
-							available</a>
+						<a href="/foodie/write/modifypost.do?pid=${post.POST_ID}">수정</a>
 					</div>
 				</c:if>
 				<div class="row rp-b">
@@ -51,9 +51,10 @@
 
 		<div>
 			<!-- 댓글 영역 -->
-			<div id="comments" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 text-left content-article">
-				<span class="dummy-row" style="display:none">코멘트 1<small style="font-size:12px"> – halfer Oct 22 '11 at 12:21</small></span>
-			</div>
+			<ul id="comments" style="list-style-type:none" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 text-left content-article">
+			</ul>
+			<!-- 더미 코멘트 -->
+			<li id="dummy-row" style="display:none"><span>코멘트 1<small style="font-size:12px"> – halfer Oct 22 '11 at 12:21</small></span></li>
 		</div>
 	</div>
 </div>
@@ -62,7 +63,7 @@
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
-			<form class="navbar-form navbar-left">
+			<form class="navbar-form navbar-left" onsubmit="onSubmitComment(); return false;">
 				<div class="form-group">
 					<img src="/image/icon_comment.png"></img>
 					<input id="input_comment" style="width: 400px; height: 38.65px; padding: 5px 10px 5px 10px; border-width: 1px;"
@@ -84,6 +85,10 @@
 </nav>
 
 <script>
+	function get_action() { // inside script tags
+		return form_action;
+	}
+
 	$(document).ready(function() {
 		/*** basic main.jsp의 script와 공통부분, 어딘가로 합치자 ***/ 
 		$(".bookmarkicon").click(function() {
@@ -198,24 +203,29 @@
             dataType : 'JSON',
             success : function(rst){
             	var obj = JSON.parse(rst);
-            	var comments = obj[0].comments;
-            	// 코멘트 붙이기 붙이기
-            	for (var i = 0; i < comments.length; i++) {
-					console.log(comments[i]);
-					var cloneRow = $("#dummy-row").clone();
-					cloneRow.html('<div>'+comments[i]+'</div>');
-					//innerhtml >>>>> 코멘트 1<small style="font-size:12px"> – halfer Oct 22 '11 at 12:21</small>
-					cloneRow.appendTo($("#comments"));
-					cloneRow.css("display", "");
-				}
+            	if (!isEmpty(obj)) {
+            		var comments = obj[0].comments;
+	            	// 코멘트 붙이기 붙이기
+	            	$("#comments").html(' ');
+	            	for (var i = 0; i < comments.length; i++) {
+						console.log(comments[i]);
+						var cloneRow = $("#dummy-row").clone();
+						cloneRow.html('<span>'+comments[i].msg+'<small style="font-size:12px"> – ' + (comments[i].nick != null ? comments[i].nick : comments[i].uid) + ' ' + new Date(comments[i].WRITE_DATE) +'</small></span>');
+						cloneRow.prependTo($("#comments"));
+						cloneRow.css("display", "");
+					}
+            	}
             	
             }
 		});
 	}
 	
 	var onSubmitComment = function() {
+		if(!'${sessionScope.auth}') {
+			window.alert("로그인을 먼저 진행해주세요 ");
+			return;
+		}		
 		if($("#input_comment").val().trim() == ''){
-		 	console.log("empty input");
 		 	$("#input_comment").val('').focus();
 			return;	
 		}
@@ -226,6 +236,7 @@
             dataType : 'text',
             success : function(rst){
             	$("#input_comment").val('');
+            	getAllComment();
             }
 		});
 	}
