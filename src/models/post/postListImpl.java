@@ -59,8 +59,7 @@ public class postListImpl implements postListDAO {
 	MongoTemplate reduceTemplate;
 
 	public String keywordParser(String keywords) {
-		System.out.println("[postListController] : parsing keywords Array into string");
-
+ 
 		String[] array = keywords.split(" ");
 		String result = "";
 
@@ -70,8 +69,7 @@ public class postListImpl implements postListDAO {
 			if (cnt < array.length - 1)
 				result += "|";
 		}
-		System.out.println("[postListController] : parsing result =>" + result);
-
+ 
 		return result;
 	}
 
@@ -80,8 +78,7 @@ public class postListImpl implements postListDAO {
 
 		SqlSession session = factory.openSession();
 		String[] keywordArray = ((String) map.get("keywords")).split(" ");
-		System.out.println(map.toString());
-		if (map.get("keywords") != null) {
+ 		if (map.get("keywords") != null) {
 			String keywords = keywordParser((String) map.get("keywords"));
 			map.put("keywords", keywords);
 		}
@@ -105,14 +102,11 @@ public class postListImpl implements postListDAO {
 		}
 		// List<String> distinctList = collection.distinct("ingredients.name");
 
-		System.out.println(map.toString());
-		try {
-			System.out.println("[postListController] :entering try box");
-
+ 		try {
+ 
 			List<Map> result = session.selectList("social.searchPost", map);
 
-			System.out.println("[postListController] : result =>" + result.toString());
-			return result;
+ 			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -161,10 +155,8 @@ public class postListImpl implements postListDAO {
 			pastTime = currTime - 60 * 60 * 24 * 1000;
 		
 			if (date.toString().equals(new Date(pastTime).toString())) {
-				System.out.println("그래도 오늘");
-			} else {
-				System.out.println("다른날이군!");
-				collection3 = template
+ 			} else {
+ 				collection3 = template
 						.getCollection("search_log_" + new Date(pastTime).toString());
 			}
 
@@ -173,30 +165,24 @@ public class postListImpl implements postListDAO {
 			term = "60*60*1000";
 			pastTime = currTime - 60 * 60 * 1000;
 			if (date.toString().equals(new Date(currTime - 60 * 60 * 1000).toString())) {
-				System.out.println("그래도 오늘");
-			} else {
-				System.out.println("다른날이군!");
-				collection3 = template.getCollection("search_log_" + new Date(pastTime).toString());
+ 			} else {
+ 				collection3 = template.getCollection("search_log_" + new Date(pastTime).toString());
 			}
 			break;
 		case "30m":
 			term = "60*30*1000";
 			pastTime = currTime - 60 * 30  * 1000;
 			if (date.toString().equals(new Date(currTime - 60 * 30 * 1000).toString())) {
-				System.out.println("그래도 오늘");
-			} else {
-				System.out.println("다른날이군!");
-				collection3 = template.getCollection("search_log_" + new Date(pastTime).toString());
+ 			} else {
+ 				collection3 = template.getCollection("search_log_" + new Date(pastTime).toString());
 			}
 			break;
 		case "10m":
 			term = "60*10*1000";
 			pastTime = currTime - 60 * 10  * 1000;
 			if (date.toString().equals(new Date(currTime - 60 * 10 * 1000).toString())) {
-				System.out.println("그래도 오늘");
-			} else {
-				System.out.println("다른날이군!");
-				collection3 = template.getCollection("search_log_" + new Date(currTime - 60 * 10 * 1000).toString());
+ 			} else {
+ 				collection3 = template.getCollection("search_log_" + new Date(currTime - 60 * 10 * 1000).toString());
 			}
 			break;
 		default:
@@ -204,30 +190,84 @@ public class postListImpl implements postListDAO {
 		}
 
 		String mapFunction = " function() {\r\n" + 
-				"						var d = new Date();\r\n" + 
-				"                       for (var idx = 0; idx < this.keywords.length; idx++) {\r\n" + 
-				"                         if(this.time_line > d - " +term+ " ){\r\n" + 
+				"   \r\n" + 
+				"  \r\n" + 
+				" for (var idx in this.keywords ) {\r\n" + 
 				"                           var key = this.keywords[idx];\r\n" + 
-				"                           \r\n" + 
-				"                           var count = \r\n" + 
-				"                                          1\r\n" + 
-				"                                        \r\n" + 
-				"                                       ;\r\n" + 
-				"                          \r\n" + 
-				"                           emit(key, count);\r\n" + 
-				"                         }\r\n" + 
-				"                       }\r\n" + 
-				"                    };";
-		String reduceFunction = " function(keySKU, countObjVals) {\r\n" + 
-				"                     reducedVal = 0;\r\n" + 
+				"                           var value = {\r\n" + 
+				"                           total : 1,\r\n" + 
+				"                           F:0,\r\n" + 
+				"                           M:0,\r\n" + 
+				"                           U:0,\r\n" + 
+				"                           s20:0,\r\n" + 
+				"                           s30:0,\r\n" + 
+				"                           s40:0,\r\n" + 
+				"                           s50:0,\r\n" + 
+				"                           s60:0,\r\n" + 
+				"                           sUnk:0\r\n" + 
 				"\r\n" + 
+				"                           };\r\n" + 
+				"                           var fullYear = new Date().getFullYear();\r\n" + 
+				"                           if(this.gender==\"M\"){\r\n" + 
+				"                             value.M = 1;\r\n" + 
+				"                           }else if(this.gender==\"F\"){\r\n" + 
+				"                             value.F = 1;\r\n" + 
+				"                           }else if(this.gender==\"U\"){\r\n" + 
+				"                             value.U = 1;\r\n" + 
+				"                           }\r\n" + 
+				"                           if(fullYear -this.age<20){\r\n" + 
+				"                           value.sUnk=1;\r\n" + 
+				"                           }else if(fullYear - this.age<30 && fullYear - this.age>=20){\r\n" + 
+				"                             value.s20=1;\r\n" + 
+				"                           }else if(fullYear - this.age<40 && fullYear - this.age>=30){\r\n" + 
+				"                             value.s30=1;\r\n" + 
+				"                           }else if(fullYear - this.age<50 && fullYear - this.age>=40){\r\n" + 
+				"                             value.s40=1;\r\n" + 
+				"                           }else if(fullYear - this.age<60 && fullYear - this.age>=50){\r\n" + 
+				"                             value.s50=1;\r\n" + 
+				"                           }else{\r\n" + 
+				"                             value.s60=1;\r\n" + 
+				"                           }\r\n" + 
+				"                           emit(key, value);\r\n" + 
+				"                       };\r\n" + 
+				"  \r\n" + 
+				"   \r\n" + 
+				"                        \r\n" + 
+				" \r\n" + 
+				"  \r\n" + 
+				"  \r\n" + 
+				"                      \r\n" + 
+				"                    };";
+		String reduceFunction = "function(key, countObjVals) {\r\n" + 
+				"                    var reducedVal =  {\r\n" + 
+				"                           total : 0,\r\n" + 
+				"                           F:0,\r\n" + 
+				"                           M:0,	\r\n" + 
+				"                           U:0,\r\n" + 
+				"                           s20:0,\r\n" + 
+				"                           s30:0,\r\n" + 
+				"                           s40:0,\r\n" + 
+				"                           s50:0,\r\n" + 
+				"                           s60:0,\r\n" + 
+				"                           sUnk:0\r\n" + 
+				"                           };\r\n" + 
 				"                     for (var idx = 0; idx < countObjVals.length; idx++) {\r\n" + 
-				"                         reducedVal += countObjVals[idx];\r\n" + 
+				"                         reducedVal.total  += countObjVals[idx].total ;\r\n" + 
+				"                         reducedVal.F  += countObjVals[idx].F ;\r\n" + 
+				"                         reducedVal.M  += countObjVals[idx].M ;\r\n" + 
+				"                         reducedVal.U  += countObjVals[idx].U ;\r\n" + 
+				"                         \r\n" + 
+				"                         reducedVal.s20  += countObjVals[idx].s20 ;\r\n" + 
+				"                         reducedVal.s30  += countObjVals[idx].s30 ;\r\n" + 
+				"                         reducedVal.s40  += countObjVals[idx].s40 ;\r\n" + 
+				"                         reducedVal.s50  += countObjVals[idx].s50 ;\r\n" + 
+				"                         reducedVal.s60  += countObjVals[idx].s60 ;\r\n" + 
+				"                         reducedVal.sUnk  += countObjVals[idx].sUnk ;\r\n" + 
 				"                          \r\n" + 
-				"                     }\r\n" + 
+				"                     };\r\n" + 
 				"\r\n" + 
 				"                     return reducedVal;\r\n" + 
-				"                  };";
+				"                  };   ";
 		
 
 		// 여기선 맵리듀스를 한번 해주고 그 숫자대로 정렬해여 표시할 것임.
@@ -235,12 +275,16 @@ public class postListImpl implements postListDAO {
 		// 단위는 선택 가능하게 할것. 10분,30분, 1시간,등....
 		// 혹은 10초 단위로 증가량이 많은 데이터를 출력할 수도 있음
 		// 어떻게 하는 것이 좋을것인가.
-		if(reduceTemplate.getCollection("search_log_reduce_" + date.toString())==null) {
-			reduceTemplate.createCollection("search_log_reduce_" + date.toString());
+		if(reduceTemplate.getCollection("search_log_reduce_tot_" + date.toString())==null) {
+			reduceTemplate.createCollection("search_log_reduce_tot_" + date.toString());
+		}
+		if(reduceTemplate.getCollection("search_log_reduce_temp_" + date.toString())==null) {
+			reduceTemplate.createCollection("search_log_reduce_temp_" + date.toString());
 		}
 
-		DBCollection collection2 = reduceTemplate.getCollection("search_log_reduce_" + date.toString());
-		if (collection2 == null) {
+		DBCollection collection2_temp = reduceTemplate.getCollection("search_log_reduce_temp_" + date.toString());
+		
+		if (collection2_temp == null) {
 			reduceTemplate.createCollection("search_log_reduce_" + date.toString());
 		}
 
@@ -250,24 +294,33 @@ public class postListImpl implements postListDAO {
 		MapReduceResults<HashMap> mapReeduceResult = template
 				.mapReduce("search_log_" + date.toString(), mapFunction, reduceFunction,
 						new MapReduceOptions().outputDatabase("mapReduce")
-								.outputCollection("search_log_reduce_" + date.toString()).outputTypeReplace(),
+								.outputCollection("search_log_reduce_temp_" + date.toString()).outputTypeReplace(),
 						HashMap.class);
+		template
+		.mapReduce("search_log_" + date.toString(), mapFunction, reduceFunction,
+				new MapReduceOptions().outputDatabase("mapReduce")
+						.outputCollection("search_log_reduce_tot_" + date.toString()).outputTypeMerge(),
+				HashMap.class);
 		if (collection3 != null) {
 			template
 			.mapReduce("search_log_" + new Date(pastTime).toString(), mapFunction, reduceFunction,
 					new MapReduceOptions().outputDatabase("mapReduce")
-							.outputCollection("search_log_reduce_" + date.toString()).outputTypeMerge(),
+							.outputCollection("search_log_reduce_temp_" + date.toString()).outputTypeMerge(),
+					HashMap.class);
+			template
+			.mapReduce("search_log_" + new Date(pastTime).toString(), mapFunction, reduceFunction,
+					new MapReduceOptions().outputDatabase("mapReduce")
+							.outputCollection("search_log_reduce_tot_" + date.toString()).outputTypeMerge(),
 					HashMap.class);
 
 		}
-		DBCursor redCursor = collection2.find().sort(new BasicDBObject("value", -1)).limit(10);
+		DBCursor redCursor = collection2_temp.find().sort(new BasicDBObject("value", -1)).limit(10);
 		System.out.println(redCursor.toString());
 		List<Map> result = new ArrayList<>();
 		List<DBObject> resultList = redCursor.toArray();
 		for (DBObject obj : resultList) {
 			result.add(obj.toMap());
-			System.out.println("아시밤쾅");
-			System.out.println(obj.toString());
+ 			System.out.println(obj.toString());
 		}
 		System.out.println(result.toString());
 		return result;
@@ -278,12 +331,10 @@ public class postListImpl implements postListDAO {
 		SqlSession session = factory.openSession();
 
 		try {
-			System.out.println("[postListController] :entering try box");
-
+  
 			List<Map> result = session.selectList("social.getPost");
 
-			System.out.println("[postListController] : result =>" + result.toString());
-			return result;
+ 			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -331,12 +382,9 @@ public class postListImpl implements postListDAO {
 		MapReduceResults<ReduceObject> results = template.mapReduce("ingredients", "classpath:Map_reduce/ingre_map.js",
 				"classpath:Map_reduce/ingre_reduce.js",
 				new MapReduceOptions().outputCollection("Mapout1").outputTypeMerge(), ReduceObject.class);
- 		System.out.println(results.hashCode());
-		System.out.println(results.getCounts());
+ 	 
 
-		for (ReduceObject map1 : results) {
-			System.out.println(map1.toString());
-		}
+		 
 
 		 
 

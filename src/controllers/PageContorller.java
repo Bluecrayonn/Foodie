@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.security.Timestamp;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class PageContorller {
 	IngredientDao ingredientDao;
 	Gson gson;
 
-	@RequestMapping("/main.do")
+	@RequestMapping({"/main.do","/index.do"})
 	public String mainpage(HttpServletRequest req, Map map) throws IOException {
 		gson = new Gson();
 
@@ -47,7 +48,9 @@ public class PageContorller {
 	@RequestMapping("/search.do")
 	public String search(HttpServletRequest req, @RequestParam Map<String, String> map) {
 		HttpSession session = req.getSession();
-		int age = 0;
+		SimpleDateFormat simple = new SimpleDateFormat("YYYY");
+		
+		int age = Integer.parseInt(simple.format(new Date(System.currentTimeMillis())));
 		if ((session.getAttribute("auth")) != null && ((Map) session.getAttribute("auth")).get("BIRTH")!=null )
 			age = (int) (((Map) session.getAttribute("auth")).get("BIRTH"));
 		String gender = "U";

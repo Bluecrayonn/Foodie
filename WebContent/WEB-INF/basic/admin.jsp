@@ -40,9 +40,8 @@
             </div>
  <div class="container">
  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
- <select class="form-control" id="user" style="font-size: 12pt; width: 300px; margin-left: 150px;">
-        <option>양파</option>
-      </select>
+ <select name="keywords" class="form-control keywords-list-week" id="user" style="font-size: 12pt; width: 300px; margin-left: 150px;">
+       </select>
       <br/>
 <table class="table">
                 <thead>
@@ -71,7 +70,7 @@
 
 <div class="panel panel-default panel-horizontal" style="margin-right: 200px;">
     <div class="panel-heading">
-  <h3 class="panel-title" style="width: 200px;">양파 검색량</h3>
+  <h3 id="gender-keyword-title" class="panel-title" style="width: 200px;">양파 검색량</h3>
         <small>(최근 1주일)</small>
    <div class="panel-body">성별별 차트</div>
    <div id="chart_sex" style="width: 800px;"></div>
@@ -84,11 +83,9 @@
         <option value="50">50대</option>
         <option value="60">60대</option>
       </select>
-   <div id="piechart_20age" style="width: 800px; height: 300px;"></div> 
-   <div id="piechart_30age" style="width: 800px; height: 300px;"></div> 
+   
    <div id="piechart_40age" style="width: 800px; height: 300px;"></div> 
-   <div id="piechart_50age" style="width: 800px; height: 300px;"></div> 
-   <div id="piechart_60age" style="width: 800px; height: 300px;"></div> 
+   
    </div>
 </div>
 </div>
@@ -242,9 +239,9 @@ function ig_add() {
 	
 	/*성별 차트*/
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMaterial);
+/* google.charts.setOnLoadCallback(drawMaterial);
 
-function drawMaterial() {
+ function drawMaterial() {
       var data = google.visualization.arrayToDataTable([
         ['성별', '남', '여'],
         ['남', 8175000, 8008000],
@@ -266,8 +263,8 @@ function drawMaterial() {
       };
       var materialChart = new google.charts.Bar(document.getElementById('chart_sex'));
       materialChart.draw(data, materialOptions);
-    }
-    
+    } */
+      
 /*20대 나이 차트*/
 /* google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart20);
@@ -303,29 +300,29 @@ function drawChart30(obj) {
 
 	} */
 $('.ages').change(function()	{
+	var age = $(this).val();
 	
-	$.ajax("",{
+	$.ajax("/administ/ages.do",{
 		"method":"post",
 		"async":true,
 		"data":{
-			"ages":$(this).val();
+			"ages":age
 		}
 	}).done(function(){
-		console.log($(this).val());
-		var data = google.visualization.arrayToDataTable([
-		    ['나이', $(this).val()+'대'],
+ 		var data2 = google.visualization.arrayToDataTable([
+		    ['나이', age+'대'],
 		    ['초반(0~3)',     11],
 		    ['중반(4~6)',      2],
 		    ['후반(7~9)',  11]
 		  ]);
 
-		  var options = {
+		  var options2 = {
 		    title: '나이에 따른 검색량('+$(this).val()+'대)'
 		  };
 
-		  var chart = new google.visualization.PieChart(document.getElementById('piechart_40age'));
+		  var chart2= new google.visualization.PieChart(document.getElementById('piechart_40age'));
 
-		  chart.draw(data, options);
+		  chart2.draw(data, options);
 		
 	})
 	
@@ -387,5 +384,110 @@ function drawChart60() {
 
   chart.draw(data, options);
 } */
+$(function(){
+	$.ajax("/administ/weekkeywords.do",{
+		"method":"post",
+		"async":true
+		
+	}).done(function(obj){
+		console.log(obj);
+		var options = "";
+		for(var i = 0 ; i<obj.length;i++){
+			options +="<option value="+obj[i]+" >"+obj[i]+"</option>";
+		}
+		$(".keywords-list-week").html(options);
+	})
+})
+
+$(".keywords-list-week").change(function(){
+	var keyword = $(this).val();
+ 	$("#gender-keyword-title").html($(this).val()+"검색량");
+	$.ajax("/administ/genders.do",{
+		"method":"post",
+		"async":true,
+		"data":
+			{
+			"keywords":$(this).val()
+			}
+		
+	}).done(function(obj){
+  		var m = 0;
+		var f = 0;
+		var u = 0;
+		var s20 = 0;
+		var s30 = 0;
+		var s40 = 0;
+		var s50 = 0;
+		var s60 = 0;
+		
+		
+		
+		for(cnt in obj){
+			 
+ 					m += obj[cnt].value.M;
+ 					f += obj[cnt].value.F;
+ 					u += obj[cnt].value.U;
+ 					s20 += obj[cnt].value.s20;
+ 					s30 += obj[cnt].value.s30;
+ 					s40 += obj[cnt].value.s40;
+ 					s50 += obj[cnt].value.s50;
+ 					s60 += obj[cnt].value.s60;
+ 					  
+
+				}
+			 
+		
+	
+		var data =  google.visualization.arrayToDataTable([
+			 ['성별', 'count',{ role:'style' }],
+		        ['Male', m,'fill-color: #619FDC'],
+		        ['Female', f,'fill-color: #F2BB5C'],
+		        ['Unknown',u,'fill-color: #D7D6D6']
+			
+	      ]);
+
+	      var materialOptions = {
+	        chart: {
+	          title: '성별에 따른 검색량'
+	        },
+	        hAxis: {
+	          title: '검색량',
+	          minValue: 0,
+	        },
+	        vAxis: {
+	          title: '성별'
+	        },
+	        bars: 'horizontal'
+	      };
+	      var materialChart = new google.charts.Bar(document.getElementById('chart_sex'));
+ 	      materialChart.draw(data, materialOptions);
+ 	      
+ 	     var data2 = google.visualization.arrayToDataTable([
+ 		    ['나이', 'count'],
+ 		    ['20s',     s20],
+ 		    ['30s',      s30],
+ 		    ['40s',  s40],
+ 		   ['50s',  s50],
+ 		  ['60s',  s60]
+ 		  ]);
+
+ 		  var options2 = {
+ 		    title: '나이별 '+keyword+'검색량'
+ 		  };
+
+ 		  var chart2= new google.visualization.PieChart(document.getElementById('piechart_40age'));
+
+ 		  chart2.draw(data2, options2);
+		
+	})
+	
+})
 
 </script>
+
+
+
+
+
+
+

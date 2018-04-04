@@ -293,8 +293,9 @@
 							}
 						});
 
-		if ('${post}' != "" && '${post}' != null) {
-			$("#summernote").summernote("code", '${post.CONTENT}');
+		if ('${post.POST_ID}' != "" && '${post.POST_ID}' != null) {
+			var content = $.parseHTML('${post.CONTENT}');
+			$("#summernote").summernote("code",content );
 		}
 
 		function write_confirm() {
