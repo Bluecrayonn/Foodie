@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOneByName" resultType="java.util.Map">
 		SELECT * FROM INGREDIENT WHERE ITEMNAME=#{name}
 	</select>
-	
+
 	<update id="modify">
 		UPDATE POST SET TITLE=#{title},ELAPSEDTIME=#{elapsedTime},MAIN_IMG=#{mainImage},CONTENT=#{content} WHERE POST_ID=${postId}
 	</update>

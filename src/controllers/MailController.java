@@ -27,11 +27,12 @@ public class MailController {
 	private MailService service;
 	
 	@Autowired
+
 	LoginImpl loginimpl;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String form() {
-		return "mailForm01";
+		return "mailform";
 	}
 	
 	

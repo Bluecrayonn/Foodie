@@ -32,7 +32,7 @@
         </div>
         <div class="useravatar">
             <img style="background-image:URL(/profile_image/${sessionScope.auth.PROFILE_IMG}); margin-top: 100px; border: none;">
-        </div>
+        </div> 
     </div>
     </div>
 <div style="text-align: center;">

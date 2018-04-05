@@ -18,7 +18,7 @@
   border-color: #f7c873;
 }
 </style>
-<div id="fh5co-offcanvas" style="background-image: URL(/template/images/sideimg.jpg);">
+<div id="fh5co-offcanvas" style="background-image: URL(/images/sideimg.jpg);">
  	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
 	</span></a>

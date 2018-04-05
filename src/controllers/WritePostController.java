@@ -45,6 +45,13 @@ public class WritePostController {
 		return "writepage";
 	}
 
+	@RequestMapping("/editorcontents.do")
+	@ResponseBody
+	public String summernoteContents(@RequestParam int pid) {
+		String contents = (String)postDao.getOnePost(pid).get("CONTENT");
+		return contents;
+	}
+	
 	@RequestMapping("/confirm.do")
 	public String write_ok(@RequestParam("thumbnail") MultipartFile f, @RequestParam HashMap params,
 			@RequestParam String[] ig_name, @RequestParam String[] ig_amount, @RequestParam String[] ig_unit,

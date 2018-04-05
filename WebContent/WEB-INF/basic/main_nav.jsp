@@ -34,7 +34,7 @@
 				</c:when>
 				</c:choose>
 				<div class="col-lg-12 col-md-12 text-center">
-					<a href="/foodie/main.do"><img src="/template/images/logo.png" style="width: 223px; height: 184px;"></a><br/>
+					<a href="/foodie/main.do"><img src="/images/logo.png" style="width: 223px; height: 184px;"></a><br/>
 				</div>
 			</div>
 		</div>

@@ -97,10 +97,7 @@ public class PageContorller {
 		return "detailpage";
 	}
 
-	@RequestMapping("/writerecipe.do")
-	public String writerecipepage() {
-		return "detailpage";
-	}
+	 
 
 	@RequestMapping("pwreset.do")
 	public String pwresetpage() {
