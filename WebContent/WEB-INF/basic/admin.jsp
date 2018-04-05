@@ -31,7 +31,7 @@
             <img class="card-bkimg">
         </div>
         <div class="useravatar">
-            <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
+            <img style="background-image:URL(/profile_image/${sessionScope.auth.PROFILE_IMG}); margin-top: 100px; border: none;">
         </div>
     </div>
     </div>

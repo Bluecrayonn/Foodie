@@ -57,7 +57,7 @@
 			<c:when test="${!empty sessionScope.auth}">
 
 				<div id="logon-container" style="margin-top: 90px" >
- 						<img src="/template/images/person1.jpg"
+ 						<img style="height: 200px;width: 200px;"src="/profile_image/${sessionScope.auth.PROFILE_IMG}"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
 					<h2>${sessionScope.auth.NAME}</h2>
 					<c:choose>

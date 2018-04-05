@@ -32,7 +32,7 @@ button {
 		</div>
 		<div class="useravatar">
 			<img
-				style="background-image: URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
+				style="background-image: URL(/profile_image/${sessionScope.auth.PROFILE_IMG}); margin-top: 100px; border: none;">
 		</div>
 		<br />
 		<div class="card-info"
