@@ -172,7 +172,7 @@
 		<div
 			style="margin: 0 auto; width: 150px; height: 150px; overflow: hidden">
 			<img id="preview"
-				src="${post.MAIN_IMG != '' && post.MAIN_IMG ne null ? '/upload_img/'.concat(post.MAIN_IMG) : '/image/upload.png'}"
+				src="${post.MAIN_IMG != '' && post.MAIN_IMG ne null ? '/upload_img/'.concat(post.MAIN_IMG) : '/images/upoad.png'}"
 				style="border-radius: 10px; width: 150px; height: auto">
 		</div>
 		<input type="file" style="display: none" accept="image/*"

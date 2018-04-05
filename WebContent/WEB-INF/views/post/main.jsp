@@ -66,7 +66,7 @@
 			id="bs-example-navbar-collapse-1">
 			<form class="navbar-form navbar-left" onsubmit="onSubmitComment(); return false;">
 				<div class="form-group">
-					<img src="/image/icon_comment.png"></img>
+					<img src="/images/icon_comment.png"></img>
 					<input id="input_comment" style="width: 400px; height: 38.65px; padding: 5px 10px 5px 10px; border-width: 1px;"
 						type="text" class="form-control"
 						placeholder="이 레시피에 대한 당신의 생각을 남겨주세요.">

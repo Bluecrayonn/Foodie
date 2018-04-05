@@ -18,7 +18,7 @@
   border-color: #f7c873;
 }
 </style>
-<div id="fh5co-offcanvas" style="background-image: URL(/template/images/sideimg.jpg);">
+<div id="fh5co-offcanvas" style="background-image: URL(/images/sideimg.jpg);">
  	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
 			<i class="icon-cross3"></i> <span>Close</span>
 	</span></a>
@@ -57,7 +57,7 @@
 			<c:when test="${!empty sessionScope.auth}">
 
 				<div id="logon-container" style="margin-top: 90px" >
- 						<img src="/template/images/person1.jpg"
+ 						<img src="/images/person1.jpg"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
 					<h2>${sessionScope.auth.NAME}</h2>
 					<h4>마트관리자</h4><br/>
@@ -127,8 +127,6 @@
 					<div class="modal-footer">
 						<button type="submit" class="btn signup-form" data-toggle="modal"
 							disabled="disabled">가입</button>
-						<button type="button" class="btn" data-dismiss="modal"
-							disabled="disabled">닫기</button>
 					</div>
 				</form>
 			</div>

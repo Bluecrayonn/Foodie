@@ -1,87 +1,149 @@
-/*package controllers;
+package controllers;
 
-import java.util.UUID;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import services.MailService;
 
+import services.MailService;
+import models.EmailDTO;
+import models.login.LoginImpl;
+//
 @Controller
 @RequestMapping("/mail")
 public class MailController {
-	@Autowired
-	MailService mailService;
-
-	@RequestMapping("/enter.do")
-	public String accountJoinHandle() {
-		return "join";
-	}
-
-	@RequestMapping("/check.do")
-	public String accountCheckHandle(@RequestParam String key) {
-		if (Math.random() > 0.65) {
-			return "redirect:/";
-		} else {
-
-		}
-		return "join";
-	}
-
 	
-	 * @RequestMapping(path="/login.do",produces=
-	 * "application/json;charset=utf-8")
-	 * 
-	 * @ResponseBody public String loginHandler(@RequestParam Map<String,
-	 * String> map,HttpServletRequest context) {
-	 * 
-	 * HttpSession session = context.getSession(); //계정 email 뽑아오기 String email=
-	 * map.get("email"); //검사결과 0: 성공 / 1: 아이디없음/2:패스워드 불일치 int result =
-	 * loginservice.confirmEmail(map);
-	 * System.out.println("[loginHandler] auth result "+result); Map json = new
-	 * HashMap<>();
-	 * 
-	 * if(result==0) {
-	 * 
-	 * session.setAttribute("auth", loginservice.setAuth(email));
-	 * 
-	 * System.out.println(map.toString()); }
-	 * 
-	 * json.put("auth", result);
-	 * 
-	 * return gson.toJson(json);
-	 
-
-	@RequestMapping(path = "/sendKey.do", produces = "application/json;charset=utf-8")
-	@ResponseBody
-	public String accountSendKeyHandle(@RequestParam String email, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		String[] uuids = UUID.randomUUID().toString().split("-");
-		String key = uuids[0] + "-" + uuids[1];
-		boolean result = mailService.sendAuthKey(email, key);
-
-		session.setAttribute("result", key);
-		System.out.println("{\"result\":" + key + "}");
-
-		return "{\"result\":" + result + "}";
+	@Autowired(required = false)
+	private MailService service;
+	
+	@Autowired
+	LoginImpl loginimpl;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String form() {
+		return "mailform";
 	}
-
-	@RequestMapping("/resultKey.do")
+	
+	
+	
+	@RequestMapping("/emailauthkey.do")
 	@ResponseBody
-	public String resultKeyHandle(@RequestParam String authKey, HttpServletRequest req) {
+	public String sendAuthKey(@ModelAttribute EmailDTO smail, HttpServletRequest req) {
+		
 		HttpSession session = req.getSession();
-		String result = (String) session.getAttribute("result");
-		if (result.equals(authKey)) { // authKey는 sidebar.jsp 스크립트 부분에 변수로 지정해놓음
-			System.out.println("인증에 성공하였습니다.");
-			return "true";
-		} else {
-			System.out.println("인증에 실패하였습니다.");
-			return "false";
+		String result = service.sendAuthMail(smail);
+		if(result.equals("sendfail")) {
+			return "sendfail";
+			
+		}else {
+			String authkey = result.split(":")[1];
+			String email = result.split(":")[2];
+			session.setAttribute("emailAuth:"+email,authkey);
+			return "sendsucc";
 		}
 		
+		
+ 	}
+	@RequestMapping(path="/emailauthkeyconfirm.do",produces="application/plain;charset=utf-8")
+	@ResponseBody
+	public String confirmAuthKey(@RequestParam Map<String,String> map,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		String sessionAuth = (String) session.getAttribute("emailAuth:"+map.get("email"));
+ 		String receivedAuth = map.get("authKey");
+		boolean result = service.checkAuthMail(sessionAuth, receivedAuth);
+		if(result) {
+			return "confirmOk";
+		}else {
+			return "confirmFail";
+		}
+		
+		
+ 	}
+	
+	
+	@RequestMapping("/passwordauthkey.do")
+	public String sendPasswordAuthKey(@ModelAttribute EmailDTO smail, HttpServletRequest req) {
+		System.out.println("Crap!");
+		HttpSession session = req.getSession();
+		
+		
+		int check = loginimpl.emailCheck(smail.getReceiver());
+		if(check==1) {
+			return "mainpage";
+		}
+		String result = service.sendPasswordAuthMail(smail);
+		if(result.equals("sendfail")) {
+			return "pwresetpage";
+			
+		}else {
+			System.out.println(result);
+			String authkey = result.split(":")[1];
+			String email = result.split(":")[2];
+			session.setAttribute("passwordAuth:"+email,authkey);
+			session.setAttribute("emailPasswordCheck", email);
+			return "pwresetpage";
+		}
+		
+ 	}
+	
+	@RequestMapping(path="/passwordauthkeyconfirm.do",produces="application/plain;charset=utf-8")
+	@ResponseBody
+	public String confirmPasswordAuthKey(@RequestParam Map<String,String> map,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("emailPasswordCheck");
+		String sessionAuth = (String) session.getAttribute("passwordAuth:"+email);
+		
+		
+ 		String receivedAuth = map.get("authKey");
+		boolean result = service.checkAuthMail(sessionAuth, receivedAuth);
+		if(result) {
+			return "confirmOk";
+		}else {
+			return "confirmFail";
+		}
+		
+		
+ 	}
+	@RequestMapping(path="/passwordreset.do",produces="application/plain;charset=utf-8")
+	@ResponseBody
+	public String resetPasswordAuthKey(@RequestParam Map<String,String> map,HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("emailPasswordCheck");
+		String sessionAuth = (String) session.getAttribute("passwordAuth:"+email);
+		
+		
+ 		String receivedAuth = map.get("authKey");
+		boolean result = service.checkAuthMail(sessionAuth, receivedAuth);
+		if(result) {
+ 			return "confirmOk";
+		}else {
+			return "confirmFail";
+		}
+		
+		
+ 	}
+	
 
-	}
-}*/
+	/*@RequestMapping(method = RequestMethod.POST)
+	public String send(EmailDTO smail, Model d) {
+		System.out.println("제목:" + smail.getSubject());
+		System.out.println("내용:" + smail.getContent());
+		System.out.println("수신자:" + smail.getReceiver());
+		service.sendAuthMail(smail);
+		d.addAttribute("isSnd", "Y");
+		return "mailform";
+	}*/
+}

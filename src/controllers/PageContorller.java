@@ -80,15 +80,12 @@ public class PageContorller {
 		map.put("ingredient",ingredientDao.getIngredientById(pid));
 		return "detailpage";
 	}
-	@RequestMapping("/writerecipe.do")
-	public String writerecipepage() {
-		return "detailpage";
-	}
-	@RequestMapping("pwreset.do")
+	
+	@RequestMapping("/pwreset.do")
 		public String pwresetpage() {
 			return "pwresetpage";
 		}
-	@RequestMapping("admin.do")
+	@RequestMapping("/admin.do")
 	public String adminpage() {
 		return "adminpage"; 
 	}
