@@ -30,11 +30,10 @@ public class CommentController {
 	public String addCommentHandler(@RequestParam Map<String, Object> map, HttpServletRequest req) {
 		// POST_ID, ACCOUNT_ID, TEXT
 		HttpSession session = req.getSession();
-		// long userId=(long)
-		// ((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
-		long userId = 1;
-		map.put("userId", userId);
-
+		long userId=(long)((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
+		String usernick = (String)((Map)session.getAttribute("auth")).get("NAME");
+		map.put("uid", userId);
+		map.put("nick", usernick);
 		comment.addComment(map, userId);
 
 		return null;
@@ -42,8 +41,8 @@ public class CommentController {
 
 	@RequestMapping(path = "/get.do", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String getCommentHandler(String postIdparam) {
-		long postId = Long.parseLong(postIdparam);
+	public String getCommentHandler(String pid) {
+		long postId = Long.parseLong(pid);
 
 		return gson.toJson(comment.getComment(postId));
 	}

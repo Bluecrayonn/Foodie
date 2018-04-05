@@ -49,16 +49,6 @@ public class WritePostController {
 	public String write_ok(@RequestParam("thumbnail") MultipartFile f, @RequestParam HashMap params,
 			@RequestParam String[] ig_name, @RequestParam String[] ig_amount, @RequestParam String[] ig_unit,
 			HttpServletRequest request, RedirectAttributes redirectAttributes) throws IllegalStateException, IOException {
-		// 1. params.get("isMod").equals("NN") 일때
-
-		// 2. params.get("isMod").equals("YY") 일때
-		// f가 null?
-		// 이전 path를 그대로 사용
-		// f가 not null?
-		// 새로 파일 업로드 프로세스 그대로 + 이전 사용 파일을 삭제
-
-		// String ct = f.getContentType();
-		// if (!f.isEmpty() && ct.startsWith("image")) {
 		System.out.println("f empty?:" + f.isEmpty());
 		System.out.println(params.get("prev_img"));
 		int uid = (int) (long) ((Map) request.getSession().getAttribute("auth")).get("ACCOUNT_ID");

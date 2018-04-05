@@ -87,14 +87,15 @@ public class PostDao {
 			//param.remove(key)
 			postId = session.selectOne("post.givenId");
 			System.out.println(postId);
-			
+			String time = (String)param.remove("elapsedtime");
 			PostDto dto = new PostDto(
 					postId
 					,(int)param.get("writer")
 					,(String)param.remove("title")
 					,(String)param.remove("editorcontent")
 					,(String)param.remove("mainimage")
-					,Integer.parseInt((String)param.remove("elapsedtime")));
+					,Integer.parseInt(!time.isEmpty() ? time : "0")
+					);
 			// 
 			r = session.insert("post.write", dto);
 			if (r != 0) {

@@ -45,7 +45,7 @@ public class LoginController {
 		System.out.println("[loginHandler] auth result "+result);
 		Map json  = new HashMap<>();
 		
-		
+	
 		if(result==0) {
 			
  			session.setAttribute("auth", loginservice.setAuth(email));
