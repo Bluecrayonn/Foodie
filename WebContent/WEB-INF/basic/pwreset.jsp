@@ -23,7 +23,7 @@
 	<input id="new-password" type="password" name="new-password" class="form-control" placeholder="새로운 비밀번호 입력"
 	style="font-size: 12pt; width: 40%; margin: auto;" required/> <br/>
 	<input id="new-password-confirm" type="password" name="new-password" class="form-control" placeholder="비밀번호 확인"
-	style="font-size: 12pt; width: 40%; margin: auto;" required/> <br/><button type="button"id="password-reset-button" class="btn " onclick="">비밀번호 변경</button>
+	style="font-size: 12pt; width: 40%; margin: auto;" required/> <br/><button type="button"id="password-reset-button" class="btn " onclick="" style="background-color: #F2BF2B; color: #fff;">비밀번호 변경</button>
  	</div>
 	 
 </div>

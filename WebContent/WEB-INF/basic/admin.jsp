@@ -41,7 +41,7 @@
  <div class="container">
  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
  <select name="keywords" class="form-control keywords-list-week" id="user" style="font-size: 12pt; width: 300px; margin-left: 150px;">
-       </select>
+       </select> 
       <br/>
 <table class="table">
                 <thead>

@@ -3,10 +3,39 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<style>
+	#fixed-menu {
+        width: 100%;
+        background-color: #fff;
+        position: fixed;
+  		bottom: 0px;
+  		left: 0px;
+      }
+      #fixed-menu li {
+        display: inline-block;
+        margin-right: 30px;
+      }
+      .textbox {
+	box-shadow: none;
+  	background: transparent;
+  	border: 2px solid rgba(0, 0, 0, 0.1);
+  	height: 54px;
+  	font-size: 18px;
+  	font-weight: 300;
+  	border-radius: 5px;
+	}
+	.textbox:active, .textbox:focus {
+  	outline: none;
+  	box-shadow: none;
+  	border-color: #f7c873;
+	}
+	</style>
+	
+
 <script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
 <c:set var="ismine"
 	value="${sessionScope.auth.user[0].ACCOUNT_ID == post.WRITER_ID}" />
-
+ 
 <a href="#" class="fh5co-post-prev"><span><i
 		class="icon-chevron-left"></i> Prev</span></a>
 <a href="#" class="fh5co-post-next"><span>Next <i
@@ -38,11 +67,13 @@
 					<div class="col-lg-4 animate-box">
 						<div class="fh5co-highlight right">재료를 선택하여 주십시오.</div>
 					</div>
-				</div>
-				<c:if test="${sessionScope.auth.ACCOUNT_ID == post.WRITER_ID}">
-					<div class="animate-box">
-						<a href="/foodie/write/modifypost.do?pid=${post.POST_ID}">수정</a>
-					</div>
+
+					<c:if test="${sessionScope.auth.ACCOUNT_ID == post.WRITER_ID}">
+					<div class="row rp-b">
+						<div class="col-md-12 animate-box"><h4>방법</h4>${post.CONTENT}</div>
+						<div class="animate-box"><a href="/foodie/write/modifypost.do?pid=${post.POST_ID}" style="margin-left:50%;">수정하기</a></div>
+						</div>
+						</c:if>
 				</c:if>
 				<div class="row rp-b">
 					<div class="col-md-12 animate-box" id="postContent">${post.CONTENT}</div>
@@ -79,6 +110,12 @@
 				<li><i style="font-size: 18pt" id="${post.WRITER_ID}"
 					class="icon-heart hearticon"></i></li>
 			</ul>
+			<div>
+			<!-- 댓글 영역 -->
+			<ul id="comments" style="list-style-type:none" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 text-left content-article">
+			<!-- 더미 코멘트 -->
+			<li id="dummy-row" style="display:none"><span>코멘트 1<small style="font-size:12px"> – halfer Oct 22 '11 at 12:21</small></span></li>
+					</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>

@@ -67,7 +67,7 @@ public class CommentDAO {
 		
 
 		return list.toArray().toString();
-	}
+	} 
 
 	public String addComment(Map<String, Object> map, long userId) {
 
