@@ -70,7 +70,7 @@
 
 <div class="panel panel-default panel-horizontal" style="margin-right: 200px;">
     <div class="panel-heading">
-  <h3 id="gender-keyword-title" class="panel-title" style="width: 200px;">양파 검색량</h3>
+  <h3 id="gender-keyword-title" class="panel-title" style="width: 200px;">○○ 검색량</h3>
         <small>(최근 1주일)</small>
    <div class="panel-body">성별별 차트</div>
    <div id="chart_sex" style="width: 800px;"></div>
@@ -238,67 +238,9 @@ function ig_add() {
 	});
 	
 	/*성별 차트*/
+	//Google Chart Library Load
 google.charts.load('current', {packages: ['corechart', 'bar']});
-/* google.charts.setOnLoadCallback(drawMaterial);
-
- function drawMaterial() {
-      var data = google.visualization.arrayToDataTable([
-        ['성별', '남', '여'],
-        ['남', 8175000, 8008000],
-        ['여', 3792000, 3694000]
-      ]);
-
-      var materialOptions = {
-        chart: {
-          title: '성별에 따른 검색량'
-        },
-        hAxis: {
-          title: '검색량',
-          minValue: 0,
-        },
-        vAxis: {
-          title: '성별'
-        },
-        bars: 'horizontal'
-      };
-      var materialChart = new google.charts.Bar(document.getElementById('chart_sex'));
-      materialChart.draw(data, materialOptions);
-    } */
-      
-/*20대 나이 차트*/
-/* google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart20);
-
-function drawChart20() {
-
-  var data = google.visualization.arrayToDataTable([
-    ['나이', '20대'],
-    ['초반',     11],
-    ['중반',      2],
-    ['후반',  11]
-  ]);
-
-  var options = {
-    title: '나이에 따른 검색량'
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById('piechart_20age'));
-
-  chart.draw(data, options);
-} */
-
-/*30대 나이 차트*/
-/* google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart30); 
-
-function drawChart30(obj) {
-
-	
-	console.log(obj);
-	
- 
-
-	} */
+//재료당 나이별 검색량 차트(없어도 상관없을껄?)
 $('.ages').change(function()	{
 	var age = $(this).val();
 	
@@ -332,58 +274,6 @@ $('.ages').change(function()	{
 	
 });
 
-/*40대 나이 차트*//* 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart40);
-
-function drawChart40() {
-
-  
-} */
-
-/*50대 나이 차트*//* 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart50);
-
-function drawChart50() {
-
-  var data = google.visualization.arrayToDataTable([
-    ['나이', '50대'],
-    ['초반',     11],
-    ['중반',      2],
-    ['후반',  11]
-  ]);
-
-  var options = {
-    title: '나이에 따른 검색량(50대)'
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById('piechart_50age'));
-
-  chart.draw(data, options);
-}
- */
-/*60대 나이 차트*//* 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart60);
-
-function drawChart60() {
-
-  var data = google.visualization.arrayToDataTable([
-    ['나이', '60대'],
-    ['초반',     11],
-    ['중반',      2],
-    ['후반',  11]
-  ]);
-
-  var options = {
-    title: '나이에 따른 검색량(60대)'
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById('piechart_60age'));
-
-  chart.draw(data, options);
-} */
 $(function(){
 	$.ajax("/administ/weekkeywords.do",{
 		"method":"post",
