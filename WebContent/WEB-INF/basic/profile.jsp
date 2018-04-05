@@ -49,7 +49,7 @@ button {
 	<br />
 	<div style="width: 800px; margin-left: 830px">
  		<a data-toggle="modal" href="#profile-change-Modal"
-						class="js-fh5co-close-offcanvas">회원가입</a> 
+						class="js-fh5co-close-offcanvas">회원 정보 수정</a> 
 	</div>
 	<br />
 	<div class="btn-pref btn-group btn-group-justified btn-group-lg"
