@@ -90,11 +90,11 @@ public class PageContorller {
 	}
 
 	// 진입시 parameter로 post_id를 넣어줍니다.
-	@RequestMapping("/detail.do")
-	public String detailpage(@RequestParam int pid, ModelMap map) {
+	@RequestMapping("/post.do")
+	public String postpage(@RequestParam int pid, ModelMap map) {
 		map.put("post", postDao.getOnePost(pid));
 		map.put("ingredient", ingredientDao.getIngredientById(pid));
-		return "detailpage";
+		return "postpage";
 	}
 
 	 

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <c:set var="ownerId" value="${sessionScope.auth.user[0].ACCOUNT_ID }" />
-
-
-
-
 <div class=" container-fluid" style="margin-left: 23px;">
 	<!-- 여기서 검색어 리스트 뿌려줄 것입니다. -->
 	<div>
@@ -91,9 +90,9 @@ divs {
 					</ul>
 				</figure>
 				<!-- 여기 아이디 넣음(Email? or nickname)  -->
-				<span class="fh5co-meta"><a href="single.html">${obj.NAME }</a></span>
+				<span class="fh5co-meta" style="color: #F2BF2B">${obj.NAME }</span>
 				<h2 class="fh5co-article-title">
-					<a href="/foodie/detail.do?pid=${obj.POST_ID}">${obj.TITLE}</a>
+					<a href="/foodie/post.do?pid=${obj.POST_ID}">${obj.TITLE}</a>
 				</h2>
 				<span class="fh5co-meta fh5co-date">${obj.POST_DATE}</span>
 			</article>

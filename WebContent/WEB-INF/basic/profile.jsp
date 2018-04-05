@@ -26,10 +26,6 @@ button {
 <div>
 	<div class="card hovercard" style="height: 400px;">
 
-		<div class="card-background"
-			style="background-image: URL(images/test1.jpg); height: 300px">
-			<img class="card-bkimg">
-		</div>
 		<div class="useravatar">
 			<img id="profile-img" src="/profile_image/${sessionScope.auth.PROFILE_IMG}" width="200px"
 				style="background-image: URL(); margin-top: 100px; border: none;">
@@ -37,21 +33,23 @@ button {
 		</div>
 		<div class="card-info"
 			style="width: 800px; margin: auto; height: 80px">
-			<h5 class="card-title" style="margin-top: 40px;">${sessionScope.auth.NAME}
-				님</h5>
+			<h5 class="card-title" style="margin-top: 40px;">${sessionScope.auth.NAME} 님</h5>
 				
 		</div>
 	</div>
-	<form action="/profile/" id="profile-img-upload-form" method="post" enctype="multipart/form-data">
+
+	<br />
+	<div style="width: 800px; margin-left: 820px">
+		<form action="/profile/" id="profile-img-upload-form" method="post" enctype="multipart/form-data">
 			<input type="file" id="profile-img-upload" name="pf-image"  accept="image/*" style="display: none">
-			<button class ="btn"  type="button" id="profile-img-upload-form-btn">사진 바꾸기</button>
-			</form>
-	<br />
-	<div style="width: 800px; margin-left: 830px">
- 		<a data-toggle="modal" href="#profile-change-Modal"
-						class="js-fh5co-close-offcanvas">회원 정보 수정</a> 
+			<button class ="btn"  type="button" id="profile-img-upload-form-btn" style="background-color: #F2BF2B; color: #fff;">사진 바꾸기</button>
+			
+ 		<button data-toggle="modal" href="#profile-change-Modal"
+						class="btn" style="background-color: #F2BF2B; color: #fff;">회원 정보 수정</button> 
+				<p style="width: 800; margin-left:-150px; height: 10px;">* 사진을 바꾸시려면 현재 사진을 더블 클릭 해주세요.</p>
+		</form>
+
 	</div>
-	<br />
 	<div class="btn-pref btn-group btn-group-justified btn-group-lg"
 		role="group" aria-label="..."
 		style="width: 800px; margin: auto; outline: none;">
@@ -90,8 +88,8 @@ button {
 			<div class="tab-pane fade in" id="tab4"></div>
 			<div class="tab-pane fade in" id="tab5"></div>
 			<div class="tab-pane fade in" id="tab6">
-				<ul style="list-style: none;" >
-					<li>${sessionScope.auth.NAME}님의내 정보</li>
+				<ul style="list-style: none; color: #F2BF2B;" >
+					<li>${sessionScope.auth.NAME} 님의 내 정보</li>
 					<li>&nbsp;&nbsp;&nbsp;이메일 : ${sessionScope.auth.EMAIL}</li>
 
 					<li>&nbsp;&nbsp;&nbsp;성별 : ${sessionScope.auth.GENDER}</li>

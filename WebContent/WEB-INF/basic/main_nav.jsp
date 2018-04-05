@@ -14,7 +14,7 @@
 			<c:when test="${empty sessionScope.auth}">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>	
 					<ul class="fh5co-social">
-					<li><a href="/foodie/write/writepost.do" class="js-fh5co-nav-toggle" style="margin-right: 3px; color:black; size:15px;"><i class="icon-pencil">레시피 작성</i></a></li>
+					<li><a href="/foodie/writepost.do" class="js-fh5co-nav-toggle" style="margin-right: 3px; color:black; size:15px;"><i class="icon-pencil">레시피 작성</i></a></li>
 					<li><a href="#" class="js-fh5co-nav-toggle" style="margin-right: 3px; color:black; size:15px;"><i class="icon-login">Login/sign up</i></a></li>
 				</ul>					
 				</c:when>
