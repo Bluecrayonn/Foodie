@@ -27,27 +27,27 @@
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
 <!-- Animate -->
-<link rel="stylesheet" href="/template/css/animate.css">
+<link rel="stylesheet" href="/css/animate.css">
 <!-- Icomoon -->
-<link rel="stylesheet" href="/template/css/icomoon.css">
+<link rel="stylesheet" href="/css/icomoon.css">
 <!-- Bootstrap  -->
-<link rel="stylesheet" href="/template/css/bootstrap.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
 
-<link rel="stylesheet" href="/template/css/style.css">
-<link rel="stylesheet" href="/template/css/notice.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/notice.css">
 
 <!-- jQuery -->
-<script src="/template/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
 <!-- jQuery Easing -->
-<script src="/template/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
-<script src="/template/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
-<script src="/template/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
 <!-- Main JS -->
-<script src="/template/js/main.js"></script>
+<script src="/js/main.js"></script>
 <!-- Modernizr JS -->
-<script src="/template/js/modernizr-2.6.2.min.js"></script>
+<script src="/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>

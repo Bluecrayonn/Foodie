@@ -16,12 +16,12 @@
 <div> 
     <div class="card hovercard" style="height: 400px;">
     
-        <div class="card-background" style="background-image:URL(/template/images/test1.jpg); height: 300px">
+        <div class="card-background" style="background-image:URL(/images/test1.jpg); height: 300px">
             <img class="card-bkimg" style="color: black;">
         </div>
         <div class="useravatar">
 
-            <img style="background-image:URL(/template/images/test2.jpg); margin-top: 100px; border: none;">
+            <img style="background-image:URL(/images/test2.jpg); margin-top: 100px; border: none;">
         </div> <br/>
         <div class="card-info" style="width: 800px; margin: auto; height: 80px"> <h5 class="card-title" style="margin-top: 40px;">${sessionScope.auth.NAME}  님</h5></div>
     </div> <br/> <br/>
@@ -152,7 +152,7 @@
     		   console.log(recipe); */
     		   var text = "";
     		   for(var i = 0; i<recipe.length; i++){
-    			   text+="<img class='recipeimg' src='/template/images/"+recipe[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+recipe[i].TITLE+"</a><br/>";
+    			   text+="<img class='recipeimg' src='/images/"+recipe[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+recipe[i].TITLE+"</a><br/>";
     		   }
     		   $("#tab1").html(text);
     	   })
@@ -171,7 +171,7 @@
     		   console.log(bookmark);
     		   var text3 = "";
     		   for(var i = 0; i<bookmark.length; i++){
-    			   text3+="<img class='recipeimg' src='/template/images/"+bookmark[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+bookmark[i].TITLE+"</a><br/>";
+    			   text3+="<img class='recipeimg' src='/images/"+bookmark[i].MAIN_IMG+"'/>"+"     "+"<a href=\"#\">"+bookmark[i].TITLE+"</a><br/>";
     		   }
     		   $("#tab3").html(text3);
     	   })
