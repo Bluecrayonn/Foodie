@@ -55,19 +55,23 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 	}
 
 	@Override
-	public FoodieMember getMember(String nickname) {
+	public Map getMember(String email,String password) {
 		/*
 		 * FoodieMemberMapper foodieMemberMapper =
 		 * sqlSession.getMapper(FoodieMemberMapper.class); return
 		 * foodieMemberMapper.getMember(nickname);
 		 */
+		Map<String,String> map = new HashMap<>();
+		map.put("email",email);
+		map.put("password", password);
+		
 
 		SqlSession sqlSession = factory.openSession();
 
 		try {
-			FoodieMember foodieMemberResult = sqlSession.selectOne("getMember", nickname);
-			return foodieMemberResult;
-		} catch (Exception e) {
+			Map result  = sqlSession.selectOne("getMember",map );
+			return result;
+ 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 
@@ -106,18 +110,21 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 	}
 
 	@Override
-	public void updateMember(FoodieMember foodieMember) {
+	public int updateMember(Map<String,String> map) {
 		/*
 		 * FoodieMemberMapper foodieMemberMapper =
 		 * sqlSession.getMapper(FoodieMemberMapper.class);
 		 * foodieMemberMapper.updateMember(foodieMember);
 		 */
+		int updateResult=0;
 
 		SqlSession sqlSession = factory.openSession();
 		try {
-			int updateResult = sqlSession.update("updateMember", foodieMember);
+			 updateResult = sqlSession.update("foodiemember.updateMember", map);
+			return updateResult;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return updateResult;
 		} finally {
 
 			sqlSession.close();

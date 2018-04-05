@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import models.FoodieMember;
 import models.FoodieMemberMapper;
@@ -31,6 +35,10 @@ public class FoodieMemberController {
 	// FoodieMemberImpl
 	@Autowired
 	FoodieMemberImpl foodimemberimpl;
+	 
+	
+	@Autowired
+	Gson gson;
 
 	@RequestMapping("/inputForm.do")
 	public String insetMember(Model model) {
@@ -169,6 +177,44 @@ public class FoodieMemberController {
 			return "success";
 
 		}
+	}
+	@RequestMapping(path="/profilecheck.do",produces="application/json;charset=utf-8",method=RequestMethod.POST) // 유효성 체크
+	@ResponseBody
+	public String profileCheckHandler(@RequestParam String password,HttpServletRequest req) {
+		System.out.println(password);
+		HttpSession session = req.getSession();
+		String email = (String)((Map)session.getAttribute("auth")).get("EMAIL");
+		
+		Map result = foodimemberimpl.getMember(email, password);
+ 		if(result!=null) {
+			result.put("result", "success");
+			return gson.toJson(result);
+		}else {
+			return  gson.toJson("{\"result\":\"fail\"}");
+		}
+		
+		
+ 		
+		 
+	}
+	@RequestMapping(path="/profilechange.do",produces="application/json;charset=utf-8") // 유효성 체크
+ 	public String profileChangeHandler(@RequestParam Map<String,String> map  ,HttpServletRequest req) {
+ 		HttpSession session = req.getSession();
+ 		System.out.println(map.toString());
+		String email = (String)((Map)session.getAttribute("auth")).get("EMAIL");
+		map.put("email",email);
+		int result= foodimemberimpl.updateMember(map);
+		
+		if(result==1) {
+			session.setAttribute("auth", loginimpl.accountSearch(email));
+			return "redirect:/profile/profilepage.do";
+		}else if(result==0){
+			return  "redirect:/profile/profilepage.do";
+		}
+		
+		return "redirect:/profile/profilepage.do";
+ 		
+		 
 	}
  
 }

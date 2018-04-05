@@ -10,10 +10,10 @@
 SELECT * FROM account
 </select>
 
-<select id="getMember" resultType="models.FoodieMember"
+<select id="getMember" resultType="java.util.HashMap"
 parameterType="String" >
 <!--  mybatis 파라미터 표기법    ? => #{} -->
-SELECT * FROM account WHERE name = #{nickname}
+SELECT * FROM account WHERE email = #{email} and password=#{password}
 </select>
 
 <insert id="insertMember"
@@ -21,9 +21,8 @@ parameterType="models.FoodieMember">
 INSERT INTO account(account_id,name,password,email,gender,birth,profile_img) VALUES(account_seq.nextval,#{nickname},#{pwd},#{email},#{sex},#{year},#{profile_img})
 </insert>
 
-<update id="updateMember"
-parameterType="models.FoodieMember">
-UPDATE account SET password=#{pwd}, email=#{email} WHERE name=#{nickname}
+<update id="updateMember" parameterType="java.util.Map">
+UPDATE account SET password=#{password}, name=#{name} WHERE email=#{email}
 </update>
 <update id="resetPassword"
 parameterType="java.util.HashMap">

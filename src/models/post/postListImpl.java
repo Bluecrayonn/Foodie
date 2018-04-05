@@ -174,8 +174,10 @@ public class postListImpl implements postListDAO {
 
 		String mapFunction = " function() {\r\n" + 
 				"   \r\n" + 
+				"var d = new Date();"+
 				"  \r\n" + 
 				" for (var idx in this.keywords ) {\r\n" + 
+				" if(this.time_line > d -"+term+" ){"+
 				"                           var key = this.keywords[idx];\r\n" + 
 				"                           var value = {\r\n" + 
 				"                           total : 1,\r\n" + 
@@ -212,6 +214,7 @@ public class postListImpl implements postListDAO {
 				"                             value.s60=1;\r\n" + 
 				"                           }\r\n" + 
 				"                           emit(key, value);\r\n" + 
+				"}"+
 				"                       };\r\n" + 
 				"  \r\n" + 
 				"   \r\n" + 

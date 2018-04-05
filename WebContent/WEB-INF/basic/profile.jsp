@@ -27,7 +27,7 @@ button {
 	<div class="card hovercard" style="height: 400px;">
 
 		<div class="card-background"
-			style="background-image: URL(/template/images/test1.jpg); height: 300px">
+			style="background-image: URL(images/test1.jpg); height: 300px">
 			<img class="card-bkimg">
 		</div>
 		<div class="useravatar">
@@ -48,8 +48,8 @@ button {
 			</form>
 	<br />
 	<div style="width: 800px; margin-left: 830px">
-		<button class="btn">프로필 수정</button>
-		<button class="btn">내 정보 수정</button>
+ 		<a data-toggle="modal" href="#profile-change-Modal"
+						class="js-fh5co-close-offcanvas">회원가입</a> 
 	</div>
 	<br />
 	<div class="btn-pref btn-group btn-group-justified btn-group-lg"
@@ -64,7 +64,7 @@ button {
 				href="#tab2" data-toggle="tab" style="height: 50px; outline: none;">댓글</button>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" id="following" class="btn btn-default"
+			<button type="button" id="bookmark" class="btn btn-default"
 				href="#tab3" data-toggle="tab" style="height: 50px; outline: none;">북마크</button>
 		</div>
 		<div class="btn-group" role="group">
@@ -72,11 +72,11 @@ button {
 				href="#tab4" data-toggle="tab" style="height: 50px; outline: none;">팔로잉</button>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" id="following" class="btn btn-default"
+			<button type="button" id="follower" class="btn btn-default"
 				href="#tab5" data-toggle="tab" style="height: 50px; outline: none;">팔로워</button>
 		</div>
 		<div class="btn-group" role="group">
-			<button type="button" id="following" class="btn btn-default"
+			<button type="button" id="myinfo" class="btn btn-default"
 				href="#tab6" data-toggle="tab" style="height: 50px; outline: none;">내
 				정보</button>
 		</div>
@@ -90,7 +90,7 @@ button {
 			<div class="tab-pane fade in" id="tab4"></div>
 			<div class="tab-pane fade in" id="tab5"></div>
 			<div class="tab-pane fade in" id="tab6">
-				<ul style="list-style: none;">
+				<ul style="list-style: none;" >
 					<li>${sessionScope.auth.NAME}님의내 정보</li>
 					<li>&nbsp;&nbsp;&nbsp;이메일 : ${sessionScope.auth.EMAIL}</li>
 
@@ -104,6 +104,32 @@ button {
 	</div>
 </div>
 
+<div class="modal fade" id="profile-change-Modal" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- pw setting Modal content-->
+		<div  class="modal-content" style="font-family: '나눔고딕'">
+			<div class="modal-header" style="font-family: '나눔고딕'">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="text" align="center">회원정보 수정 비밀번호 확인</h4>
+			</div>
+			<div class="modal-body" style="font-family: '나눔고딕'">
+				 
+					<h4 id="profile-change-check-text" class="text">비밀번호를 입력하세요</h4>
+					
+					
+					<input id="profile-change-check" type="text" name="receiver" class="form-control"
+						placeholder="비밀번호 입력" style="font-size: 12pt; width: 100%;"
+ 						required />
+					<div class="modal-footer">
+						<button id = "profile-change-check-btn" type="button"  
+							class="btn " data-dismiss="modal"  >전송</button>
+					</div>
+ 			</div>
+
+		</div>
+	</div>
+</div>
 <div class="center">
 	<br />
 	<button class="btn" onclick="location='dropout.do'"
@@ -295,5 +321,39 @@ button {
  
 
 		//출처: http://lordpark.tistory.com/8 [The World of Web]
+  	})
+  	$("#profile-change-check-btn").click(function(){
+  		$.ajax("/account/profilecheck.do",{
+  			method:"post",
+  			async:true,
+  			data:{
+  				"password":$("#profile-change-check").val()
+  			}
+  		}).done(function(result){
+  			//console.log("result : "+obj);
+  			//var result = $.parseJSON(obj);
+  			console.log(result);
+  			var text="<form action=\"/account/profilechange.do\" method=\"post\">";
+  			
+  			 
+			 
+			 
+		 
+  			if(result.result=="success"){
+  				$("#myinfo").click();
+  				text+="<ul style=\"list-style: none;\" >";
+  				text+="<li>이름 : <input type=\"text\" name=\"name\" value=\""+result.NAME+"\" /></li>";
+  				text+="<li>비밀번호 : <input type=\"password\" name=\"password\" value=\""+result.PASSWORD+"\" /></li>";
+  				text+="<li>성별 : <input type=\"text\" name=\"GENDER\" value=\""+result.GENDER+"\" disabled=\"disabled\"/ ></li>";
+  				text+="<li>나이 : <input type=\"text\" name=\"BIRTH\" value=\""+result.BIRTH+"\" disabled=\"disabled\"/></li>";
+  				text+="</ul>"
+  				text+="<button type=\"submit\"> 전송하기 </button>" 
+  				text+="</form>"
+  				$("#tab6").html(text);
+  			}else  {
+  				window.alert("비밀번호가 틀렸습니다.");
+  			}
+  		})
+  		
   	})
 </script>
