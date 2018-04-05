@@ -23,8 +23,8 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
-		</plugins>
-	</build>
+		</plugins> 
+	</build>    
 
 	<dependencies>
 
@@ -156,7 +156,7 @@
 			<version>5.2.12.Final</version>
 		</dependency>
 
-
+ 
 
 
 		<!-- plugins 에러해결 -->

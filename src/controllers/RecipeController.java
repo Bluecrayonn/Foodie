@@ -70,10 +70,11 @@ public class RecipeController {
 	public String bookmarkHandle(HttpServletRequest req,@RequestParam Map map) {
 		
 		HttpSession session = req.getSession();
-		gson = new Gson();
+		long userId = (long) ((Map) req.getSession().getAttribute("auth")).get("ACCOUNT_ID");
+ 		gson = new Gson();
 		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
-		return gson.toJson(profileimpl.getBookmarkidList());	
+		return gson.toJson(profileimpl.getBookmarkidList(userId));	
 	}
 	
 	@RequestMapping(value = "/following_List.do", produces = "application/text; charset=utf8")
@@ -81,10 +82,12 @@ public class RecipeController {
 	public String followingHandle(HttpServletRequest req,@RequestParam Map map) {
 		
 		HttpSession session = req.getSession();
+		long userId = (long) ((Map) req.getSession().getAttribute("auth")).get("ACCOUNT_ID");
+
 		gson = new Gson();
 		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
-		return gson.toJson(profileimpl.getFollowingidList());	
+		return gson.toJson(profileimpl.getFollowingidList(userId));	
 	}
 	
 	@RequestMapping(value = "/follower_List.do", produces = "application/text; charset=utf8")
@@ -92,10 +95,12 @@ public class RecipeController {
 	public String followerHandle(HttpServletRequest req,@RequestParam Map map) {
 		
 		HttpSession session = req.getSession();
+		long userId = (long) ((Map) req.getSession().getAttribute("auth")).get("ACCOUNT_ID");
+
 		gson = new Gson();
 		//((Map)session.getAttribute("auth")).get("ACCOUNT_ID");
 		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
-		return gson.toJson(profileimpl.getFolloweridList());	
+		return gson.toJson(profileimpl.getFolloweridList(userId));	
 	}
 	
 }

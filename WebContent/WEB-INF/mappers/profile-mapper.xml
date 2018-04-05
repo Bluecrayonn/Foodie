@@ -3,21 +3,26 @@
 
 <mapper namespace="profile">
 
-<!-- <resultMap type="HashMap" id="recipe-Result-Map">
-<result property="POST_ID" column="POST_ID" javaType="java.lang.Long" jdbcType="NUMERIC"   />
-<result property="WRITER_ID" column="WRITER_ID" javaType="java.lang.Long" jdbcType="NUMERIC"   />
-<result property="BOOKMARK_COUNT" column="BOOKMARK_COUNT" javaType="java.lang.Long" jdbcType="NUMERIC"   />
-</resultMap> -->
-<select id="recipetitle" resultType="java.util.LinkedHashMap" >
+	<!-- <resultMap type="HashMap" id="recipe-Result-Map"> <result property="POST_ID" 
+		column="POST_ID" javaType="java.lang.Long" jdbcType="NUMERIC" /> <result 
+		property="WRITER_ID" column="WRITER_ID" javaType="java.lang.Long" jdbcType="NUMERIC" 
+		/> <result property="BOOKMARK_COUNT" column="BOOKMARK_COUNT" javaType="java.lang.Long" 
+		jdbcType="NUMERIC" /> </resultMap> -->
+	<select id="recipetitle" resultType="java.util.LinkedHashMap">
 		select TITLE,POST_ID,MAIN_IMG from post where writer_id = #{userId}
-	</select>	
-<!-- <seclct id="comment" resultType="java.jtil.LikedHashMap">
-		select 
-	</select> -->
-<select id="bookmarktitle" resultType="java.util.LinkedHashMap">
-		select BM.BOOKMARK_ID,BM.USER_ID,P.TITLE,P.MAIN_IMG from BOOKMARK BM join POST P ON BM.POST_ID = P.POST_ID where BM.USER_ID = 46
 	</select>
-<select id="Followtitle" resultType="java.util.LinkedHashMap">
-		select OWNER_ID,TARGET_ID from follow
+	<!-- <seclct id="comment" resultType="java.jtil.LikedHashMap"> select </select> -->
+	<select id="bookmarktitle" resultType="java.util.LinkedHashMap">
+		select
+		BM.BOOKMARK_ID,BM.USER_ID,P.TITLE,P.MAIN_IMG from BOOKMARK BM join
+		POST P ON BM.POST_ID = P.POST_ID where BM.USER_ID = #{userId}
+	</select>
+	<select id="Followingtitle" resultType="java.util.LinkedHashMap">
+		select F.TARGET_ID, A.EMAIL, A.NAME
+		from follow F join ACCOUNT A ON F.TARGET_ID = A.ACCOUNT_ID  where F.OWNER_ID=#{userId}
+	</select>
+	<select id="Followertitle" resultType="java.util.LinkedHashMap">
+		select F.OWNER_ID, A.EMAIL, A.NAME  from follow F join ACCOUNT A ON F.TARGET_ID = A.ACCOUNT_ID where F.TARGET_ID=#{userId}
+		
 	</select>
 </mapper>

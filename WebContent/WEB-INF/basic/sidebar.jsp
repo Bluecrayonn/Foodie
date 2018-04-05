@@ -60,11 +60,18 @@
  						<img src="/template/images/person1.jpg"
 							alt="Free HTML5 Bootstrap Template" class="img-responsive">
 					<h2>${sessionScope.auth.NAME}</h2>
+					<c:choose>
+					<c:when test="${sessionScope.auth.MEMBER_TYPE==1} ">
 					<h4>마트관리자</h4><br/>
-					<ul style="list-style: none;">
+					</c:when>
+					</c:choose>
+ 					<ul style="list-style: none;">
 
 						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
-						<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
+						<c:if test="${sessionScope.auth.MEMBER_TYPE ==1}">
+												<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
+						
+						</c:if>
 						<li><a href="/authentication/logout.do" style="margin-right: 50px;"><i class="icon-log-out">LOG OUT</i></a></li>
  					</ul>
 				</div>
@@ -86,17 +93,17 @@
 			<div class="modal-body" style="font-family: '나눔고딕'">
 				<form action="/account/insertOk.do" autocomplete="off" method="post">
 					<h4 class="text">회원 종류를 선택하세요.</h4>
-					<select class="form-control" id="user" style="font-size: 12pt;">
+					<select name="member_type" class="form-control" id="user" style="font-size: 12pt;">
 						<option>일반 유저</option>
 						<option>마트 관리자</option>
 					</select> 
 					<h4 class="text">성별을 선택하세요.</h4>
-					<select class="form-control" id="sex" style="font-size: 12pt;">
-						<option>여</option>
-						<option>남</option>
+					<select class="form-control" name="sex" id="sex" style="font-size: 12pt;">
+						<option value="F">여</option>
+						<option value="M">남</option>
 					</select>
 					<h4 class="text">태어난 연도를 선택하세요.</h4>
-					<select class="form-control" id="year" style="font-size: 12pt;">
+					<select name="year" class="form-control" id="year" style="font-size: 12pt;">
 					</select>
 					<h4 id="emailchecktext" class="text">이메일을 입력하세요.</h4>
 					<input id="email-check" type="text" name="email"

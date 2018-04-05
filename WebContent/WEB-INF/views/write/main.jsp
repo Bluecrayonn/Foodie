@@ -221,7 +221,7 @@
 							}));
 						}
 					});
-				},
+				}, 
 				minLength : 1,
 				select : function(event, ui) {
 				}

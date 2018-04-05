@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.Map;
 
+
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -82,11 +84,7 @@ public class FoodieMemberController {
 	public String insertOk(@ModelAttribute @Valid FoodieMember foodieMember, BindingResult result) {
 
 		// JPA @Valid 어노테이션을 통해 유효성체크하고 에러가 있으면 BindingResult를 이용하여 처리
-		System.out.println("아 좀 제발 진짜 쩬장 ㅁㄴ아ㅣ러;민ㅇ럼ㄴㅇ러;ㅁ렁미;러ㅣ멍ㄻㄴ;리머ㅏㄻ;ㅣㄹ어말ㄴ어");
-
-		System.out.println(foodieMember.getEmail());
-		System.out.println(foodieMember.getNickname());
-		System.out.println(foodieMember.getPwd());
+		
 		if (result.hasErrors()) {
 			System.out.println("회원가입 과정에서 에러가 발생하였습니다.");
 			return "redirect:/foodie/main.do";
@@ -96,6 +94,7 @@ public class FoodieMemberController {
 			return "welcomepage";
 
 		}
+		
 	}
 	//이거는 패스워드찾기
 	@RequestMapping("/passwordFind.do")
