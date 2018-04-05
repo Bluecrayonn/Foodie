@@ -18,7 +18,7 @@
 
 
 <table border="1" cellpadding="2" cellspacing="0" width="400">
-<form:form commandName="foodieMember" method="post" action="/FinalProject_Foodie/insertOk.do">
+<form:form commandName="foodieMember" method="post" action="/foodie_test/insertOk.do">
 <!-- 위의 변수명이 FoodieMemberControlle에서 insetMember()와 insertOk()이 일치해야 작동  -->
 <tr>
 <td>닉네임</td>
@@ -47,12 +47,7 @@
 </table>
  </div>
  
- <div align="center">
 
-<button type="button" onclick="location.href='/FinalProject_Foodie/mailForm01.do'">이메일 인증</button>
-
-
-</div>
 
 </body>
 </html>

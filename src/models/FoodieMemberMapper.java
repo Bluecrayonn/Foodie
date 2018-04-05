@@ -14,5 +14,8 @@ public interface FoodieMemberMapper {
 	public void updateMember(FoodieMember foodieMember); //데이터 수정
 	public void deleteMember(String nickname); //데이터 삭제
 	
-    
+
+
+
+
 }

@@ -26,9 +26,18 @@ parameterType="models.FoodieMember">
 UPDATE Foodie_member SET pwd=#{pwd}, email=#{email} WHERE nickname=#{nickname}
 </update>
 
-<delete id="deleteMember"
+ <delete id="deleteMember"
 parameterType="String">
 DELETE FROM Foodie_member WHERE nickname=#{nickname}
-</delete>
+</delete> 
+
+<!--  회원탈퇴 
+	<delete id="deleteMember" parameterType="models.FoodieMember">
+		delete from member where id = #{id} and pw = #{pw} -->
+	
+
+
+
+
 
 </mapper>
