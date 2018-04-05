@@ -23,12 +23,25 @@
     border-top-left-radius: 0;
     border-bottom-right-radius: 4px;
 }
+.textbox {
+  box-shadow: none;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  height: 50px;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+	.textbox:active, .textbox:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #f7c873;
+}
 </style>
 <div> 
     <div class="card hovercard">
     
-        <div class="card-background" style="background-image:URL(/images/test1.jpg); height: 300px">
-            <img class="card-bkimg">
+        <div class="card-background" style="height: 300px">
         </div>
         <div class="useravatar">
             <img src="/profile_image/${sessionScope.auth.PROFILE_IMG}" width="200px" style="background-image:URL(); margin-top: 100px; border: none;">
@@ -36,11 +49,11 @@
     </div>
     </div>
 <div style="text-align: center;">
-                    <h1 style="color: #F2BF2B;">${sessionScope.auth.NAME}님의 대시보드 입니다.</h1> <h3>OO마트</h3>
+                    <h1 style="color: #F2BF2B;">${sessionScope.auth.NAME}님의 대시보드 입니다.</h1>
             </div>
  <div class="container">
- <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
- <select name="keywords" class="form-control keywords-list-week" id="user" style="font-size: 12pt; width: 300px; margin-left: 150px;">
+ <div>
+ <select name="keywords" class="form-control keywords-list-week" id="user" style="font-size: 12pt; width: 300px; margin-left: 400px;">
        </select> 
       <br/>
 <table class="table">
@@ -76,7 +89,7 @@
    <div id="chart_sex" style="width: 800px;"></div>
    <div class="panel-body">나이별 차트</div>
    <div>
-   <select class="ages" name = "age" class="form-control" id="age" style="font-size: 12pt;">
+   <select class="ages" name = "age" class="textbox" id="age" style="font-size: 12pt;">
         <option value="20">20대</option>
         <option value="30">30대</option>
         <option value="40">40대</option>
@@ -91,12 +104,12 @@
 </div>
 <div>
     <div>
-<h3 class="panel-title" style="width: 200px;">상품등록이 필요하신가요?</h3><br/> 
-<h4 class="text">저번에 등록한 단가 정보가 필요하세요? <small>(최근 1주일)</small></h4> 
-      <select class="form-control" id="day" style="font-size: 12pt; width: 800px;">
+
+<h4 class="text" style="margin-left: 400;">저번에 등록한 단가 정보가 필요하세요? <small>(최근 1주일)</small></h4> 
+      <select class="form-control" id="day" style="font-size: 12pt; width: 800px; margin-left: 200px;">
       </select>
       <br/>
-      <div class="container" style="width: 800px;">
+      <div class="container" style="width: 800px; margin-left: 200px;">
     <div class="row" style="width: 800px;">
         <div class="panel panel-primary filterable" style="border: none;">
             <div class="panel-heading" style="background-color: #F2BF2B; border: none;">
@@ -128,21 +141,21 @@
                     </tr>
 		  	<tbody id="ingredients">
                    	<tr id="dummy_row" style="display:none;">
-		  			<td><label class="lb_recipe" for="ig_name"></label><input type="text" name="ig_name" disabled></td>
-		  			<td><label class="lb_recipe" for="ig_amount"></label><input type="text" name="ig_amount" disabled></td>
-		  			<td><label class="lb_recipe" for="ig_unit"></label><input type="text" name="ig_unit" disabled></td>
+		  			<td><label class="lb_recipe" for="ig_name"></label><input type="text" name="ig_name" class="textbox" disabled></td>
+		  			<td><label class="lb_recipe" for="ig_amount"></label><input type="text" name="ig_amount" class="textbox" disabled></td>
+		  			<td><label class="lb_recipe" for="ig_unit"></label><input type="text" name="ig_unit" class="textbox" disabled></td>
 				</tr>
         		<tr class="ig_row" style="border-collapse: inherit;">
-		  			<td><label class="lb_recipe" for="ig_name"></label><input type="text" name="ig_name"></td>
-		  			<td><label class="lb_recipe" for="ig_amount"></label><input type="text" name="ig_amount"></td>
-		  			<td><label class="lb_recipe" for="ig_unit"></label><input type="text" name="ig_unit"></td>
+		  			<td><label class="lb_recipe" for="ig_name"></label><input type="text" name="ig_name" class="textbox"></td>
+		  			<td><label class="lb_recipe" for="ig_amount"></label><input type="text" name="ig_amount" class="textbox"></td>
+		  			<td><label class="lb_recipe" for="ig_unit"></label><input type="text" name="ig_unit" class="textbox"></td>
 		  			
 		  			
 		  			<td id="only_one"><a href="javascript:void(0);" onclick="ig_add();">
-			          	<span class="glyphicon glyphicon-plus-sign" style="color:#F2BF2B;"></span>
+			          	<span class="icon-squared-plus" style="color:#F2BF2B;"></span>
 			        </a>
 			        <a href="javascript:void(0);" onclick="ig_remove();">
-	          			<span class="glyphicon glyphicon-minus-sign" style="color:#F2BF2B;"></span>
+	          			<span class="icon-squared-minus" style="color:#F2BF2B;"></span>
 	        		</a>
 	        		</td>	        		
         		</tr>

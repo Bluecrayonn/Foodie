@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
 <style>
 	.textbox {
@@ -17,6 +18,26 @@
   box-shadow: none;
   border-color: #f7c873;
 }
+
+.btn-danger {
+  background: #fb4f59;
+  color: #fff;
+  border: 2px solid #fb4f59;
+  width: 29%
+}
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active {
+  background: #fa3641 !important;
+  border-color: #fa3641 !important;
+}
+.btn-danger.btn-outline {
+  background: transparent;
+  color: #fb4f59;
+  border: 2px solid #fb4f59;
+}
+.btn-danger.btn-outline:hover, .btn-danger.btn-outline:focus, .btn-danger.btn-outline:active {
+  background: #fb4f59;
+  color: #fff;
+  }
 </style>
 <div id="fh5co-offcanvas" style="background-image: URL(/images/sideimg.jpg);">
  	<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span>
@@ -65,8 +86,8 @@
 					<h4>마트관리자</h4><br/>
 					</c:when>
 					</c:choose>
+ 					<br/><br/>
  					<ul style="list-style: none;">
-
 						<li><a href="profile.do" style="margin-right: 50px;"><i class="icon-book3">프로필</i></a></li>
 						<c:if test="${sessionScope.auth.MEMBER_TYPE ==1}">
 												<li><a href="admin.do" style="margin-right: 50px;"><i class="icon-check2">관리/통계(관리자용)</i></a></li><!--(마트관리자용)-->
@@ -108,11 +129,11 @@
 					<h4 id="emailchecktext" class="text">이메일을 입력하세요.</h4>
 					<input id="email-check" type="text" name="email"
 						class="form-control" placeholder="이메일 입력"
-						style="font-size: 12pt; width: 70%; display: inline;"
+						style="font-size: 12pt; width: 69%; display: inline;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
 					<button id="email-auth-btn" class="btn btn-primary"
-						style="width: 25%; height: 54px; margin-left: 3px; vertical-align: middle"
+						style="width: 26%; height: 54px; margin-left: 19px; vertical-align: middle"
 						type="button">인증번호전송</button>
 					<div id="email-check-auth-div" style="display: none">
 						<input id="email-check-auth" type="text" name="authkey"
@@ -131,11 +152,11 @@
 					<input type="text" name="nickname" class="form-control signup-form"
 						disabled="disabled" placeholder="닉네임 입력"
 						style="font-size: 12pt; width: 100%;" required />
-					<div class="modal-footer">
+					<div class="modal-footer" style="border: none;">
 						<button type="submit" class="btn signup-form" data-toggle="modal"
-							disabled="disabled">가입</button>
+							disabled="disabled" style="background-color: #F2BF2B; color:#fff;">가입</button>
 						<button type="button" class="btn" data-dismiss="modal"
-							disabled="disabled">닫기</button>
+							disabled="disabled" style="background-color: #F2BF2B; color:#fff;">닫기</button>
 					</div>
 				</form>
 			</div>
@@ -164,9 +185,9 @@
 						placeholder="이메일 입력" style="font-size: 12pt; width: 100%;"
 						pattern="[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$"
 						required />
-					<div class="modal-footer">
+					<div class="modal-footer" style="border: none;">
 						<button id = "password-email-check-btn" type="submit" formaction="/mail/passwordauthkey.do"
-							class="btn " data-toggle="modal"   disabled="disabled">전송</button>
+							class="btn " data-toggle="modal"   disabled="disabled" style="background-color: #F2BF2B; color:#fff;">전송</button>
 					</div>
 				</form>
 			</div>

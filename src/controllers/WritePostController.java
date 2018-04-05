@@ -88,7 +88,7 @@ public class WritePostController {
 		}
 		// }
 		redirectAttributes.addAttribute("pid", postId);
-		return "redirect:/foodie/detail.do";
+		return "redirect:/foodie/post.do";
 	}
 
 	@RequestMapping("/search_ig.do")

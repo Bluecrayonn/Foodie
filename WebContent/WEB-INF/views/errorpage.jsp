@@ -10,19 +10,9 @@
 	content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 <meta name="author" content="FREEHTML5.CO" />
 
-<!-- Facebook and Twitter integration -->
-<meta property="og:title" content="" />
-<meta property="og:image" content="" />
-<meta property="og:url" content="" />
-<meta property="og:site_name" content="" />
-<meta property="og:description" content="" />
-<meta name="twitter:title" content="" />
-<meta name="twitter:image" content="" />
-<meta name="twitter:url" content="" />
-<meta name="twitter:card" content="" />
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.png">
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>
@@ -91,7 +81,7 @@ h1,h2,h3,h4,h5,h6,a{
   </c:choose>
   </div>
   <footer id="fh5co-footer">
-		<p><small>&copy; copyright 2018 <font style="color: #F2BF2B">(이름)</font> All Rights Reserved</small></p>
+		<p><small>&copy; copyright 2018 <font style="color: #F2BF2B">foodie</font> All Rights Reserved</small></p>
 	</footer>
 </body>
 </html>
