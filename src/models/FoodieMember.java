@@ -6,7 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 //
 //DAO 역할
-
+//
 @Entity
 //컨트롤러에서 JPA를 이용하여 유효성체크를 하기에 앞서 어노테이션을 이용하여 DB에 존재하는 컬럼과 대응이 되도록 처리
 public class FoodieMember {

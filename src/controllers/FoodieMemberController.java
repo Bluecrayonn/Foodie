@@ -30,7 +30,7 @@ public class FoodieMemberController {
 	FoodieMemberMapper foodieMemberService; // 서비스 객체
 	// 의존성을 낮추기위해 타입을 FoodieMemberMapper로 불러오고 실제 사용하는건 services패키지에 있는
 	// FoodieMemberImpl
-
+//
 	@RequestMapping("/inputForm.do")
 	public String insetMember(Model model) {
 		model.addAttribute("foodieMember", new FoodieMember());
@@ -70,41 +70,9 @@ public class FoodieMemberController {
 		}
 	}
 
-	// @RequestMapping을 통해 {nickname}값을 요청을 하면 @PathVariable을 사용하여 String(문자열)인
-	// nickname을 얻어와서 Model 객체를 만듬
-	// 이 Model은 foodieMemberService를 변수명으로 하는 FoodieMemberMapper에 존재하는
-	// getMember() 메소드를 통해
-	// {nickname} 값이라 적어놓은 해당 nickname 값을 얻어와 model 객체에 담음
-	// 그렇게 되면 modifyForm에서는 이제 foodieMember라고 칭한 model에 담긴 nickname을 얻어올 수 있게 됨
+	
 
-	@RequestMapping("/modifyForm.do/{nickname}")
-	// get 방식을 통해 파라미터를불러오는 방법 대신에 spring에서 지원하는 다른방식인 @PathVariable을 사용하여
-	// nickname을 얻어옴
-	public String modifyMember(@PathVariable String nickname, Model model) {
-		// PathVariable 어노테이션을 이용하여 nickname값을 인자로 받아 model에 넘겨줌
-		model.addAttribute("foodieMember", foodieMemberService.getMember(nickname));
-		// foodieMemberService를 변수명으로 하는 FoodieMemberMapper에 존재하는 getMember()
-		// 메소드를 통해
-		// {nickname} 값이라 적어놓은 해당 nickname 값을 얻어옴
-		return "modifyForm";
-	}
-
-	// modifyForm에서 submit 버튼을 누르게 되면 action을 통해 modifyOk.jsp로 넘어가게됨
-
-	/*
-	 * @RequestMapping("/modifyOk.do") public String modifyOk(@Valid
-	 * FoodieMember foodieMember, BindingResult result ) { //form 유효성 체크를 하기 위해
-	 * JPA에서 제공하는 @Valid을 사용 if(result.hasErrors()) {
-	 * System.out.println("회원가입 수정에서 에러가 발생하였습니다."); return "modifyForm"; //에러가
-	 * 발생하면 회원가입 수정으로 이동 }else{ foodieMemberService.updateMember(foodieMember);
-	 * // 에러가 없으면 변수명 foodieMemberService인 FoodieMemberMapper에서 생성해놓은
-	 * //updateMember() 메소드를 통해 DB에 저장 return "updateResult";
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
-//.do?nickname=kikio112
+//여기가 회원탈퇴 index
 	@RequestMapping("/deleteMember.do")
 	public void deleteMember(Model model) {
 		model.addAttribute("foodieMember", new FoodieMember());
@@ -120,7 +88,11 @@ public class FoodieMemberController {
 			if (foodieMemberService.getMember(nickname) != null) {
 				model.addAttribute("foodieMember", foodieMemberService.getMember(nickname));
 		
-				return "sendOk";
+				
+				return "redirect://deleteOk.do";
+				//return "sendOk";
+				// view를 통해 컨트롤러에 있는 다른메소드로 넘어가는 기존의 방법 대신에
+				// 리다이렉트를 통해 직접 이동하게 변경 ( sendOk.jsp 삭제)
 
 			} else { 
 				return "deleteFail";
@@ -140,13 +112,13 @@ public class FoodieMemberController {
 		return "deleteMember";
 	}
 
-	@RequestMapping("/deleteOk.do") //유효성 체크
+	@RequestMapping("/deleteOk.do") //유효성 체크 
 	public String deleteOk(@Valid FoodieMember foodieMember, BindingResult result) {
 		if (result.getFieldErrorCount(foodieMember.getNickname()) > 0) {
 			System.out.println("회원탈퇴 과정에서 오류가 발생하였습니다.");
 		
 		return "deleteMember"; 
-	}else{
+	}else{ //실제로 회원삭제 처리하는 부분
 		foodieMemberService.deleteMember(foodieMember.getNickname());
 		return "deleteOk";
 		

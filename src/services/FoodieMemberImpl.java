@@ -15,6 +15,7 @@ import models.FoodieMemberMapper;
 @Service
 // DAO객체를 구현해주는 Service
 // @Repository 서비스 대신 Repository(저장소)로 대체해도 가능
+//
 public class FoodieMemberImpl implements FoodieMemberMapper {
 
 	// FoodieMemeberMapper interface를 구현

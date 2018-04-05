@@ -2,7 +2,7 @@ package models;
 
 import java.util.List;
 
-
+//
 // DAO 역할
 //Interface 역할이기 때문에 이걸 구현한 실제 DAO에서 메서드 구현을 해주어야 한다.
 

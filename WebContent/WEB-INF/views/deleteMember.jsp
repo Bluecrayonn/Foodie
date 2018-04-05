@@ -34,6 +34,7 @@
 				<!-- 절대경로 action="/foodie_Member/deleteOk.do"와 같음> -->
 				<!--  commnadName을 사용해서 models.FoodieMember에 있는 setter와 getter에 접근하여 
 			form태그에 사용한 것과 매핑하는데 사용됨  -->
+			<!--  -->
 				<tr>
 					<td align="center"><br /> 닉네임: <form:input path="nickname" 
 							maxlength="20" /> 

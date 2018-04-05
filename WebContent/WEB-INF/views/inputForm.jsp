@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!--  -->
+<!--   -->
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
@@ -18,7 +18,7 @@
 
 
 <table border="1" cellpadding="2" cellspacing="0" width="400">
-<form:form commandName="foodieMember" method="post" action="/foodie_test/insertOk.do">
+<form:form commandName="foodieMember" method="post" action=" /FinalProject_Foodie/insertOk.do">
 <!-- 위의 변수명이 FoodieMemberControlle에서 insetMember()와 insertOk()이 일치해야 작동  -->
 <tr>
 <td>닉네임</td>
