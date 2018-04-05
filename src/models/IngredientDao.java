@@ -1,5 +1,6 @@
 package models;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,5 +61,16 @@ public class IngredientDao {
 		}
 		
 		return 0;
+	}
+	
+	public List<HashMap> getAllCode() {
+		List<HashMap> codeList; 
+		SqlSession session = factory.openSession();
+		try {
+			codeList = session.selectList("ingredient_code.getCodeList");
+		} finally {
+			session.close();
+		}
+		return codeList;
 	}
 }
