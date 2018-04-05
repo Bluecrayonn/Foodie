@@ -180,7 +180,15 @@
 
 		<hr />
 		<div class="directions">
-			<textarea id="summernote" name="editorcontent"></textarea>
+			<c:choose>
+				<c:when test="${isMod }">
+					<div id="summernote">${post.CONTENT}</div>
+					<input id="summernotecontent" type="hidden" name="editorcontent" value=""/>
+				</c:when>
+				<c:otherwise>
+					<textarea id="summernote" name="editorcontent"></textarea>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div class="wrapper" style="text-align: center; margin-top: 20px">
 			<button class="btn-primary" type="button" onclick="write_confirm()">작성완료</button>
@@ -257,7 +265,7 @@
 			});
 		}
 		attach_ingredient_functions();
-		$("#summernote")
+		var init_summernote = function(){ $("#summernote")
 				.summernote(
 						{
 							// TOOLBAR REFERENCES > https://summernote.org/deep-dive/#custom-toolbar-popover
@@ -292,12 +300,9 @@
 								}
 							}
 						});
-
-		if ('${!empty post}') {
-			var contents = '${post.CONTENT}';
-			$("#summernote").summernote("code", contents);
-		}
-
+		};
+		init_summernote();
+		
 		function write_confirm() {
 			// 비어있지만 않으면 오케이
 			if ($("#title").val().trim() == "") {
@@ -329,6 +334,9 @@
 			});
 
 			if (flag) {
+				if ('${isMod}') {
+					$('#summernotecontent').val($('#summernote').summernote('code'));
+				}
 				$("#recipe_form").submit();
 			} else {
 				$(".requiredmsg").text('최소 한개의 재료를 입력해주세요.');

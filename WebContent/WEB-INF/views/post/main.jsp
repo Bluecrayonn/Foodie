@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <script src="/js/functions.js?<%=(int)(Math.random()*10)%>"></script>
 <c:set var="ismine"
 	value="${sessionScope.auth.user[0].ACCOUNT_ID == post.WRITER_ID}" />
@@ -44,7 +45,7 @@
 					</div>
 				</c:if>
 				<div class="row rp-b">
-					<div class="col-md-12 animate-box">${post.CONTENT}</div>
+					<div class="col-md-12 animate-box" id="postContent">${post.CONTENT}</div>
 				</div>
 			</div>
 		</article>
@@ -85,10 +86,6 @@
 </nav>
 
 <script>
-	function get_action() { // inside script tags
-		return form_action;
-	}
-
 	$(document).ready(function() {
 		/*** basic main.jsp의 script와 공통부분, 어딘가로 합치자 ***/ 
 		$(".bookmarkicon").click(function() {
