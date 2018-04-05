@@ -2,8 +2,6 @@ package controllers;
 
 import java.util.Map;
 
-
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,10 +48,10 @@ public class FoodieMemberController {
 		// controllers.args -> AlphaController 중 Model, Map, ModelMap 참고
 		int result_email = loginimpl.emailCheck(email);
 		String result = null;
-		if(result_email==2) {
-			result="exists";
-		}else if(result_email ==1) {
-			result="possible";
+		if (result_email == 2) {
+			result = "exists";
+		} else if (result_email == 1) {
+			result = "possible";
 		}
 		return result;
 
@@ -84,7 +83,7 @@ public class FoodieMemberController {
 	public String insertOk(@ModelAttribute @Valid FoodieMember foodieMember, BindingResult result) {
 
 		// JPA @Valid 어노테이션을 통해 유효성체크하고 에러가 있으면 BindingResult를 이용하여 처리
-		
+
 		if (result.hasErrors()) {
 			System.out.println("회원가입 과정에서 에러가 발생하였습니다.");
 			return "redirect:/foodie/main.do";
@@ -94,29 +93,28 @@ public class FoodieMemberController {
 			return "welcomepage";
 
 		}
-		
+
 	}
-	
-	//이거는 패스워드찾기
+
+	// 이거는 패스워드찾기
 	@RequestMapping("/passwordFind.do")
 	@ResponseBody
 	public String passwordFindHandler(@RequestParam Map map) {
-		
-		String email = (String)map.get("email");
-		String newPassword = (String)map.get("new-password");
-		
-		//여기서 DAO 가서 하는거 만들거임
-		String result =foodimemberimpl.resetPassword(email, newPassword);
-	
+
+		String email = (String) map.get("email");
+		String newPassword = (String) map.get("new-password");
+
+		// 여기서 DAO 가서 하는거 만들거임
+		String result = foodimemberimpl.resetPassword(email, newPassword);
+
 		return result;
 	}
-	
-	//여기는 기존의 패스워드 바꾸는 곳임
+
+	// 여기는 기존의 패스워드 바꾸는 곳임
 	//
 	@RequestMapping("/passwordRenew.do")
 	public String passwordRenewHandler(@RequestParam Map map) {
 
-	
 		return null;
 	}
 
@@ -128,5 +126,49 @@ public class FoodieMemberController {
 	 * //FoodieMemberMapper 클래스의 변수명인 foodieMemberService를 값으로 foodieMember를 이름으로 해서
 	 * 모델객체로 넘김 }
 	 */
+	// 여기가 회원탈퇴 index
+	@RequestMapping("/deleteMember.do")
+	public void deleteMember(Model model) {
+		model.addAttribute("foodieMember", new FoodieMember());
+	}
 
+	@RequestMapping("/dlMember.do" )
+	public String deleteMember(@ModelAttribute FoodieMember foodieMember,
+			Model model) throws Exception {
+
+		System.out.println(foodieMember.getEmail());
+		if(foodimemberimpl.deleteCheck(foodieMember) !=0) {
+			model.addAttribute(foodieMember);
+			return "redirect:/account/deleteOk.do?email="+foodieMember.getEmail();
+			
+		}else {
+			return "mainpage";
+		}
+
+	}
+
+	@RequestMapping("/deleteSend.do")
+	public String send() {
+
+		// 삭제버튼을 누를시 해당 닉네임이 존재하지 않으면 deleteFail.jsp에서 경고창을 띄우고 다시
+		// 회원삭제창(deleteMember.jsp)로 이동하기 위함
+		return "deleteMember";
+	}
+
+	@RequestMapping("/deleteOk.do") // 유효성 체크
+	@ResponseBody
+	public String deleteOk(@Valid FoodieMember foodieMember, BindingResult result) {
+ 		
+		if (result.getFieldErrorCount(foodieMember.getNickname()) > 0) {
+			System.out.println("회원탈퇴 과정에서 오류가 발생하였습니다.");
+
+			return "fail";
+		} else { // 실제로 회원삭제 처리하는 부분
+			foodieMemberService.deleteMember(foodieMember.getEmail());
+			System.out.println("아오 제발좀");
+			return "success";
+
+		}
+	}
+ 
 }

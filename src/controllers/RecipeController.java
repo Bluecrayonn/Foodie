@@ -1,7 +1,9 @@
 package controllers;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +16,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 
@@ -102,5 +107,21 @@ public class RecipeController {
 		//req.setAttribute("profilelist", profileimpl.getRecipeidList());
 		return gson.toJson(profileimpl.getFolloweridList(userId));	
 	}
+	
+	@RequestMapping(value="/profileimage.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String profileImgChangeHandler(MultipartHttpServletRequest request) throws IllegalStateException, IOException {
+		HttpSession session = request.getSession();
+		long userId = (long) ((Map) request.getSession().getAttribute("auth")).get("ACCOUNT_ID");
+		Iterator<String> itr = request.getFileNames(); 
+		if(itr.hasNext()) { 
+			MultipartFile mpf = request.getFile(itr.next());
+			String path = profileimpl.profileImgChange(request, mpf, userId);
+			((Map) request.getSession().getAttribute("auth")).put("PROFILE_IMG", path);
+			System.out.println(path);
+		}
+		return "success";
+	}
+	
 	
 }

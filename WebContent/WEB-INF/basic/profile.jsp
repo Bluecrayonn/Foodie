@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- 
+
 <style>
 .center {
 	margin: auto;
@@ -31,16 +31,21 @@ button {
 			<img class="card-bkimg">
 		</div>
 		<div class="useravatar">
-			<img
-				style="background-image: URL(/profile_image/${sessionScope.auth.PROFILE_IMG}); margin-top: 100px; border: none;">
+			<img id="profile-img" src="/profile_image/${sessionScope.auth.PROFILE_IMG}" width="200px"
+				style="background-image: URL(); margin-top: 100px; border: none;">
+			
 		</div>
-		<br />
 		<div class="card-info"
 			style="width: 800px; margin: auto; height: 80px">
 			<h5 class="card-title" style="margin-top: 40px;">${sessionScope.auth.NAME}
 				님</h5>
+				
 		</div>
 	</div>
+	<form action="/profile/" id="profile-img-upload-form" method="post" enctype="multipart/form-data">
+			<input type="file" id="profile-img-upload" name="pf-image"  accept="image/*" style="display: none">
+			<button class ="btn"  type="button" id="profile-img-upload-form-btn">사진 바꾸기</button>
+			</form>
 	<br />
 	<div style="width: 800px; margin-left: 830px">
 		<button class="btn">프로필 수정</button>
@@ -86,7 +91,7 @@ button {
 			<div class="tab-pane fade in" id="tab5"></div>
 			<div class="tab-pane fade in" id="tab6">
 				<ul style="list-style: none;">
-					<li>${sessionScope.auth.NAME}님의 내 정보</li>
+					<li>${sessionScope.auth.NAME}님의내 정보</li>
 					<li>&nbsp;&nbsp;&nbsp;이메일 : ${sessionScope.auth.EMAIL}</li>
 
 					<li>&nbsp;&nbsp;&nbsp;성별 : ${sessionScope.auth.GENDER}</li>
@@ -224,8 +229,8 @@ button {
 					var text3 = "";
 					if (following != null) {
 						for (var i = 0; i < following.length; i++) {
-							text3 += "<a href=\"#\">" + 
-									following[i].NAME + " - " + following[i].EMAIL+ "</a><br/>";
+							text3 += "<a href=\"#\">" + following[i].NAME
+									+ " - " + following[i].EMAIL + "</a><br/>";
 						}
 					}
 					$("#tab4").html(text3);
@@ -242,11 +247,53 @@ button {
 					var text3 = "";
 					if (follower != null) {
 						for (var i = 0; i < follower.length; i++) {
-							text3 += "<a href=\"#\">" + 
-							follower[i].NAME + " - " + follower[i].EMAIL+ "</a><br/>";
+							text3 += "<a href=\"#\">" + follower[i].NAME
+									+ " - " + follower[i].EMAIL + "</a><br/>";
 						}
 					}
 					$("#tab5").html(text3);
 				})
 	})
+	$("#profile-img").click(function(){
+		$("#profile-img-upload").change(function() {
+  			if (!this.files[0].type.startsWith('image')) {
+				window.alert("이미지 파일만 선택가능합니다.");
+				this.value = "";
+			} else {
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function() {
+					$("#profile-img").attr("src", this.result);
+				}
+			}
+  			console.log($("#profile-img-upload")[0].files[0]);
+		}); 
+		$("#profile-img-upload").click();
+		
+	 
+
+	})
+	$("#profile-img-upload-form-btn").click(function(){
+ 		var formData = new FormData();
+ 		//var file = $("#profile-img-upload")[0].files[0];
+ 		//console.log(file);
+		formData.append('pf-image', $("#profile-img-upload")[0].files[0]);
+		/* console.log( $("#profile-img-upload").attr('files'));
+		console.log(formData); */
+		 $.ajax({
+		        url:"/profile/profileimage.do",
+		        data: formData,
+		        processData: false,
+ 		        contentType: false,
+ 		        encType:"multipart/form-data",
+		        type : 'POST',
+		        success: function (data) {
+		        	console.log(data);
+		            window.alert("이미지 업로드 성공");
+		        }
+		    });
+
+
+		//출처: http://lordpark.tistory.com/8 [The World of Web]
+  	})
 </script>

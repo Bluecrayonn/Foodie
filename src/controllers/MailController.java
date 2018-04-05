@@ -21,7 +21,7 @@ import models.login.LoginImpl;
 //
 @Controller
 @RequestMapping("/mail")
-public class MailController01 {
+public class MailController {
 	
 	@Autowired(required = false)
 	private MailService service;

@@ -59,7 +59,7 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping("logout.do")
+	@RequestMapping("/logout.do")
 	public String logoutHandler(HttpServletRequest   context) {
 		
 		

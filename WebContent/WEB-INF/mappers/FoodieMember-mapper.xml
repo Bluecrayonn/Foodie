@@ -18,7 +18,7 @@ SELECT * FROM account WHERE name = #{nickname}
 
 <insert id="insertMember"
 parameterType="models.FoodieMember">
-INSERT INTO account(account_id,name,password,email,gender,birth) VALUES(account_seq.nextval,#{nickname},#{pwd},#{email},#{sex},#{year})
+INSERT INTO account(account_id,name,password,email,gender,birth,profile_img) VALUES(account_seq.nextval,#{nickname},#{pwd},#{email},#{sex},#{year},#{profile_img})
 </insert>
 
 <update id="updateMember"
@@ -33,7 +33,11 @@ UPDATE account SET password=#{newPassword}, email=#{email} WHERE email=#{email}
 
 <delete id="deleteMember"
 parameterType="String">
-DELETE FROM account WHERE name=#{nickname}
+DELETE FROM account WHERE email=#{email}
 </delete>
+<select id="deleteCheck" parameterType="models.FoodieMember" resultType="java.util.HashMap">
+select * from ACCOUNT where email=#{email} and password=#{pwd}
+
+</select>
 
 </mapper>

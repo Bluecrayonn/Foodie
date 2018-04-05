@@ -84,6 +84,13 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 		 * sqlSession.getMapper(FoodieMemberMapper.class);
 		 * foodieMemberMapper.insertMember(foodieMember);
 		 */
+		
+		if(foodieMember.getSex().equals("M")) {
+			foodieMember.setProfile_img("male_default.jpg");
+		}else {
+			foodieMember.setProfile_img("female_default.png");
+
+		}
 
 		SqlSession sqlSession = factory.openSession();
 
@@ -119,23 +126,27 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 	}
 
 	@Override
-	public void deleteMember(String nickname) {
+	public void deleteMember(String email) {
 		/*
 		 * FoodieMemberMapper foodieMemberMapper =
 		 * sqlSession.getMapper(FoodieMemberMapper.class);
 		 * foodieMemberMapper.deleteMember(nickname);
 		 */
-
+		
+		
+		System.out.println(email);
+		
+		
 		SqlSession sqlSession = factory.openSession();
 		try {
-			int deleteResult = sqlSession.delete("deleteMember", nickname);
+			int deleteResult = sqlSession.delete("deleteMember", email);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-
+		}finally{
+		
 			sqlSession.close();
 		}
-
+		
 	}
 	
 	public String resetPassword(String email, String newPassword) {
@@ -157,6 +168,30 @@ public class FoodieMemberImpl implements FoodieMemberMapper {
 			sqlSession.close();
 		}
 		
+		
+	}
+	
+	public int deleteCheck(FoodieMember foodiemember) {
+		Map deleteChechResult=null;
+		int result = 0;
+		SqlSession sqlSession = factory.openSession();
+		try {
+			 deleteChechResult = sqlSession.selectOne("foodiemember.deleteCheck", foodiemember);
+			 result = deleteChechResult.size();
+			 System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+		
+			sqlSession.close();
+		}
+		
+		
+		
+		return  result;
+	}
+	
+	public void profileImgChange() {
 		
 	}
 }
