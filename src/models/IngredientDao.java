@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -72,5 +73,30 @@ public class IngredientDao {
 			session.close();
 		}
 		return codeList;
+	}
+	
+	public int updatePrice(String item_code, String class_code, int price) {
+		SqlSession session = factory.openSession();
+		Map args =  new HashMap();
+		args.put("ITEM_CODE", item_code);
+		args.put("CLASS_CODE", class_code);
+		args.put("PRICE", price);
+		try {
+			session.update("ingredient_code.update_price", args);
+		} finally {
+			session.close();
+		}
+		return 0;
+	}
+	
+	public List getPriceList(String word) {
+		SqlSession session = factory.openSession();
+		List priceList = null; 
+		try {
+			priceList = session.selectList("ingredient_code.getPriceList", word);
+		} finally {
+			session.close();
+		}
+		return priceList;
 	}
 }

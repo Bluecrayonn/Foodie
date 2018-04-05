@@ -6,4 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCodeList" resultType="java.util.HashMap">
 		SELECT * FROM INGREDIENT_CODE
 	</select>
+	<update id="update_price">
+		UPDATE INGREDIENT_CODE SET PRICE=#{PRICE} WHERE ITEM_CODE=#{ITEM_CODE} AND CLASS_CODE=#{CLASS_CODE}
+	</update>
+	<select id="getPriceList" resultType="java.util.HashMap">
+		SELECT * FROM INGREDIENT_CODE WHERE (ITEM_NAME LIKE '%'||#{word}||'%') OR (CLASS_NAME LIKE '%'||#{word}||'%')
+	</select>
 </mapper>
