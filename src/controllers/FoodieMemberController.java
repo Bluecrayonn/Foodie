@@ -96,6 +96,7 @@ public class FoodieMemberController {
 		}
 		
 	}
+	
 	//이거는 패스워드찾기
 	@RequestMapping("/passwordFind.do")
 	@ResponseBody
