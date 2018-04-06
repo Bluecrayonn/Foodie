@@ -12,8 +12,8 @@
 
 
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.png">
+<!-- Place /images/favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="/images/favicon.png">
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Nanum+Gothic'
 	rel='stylesheet' type='text/css'>

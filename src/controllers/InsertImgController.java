@@ -32,7 +32,7 @@ public class InsertImgController {
 			MultipartFile mpf = request.getFile(itr.next());
 			String ct = mpf.getContentType();
 			if (!mpf.isEmpty() && ct.startsWith("image")) {
-				String uploadPath = request.getSession().getServletContext().getRealPath("") + File.separator + "upload_img";
+				String uploadPath = request.getSession().getServletContext().getRealPath("/") + File.separator + "upload_img";
 				String orgFileName = mpf.getOriginalFilename();
 				int lastIdx = orgFileName.lastIndexOf('.');
 				String extension = orgFileName.substring(lastIdx, orgFileName.length());

@@ -97,11 +97,11 @@ public class profileimpl implements ProfileListDao {
 	}
 	
 	public String profileImgChange(HttpServletRequest request, MultipartFile f,long userId) throws IllegalStateException, IOException {
-		String uploadPath = request.getSession().getServletContext().getRealPath("") + File.separator + "profile_image";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/") + File.separator + "profile_image";
 		String orgFileName = f.getOriginalFilename();
 		int lastIdx = orgFileName.lastIndexOf('.');
 		String extension = orgFileName.substring(lastIdx, orgFileName.length());
-		String dest = uploadPath + "\\" + String.valueOf(System.currentTimeMillis()) + extension;
+		String dest = uploadPath + "/" + String.valueOf(System.currentTimeMillis()) + extension;
 		File target = new File(dest);
 		f.transferTo(target);
 		

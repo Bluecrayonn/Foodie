@@ -14,7 +14,7 @@
 	<!-- <seclct id="comment" resultType="java.jtil.LikedHashMap"> select </select> -->
 	<select id="bookmarktitle" resultType="java.util.LinkedHashMap">
 		select
-		BM.BOOKMARK_ID,BM.USER_ID,P.TITLE,P.MAIN_IMG from BOOKMARK BM join
+		BM.BOOKMARK_ID,BM.POST_ID,BM.USER_ID,P.TITLE,P.MAIN_IMG from BOOKMARK BM join
 		POST P ON BM.POST_ID = P.POST_ID where BM.USER_ID = #{userId}
 	</select>
 	<select id="Followingtitle" resultType="java.util.LinkedHashMap">

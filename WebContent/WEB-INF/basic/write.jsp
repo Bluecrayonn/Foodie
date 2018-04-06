@@ -19,7 +19,6 @@
   box-shadow: none;
   border-color: #f7c873;
 }
-
 </style>
 
 	<c:set value="${post ne null && post != ''}" var="isMod" />
@@ -288,7 +287,6 @@
 									[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 									[ 'height', [ 'height' ] ],
 									[ 'insert', [ 'picture', 'link' ] ] ],
-
 							callbacks : {
 								onImageUpload : function(files, editor,
 										welEditable) {
@@ -321,7 +319,6 @@
 				$("#summernote").focus();
 				return;
 			}
-
 			var flag = false;
 			$(".ig_row").each(function() {
 				// 최소한 재료명 하나는 적혀있어야함
@@ -330,7 +327,6 @@
 					flag = true;
 				}
 			});
-
 			if (flag) {
 				if ('${isMod}') {
 					$('#summernotecontent').val($('#summernote').summernote('code'));
@@ -342,9 +338,7 @@
 				$("input[name='ig_name']").focus();
 				return;
 			}
-
 		}
-
 		function ig_add() {
 			var cloneRow = $("#dummy_row").clone();
 			cloneRow.find("input").each(function() {
@@ -360,7 +354,6 @@
 			$("#only_one").appendTo(cloneRow.find(".col-xs-10"));
 			attach_ingredient_functions();
 		}
-
 		function ig_remove() {
 			if ($(".ig_row").length > 1) {
 				console.log($(".ig_row").length);
@@ -368,7 +361,6 @@
 				$(".ig_row:last").remove();
 			}
 		}
-
 		function sendFile(file, el) {
 			// 여기서 file을 리사이징
 			var form_data = new FormData();
@@ -418,7 +410,6 @@
 				body += '</div>';
 				body += '</form>';
 				body += '</div>';
-
 			var btn1 = {
 				Value:'<span class="glyphicon glyphicon-ok"></span>등록하기',
 				Css:"btn-success btn-default pull-left",

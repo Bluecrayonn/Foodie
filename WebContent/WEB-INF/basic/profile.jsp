@@ -40,15 +40,13 @@ button {
 
 	<br />
 	<div style="width: 800px; margin-left: 820px">
-		<form action="/profile/" id="profile-img-upload-form" method="post" enctype="multipart/form-data">
-			<input type="file" id="profile-img-upload" name="pf-image"  accept="image/*" style="display: none">
+ 			<input type="file" id="profile-img-upload" name="pf-image"  accept="image/*" style="display: none">
 			<button class ="btn"  type="button" id="profile-img-upload-form-btn" style="background-color: #F2BF2B; color: #fff;">사진 바꾸기</button>
 			
  		<button data-toggle="modal" href="#profile-change-Modal"
 						class="btn" style="background-color: #F2BF2B; color: #fff;">회원 정보 수정</button> 
 				<p style="width: 800; margin-left:-150px; height: 10px;">* 사진을 바꾸시려면 현재 사진을 더블 클릭 해주세요.</p>
-		</form>
-
+ 
 	</div>
 	<div class="btn-pref btn-group btn-group-justified btn-group-lg"
 		role="group" aria-label="..."
@@ -188,17 +186,16 @@ button {
 				.done(
 						function(obj) {
 							var recipe = JSON.parse(obj);
-							console.log(obj);
-							/* console.log(recipe[0]);
+ 							/* console.log(recipe[0]);
 							console.log(recipe[0].MAIN_IMG);
 							console.log(recipe[0].TITLE);
 							console.log(recipe[0].POST_ID);
 							console.log(recipe); */
 							var text = "";
 							for (var i = 0; i < recipe.length; i++) {
-								text += "<img class='recipeimg' src='/template/images/"+recipe[i].MAIN_IMG+"'/>"
+								text += "<img class='recipeimg' src='/upload_img/"+recipe[i].MAIN_IMG+"'/>"
 										+ "     "
-										+ "<a href=\"#\">"
+										+ "<a href=\"/foodie/post.do?pid="+recipe[i].POST_ID+"\">"
 										+ recipe[i].TITLE + "</a><br/>";
 							}
 							$("#tab1").html(text);
@@ -214,16 +211,12 @@ button {
 				.done(
 						function(obj3) {
 							var bookmark = JSON.parse(obj3);
-							console.log(bookmark[0]);
-							console.log(bookmark[0].MAIN_IMG);
-							console.log(bookmark[0].POST_ID);
-							console.log(bookmark[0].USER_ID);
-							console.log(bookmark);
+							
 							var text3 = "";
 							for (var i = 0; i < bookmark.length; i++) {
-								text3 += "<img class='recipeimg' src='/template/images/"+bookmark[i].MAIN_IMG+"'/>"
+								text3 += "<img class='recipeimg' src='/upload_img/"+bookmark[i].MAIN_IMG+"'/>"
 										+ "     "
-										+ "<a href=\"#\">"
+										+ "<a href=\"/foodie/post.do?pid="+bookmark[i].POST_ID+"\">"
 										+ bookmark[i].TITLE + "</a><br/>";
 							}
 							$("#tab3").html(text3);
@@ -248,8 +241,7 @@ button {
 		}).done(
 				function(obj3) {
 					var following = JSON.parse(obj3);
-					console.log(obj3);
-
+ 
 					var text3 = "";
 					if (following != null) {
 						for (var i = 0; i < following.length; i++) {
@@ -267,8 +259,7 @@ button {
 		}).done(
 				function(obj3) {
 					var follower = JSON.parse(obj3);
-					console.log(obj3);
-					var text3 = "";
+ 					var text3 = "";
 					if (follower != null) {
 						for (var i = 0; i < follower.length; i++) {
 							text3 += "<a href=\"#\">" + follower[i].NAME
@@ -290,8 +281,7 @@ button {
 					$("#profile-img").attr("src", this.result);
 				}
 			}
-  			console.log($("#profile-img-upload")[0].files[0]);
-		}); 
+ 		}); 
 		$("#profile-img-upload").click();
 		
 	 
@@ -330,8 +320,7 @@ button {
   		}).done(function(result){
   			//console.log("result : "+obj);
   			//var result = $.parseJSON(obj);
-  			console.log(result);
-  			var text="<form action=\"/account/profilechange.do\" method=\"post\">";
+   			var text="<form action=\"/account/profilechange.do\" method=\"post\">";
   			
   			 
 			 

@@ -31,7 +31,7 @@ UPDATE account SET password=#{newPassword}, email=#{email} WHERE email=#{email}
 
 
 <delete id="deleteMember"
-parameterType="String">
+parameterType="models.FoodieMember">
 DELETE FROM account WHERE email=#{email}
 </delete>
 <select id="deleteCheck" parameterType="models.FoodieMember" resultType="java.util.HashMap">
